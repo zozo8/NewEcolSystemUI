@@ -1,7 +1,10 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { ButtonModule } from "primeng/button";
+import { InputTextModule } from "primeng/inputtext";
+import { PanelModule } from "primeng/panel";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -22,8 +25,11 @@ import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule,
+    PanelModule
   ],
   providers: [
     {

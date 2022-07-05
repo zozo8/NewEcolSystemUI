@@ -1,2 +1,14 @@
-<p>login works!</p>
-<p-button>test</p-button>
+<div class="login_module">
+
+  <p-panel header="Logowanie do nowego NESA :)">
+    <span class="p-input-icon-left">
+      <i class="pi pi-user"></i>
+      <input type="text" placeholder="Nazwa użytkownika" [(ngModel)]="login.login" pInputText >
+    </span><br>
+  <span class="p-input-icon-left">
+    <i class="pi pi-lock"></i>
+    <input type="password" placeholder="Hasło"  pInputText  >
+</span>
+    <button type="submit" pButton >Zaloguj</button>
+  </p-panel>
+</div>
