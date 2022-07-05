@@ -12,8 +12,9 @@ import { LoginComponent } from "./components/pages/login/login.component";
 import { DashboardPageComponent } from "./components/pages/dashboard-page/dashboard-page.component";
 import { MainpageComponent } from "./components/pages/dashboard/mainpage/mainpage.component";
 import { NotfoundComponent } from "./components/pages/notfound/notfound.component";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,8 +26,10 @@ import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     ButtonModule,
     InputTextModule,
     PanelModule

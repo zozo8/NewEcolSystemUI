@@ -1,4 +1,4 @@
 export interface Login{
-  login?:string;
+  userName?:string;
   password?:string;
 }

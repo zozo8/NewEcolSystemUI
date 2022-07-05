@@ -1,14 +1,18 @@
 <div class="login_module">
-
+<form (ngSubmit)="login()">
   <p-panel header="Logowanie do nowego NESA :)">
     <span class="p-input-icon-left">
       <i class="pi pi-user"></i>
-      <input type="text" placeholder="Nazwa użytkownika" [(ngModel)]="login.login" pInputText >
+      <input type="text" placeholder="Nazwa użytkownika"  name="userName" [(ngModel)]="loginObj.userName"  pInputText >
     </span><br>
   <span class="p-input-icon-left">
     <i class="pi pi-lock"></i>
-    <input type="password" placeholder="Hasło"  pInputText  >
+    <input type="password" placeholder="Hasło" name="password" [(ngModel)]="loginObj.password"  pInputText  >
 </span>
-    <button type="submit" pButton >Zaloguj</button>
+<span class="p-input-icon-left">
+  <button type="submit" pButton >Zaloguj</button>
+</span>
+
   </p-panel>
+</form>
 </div>

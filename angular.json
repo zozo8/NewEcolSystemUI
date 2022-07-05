@@ -69,12 +69,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "NewEcolSystemUI:build:production"
             },
             "development": {
-              "browserTarget": "NewEcolSystemUI:build:development"
+              "browserTarget": "NewEcolSystemUI:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -104,5 +108,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "68203303-2380-4a59-8d8a-62df96ebf60b"
   }
 }
