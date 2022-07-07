@@ -1,6 +1,8 @@
 {
   "/api": {
   "target": "http://nes.ecol.com.pl:7799",
-  "secure": false
+  "secure": false,
+  "changeOrigin":true,
+  "logLevel":"debug"
   }
 }

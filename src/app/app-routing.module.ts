@@ -5,10 +5,11 @@ import { MainpageComponent } from "./components/pages/dashboard/mainpage/mainpag
 import { LoginComponent } from "./components/pages/login/login.component";
 import { NotfoundComponent } from "./components/pages/notfound/notfound.component";
 import { AuthGuard } from "./shared/auth.guard";
+import { LoginGuard } from "./shared/login.guard";
 
 const routes: Routes = [
   {path:"", redirectTo:"login", pathMatch:"full"},
-  {path:"login", component:LoginComponent,canActivate:[AuthGuard]},
+  {path:"login", component:LoginComponent,canActivate:[LoginGuard]},
   {path:"dashboard", component:DashboardPageComponent,canActivate:[AuthGuard], children:[
     {path:"mainpage", component:MainpageComponent, canActivate:[AuthGuard]}
   ]},
