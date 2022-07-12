@@ -1,2 +1,13 @@
-<p>dashboard-page works!</p>
+<p-menubar [model]="items" >
+  <ng-template pTemplate="start">
+    <img src="./assets/images/logo.png" width="55" alt="brand logo" [routerLink]="['/dashboard']" >
+  </ng-template>
+  <ng-template pTemplate="end">
+    <input type="text" pInputText placeholder="Wyszukaj" style="margin-right:.25em" >
+    <p-splitButton icon="pi pi-fw pi-ellipsis-h" [model]="userItems"></p-splitButton>
+
+  </ng-template>
+
+</p-menubar>
+
 <router-outlet></router-outlet>
