@@ -8,6 +8,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { PanelModule } from "primeng/panel";
+import { LoginRoutingModule } from "./login-routing.module";
+
+
 
 @NgModule({
   declarations: [
@@ -16,8 +19,8 @@ import { PanelModule } from "primeng/panel";
   imports: [
     CommonModule,
     HttpClientModule,
+    LoginRoutingModule,
     FormsModule,
-    BrowserModule,
     HttpClientModule,
     ButtonModule,
     InputTextModule,

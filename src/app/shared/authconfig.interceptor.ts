@@ -27,37 +27,24 @@ export class AuthconfigInterceptor implements HttpInterceptor {
   const token = localStorage.getItem("token");
   this.authService.isExpired();
 
-  console.log("tokenUR: "+tokenUR + " token:"+token);
-
     if(!tokenUR) {
-      console.log("interceptor logowanie  do UR");
       return next.handle(request);
     } else if (tokenUR && !token) {
-      console.log("interceptor logowanie do API");
         request = this.applyToken(request, tokenUR);
         return next.handle(request);
-     } else if(!this.authService.isExpired())
-     {
-       console.log("interceptor sztuczne odświeżenie");
-      request = this.applyToken(request, token??"");
-      return this.refreshToken(request, next);
      } else {
-      request = this.applyToken(request, token??"");
-      return next.handle(request);
 
-      // console.log("interceptor zwykłe zapytanie");
-      //   request = this.applyToken(request, token??"");
-      //   return next.handle(request).pipe(
-      //     catchError((err:any)=> {
-      //       if (err instanceof HttpErrorResponse && err.status === 401) {
-      //         console.log("intercepotor odśweżanie tokeu");
-      //         return this.refreshToken(request, next);
-      //       } else {
-      //         this.authService.logout();
-      //         return next.handle(request);
-      //       }
-      //     })
-      //   );
+        request = this.applyToken(request, token??"");
+        return next.handle(request).pipe(
+          catchError((err:any)=> {
+            if (err instanceof HttpErrorResponse && err.status === 401) {
+              return this.refreshToken(request, next);
+            } else {
+              this.authService.logout();
+              return next.handle(request);
+            }
+          })
+        );
     }
   }
 
@@ -66,6 +53,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     if (!this.isRefreshingToken) {
       this.isRefreshingToken = true;
       this.tokenSubject.next("");
+      console.log("odświeżenie tokenu!");
 
       return this.authService.refreshToken().pipe(
         switchMap((res: ResponseLoginApi) => {

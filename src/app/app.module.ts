@@ -19,21 +19,19 @@ import { NotfoundComponent } from "./components/pages/notfound/notfound.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
 import { FormsModule } from "@angular/forms";
-import { AdminModule } from "./modules/admin/admin.module";
-import { LoginModule } from "./modules/login/login.module";
+import { TableComponent } from './universalComponents/table/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardPageComponent,
     MainpageComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,
-    LoginModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

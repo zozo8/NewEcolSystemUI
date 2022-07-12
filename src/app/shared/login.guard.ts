@@ -18,11 +18,9 @@ constructor(
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.authService.isExpired()) {
       this.router.navigate(["/dashboard/mainpage"]);
-      return false;
-    } else {
-      return true;
     }
 
+    return true;
   }
 
 }

@@ -1,7 +1,10 @@
 import { Component} from "@angular/core";
+import { Routes } from "@angular/router";
 import Login from "./interfaces/login.model";
 import { ResponseLoginUR } from "./interfaces/UR/responseLoginUr.model";
 import { LoginService } from "./login.service";
+
+
 
 @Component({
   selector: "app-login",
