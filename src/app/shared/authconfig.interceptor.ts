@@ -23,6 +23,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log("interceptor");
   const tokenUR = localStorage.getItem("tokenUR");
   const token = localStorage.getItem("token");
   this.authService.isExpired();
@@ -33,7 +34,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
         request = this.applyToken(request, tokenUR);
         return next.handle(request);
      } else {
-
+        console.log("Zwykłe zapytanie");
         request = this.applyToken(request, token??"");
         return next.handle(request).pipe(
           catchError((err:any)=> {

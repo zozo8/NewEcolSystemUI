@@ -1,5 +1,8 @@
-import { Component} from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit} from "@angular/core";
 import { Routes } from "@angular/router";
+import { tap } from "rxjs";
+import { environment } from "src/environments/environment";
 import Login from "./interfaces/login.model";
 import { ResponseLoginUR } from "./interfaces/UR/responseLoginUr.model";
 import { LoginService } from "./login.service";
@@ -11,7 +14,7 @@ import { LoginService } from "./login.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"]
 })
-export class LoginComponent {
+export class LoginComponent{
 
   public loginObj:Login = {
     password:"",
@@ -20,6 +23,7 @@ export class LoginComponent {
   constructor(
     private loginService:LoginService
   ) { }
+
 
   login():void {
 

@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { sha512 } from "js-sha512";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import Login from "./interfaces/login.model";
 import { ResponseLoginApi } from "./interfaces/responseLoginApi.model";
@@ -13,6 +13,7 @@ import { ResponseLoginUR } from "./interfaces/UR/responseLoginUr.model";
   providedIn: "root"
 })
 export class LoginService {
+
 
   constructor(
     private http:HttpClient,

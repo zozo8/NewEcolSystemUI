@@ -1,1 +1,49 @@
-<p>table works!</p>
+<p-toast></p-toast>
+<p-table #dt1
+[value]="dataSource.value.data"
+[columns]="cols"
+[rowsPerPageOptions]="[10,25,50,100,500]"
+[loading]="dataLoading"
+[paginator]="true"
+[rows]="10"
+[totalRecords]="25"
+[showCurrentPageReport]="true"
+styleClass="p-datatable-striped"
+responsiveLayout="scroll">
+<ng-template pTemplate="caption">
+    <div class="p-d-flex">
+        <button pButton label="Wyczyśc" class="p-button-outlined" icon="pi pi-filter-slash"></button>
+        <span class="p-input-icon-left p-ml-auto">
+            <i class="pi pi-search"></i>
+            <!-- <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" /> -->
+        </span>
+    </div>
+</ng-template>
+<ng-template pTemplate="header" let-columns>
+<tr>
+  <th *ngFor="let col of columns" pSortableColumn="{{col.key}}">{{col.name}}
+    <p-sortIcon field="{{col.key}}" *ngIf="col.sortable !== false"></p-sortIcon>
+    <p-columnFilter type="{{col.dataType}}" *ngIf="col.filter !== false" field="{{col.key}}" display="menu" ></p-columnFilter>
+</th>
+</tr>
+</ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let row of columns" >
+              <span>{{rowData[row.key]}}</span>
+                <!-- <div *ngIf="row.dataType !== 'button'">
+                   <span *ngIf="row.dataType === 'date'">{{rowData[row.key] | date:"yyyy-MM-dd hh:mm:ss"}}</span>
+                   <span *ngIf="row.dataType !== 'date'">data: {{rowData[row.key]}}</span>
+                </div> -->
+                <!-- <div *ngIf="row.dataType === 'button'">
+                    <p-button type="button" title="{{row.description}}" icon="{{row.icon}}" (click)="this[row.function](rowData)"></p-button>
+                </div> -->
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="6">Brak danych</td>
+        </tr>
+    </ng-template>
+</p-table>

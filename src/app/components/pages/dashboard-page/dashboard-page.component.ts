@@ -1,6 +1,9 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
+import { tap } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
+import { environment } from "src/environments/environment";
 import { isContext } from "vm";
 
 @Component({
@@ -13,10 +16,14 @@ export class DashboardPageComponent implements OnInit {
   userItems: MenuItem[];
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private http:HttpClient
   ) { }
 
   ngOnInit(): void {
+
+    console.log("dashboard");
+    this.http.get<any>(environment.endpointApiPath+"/api/Users/GetUser/Get/2").pipe(tap(console.log));
 
     this.userItems = [
       {
@@ -41,6 +48,11 @@ export class DashboardPageComponent implements OnInit {
     ];
 
     this.items = [
+      {
+        label: "Administracja",
+        icon:"pi pi-align-left",
+        routerLink:"/dashboard/administration"
+      },
       {
         label: "Drzewo urządzeń",
         icon:"pi pi-align-left",

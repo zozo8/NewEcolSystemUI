@@ -4,6 +4,6 @@ export interface ResponseBodyGetList {
   code?:number;
   errors?:any;
   success?:boolean;
-  value:RequestBodyGetListValue[]
+  value:RequestBodyGetListValue;
 
 }

@@ -1,29 +1,47 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, SkipSelf } from "@angular/core";
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { Observable, tap } from "rxjs";
 import { FilterColumnName } from "src/app/models/requests/filterColumnName.model";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
+import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
-export class UserService {
+export class UserService{
 
   constructor(
-    private http:HttpClient
+     private http:HttpClient
   ) { }
 
-  getUsers():Observable<RequestBodyGetList> {
+  getUsers():Observable<ResponseBodyGetList> {
     let requestObj = this.getRequestObj();
-    return this.http.post<RequestBodyGetList>(environment.endpointApiPath+"/api/Users/GetUsers/Get",requestObj);
+    console.log(requestObj);
+   return this.http.post<ResponseBodyGetList>(environment.endpointApiPath+"/api/Users/GetUsers/Get",requestObj);
   }
 
-  private getRequestObj():RequestBodyGetList {
+ getRequestObj():RequestBodyGetList {
     let filtersColumnName:FilterColumnName[] = [
       {
         filters:[],
         columnName:"Id",
+        dataType:"Int"
+      },
+      {
+        filters:[],
+        columnName:"UserName",
+        dataType:"Int"
+      },
+      {
+        filters:[],
+        columnName:"userEmail",
+        dataType:"Int"
+      },
+      {
+        filters:[],
+        columnName:"evaluationDate",
         dataType:"Int"
       }
     ];

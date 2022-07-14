@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
+import { Component, OnInit} from "@angular/core";
+import { Observable} from "rxjs";
+import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { UserService } from "./user.service";
 
 @Component({
@@ -9,19 +10,14 @@ import { UserService } from "./user.service";
 })
 export class UsersComponent implements OnInit {
 
-  list:any;
+  dataObj:Observable<ResponseBodyGetList>;
 
   constructor(
-    private userService: UserService
+   private userService:UserService
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe({
-      next:(res:RequestBodyGetList)=> {
-        console.log(res);
-      }
-    });
-
+    this.dataObj = this.userService.getUsers();
   }
 
 }

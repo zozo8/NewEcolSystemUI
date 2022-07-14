@@ -19,21 +19,18 @@ import { NotfoundComponent } from "./components/pages/notfound/notfound.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
 import { FormsModule } from "@angular/forms";
-import { TableComponent } from './universalComponents/table/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardPageComponent,
     MainpageComponent,
-    NotfoundComponent,
-    TableComponent
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     ButtonModule,
     InputTextModule,
@@ -42,7 +39,8 @@ import { TableComponent } from './universalComponents/table/table/table.componen
     SplitButtonModule,
     TreeModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    HttpClientModule
 
   ],
   providers: [
@@ -51,6 +49,9 @@ import { TableComponent } from './universalComponents/table/table/table.componen
       useClass:AuthconfigInterceptor,
       multi:true
     }
+  ],
+  exports:[
+
   ],
   bootstrap: [AppComponent]
 })
