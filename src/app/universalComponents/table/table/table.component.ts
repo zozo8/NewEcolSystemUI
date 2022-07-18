@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
-import { MessageService } from "primeng/api";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
+import { LazyLoadEvent, MessageService } from "primeng/api";
 import { Toast } from "primeng/toast";
 import { Observable } from "rxjs";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
@@ -13,11 +13,8 @@ import { tableColsStructure } from "src/app/models/tableColsStructure.model";
 })
 export class TableComponent {
   dataLoading: boolean;
-  // dataSource: any;
-  //colsTmp: any[];
   cols:tableColsStructure[];
   dataSource:ResponseBodyGetList;
-
 
 private _dataTable : Observable<ResponseBodyGetList>;
 get dataTable(): Observable<ResponseBodyGetList> {
@@ -31,8 +28,6 @@ set dataTable(v : Observable<ResponseBodyGetList>) {
   this.dataLoading = true;
   v.subscribe({
     next:(res:ResponseBodyGetList)=>{
-      // this.dataSource = res.value.data;
-      //this.colsTmp = res.value.data[0];
       this.dataSource = res;
     },
     complete:()=>{
@@ -44,10 +39,18 @@ set dataTable(v : Observable<ResponseBodyGetList>) {
       console.error(err);
     }
   });
-
 }
 
+@Output()
+newRequestParam = new EventEmitter<LazyLoadEvent>();
+
   constructor() { }
+
+
+  loadData(event:LazyLoadEvent):void {
+    console.log("event: "+event.first);
+    this.newRequestParam.emit(event);
+  }
 
 private getColsArray(cols:any):tableColsStructure[]  {
   var res:tableColsStructure[] = [];

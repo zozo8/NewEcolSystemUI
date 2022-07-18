@@ -1,13 +1,16 @@
 <p-toast></p-toast>
 <p-table #dt1
 [value]="dataSource.value.data"
+[lazy]="true"
 [columns]="cols"
 [rowsPerPageOptions]="[10,25,50,100,500]"
 [loading]="dataLoading"
 [paginator]="true"
-[rows]="10"
-[totalRecords]="25"
+[rows]="dataSource.value.pageSize"
+[totalRecords]="dataSource.value.totalPages"
 [showCurrentPageReport]="true"
+(onLazyLoad)="loadData($event)"
+currentPageReportTemplate="Rekordy od {first} do {last} z {{dataSource.value.totalItems}}"
 styleClass="p-datatable-striped"
 responsiveLayout="scroll">
 <ng-template pTemplate="caption">
@@ -30,14 +33,10 @@ responsiveLayout="scroll">
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
             <td *ngFor="let row of columns" >
-              <span>{{rowData[row.key]}}</span>
-                <!-- <div *ngIf="row.dataType !== 'button'">
+                <div *ngIf="row.dataType !== 'button'">
                    <span *ngIf="row.dataType === 'date'">{{rowData[row.key] | date:"yyyy-MM-dd hh:mm:ss"}}</span>
-                   <span *ngIf="row.dataType !== 'date'">data: {{rowData[row.key]}}</span>
-                </div> -->
-                <!-- <div *ngIf="row.dataType === 'button'">
-                    <p-button type="button" title="{{row.description}}" icon="{{row.icon}}" (click)="this[row.function](rowData)"></p-button>
-                </div> -->
+                   <span *ngIf="row.dataType !== 'date'">{{rowData[row.key]}}</span>
+                </div>
             </td>
         </tr>
     </ng-template>

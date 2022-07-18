@@ -1,5 +1,6 @@
 import { Component, OnInit} from "@angular/core";
-import { Observable} from "rxjs";
+import { LazyLoadEvent } from "primeng/api";
+import { Observable, tap} from "rxjs";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { UserService } from "./user.service";
 
@@ -17,7 +18,11 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dataObj = this.userService.getUsers();
+    this.dataObj = this.userService.getData();
+  }
+
+  onNewRequestParam(obj:LazyLoadEvent):void{
+    console.log("users: ", obj.first,obj.rows);
   }
 
 }

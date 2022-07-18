@@ -16,10 +16,10 @@ export class UserService{
      private http:HttpClient
   ) { }
 
-  getUsers():Observable<ResponseBodyGetList> {
-    let requestObj = this.getRequestObj();
-    console.log(requestObj);
+  getData():Observable<ResponseBodyGetList> {
+  let requestObj:RequestBodyGetList = this.getRequestObj();
    return this.http.post<ResponseBodyGetList>(environment.endpointApiPath+"/api/Users/GetUsers/Get",requestObj);
+
   }
 
  getRequestObj():RequestBodyGetList {

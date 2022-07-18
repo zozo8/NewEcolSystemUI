@@ -3,9 +3,9 @@ export interface RequestBodyGetListValue{
   data:any[];
   endIndex?:number;
   endPage?:number;
-  pageSize?:number;
+  pageSize:number;
   pages?:number[];
   startIndex?:number;
   totalItems?:number;
-  totalPages?:number;
+  totalPages:number;
 }
