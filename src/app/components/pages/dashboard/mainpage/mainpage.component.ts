@@ -11,15 +11,10 @@ import { MainpageService } from "src/app/services/mainpage.service";
 export class MainpageComponent {
 
   constructor(
-    private authService:AuthService,
-    private mainpageService:MainpageService
+    private authService:AuthService
   ) { }
 
   logout():void {
     this.authService.logout();
-  }
-
-  getUsers():void {
-    this.mainpageService.getUsers();
   }
 }

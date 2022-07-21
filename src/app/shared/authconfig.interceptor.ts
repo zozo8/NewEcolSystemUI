@@ -41,7 +41,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse && err.status === 401) {
               return this.refreshToken(request, next);
             } else {
-              this.authService.logout();
+              //this.authService.logout();
               return next.handle(request);
             }
           })

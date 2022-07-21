@@ -27,10 +27,11 @@ set dataTable(v : Observable<ResponseBodyGetList>) {
 
   this.dataLoading = true;
   v.subscribe({
-    next:(res:ResponseBodyGetList)=>{
+    next:(res:ResponseBodyGetList)=> {
       this.dataSource = res;
     },
     complete:()=>{
+      console.log(this.dataSource);
       this.cols = this.getColsArray(this.dataSource.value.data[0]);
       this.dataLoading = false;
     },
