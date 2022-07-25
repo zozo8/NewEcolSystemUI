@@ -21,8 +21,6 @@ export class DashboardPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    console.log("dashboard");
     this.http.get<any>(environment.endpointApiPath+"/api/Users/GetUser/Get/2").pipe(tap(console.log));
 
     this.userItems = [

@@ -4,7 +4,7 @@ import { DashboardPageComponent } from "./components/pages/dashboard-page/dashbo
 import { MainpageComponent } from "./components/pages/dashboard/mainpage/mainpage.component";
 import { NotfoundComponent } from "./components/pages/notfound/notfound.component";
 import { AuthGuard } from "./shared/auth.guard";
-import { LoginGuard } from "./shared/login.guard";
+import { LoginGuard } from "./modules/login/login.guard";
 
 
 const routes: Routes = [

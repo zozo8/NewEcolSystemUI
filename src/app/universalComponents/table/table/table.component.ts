@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Input, Output} from "@angular/core";
 import { LazyLoadEvent, MessageService } from "primeng/api";
-import { Toast } from "primeng/toast";
 import { Observable } from "rxjs";
+import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
-import { tableColsStructure } from "src/app/models/tableColsStructure.model";
 
 @Component({
   selector: "app-table",
@@ -13,8 +12,9 @@ import { tableColsStructure } from "src/app/models/tableColsStructure.model";
 })
 export class TableComponent {
   dataLoading: boolean;
-  cols:tableColsStructure[];
+  cols:RequestGridDataColumnValue[] =[];
   dataSource:ResponseBodyGetList;
+  columnFilter:string[];
 
 private _dataTable : Observable<ResponseBodyGetList>;
 get dataTable(): Observable<ResponseBodyGetList> {
@@ -31,8 +31,6 @@ set dataTable(v : Observable<ResponseBodyGetList>) {
       this.dataSource = res;
     },
     complete:()=>{
-      console.log(this.dataSource);
-      this.cols = this.getColsArray(this.dataSource.value.data[0]);
       this.dataLoading = false;
     },
     error:(err:Error)=>{
@@ -42,41 +40,30 @@ set dataTable(v : Observable<ResponseBodyGetList>) {
   });
 }
 
+
+private _columns : RequestGridDataColumnValue[];
+public get columns() : RequestGridDataColumnValue[] {
+  return this._columns;
+}
+@Input()
+public set columns(v : RequestGridDataColumnValue[]) {
+  this.cols = v;
+  this.columnFilter = this.cols.map(el=>el.columnName);
+  console.log("column filters", this.columnFilter);
+}
+
+@Input()
+height:number;
+
 @Output()
 newRequestParam = new EventEmitter<LazyLoadEvent>();
 
-  constructor() { }
-
+  constructor(
+  ) { }
 
   loadData(event:LazyLoadEvent):void {
-    console.log("event: "+event.first);
     this.newRequestParam.emit(event);
   }
-
-private getColsArray(cols:any):tableColsStructure[]  {
-  var res:tableColsStructure[] = [];
-
-  Object.keys(cols).forEach((el: string) => {
-    let obj:tableColsStructure = {
-      key:el,
-      name: this.getTextWithSpaces(el),
-      description: el,
-      dataType:"string",
-      filter:true,
-      sortable:true,
-      visible:true
-    };
-    res.push(obj);
-  });
-  return res;
-}
-
-getTextWithSpaces(el: string): string {
-  let result:string = el.replace(/([A-Z])/g, " $1");
-  let finalResult:string = result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
-  return finalResult;
-}
-
 
 }
 

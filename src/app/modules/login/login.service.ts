@@ -38,7 +38,6 @@ export class LoginService {
         .subscribe({
           next:(res:ResponseLoginApi)=> {
             console.log("pobrany token: "+res.token);
-            console.log("pobrany refreshToken: "+res.refreshToken);
             this.setLocalStorageUserData(res);
           },
           error:(err:string)=> {
@@ -78,7 +77,7 @@ export class LoginService {
     localStorage.setItem("tokenExp", decodate.exp);
     const rights: string[] =  decodate["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
     if (rights) {
-      const admin  = rights.filter(x => x.includes("Administrator"));
+      const admin  = rights.filter(x => x.includes("Administrator")); //do zmiany
       if (admin) {
         localStorage.setItem("admin", "true");
       }
@@ -87,9 +86,9 @@ export class LoginService {
 
 
   getHashedPassword(password: string):string {
-    let arrayBuffer = sha512.update(password).arrayBuffer();
-    let dupa = Buffer.from(arrayBuffer);
-    let res = dupa.toString("base64");
+    let arrayBuffer:ArrayBuffer = sha512.update(password).arrayBuffer();
+    let buffer:Buffer = Buffer.from(arrayBuffer);
+    let res:string = buffer.toString("base64");
     return res;
   }
 }

@@ -1,1 +1,17 @@
-<app-table [dataTable]="dataObj" (newRequestParam)="onNewRequestParam($event)"></app-table>
+
+			<p-toolbar >
+      <ng-template pTemplate="left">
+        <button pButton label="Dodaj" icon="pi pi-plus" class="p-button-text" ></button>
+        <button pButton label="Usuń" icon="pi pi-remove" class="p-button-text" ></button>
+        <button pButton label="Edytuj" icon="pi pi-edit" class="p-button-text" ></button>
+      </ng-template>
+      <ng-template pTemplate="right">
+        Wyszukiwarka, filtry
+      </ng-template>
+    </p-toolbar>
+    <app-table [dataTable]="dataObj" [height]="800"  [columns]="columnsOutput" (newRequestParam)="onNewRequestParam($event)"></app-table>
+
+
+
+
+

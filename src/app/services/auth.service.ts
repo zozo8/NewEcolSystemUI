@@ -25,10 +25,9 @@ export class AuthService {
 
   isExpired(): boolean {
     if (localStorage.getItem("tokenExp")) {
-      console.log("refreshToken",localStorage.getItem("refreshToken"));
       const exp = parseInt(localStorage.getItem("tokenExp")??"");
       const actualDate = (new Date().getTime() + 1) / 1000;
-      console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
+     // console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
       return exp>=actualDate;
 
     }
