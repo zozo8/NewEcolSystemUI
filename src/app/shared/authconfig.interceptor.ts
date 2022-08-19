@@ -39,7 +39,6 @@ export class AuthconfigInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse && err.status === 401) {
               return this.refreshToken(request, next);
             } else {
-              //this.authService.logout();
               return next.handle(request);
             }
           })
@@ -55,9 +54,9 @@ export class AuthconfigInterceptor implements HttpInterceptor {
 
       return this.authService.refreshToken().pipe(
         switchMap((res: ResponseLoginApi) => {
-          this.loginService.setLocalStorageUserData(res);
           this.isRefreshingToken = false;
           this.tokenSubject.next(res.token);
+
           return next.handle(this.applyToken(request, res.token));
         })
       );

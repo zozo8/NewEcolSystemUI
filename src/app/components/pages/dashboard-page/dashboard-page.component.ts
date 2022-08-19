@@ -1,10 +1,6 @@
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
-import { tap } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
-import { environment } from "src/environments/environment";
-import { isContext } from "vm";
 
 @Component({
   selector: "app-dashboard-page",
@@ -16,13 +12,11 @@ export class DashboardPageComponent implements OnInit {
   userItems: MenuItem[];
 
   constructor(
-    private authService:AuthService,
-    private http:HttpClient
+    private authService:AuthService
   ) { }
 
-  ngOnInit(): void {
-    this.http.get<any>(environment.endpointApiPath+"/api/Users/GetUser/Get/2").pipe(tap(console.log));
 
+  ngOnInit(): void {
     this.userItems = [
       {
         label:"Ustawienia",

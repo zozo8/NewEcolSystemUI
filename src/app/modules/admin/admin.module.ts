@@ -6,6 +6,8 @@ import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { SplitterModule } from "primeng/splitter";
+import { SplitButtonModule } from "primeng/splitbutton";
+import { InputTextModule } from "primeng/inputtext";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -28,7 +30,9 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
     ToastModule,
     ButtonModule,
     ToolbarModule,
-    SplitterModule
+    SplitterModule,
+    SplitButtonModule,
+    InputTextModule
 
   ]
 })

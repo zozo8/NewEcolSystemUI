@@ -13,14 +13,10 @@ import { TextFormatService } from "./text-format.service";
   providedIn: "root"
 })
 export class TableResponseService {
-
-
-
   constructor(
     private http:HttpClient,
     private textFormatService:TextFormatService
     ) { }
-
 
   // get response for table from api
   getResponseObj(requestPath:string, requestObj:RequestBodyGetList):Observable<ResponseBodyGetList> {

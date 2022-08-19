@@ -1,8 +1,4 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit} from "@angular/core";
-import { Routes } from "@angular/router";
-import { tap } from "rxjs";
-import { environment } from "src/environments/environment";
+import { Component} from "@angular/core";
 import Login from "./interfaces/login.model";
 import { ResponseLoginUR } from "./interfaces/UR/responseLoginUr.model";
 import { LoginService } from "./login.service";
@@ -15,6 +11,8 @@ import { LoginService } from "./login.service";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent{
+  loading:boolean;
+  errorText:string;
 
   public loginObj:Login = {
     password:"",
@@ -26,13 +24,17 @@ export class LoginComponent{
 
 
   login():void {
-
+    this.loading = true;
+    this.errorText = "";
     this.loginService.loginToUR(this.loginObj).subscribe({
       next:(res:ResponseLoginUR)=> {
+
         this.loginService.authenticate(res);
       },
-      error:(err:string)=> {
-        console.error(err);
+      complete:()=>{ this.loading = false},
+      error:()=> {
+        this.loading = false;
+        this.errorText = "Niepoprawny login lub hasło!";
       }
     });
   }

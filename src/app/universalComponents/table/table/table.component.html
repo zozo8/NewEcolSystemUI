@@ -1,48 +1,61 @@
-<p-table #dt1
-[value]="dataSource.value.data"
-[lazy]="true"
-[columns]="cols"
-[rowsPerPageOptions]="[10,25,50,100,500]"
-[loading]="dataLoading"
-[paginator]="true"
-[rows]="dataSource.value.pageSize"
-[totalRecords]="dataSource.value.totalPages"
-[showCurrentPageReport]="true"
-(onLazyLoad)="loadData($event)"
-[scrollable]="true"
-[globalFilterFields]="columnFilter"
-selectionMode="single"
-scrollHeight="{{height}}px"
-currentPageReportTemplate="Rekordy od {first} do {last} z {{dataSource.value.totalItems}}"
-styleClass="p-datatable-lines"
-responsiveLayout="scroll">
-<ng-template pTemplate="caption" style="background-color: blue;">
- <div style="background-color: red;">qdqdqdqdqw</div>
-</ng-template>
-<ng-template pTemplate="header" let-columns>
-<tr>
-  <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
-    <p-sortIcon field="{{col.columnName}}"></p-sortIcon>
-    <p-columnFilter type="{{col.dataType}}" field="{{col.columnName}}" display="menu" ></p-columnFilter>
-</th>
-</tr>
-</ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let row of columns" >
-              <div [ngSwitch]="row.dataType">
-                <span *ngSwitchCase="'date'">{{rowData[row.columnName] | date:"yyyy/MM/dd"}}</span>
-                <span *ngSwitchCase="'boolean'">
-                    <i class="pi" [ngClass]="{'true-icon pi-check-circle': rowData[row.columnName], 'false-icon pi-times-circle': !rowData[row.columnName]}"></i>
-                  </span>
-                <span *ngSwitchDefault>{{rowData[row.columnName]}}</span>
-              </div>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-        <tr>
-            <td colspan="6">Brak danych</td>
-        </tr>
-    </ng-template>
-</p-table>
+<div class="card">
+
+  <p-table #dt1
+  [value]="dataSource.value.data"
+  [lazy]="true"
+  [columns]="cols"
+  [rowsPerPageOptions]="[10,25,50,100,500]"
+  [loading]="dataLoading"
+  [paginator]="true"
+  [showPageLinks]="true"
+  [rows]="dataSource.value.pageSize"
+  [totalRecords]="dataSource.value.totalPages"
+  [showCurrentPageReport]="true"
+  (onLazyLoad)="loadData($event)"
+  [globalFilterFields]="columnFilter"
+  [resizableColumns]="true"
+  selectionMode="single"
+  scrollHeight="{{height}}px"
+  currentPageReportTemplate="Rekordy od {first} do {last} z {{dataSource.value.totalItems}}"
+  styleClass="p-datatable-gridlines"
+  responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+   <div class="row">
+     <div class="col-md-8">{{title}}</div>
+     <div [align]="'right'" class="col-md-4">
+      <span class="p-input-icon-left" style="padding-right: 10px;">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText placeholder="Wyszukaj w tabeli...">
+      </span>
+      <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
+     </div>
+   </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+  <tr>
+    <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
+      <p-sortIcon field="{{col.columnName}}"></p-sortIcon>
+      <p-columnFilter type="{{col.dataType}}" field="{{col.columnName}}" display="menu" ></p-columnFilter>
+  </th>
+  </tr>
+  </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+              <td *ngFor="let row of columns" >
+                <div [ngSwitch]="row.dataType">
+                  <span *ngSwitchCase="'date'">{{rowData[row.columnName] | date:"yyyy/MM/dd"}}</span>
+                  <span *ngSwitchCase="'boolean'">
+                      <i class="pi" [ngClass]="{'true-icon pi-check-circle': rowData[row.columnName], 'false-icon pi-times-circle': !rowData[row.columnName]}"></i>
+                    </span>
+                  <span *ngSwitchDefault>{{rowData[row.columnName]}}</span>
+                </div>
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="6">Brak danych</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>

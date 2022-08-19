@@ -1,9 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ResponseLoginApi } from "../modules/login/interfaces/responseLoginApi.model";
+import { LoginService } from "../modules/login/login.service";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +14,8 @@ export class AuthService {
 
   constructor(
     private http:HttpClient,
-    private router:Router
+    private router:Router,
+    private loginService:LoginService
   ) { }
 
   logout():void {
@@ -27,7 +29,7 @@ export class AuthService {
     if (localStorage.getItem("tokenExp")) {
       const exp = parseInt(localStorage.getItem("tokenExp")??"");
       const actualDate = (new Date().getTime() + 1) / 1000;
-     // console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
+      console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
       return exp>=actualDate;
 
     }
@@ -35,8 +37,28 @@ export class AuthService {
     return false;
   }
 
+  tokenExist(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   refreshToken(): Observable<ResponseLoginApi> {
-    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/Home/RefreshToken",null);
+
+    let refreshToken = localStorage.getItem("refreshToken")??"";
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "RefreshToken":refreshToken
+      })
+    };
+
+    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/Home/RefreshToken",null,httpOptions)
+              .pipe(tap((res:ResponseLoginApi)=> {
+                this.loginService.setLocalStorageUserData(res);
+              }));
 
   }
 
