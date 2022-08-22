@@ -1,7 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { tap } from "rxjs";
+import { Component} from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
-import { MainpageService } from "src/app/services/mainpage.service";
 
 @Component({
   selector: "app-mainpage",

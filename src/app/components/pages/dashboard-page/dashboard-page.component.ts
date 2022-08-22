@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
+import { timer } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
+import { AppMenu } from "./appMenu";
+import { UserMenu } from "./usermenu";
 
 @Component({
   selector: "app-dashboard-page",
@@ -8,8 +11,8 @@ import { AuthService } from "src/app/services/auth.service";
   styleUrls: ["./dashboard-page.component.css"]
 })
 export class DashboardPageComponent implements OnInit {
-  items: MenuItem[];
-  userItems: MenuItem[];
+  menu: MenuItem[];
+  userMenu: MenuItem[];
 
   constructor(
     private authService:AuthService
@@ -17,121 +20,23 @@ export class DashboardPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.userItems = [
-      {
-        label:"Ustawienia",
-        icon:"pi pi-fw pi-sliders-h",
-      },
-      {
-        label:"Profil użytkownika",
-        icon:"pi pi-fw pi-user",
-      },
-      {
-        separator:true
-      },
-      {
-        label:"Wyloguj",
-        icon:"pi pi-fw pi-power-off",
-        command:()=> {
-          this.logout();
-        }
-      }
-
-    ];
-
-    this.items = [
-      {
-        label: "Administracja",
-        icon:"pi pi-align-left",
-        routerLink:"/dashboard/administration"
-      },
-      {
-        label: "Drzewo urządzeń",
-        icon:"pi pi-align-left",
-        routerLink:""
-      },
-      {
-        label:"Zlecenia",
-        icon:"pi pi-align-justify",
-        items:[
-          {
-            label:"Zlecenia",
-            routerLink:"/dashboard/orders"
-          },
-          {
-            label:"Karty zleceń",
-            routerLink:"/dashboard/order-cards"
-          }
-        ]
-      },
-      {
-          label: "Przeglądarki",
-          icon:"pi pi-align-justify",
-          items: [{
-                  label: "Elementy drzewa",
-                  items: [
-                      {
-                        label: "Obiekty",
-                        routerLink: "/dashboard/objects",
-                      },
-                      {
-                        label: "Węzły",
-                        routerLink: "/dashboard/departments",
-                      },
-                      {
-                        label: "Zespoły",
-                        routerLink: "/dashboard/nodes",
-                      },
-                      {
-                        label: "Urządzenia",
-                        routerLink: "/dashboard/equipments",
-                      },
-                      {
-                        label: "Punkty serwisowe",
-                        routerLink: "/dashboard/lubricant-points",
-                      }
-                  ]
-              }
-          ]
-      },
-      {
-          label: "Słowniki",
-          icon: "pi pi-fw pi-align-justify",
-          items: [
-              {
-                label: "Typy zadań"
-              },
-              {
-                label: "Grupy zadań"
-              }
-          ]
-      },
-      {
-        label:"Administracja",
-        icon:"pi pi-fw pi-lock",
-        items:[
-          {
-            label:"Użytkownicy",
-            icon:"pi pi-user",
-            items:[
-              {
-                label:"Lista użytkowników",
-                routerLink:"/dashboard/admin/users"
-              },
-              {
-                label:"Historia logowań",
-                routerLink:"/dashboard/login-history"
-              }
-            ]
-          }
-        ]
-
-      }
-  ];
+    this.setTimer();
+    this.menu = AppMenu;
+    this.userMenu = UserMenu;
   }
 
   logout():void {
     this.authService.logout();
+  }
+
+  private setTimer() {
+    const source = timer(2000, 5000);
+    source.subscribe(val => {
+      if(!this.authService.checkLastActivity()){
+        this.authService.logout();
+      }
+    });
+
   }
 
 }

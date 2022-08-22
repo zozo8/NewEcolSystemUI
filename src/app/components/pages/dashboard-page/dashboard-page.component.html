@@ -1,13 +1,13 @@
-<p-menubar [model]="items" >
+<p-menubar [model]="menu" >
   <ng-template pTemplate="start">
     <img src="./assets/images/logo.png" width="55" alt="brand logo" [routerLink]="['/dashboard']" >
   </ng-template>
   <ng-template pTemplate="end">
     <span class="p-input-icon-left" style="padding-right: 10px;">
       <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Wyszukaj okno..." >
+        <input type="text" pInputText [placeholder]="'search'|translate" >
       </span>
-    <p-splitButton icon="pi pi-fw pi-ellipsis-h" [model]="userItems" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
+    <p-splitButton icon="pi pi-fw pi-ellipsis-h" [model]="userMenu" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
   </ng-template>
 </p-menubar>
 <router-outlet></router-outlet>

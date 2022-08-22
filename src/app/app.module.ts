@@ -16,9 +16,17 @@ import { AppComponent } from "./app.component";
 import { DashboardPageComponent } from "./components/pages/dashboard-page/dashboard-page.component";
 import { MainpageComponent } from "./components/pages/dashboard/mainpage/mainpage.component";
 import { NotfoundComponent } from "./components/pages/notfound/notfound.component";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
 import { FormsModule } from "@angular/forms";
+
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+
+function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -40,7 +48,14 @@ import { FormsModule } from "@angular/forms";
     TreeModule,
     TableModule,
     ToastModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide:TranslateLoader,
+        useFactory:HttpLoaderFactory,
+        deps:[HttpClient]
+      }
+    })
 
   ],
   providers: [
@@ -56,3 +71,5 @@ import { FormsModule } from "@angular/forms";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

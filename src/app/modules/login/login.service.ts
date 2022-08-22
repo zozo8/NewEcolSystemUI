@@ -25,7 +25,6 @@ export class LoginService {
     localStorage.removeItem("tokenUR");
     localStorage.removeItem("token");
     let loginObjUR = this.getLoginObjUR(obj);
-
     return this.http.post<ResponseLoginUR>("/api/auth/login",loginObjUR);
   }
 

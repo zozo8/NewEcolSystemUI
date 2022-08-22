@@ -16,7 +16,7 @@ constructor(
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.authService.tokenExist()) {
+    if(this.authService.checkLastActivity()) {
       this.router.navigate(["/dashboard/mainpage"]);
     }
 

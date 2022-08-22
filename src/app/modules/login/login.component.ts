@@ -1,7 +1,8 @@
-import { Component} from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import Login from "./interfaces/login.model";
 import { ResponseLoginUR } from "./interfaces/UR/responseLoginUr.model";
 import { LoginService } from "./login.service";
+import { TranslateService } from "@ngx-translate/core";
 
 
 
@@ -11,17 +12,21 @@ import { LoginService } from "./login.service";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent{
+
   loading:boolean;
   errorText:string;
+  panelTitle:string;
+
+  constructor(
+    private loginService:LoginService,
+    private translateService:TranslateService
+  ) { }
+
 
   public loginObj:Login = {
     password:"",
     userName:""
   };
-  constructor(
-    private loginService:LoginService
-  ) { }
-
 
   login():void {
     this.loading = true;
@@ -31,12 +36,19 @@ export class LoginComponent{
 
         this.loginService.authenticate(res);
       },
-      complete:()=>{ this.loading = false},
+      complete:()=>{
+        this.loading = false
+      },
       error:()=> {
         this.loading = false;
-        this.errorText = "Niepoprawny login lub hasło!";
+        this.errorText = this.translateService.instant("login_page.error");
       }
     });
+  }
+
+  setLanguage(ln:string):void{
+    this.translateService.use(ln);
+    localStorage.setItem("actualLanguage",ln);
   }
 
 

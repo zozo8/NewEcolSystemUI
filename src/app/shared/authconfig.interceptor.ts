@@ -33,6 +33,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
         request = this.applyToken(request, tokenUR);
         return next.handle(request);
      } else {
+        this.authService.setLastActivity();
         request = this.applyToken(request, token??"");
         return next.handle(request).pipe(
           catchError((err:any)=> {

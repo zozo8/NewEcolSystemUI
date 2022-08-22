@@ -13,7 +13,8 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
 import { UsersComponent } from "./pages/users/users.component";
 import { TableComponent } from "src/app/universalComponents/table/table/table.component";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
     ToolbarModule,
     SplitterModule,
     SplitButtonModule,
-    InputTextModule
+    InputTextModule,
+    TranslateModule
 
   ]
 })

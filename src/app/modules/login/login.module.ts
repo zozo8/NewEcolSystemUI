@@ -11,6 +11,7 @@ import { ProgressBarModule } from "primeng/progressbar";
 
 import { LoginRoutingModule } from "./login-routing.module";
 
+import { TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LoginRoutingModule } from "./login-routing.module";
     ButtonModule,
     InputTextModule,
     PanelModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TranslateModule
   ],
   exports:[
   ]

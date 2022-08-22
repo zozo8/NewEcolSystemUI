@@ -1,0 +1,27 @@
+{
+  "equipment_tree":"Drzewo urządzeń",
+  "orders_header":"Zlecenia",
+  "orders":{
+    "orders":"Zlecenia",
+    "order_cards":"Karty zleceń"
+  },
+  "browsers_header":"Przeglądarki",
+  "browsers":{
+    "tree_elements_header":"Elementy drzewa",
+    "tree_elements":{
+      "objects":"Obiekty",
+      "nodes":"Węzły",
+      "equipments":"Urządzenia",
+      "lubricant_points":"Punkty serwisowe"
+    }
+  },
+  "dictionaries_header":"Słowniki",
+  "dictionaries":{
+    "task_types":"Typy zadań",
+    "task_groups":"Grupy zadań"
+  },
+  "admin_header":"Administracja",
+  "admin":{
+    "users":"Użytkownicy"
+  }
+}

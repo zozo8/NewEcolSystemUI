@@ -10,8 +10,6 @@ import { LoginService } from "../modules/login/login.service";
   providedIn: "root"
 })
 export class AuthService {
-
-
   constructor(
     private http:HttpClient,
     private router:Router,
@@ -29,7 +27,7 @@ export class AuthService {
     if (localStorage.getItem("tokenExp")) {
       const exp = parseInt(localStorage.getItem("tokenExp")??"");
       const actualDate = (new Date().getTime() + 1) / 1000;
-      console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
+      //console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
       return exp>=actualDate;
 
     }
@@ -37,17 +35,7 @@ export class AuthService {
     return false;
   }
 
-  tokenExist(): boolean {
-    const token = localStorage.getItem('token');
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   refreshToken(): Observable<ResponseLoginApi> {
-
     let refreshToken = localStorage.getItem("refreshToken")??"";
     const httpOptions = {
       headers: new HttpHeaders({
@@ -60,6 +48,27 @@ export class AuthService {
                 this.loginService.setLocalStorageUserData(res);
               }));
 
+  }
+
+  setLastActivity():void {
+    const date = new Date().getTime() + (10 * 60000);
+    localStorage.setItem("lastActivity", date.toString());
+  }
+
+  checkLastActivity(): boolean {
+    const actualDate = new Date().getTime();
+    let lastAct = localStorage.getItem("lastActivity");
+    if(lastAct) {
+      let lastActivity = Number.parseInt(lastAct);
+      if (actualDate > lastActivity) {
+        return false;
+      }
+      else {
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
 
 }

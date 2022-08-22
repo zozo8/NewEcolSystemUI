@@ -1,25 +1,33 @@
+<div style="background-image: url(./assets/images/login_background.jpg);" >
+
 <div class="container" style="height: 100vh; width: 40vh;">
   <div class="row h-100" >
     <div class="col-md-12" style="padding-top: 50%;">
       <div class="text-center">
-        <img src="./assets/images/logo.png" width="55">
+        <img src="./assets/images/logo.png"  width="55">
       </div>
       <form (ngSubmit)="login()">
-        <p-panel header="NES 2.0 - witamy w nowej rzeczywistości!">
-          <div class="mb-3 text-center">
+        <p-panel [header]="'login_page.title' | translate">
+          <div class="form-group text-center p-2">
             <span class="p-input-icon-left">
               <i class="pi pi-user"></i>
-              <input type="text" placeholder="Nazwa użytkownika"  name="userName" [(ngModel)]="loginObj.userName"  pInputText >
+              <input type="text" [placeholder]="'login_page.username' | translate"  name="userName" [(ngModel)]="loginObj.userName"  pInputText >
             </span>
           </div>
-          <div class="mb-3 text-center">
+          <div class="form-group text-center p-2">
             <span class="p-input-icon-left">
               <i class="pi pi-lock"></i>
-              <input type="password" placeholder="Hasło" name="password" [(ngModel)]="loginObj.password"  pInputText  >
+              <input type="password" [placeholder]="'login_page.password' | translate" name="password" [(ngModel)]="loginObj.password"  pInputText  >
             </span>
           </div>
-          <div class="mb-3 text-center">
-            <button type="submit" pButton >Zaloguj</button>
+          <div class="row">
+            <div class="col-md-6 text-start p-2">
+              <img class="p-1" src="./assets/images/flags/PL.png" (click)="setLanguage('pl')"/>
+              <img class="p-1" src="./assets/images/flags/GB.png" (click)="setLanguage('en')"/>
+            </div>
+            <div class="col-md-6 text-end p-2">
+              <button type="submit" pButton >{{"login_page.login"| translate}}</button>
+            </div>
           </div>
           <div class="row">
             <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf="loading"></p-progressBar>
@@ -32,23 +40,5 @@
     </div>
   </div>
 </div>
+</div>
 
-
-<!-- <div class="login_module">
-<form (ngSubmit)="login()">
-  <p-panel header="Logowanie do nowego NESA :)">
-    <span class="p-input-icon-left">
-      <i class="pi pi-user"></i>
-      <input type="text" placeholder="Nazwa użytkownika"  name="userName" [(ngModel)]="loginObj.userName"  pInputText >
-    </span><br>
-  <span class="p-input-icon-left">
-    <i class="pi pi-lock"></i>
-    <input type="password" placeholder="Hasło" name="password" [(ngModel)]="loginObj.password"  pInputText  >
-</span>
-<span class="p-input-icon-left">
-  <button type="submit" pButton >Zaloguj</button>
-</span>
-
-  </p-panel>
-</form>
-</div> -->
