@@ -4,12 +4,16 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpClient
 } from "@angular/common/http";
-import { BehaviorSubject, catchError, filter, Observable, switchMap, take } from "rxjs";
+import { BehaviorSubject, catchError, filter, Observable, switchMap, take,tap } from "rxjs";
 import { AuthService } from "../services/auth.service";
 import { ResponseLoginApi } from "../modules/login/interfaces/responseLoginApi.model";
 import { LoginService } from "../modules/login/login.service";
+import { environment } from "src/environments/environment";
+
 
 @Injectable()
 export class AuthconfigInterceptor implements HttpInterceptor {
@@ -19,7 +23,8 @@ export class AuthconfigInterceptor implements HttpInterceptor {
 
   constructor(
     private authService:AuthService,
-    private loginService:LoginService
+    private loginService:LoginService,
+    private http:HttpClient
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -53,7 +58,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
       this.isRefreshingToken = true;
       this.tokenSubject.next("");
 
-      return this.authService.refreshToken().pipe(
+      return this.refreshTokenApi().pipe(
         switchMap((res: ResponseLoginApi) => {
           this.isRefreshingToken = false;
           this.tokenSubject.next(res.token);
@@ -76,6 +81,21 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     return req.clone({
       headers: req.headers.set("Authorization", "Bearer " + token)
      });
+  }
+
+  refreshTokenApi(): Observable<ResponseLoginApi> {
+    let refreshToken = localStorage.getItem("refreshToken")??"";
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "RefreshToken":refreshToken
+      })
+    };
+
+    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/Home/RefreshToken",null,httpOptions)
+              .pipe(tap((res:ResponseLoginApi)=> {
+                this.loginService.setLocalStorageUserData(res);
+              }));
+
   }
 
 }

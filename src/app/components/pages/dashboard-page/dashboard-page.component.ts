@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { timer } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
-import { AppMenu } from "./appMenu";
-import { UserMenu } from "./usermenu";
+import { DashboardMenuService } from "./dashboard-menu.service";
 
 @Component({
   selector: "app-dashboard-page",
@@ -15,21 +14,22 @@ export class DashboardPageComponent implements OnInit {
   userMenu: MenuItem[];
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private menuService:DashboardMenuService
   ) { }
 
 
   ngOnInit(): void {
     this.setTimer();
-    this.menu = AppMenu;
-    this.userMenu = UserMenu;
+    this.menu = this.menuService.getAppMenu();
+    this.userMenu = this.menuService.getUserMenu();
   }
 
   logout():void {
     this.authService.logout();
   }
 
-  private setTimer() {
+  private setTimer():void {
     const source = timer(2000, 5000);
     source.subscribe(val => {
       if(!this.authService.checkLastActivity()){

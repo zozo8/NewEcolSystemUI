@@ -1,0 +1,27 @@
+{
+    "equipment_tree":"Equipment tree",
+    "orders_header":"Orders",
+    "orders":{
+      "orders":"Orders",
+      "order_cards":"Order Cards"
+    },
+    "browsers_header":"Browsers",
+    "browsers":{
+      "tree_elements_header":"Tree elements",
+      "tree_elements":{
+        "objects":"Objects",
+        "nodes":"Nodes",
+        "equipments":"Equipments",
+        "lubricant_points":"Lubricant points"
+      }
+    },
+    "dictionaries_header":"Dictionaries",
+    "dictionaries":{
+      "task_types":"Task types",
+      "task_groups":"Task groups"
+    },
+    "admin_header":"Administrations",
+    "admin":{
+      "users":"Users"
+    }
+}

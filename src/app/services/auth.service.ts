@@ -1,10 +1,6 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, tap } from "rxjs";
-import { environment } from "src/environments/environment";
-import { ResponseLoginApi } from "../modules/login/interfaces/responseLoginApi.model";
-import { LoginService } from "../modules/login/login.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,8 +8,7 @@ import { LoginService } from "../modules/login/login.service";
 export class AuthService {
   constructor(
     private http:HttpClient,
-    private router:Router,
-    private loginService:LoginService
+    private router:Router
   ) { }
 
   logout():void {
@@ -35,22 +30,10 @@ export class AuthService {
     return false;
   }
 
-  refreshToken(): Observable<ResponseLoginApi> {
-    let refreshToken = localStorage.getItem("refreshToken")??"";
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "RefreshToken":refreshToken
-      })
-    };
 
-    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/Home/RefreshToken",null,httpOptions)
-              .pipe(tap((res:ResponseLoginApi)=> {
-                this.loginService.setLocalStorageUserData(res);
-              }));
-
-  }
 
   setLastActivity():void {
+    console.log("ustawienie aktywnosci!");
     const date = new Date().getTime() + (10 * 60000);
     localStorage.setItem("lastActivity", date.toString());
   }

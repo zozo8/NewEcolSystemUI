@@ -10,7 +10,6 @@ import { ProgressBarModule } from "primeng/progressbar";
 
 
 import { LoginRoutingModule } from "./login-routing.module";
-
 import { TranslateModule} from "@ngx-translate/core";
 
 

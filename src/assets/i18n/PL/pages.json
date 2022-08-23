@@ -1,0 +1,11 @@
+{
+  "login_page":{
+    "username":"Nazwa użytkownika",
+    "password": "Hasło",
+    "title":"Logowanie",
+    "error":"Niepoprawny login lub hasło!",
+    "login":"Zaloguj",
+    "logout":"Wyloguj",
+    "forget_password":"Zapomniałeś hasła?"
+  }
+}

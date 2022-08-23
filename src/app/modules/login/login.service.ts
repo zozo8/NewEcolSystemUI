@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { sha512 } from "js-sha512";
 import { Observable, tap } from "rxjs";
+import { AuthService } from "src/app/services/auth.service";
 import { environment } from "src/environments/environment";
 import Login from "./interfaces/login.model";
 import { ResponseLoginApi } from "./interfaces/responseLoginApi.model";
@@ -17,7 +18,8 @@ export class LoginService {
 
   constructor(
     private http:HttpClient,
-    private router:Router
+    private router:Router,
+    private authService:AuthService
   ) { }
 
 
@@ -36,14 +38,15 @@ export class LoginService {
         this.http.get<ResponseLoginApi>(environment.endpointApiPath+"/Home/Authenticate")
         .subscribe({
           next:(res:ResponseLoginApi)=> {
-            console.log("pobrany token: "+res.token);
-            console.log("pobrany refresh token: "+res.refreshToken);
+            // console.log("pobrany token: "+res.token);
+            // console.log("pobrany refresh token: "+res.refreshToken);
             this.setLocalStorageUserData(res);
           },
           error:(err:string)=> {
             console.error("błąd pobierania z api:",err);
           },
           complete:()=> {
+            this.authService.setLastActivity();
             this.router.navigate(["/dashboard/mainpage"]);
           }
         });

@@ -23,7 +23,7 @@ export class LoginComponent{
   ) { }
 
 
-  public loginObj:Login = {
+  loginObj:Login = {
     password:"",
     userName:""
   };
@@ -33,15 +33,14 @@ export class LoginComponent{
     this.errorText = "";
     this.loginService.loginToUR(this.loginObj).subscribe({
       next:(res:ResponseLoginUR)=> {
-
         this.loginService.authenticate(res);
       },
       complete:()=>{
-        this.loading = false
+        this.loading = false;
       },
       error:()=> {
         this.loading = false;
-        this.errorText = this.translateService.instant("login_page.error");
+        this.errorText = this.translateService.instant("pages.login_page.error");
       }
     });
   }
