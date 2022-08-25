@@ -34,13 +34,17 @@
 		"show_details": "Pokaż szczegóły..."
 	},
 	"common": {
-		"title_page": "NES 2.0 - Witamy w nowej rzeczywistości!",
+		"title_page": "NES 2.0 - System Utrzymania Ruchu",
 		"notifications": "Powiadomienia",
 		"language": "Język",
 		"minimal_menu": "Zwiń menu",
 		"show_menu": "Rozszerz menu",
 		"change_customer": "Zmień klienta...",
-		"search": "Wyszukaj..."
+		"search": "Wyszukaj...",
+		"1Adv": "Planowanie zadań",
+		"2Adv": "Ewidencja urządzeń",
+		"3Adv": "Ewidencja środków smarnych",
+		"4Adv": "Raportowanie"
 	},
 	"pages": {
 		"login_page": {

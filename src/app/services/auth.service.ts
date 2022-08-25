@@ -7,7 +7,6 @@ import { Router } from "@angular/router";
 })
 export class AuthService {
   constructor(
-    private http:HttpClient,
     private router:Router
   ) { }
 
@@ -33,7 +32,6 @@ export class AuthService {
 
 
   setLastActivity():void {
-    console.log("ustawienie aktywnosci!");
     const date = new Date().getTime() + (10 * 60000);
     localStorage.setItem("lastActivity", date.toString());
   }

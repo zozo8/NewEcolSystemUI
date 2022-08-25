@@ -2,3 +2,14 @@
   margin: auto;
   padding: 10% 0px 0px 0px;
 }
+
+.forget-password:hover  {
+  text-decoration: underline;
+}
+
+.forget-password {
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+}
+

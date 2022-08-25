@@ -34,19 +34,23 @@
 		"show_details": "Show details..."
 	},
 	"common": {
-		"title_page": "Analysis oil - client portal",
+		"title_page": "NES 2.0 - Computerized Maintenance Management System",
 		"notifications": "Notifications",
 		"language": "Language",
 		"minimal_menu": "Minimize menu",
 		"show_menu": "Show menu",
 		"change_customer": "Change client...",
-		"search": "Search..."
+		"search": "Search...",
+		"1Adv": "Planing tasks",
+		"2Adv": "Register equipments",
+		"3Adv": "Register lubricants",
+		"4Adv": "Reporting"
 	},
 	"pages": {
 		"login_page": {
 			"username": "User name",
 			"password": "Password",
-			"title": "Login to panel",
+			"title": "Login",
 			"error": "Wrong login or password!",
 			"login": "Login",
 			"logout": "Logout",

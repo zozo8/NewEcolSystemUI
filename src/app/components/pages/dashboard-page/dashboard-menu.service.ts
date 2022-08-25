@@ -39,7 +39,7 @@ export class DashboardMenuService{
           label: this.translateService.instant("app_menu.browsers_header"),
           icon:"pi pi-align-justify",
           items: [{
-                  label: this.translateService.instant("app_menu.browsers.tree_elements"),
+                  label: this.translateService.instant("app_menu.browsers.tree_elements_header"),
                   items: [
                       {
                         label: this.translateService.instant("app_menu.browsers.tree_elements.objects"),
