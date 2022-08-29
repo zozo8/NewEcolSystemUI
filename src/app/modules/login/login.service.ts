@@ -38,7 +38,7 @@ export class LoginService {
         this.http.get<ResponseLoginApi>(environment.endpointApiPath+"/Home/Authenticate")
         .subscribe({
           next:(res:ResponseLoginApi)=> {
-            // console.log("pobrany token: "+res.token);
+            console.log("pobrany token: "+res.token);
             // console.log("pobrany refresh token: "+res.refreshToken);
             this.setLocalStorageUserData(res);
           },

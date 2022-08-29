@@ -1,5 +1,5 @@
 export interface RequestGridDataColumnValue {
-  filters: [any]
+  filters: [any];
   columnName:string;
   dataType:string;
   displayName:string;

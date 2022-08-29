@@ -7,7 +7,7 @@ import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model"
 import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "../models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "../models/responses/responseBodyGetList.model";
-import { TextFormatService } from "./text-format.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +15,7 @@ import { TextFormatService } from "./text-format.service";
 export class TableResponseService {
   constructor(
     private http:HttpClient,
-    private textFormatService:TextFormatService
+    private translateService:TranslateService
     ) { }
 
   // get response for table from api
@@ -27,7 +27,7 @@ export class TableResponseService {
   getRequestObj(columns:RequestGridDataColumnValue[], ev:LazyLoadEvent | null):RequestBodyGetList {
    let pageNumber:number = (ev!=null)?((ev.first??0/10)+1):1;
    let pageSize:number = (ev?.rows !== 20)?ev?.rows??10:10;
-   let sortField:string = (ev?.sortField !== undefined) ? ev.sortField : "Id";
+   let sortField:string = (ev?.sortField !== undefined) ? ev.sortField : "id";
    let isAscending:boolean = (ev?.sortOrder === 1)?true:false;
 
 
@@ -57,7 +57,7 @@ export class TableResponseService {
     columns.forEach((res)=>
     {
       columnsOutput.push({
-        columnName : this.textFormatService.firstLetterToLowerCase(res.columnName),
+        columnName : res.columnName,// this.textFormatService.firstLetterToLowerCase(res.columnName),
         dataType :this.getSepcificDataType(res.dataType),
         displayName : res.displayName,
         filters : res.filters,

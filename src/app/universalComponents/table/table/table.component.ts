@@ -3,6 +3,7 @@ import { LazyLoadEvent, MenuItem, MessageService } from "primeng/api";
 import { Observable } from "rxjs";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-table",
@@ -17,6 +18,10 @@ export class TableComponent implements OnInit {
   columnFilter:string[];
   tableSettingItems:MenuItem[];
 
+  dataValues:any[];
+  totalPages:number;
+  pageSize:number = 0;
+  totalItems?:number;
 
 private _dataTable : Observable<ResponseBodyGetList>;
 get dataTable(): Observable<ResponseBodyGetList> {
@@ -25,22 +30,30 @@ get dataTable(): Observable<ResponseBodyGetList> {
 
 @Input()
 set dataTable(v : Observable<ResponseBodyGetList>) {
-  this._dataTable = v;
+if(v!== undefined){
 
+  this._dataTable = v;
   this.dataLoading = true;
+
   v.subscribe({
     next:(res:ResponseBodyGetList)=> {
       this.dataSource = res;
     },
     complete:()=>{
+
+      this.dataValues = this.dataSource.value.data;
+      this.totalItems = this.dataSource.value.totalItems;
+      this.totalPages = this.dataSource.value.totalPages;
+      this.pageSize = this.dataSource.value.pageSize;
       this.dataLoading = false;
-      console.log("datasource:",this.dataSource);
     },
     error:(err:Error)=>{
       this.dataLoading = false;
-      console.error(err);
+      console.error("Błąd:",err);
     }
   });
+}
+
 }
 
 
@@ -51,7 +64,9 @@ public get columns() : RequestGridDataColumnValue[] {
 @Input()
 public set columns(v : RequestGridDataColumnValue[]) {
   this.cols = v;
-  this.columnFilter = this.cols.map(el=>el.columnName);
+  if(this.cols !== undefined){
+    this.columnFilter = this.cols.map(el=>el.columnName);
+  }
 }
 
 @Input()
@@ -64,59 +79,61 @@ title:string;
 newRequestParam = new EventEmitter<LazyLoadEvent>();
 
   constructor(
+    private transalteService:TranslateService
   ) { }
 
-
   ngOnInit(): void {
-    this.tableSettingItems = [
-      {
-        label:"Wybierz siatkę",
-        icon:"pi pi-align-justify",
-        items:[
-          {
-            label:"Siatka 1"
-          },
-          {
-            label:"Siatka 2"
-          }
-        ]
-      },
-      {
-        label:"Dostosuj kolumny",
-        icon:"pi pi-pause"
-      },
-      {
-        label:"Utwórz siatkę",
-        icon:"pi pi-plus-circle",
-      },
-      {
-        separator: true
-      },
-      {
-        label:"Eksport danych",
-        icon:"pi pi-download",
-        items:[
-          {
-            label:"Do pliku PDF",
-            icon:"pi pi-file-pdf"
-          },
-          {
-            label:"Do pliku Excel",
-            icon:"pi pi-file-excel"
-          },
-          {
-            label:"Do pliku Word",
-            icon:"pi pi-desktop"
-          }
-        ]
-      },
+    // this.tableSettingItems = [
+    //   {
+    //     label:"Wybierz siatkę",
+    //     icon:"pi pi-align-justify",
+    //     items:[
+    //       {
+    //         label:"Siatka 1"
+    //       },
+    //       {
+    //         label:"Siatka 2"
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     label:"Dostosuj kolumny",
+    //     icon:"pi pi-pause"
+    //   },
+    //   {
+    //     label:"Utwórz siatkę",
+    //     icon:"pi pi-plus-circle",
+    //   },
+    //   {
+    //     separator: true
+    //   },
+    //   {
+    //     label:"Eksport danych",
+    //     icon:"pi pi-download",
+    //     items:[
+    //       {
+    //         label:"Do pliku PDF",
+    //         icon:"pi pi-file-pdf"
+    //       },
+    //       {
+    //         label:"Do pliku Excel",
+    //         icon:"pi pi-file-excel"
+    //       },
+    //       {
+    //         label:"Do pliku Word",
+    //         icon:"pi pi-desktop"
+    //       }
+    //     ]
+    //   },
 
-    ];
+    // ];
   }
 
   loadData(event:LazyLoadEvent):void {
-    this.newRequestParam.emit(event);
-    console.log(event);
+    if(event.first !== 0 || event.rows !== 0) {
+      console.log("uaktywniwenie evenet emitera");
+      this.newRequestParam.emit(event);
+    }
   }
 
 }

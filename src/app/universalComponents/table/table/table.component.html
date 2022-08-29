@@ -1,22 +1,21 @@
 <div class="card">
-
   <p-table #dt1
-  [value]="dataSource.value.data"
+  [value]="dataValues"
+  [rows]="pageSize"
+  [totalRecords]="totalPages"
   [lazy]="true"
   [columns]="cols"
   [rowsPerPageOptions]="[10,25,50,100,500]"
   [loading]="dataLoading"
   [paginator]="true"
   [showPageLinks]="true"
-  [rows]="dataSource.value.pageSize"
-  [totalRecords]="dataSource.value.totalPages"
   [showCurrentPageReport]="true"
   (onLazyLoad)="loadData($event)"
   [globalFilterFields]="columnFilter"
   [resizableColumns]="true"
   selectionMode="single"
   scrollHeight="{{height}}px"
-  currentPageReportTemplate="Rekordy od {first} do {last} z {{dataSource.value.totalItems}}"
+  currentPageReportTemplate="Rekordy od {first} do {last} z {{totalItems}}"
   styleClass="p-datatable-gridlines"
   responsiveLayout="scroll">
   <ng-template pTemplate="caption">
@@ -27,7 +26,7 @@
         <i class="pi pi-search"></i>
         <input type="text" pInputText placeholder="Wyszukaj w tabeli...">
       </span>
-      <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
+      <!-- <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton> -->
      </div>
    </div>
   </ng-template>

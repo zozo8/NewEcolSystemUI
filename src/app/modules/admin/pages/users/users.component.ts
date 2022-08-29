@@ -7,6 +7,7 @@ import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataCo
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableResponseService } from "src/app/services/table-response.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-users",
@@ -21,32 +22,31 @@ export class UsersComponent implements OnInit, IComponentResponse {
   columnsOutput:RequestGridDataColumnValue[];
   filterColumnPath = "/api/Users/GetUserGridData/Get";
   requestPath = "/api/Users/GetUsers/Get";
-  reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:1});
+  reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
 
   constructor(
-   private service:TableResponseService
+   private service:TableResponseService,
+   private translateService:TranslateService
   ) { }
 
   ngOnInit(): void {
-   this.getResponse(null);
+   this.prepareRequest(null);
+
+   this.reqObjBS.subscribe(x=> {
+    if(x?.pageNumber !== 10000){
+      this.dataObj = this.service.getResponseObj(this.requestPath,x);
+    }
+   });
   }
 
   onNewRequestParam(ev:LazyLoadEvent):void {
-    this.getResponse(ev);
-  }
-
-  getResponse(ev:LazyLoadEvent | null):void {
-
-   this.prepareRequest(ev);
-   this.reqObjBS.subscribe(x=> {
-      this.dataObj = this.service.getResponseObj(this.requestPath,x);
-   });
+    this.prepareRequest(ev);
   }
 
   prepareRequest(ev:LazyLoadEvent | null):void {
     this.service.getFilterColumnName(this.filterColumnPath).subscribe({
       next:(res:RequestGridDataColumn)=> {
-        this.columns = res.value;
+         this.columns = res.value;
       },
       complete:()=> {
        this.columnsOutput = this.service.GetColumnsOutput(this.columns);

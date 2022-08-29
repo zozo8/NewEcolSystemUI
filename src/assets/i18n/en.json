@@ -55,6 +55,9 @@
 			"login": "Login",
 			"logout": "Logout",
 			"forget_password": "Forgot password?"
+		},
+		"users": {
+			"title": "Users list"
 		}
 	},
 	"primeng": {
