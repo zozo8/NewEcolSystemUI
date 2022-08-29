@@ -57,7 +57,7 @@ export class TableResponseService {
     columns.forEach((res)=>
     {
       columnsOutput.push({
-        columnName : res.columnName,// this.textFormatService.firstLetterToLowerCase(res.columnName),
+        columnName : res.columnName,
         dataType :this.getSepcificDataType(res.dataType),
         displayName : res.displayName,
         filters : res.filters,

@@ -12,6 +12,7 @@ import { DashboardMenuService } from "./dashboard-menu.service";
 export class DashboardPageComponent implements OnInit {
   menu: MenuItem[];
   userMenu: MenuItem[];
+  display:boolean;
 
   constructor(
     private authService:AuthService,

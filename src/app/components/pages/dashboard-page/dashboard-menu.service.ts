@@ -1,4 +1,4 @@
-import { MenuItem } from "primeng/api";
+import { MegaMenuItem, MenuItem } from "primeng/api";
 import { TranslateService } from "@ngx-translate/core";
 import { Injectable } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
@@ -14,7 +14,7 @@ export class DashboardMenuService{
 
   }
 
-  getAppMenu():MenuItem[] {
+  getAppMenu():MegaMenuItem[] {
     return [
       {
         label: this.translateService.instant("app_menu.equipment_tree"),
@@ -24,7 +24,7 @@ export class DashboardMenuService{
       {
         label:this.translateService.instant("app_menu.orders_header"),
         icon:"pi pi-align-justify",
-        items:[
+        items:[[
           {
             label:this.translateService.instant("app_menu.orders.orders"),
             routerLink:"/dashboard/orders"
@@ -34,11 +34,12 @@ export class DashboardMenuService{
             routerLink:"/dashboard/order-cards"
           }
         ]
+        ]
       },
       {
           label: this.translateService.instant("app_menu.browsers_header"),
           icon:"pi pi-align-justify",
-          items: [{
+          items: [[{
                   label: this.translateService.instant("app_menu.browsers.tree_elements_header"),
                   items: [
                       {
@@ -59,30 +60,30 @@ export class DashboardMenuService{
                       }
                   ]
               }
-          ]
+          ]]
       },
       {
           label: this.translateService.instant("app_menu.dictionaries_header"),
           icon: "pi pi-fw pi-align-justify",
-          items: [
+          items: [[
               {
                 label: this.translateService.instant("app_menu.dictionaries.task_types")
               },
               {
                 label: this.translateService.instant("app_menu.dictionaries.task_groups")
               }
-          ]
+          ]]
       },
       {
         label:this.translateService.instant("app_menu.admin_header"),
         icon:"pi pi-fw pi-lock",
-        items:[
+        items:[[
           {
             label:this.translateService.instant("app_menu.admin.users"),
             icon:"pi pi-user",
             routerLink:"/dashboard/admin/users"
           }
-        ]
+        ]]
 
       }
     ];

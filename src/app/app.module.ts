@@ -10,6 +10,8 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { TreeModule } from "primeng/tree";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
+import { SidebarModule } from "primeng/sidebar";
+import { MegaMenuModule } from "primeng/megamenu";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -49,6 +51,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TableModule,
     ToastModule,
     HttpClientModule,
+    SidebarModule,
+    MegaMenuModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,

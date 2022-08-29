@@ -1,13 +1,23 @@
-<p-menubar [model]="menu" >
+<p-menubar>
   <ng-template pTemplate="start">
     <img src="./assets/images/logo.png" width="55" alt="brand logo" [routerLink]="['/dashboard']" >
+    <p-button type="text" (click)="display = true" icon="pi pi-plus" label="Show"></p-button>
   </ng-template>
   <ng-template pTemplate="end">
     <span class="p-input-icon-left" style="padding-right: 10px;">
       <i class="pi pi-search"></i>
-        <input type="text" pInputText [placeholder]="'search'|translate" >
+        <input type="text" style="width: 40vh;" pInputText [placeholder]="'search'|translate" >
       </span>
     <p-splitButton icon="pi pi-fw pi-ellipsis-h" [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [model]="userMenu" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
   </ng-template>
 </p-menubar>
 <router-outlet></router-outlet>
+
+<p-sidebar [(visible)]="display">
+  <p-megaMenu [model]="menu" ></p-megaMenu>
+</p-sidebar>
+
+
+
+
+

@@ -11,7 +11,7 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ["./table.component.css"],
   providers:[MessageService]
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
   dataLoading: boolean;
   cols:RequestGridDataColumnValue[] =[];
   dataSource:ResponseBodyGetList;
@@ -56,7 +56,6 @@ if(v!== undefined){
 
 }
 
-
 private _columns : RequestGridDataColumnValue[];
 public get columns() : RequestGridDataColumnValue[] {
   return this._columns;
@@ -82,56 +81,10 @@ newRequestParam = new EventEmitter<LazyLoadEvent>();
     private transalteService:TranslateService
   ) { }
 
-  ngOnInit(): void {
-    // this.tableSettingItems = [
-    //   {
-    //     label:"Wybierz siatkę",
-    //     icon:"pi pi-align-justify",
-    //     items:[
-    //       {
-    //         label:"Siatka 1"
-    //       },
-    //       {
-    //         label:"Siatka 2"
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     label:"Dostosuj kolumny",
-    //     icon:"pi pi-pause"
-    //   },
-    //   {
-    //     label:"Utwórz siatkę",
-    //     icon:"pi pi-plus-circle",
-    //   },
-    //   {
-    //     separator: true
-    //   },
-    //   {
-    //     label:"Eksport danych",
-    //     icon:"pi pi-download",
-    //     items:[
-    //       {
-    //         label:"Do pliku PDF",
-    //         icon:"pi pi-file-pdf"
-    //       },
-    //       {
-    //         label:"Do pliku Excel",
-    //         icon:"pi pi-file-excel"
-    //       },
-    //       {
-    //         label:"Do pliku Word",
-    //         icon:"pi pi-desktop"
-    //       }
-    //     ]
-    //   },
 
-    // ];
-  }
 
   loadData(event:LazyLoadEvent):void {
     if(event.first !== 0 || event.rows !== 0) {
-      console.log("uaktywniwenie evenet emitera");
       this.newRequestParam.emit(event);
     }
   }
