@@ -10,5 +10,18 @@
   "2Adv":"Ewidencja urządzeń",
   "3Adv":"Ewidencja środków smarnych",
   "4Adv":"Raportowanie",
-  "empty_data":"Brak danych"
+  "empty_data":"Brak danych",
+  "search_menu": {
+    "window":"Okno",
+    "equipment":"Urządzenie",
+    "point":"Punkt serwisowy"
+  },
+  "user_menu":
+  {
+    "settings":"Ustawienia",
+    "user_profile":"Profil użytkownika",
+    "logout":"Wyloguj"
+  }
+
 }
+

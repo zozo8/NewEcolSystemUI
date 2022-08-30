@@ -44,7 +44,18 @@
 		"1Adv": "Planing tasks",
 		"2Adv": "Register equipments",
 		"3Adv": "Register lubricants",
-		"4Adv": "Reporting"
+		"4Adv": "Reporting",
+		"empty_data": "No result",
+		"search_menu": {
+			"window": "Window",
+			"equipment": "Equipment",
+			"point": "Lubricant point"
+		},
+		"user_menu": {
+			"settings": "Settings",
+			"user_profile": "User profile",
+			"logout": "Logout"
+		}
 	},
 	"pages": {
 		"login_page": {
@@ -156,10 +167,5 @@
 		"passwordPrompt": "Enter a password",
 		"emptyMessage": "No results found",
 		"emptyFilterMessage": "No results found"
-	},
-	"user_menu": {
-		"settings": "Settings",
-		"user_profile": "User profile",
-		"logout": "Logout"
 	}
 }

@@ -14,7 +14,22 @@ export class DashboardMenuService{
 
   }
 
-  getAppMenu():MegaMenuItem[] {
+  getSearchMenu(): MenuItem[] {
+    return [
+      {
+        label:this.translateService.instant("common.search_menu.window")
+      },
+      {
+        label:this.translateService.instant("common.search_menu.equipment")
+      },
+      {
+        label:this.translateService.instant("common.search_menu.point")
+      }
+    ];
+  }
+
+  getLeftMenu():MenuItem[] {
+
     return [
       {
         label: this.translateService.instant("app_menu.equipment_tree"),
@@ -24,7 +39,7 @@ export class DashboardMenuService{
       {
         label:this.translateService.instant("app_menu.orders_header"),
         icon:"pi pi-align-justify",
-        items:[[
+        items:[
           {
             label:this.translateService.instant("app_menu.orders.orders"),
             routerLink:"/dashboard/orders"
@@ -34,12 +49,12 @@ export class DashboardMenuService{
             routerLink:"/dashboard/order-cards"
           }
         ]
-        ]
       },
       {
           label: this.translateService.instant("app_menu.browsers_header"),
           icon:"pi pi-align-justify",
-          items: [[{
+          items: [
+            {
                   label: this.translateService.instant("app_menu.browsers.tree_elements_header"),
                   items: [
                       {
@@ -60,30 +75,30 @@ export class DashboardMenuService{
                       }
                   ]
               }
-          ]]
+          ]
       },
       {
           label: this.translateService.instant("app_menu.dictionaries_header"),
           icon: "pi pi-fw pi-align-justify",
-          items: [[
+          items: [
               {
                 label: this.translateService.instant("app_menu.dictionaries.task_types")
               },
               {
                 label: this.translateService.instant("app_menu.dictionaries.task_groups")
               }
-          ]]
+          ]
       },
       {
         label:this.translateService.instant("app_menu.admin_header"),
         icon:"pi pi-fw pi-lock",
-        items:[[
+        items:[
           {
             label:this.translateService.instant("app_menu.admin.users"),
             icon:"pi pi-user",
             routerLink:"/dashboard/admin/users"
           }
-        ]]
+        ]
 
       }
     ];
@@ -92,17 +107,17 @@ export class DashboardMenuService{
   getUserMenu():MenuItem[] {
     return [
       {
-        label:this.translateService.instant("user_menu.settings"),
+        label:this.translateService.instant("common.user_menu.settings"),
         icon:"pi pi-fw pi-sliders-h",
       },
       {
-        label:this.translateService.instant("user_menu.user_profile"),
+        label:this.translateService.instant("common.user_menu.user_profile"),
         icon:"pi pi-fw pi-user",
       },
       {
         separator:true
       }, {
-        label:this.translateService.instant("user_menu.logout"),
+        label:this.translateService.instant("common.user_menu.logout"),
         icon:"pi pi-fw pi-power-off",
         command:()=> {
          this.authService.logout();

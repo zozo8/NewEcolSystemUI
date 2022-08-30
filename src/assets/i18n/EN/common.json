@@ -10,5 +10,16 @@
   "2Adv":"Register equipments",
   "3Adv":"Register lubricants",
   "4Adv":"Reporting",
-  "empty_data":"No result"
+  "empty_data":"No result",
+  "search_menu": {
+    "window":"Window",
+    "equipment":"Equipment",
+    "point":"Lubricant point"
+  },
+  "user_menu":
+  {
+    "settings":"Settings",
+    "user_profile":"User profile",
+    "logout":"Logout"
+  }
 }

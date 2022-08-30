@@ -44,7 +44,18 @@
 		"1Adv": "Planowanie zadań",
 		"2Adv": "Ewidencja urządzeń",
 		"3Adv": "Ewidencja środków smarnych",
-		"4Adv": "Raportowanie"
+		"4Adv": "Raportowanie",
+		"empty_data": "Brak danych",
+		"search_menu": {
+			"window": "Okno",
+			"equipment": "Urządzenie",
+			"point": "Punkt serwisowy"
+		},
+		"user_menu": {
+			"settings": "Ustawienia",
+			"user_profile": "Profil użytkownika",
+			"logout": "Wyloguj"
+		}
 	},
 	"pages": {
 		"login_page": {
@@ -76,8 +87,8 @@
 		"isNot": "Nie jest",
 		"before": "Przed",
 		"after": "Po",
-		"dateIs": "Data jest",
-		"dateIsNot": "Data nie jest",
+		"dateIs": "Data równa",
+		"dateIsNot": "Data rożna od",
 		"dateBefore": "Data od",
 		"dateAfter": "Data po",
 		"clear": "Wyczyść",
@@ -156,10 +167,5 @@
 		"passwordPrompt": "Wpisz hasło",
 		"emptyMessage": "Brak wyników",
 		"emptyFilterMessage": "Nie znaleziono wyników"
-	},
-	"user_menu": {
-		"settings": "Ustawienia",
-		"user_profile": "Profil użytkownika",
-		"logout": "Wyloguj"
 	}
 }

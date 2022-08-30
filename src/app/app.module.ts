@@ -11,7 +11,7 @@ import { TreeModule } from "primeng/tree";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { SidebarModule } from "primeng/sidebar";
-import { MegaMenuModule } from "primeng/megamenu";
+import { PanelMenuModule } from "primeng/panelmenu";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -52,7 +52,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ToastModule,
     HttpClientModule,
     SidebarModule,
-    MegaMenuModule,
+    PanelMenuModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,
