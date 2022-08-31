@@ -8,6 +8,7 @@ import { ToolbarModule } from "primeng/toolbar";
 import { SplitterModule } from "primeng/splitter";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { InputTextModule } from "primeng/inputtext";
+import { PanelModule } from "primeng/panel";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -34,7 +35,8 @@ import { TranslateModule} from "@ngx-translate/core";
     SplitterModule,
     SplitButtonModule,
     InputTextModule,
-    TranslateModule
+    TranslateModule,
+    PanelModule
 
   ]
 })

@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
   addPath = "/api/Users/ManageUser/Post";
   updatePath = "/api/Users/ManageUser/Put";
   deletePath = "/api/Users/DeleteUser/Delete";
+  objectDto:UserDto;
 
   dataObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
@@ -62,7 +63,13 @@ export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
     this.prepareRequest(ev);
   }
 
-    
+  getSelectedObjFromComponent(ev:any):void {
+        this.objectDto = ev.data;
+        console.log("object",this.objectDto);
+
+  }
+
+
   add(obj: UserDto): void {
     throw new Error("Method not implemented.");
   }

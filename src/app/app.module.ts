@@ -13,6 +13,7 @@ import { ToastModule } from "primeng/toast";
 import { SidebarModule } from "primeng/sidebar";
 import { PanelMenuModule } from "primeng/panelmenu";
 import { TreeSelectModule } from "primeng/treeselect";
+import { SplitterModule} from "primeng/splitter";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -22,6 +23,7 @@ import { NotfoundComponent } from "./components/pages/notfound/notfound.componen
 import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
 import { FormsModule } from "@angular/forms";
+
 
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -55,6 +57,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SidebarModule,
     PanelMenuModule,
     TreeSelectModule,
+    SplitterModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,

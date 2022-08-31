@@ -77,17 +77,23 @@ title:string;
 @Output()
 newRequestParam = new EventEmitter<LazyLoadEvent>();
 
+@Output()
+selectedObj = new EventEmitter<any>();
+
   constructor(
     private transalteService:TranslateService
   ) { }
-
-
 
   loadData(event:LazyLoadEvent):void {
     if(event.first !== 0 || event.rows !== 0) {
       this.newRequestParam.emit(event);
     }
   }
+
+  selectObj(ev:Event):void {
+     this.selectedObj.emit(ev);
+  }
+
 
 }
 

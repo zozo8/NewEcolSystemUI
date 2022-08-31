@@ -1,10 +1,32 @@
-
-    <app-table
+<p-splitter [panelSizes]="[70,30]">
+  <ng-template pTemplate>
+    <app-table style="width: 100%;"
       [dataTable]="dataObj"
       [title]="'pages.users.title' | translate"
       [columns]="columns"
-      (newRequestParam)="getRequestObjFromComponent($event)">
+      (newRequestParam)="getRequestObjFromComponent($event)"
+      (selectedObj)="getSelectedObjFromComponent($event)">
     </app-table>
+  </ng-template>
+  <ng-template pTemplate>
+    <div style="width: 100%;">
+      <form >
+        <p-panel title="Edycja użytkownika">
+          <ng-template pTemplate="header">
+            Wybrany rekord: {{objectDto?.firstName}} {{objectDto?.lastName}}
+          </ng-template>
+          <ng-template pTemplate="content">
+             <div class="row">
+              <div class="col-md-6">1</div>
+              <div class="col-md-6">2</div>
+             </div>
+          </ng-template>
+        </p-panel>
+      </form>
+    </div>
+  </ng-template>
+</p-splitter>
+
 
 
 

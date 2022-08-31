@@ -10,7 +10,7 @@
         <i class="pi pi-search"></i>
         <input type="text" pInputText [placeholder]="'common.search' | translate">
       </span>
-      <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
+      <p-splitButton icon="pi pi-folder" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
     </ng-template>
 </p-toolbar>
   <p-table #dt1
@@ -27,6 +27,7 @@
   (onLazyLoad)="loadData($event)"
   [globalFilterFields]="columnFilter"
   [resizableColumns]="true"
+  (onRowSelect)="selectObj($event)"
   selectionMode="single"
   currentPageReportTemplate="{first} - {last} / {{totalItems}}"
   styleClass="p-datatable-gridlines"
@@ -52,7 +53,7 @@
   </tr>
   </ng-template>
       <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr>
+          <tr  [pSelectableRow]="rowData">
               <td *ngFor="let row of columns" >
                 <div [ngSwitch]="row.dataType">
                   <span *ngSwitchCase="'date'">{{rowData[row.columnName] | date:"yyyy/MM/dd"}}</span>
