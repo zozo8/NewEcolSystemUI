@@ -8,6 +8,8 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableResponseService } from "src/app/services/table-response.service";
 import { TranslateService } from "@ngx-translate/core";
+import { ITableCrud } from "src/app/Interfaces/table/ITableCrud";
+import { UserDto } from "src/app/models/dto/userDto";
 
 @Component({
   selector: "app-users",
@@ -15,7 +17,7 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ["./users.component.css"]
 })
 
-export class UsersComponent implements OnInit, ITableBase{
+export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
   columnPath = "/api/Users/GetUserGridData/Get";
   listPath = "/api/Users/GetUsers/Get";
   addPath = "/api/Users/ManageUser/Post";
@@ -60,5 +62,15 @@ export class UsersComponent implements OnInit, ITableBase{
     this.prepareRequest(ev);
   }
 
+    
+  add(obj: UserDto): void {
+    throw new Error("Method not implemented.");
+  }
+  edit(obj: UserDto): void {
+    throw new Error("Method not implemented.");
+  }
+  delete(id: number): void {
+    throw new Error("Method not implemented.");
+  }
 
 }

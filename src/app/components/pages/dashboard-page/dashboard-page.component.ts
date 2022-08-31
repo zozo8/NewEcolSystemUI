@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MegaMenuItem, MenuItem } from "primeng/api";
+import { MenuItem } from "primeng/api";
 import { timer } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { DashboardMenuService } from "./dashboard-menu.service";
@@ -11,6 +11,7 @@ import {
   animate,
   transition
 } from "@angular/animations";
+import { DashboardPageService } from "./dashboard-page.service";
 
 @Component({
   selector: "app-dashboard-page",
@@ -37,11 +38,14 @@ export class DashboardPageComponent implements OnInit {
   searchMenu: MenuItem[];
   display:boolean;
   loadDashboard:boolean;
+  clientNodes:any[];
+  selectedClientNode:any[] = [];
 
   constructor(
     private authService:AuthService,
     private menuService:DashboardMenuService,
-    private translateService:TranslateService
+    private translateService:TranslateService,
+    private dashboardPageService:DashboardPageService
   ) { }
 
 
@@ -51,6 +55,7 @@ export class DashboardPageComponent implements OnInit {
     this.leftMenu = this.menuService.getLeftMenu();
     this.userMenu = this.menuService.getUserMenu();
     this.searchMenu = this.menuService.getSearchMenu();
+    this.clientNodes = this.dashboardPageService.getClientNodes();
 
     timer(500).subscribe(()=> {
       this.loadDashboard = true;
@@ -81,6 +86,11 @@ export class DashboardPageComponent implements OnInit {
       }
     });
 
+  }
+
+
+  selectNodeClient(ev:Event){
+    console.log(ev, this.selectedClientNode);
   }
 
 }

@@ -1,15 +1,26 @@
 <div [@loadDashboardTrigger]="loadDashboard ? 'show': 'hide'" class="dashboard" style="background-image: url(./assets/images/dashboard_background.jpg);" >
   <p-menubar [model]="topMenu">
     <ng-template pTemplate="start">
-      <img src="./assets/images/logo.png" width="55" alt="brand logo" [routerLink]="['/dashboard']" >
+      <a [routerLink]="['/dashboard']" style="text-decoration: none;" >
+        <img src="./assets/images/logo.png" width="55" alt="brand logo" [title]="'common.title_page' | translate" >
+      </a>
+
     </ng-template>
     <ng-template pTemplate="end">
       <span class="p-input-icon-left" style="padding-right: 10px;">
-        <p-splitButton [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [model]="searchMenu" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
+        <p-splitButton [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [model]="searchMenu" styleClass="p-button-raised p-button-secondary p-button-text"></p-splitButton>
         <i class="pi pi-search"></i>
-          <input type="text" style="width: 40vh;" pInputText [placeholder]="'common.search'|translate" >
-        </span>
-      <p-splitButton icon="pi pi-fw pi-ellipsis-h" [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [model]="userMenu" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
+          <input type="text" style="width: 60vh;" pInputText [placeholder]="'common.search'|translate" >
+      </span>
+      <p-treeSelect
+            [options]="clientNodes"
+            [placeholder]="'common.change_customer' | translate"
+            selectionMode="checkbox"
+            (onNodeSelect)="selectNodeClient($event)"
+            [(ngModel)]="selectedClientNode"
+             >
+      </p-treeSelect>
+      <p-splitButton style="padding-right: 10vh;" icon="pi pi-fw pi-ellipsis-h" [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [model]="userMenu" styleClass="p-button-raised p-button-secondary p-button-text"></p-splitButton>
     </ng-template>
   </p-menubar>
   <router-outlet></router-outlet>

@@ -1,5 +1,13 @@
 .dashboard {
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-size: cover;
   height: 100vh;
+}
+
+.app-name {
+  padding-left: 1vh;
+  padding-right: 1vh;
+  font-size: 20px;
+  color: #575656;
+  vertical-align: middle;
 }

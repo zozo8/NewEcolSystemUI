@@ -7,6 +7,7 @@ import { AuthService } from "src/app/services/auth.service";
   providedIn: "root"
 })
 export class DashboardMenuService{
+
   constructor(
       private translateService:TranslateService,
       private authService:AuthService
@@ -125,5 +126,7 @@ export class DashboardMenuService{
       }
   ];
   }
+
+
 }
 

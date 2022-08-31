@@ -1,4 +1,18 @@
 <div class="card">
+  <p-toolbar >
+    <ng-template pTemplate="left">
+      <button pButton label="Dodaj" icon="pi pi-plus" class="p-button-raised p-button-secondary p-button-text p-button-sm" ></button>
+      <button pButton label="Usuń" icon="pi pi-minus" class="p-button-raised p-button-secondary p-button-text p-button-sm" ></button>
+      <button pButton label="Edytuj" icon="pi pi-pencil" class="p-button-raised p-button-secondary p-button-text p-button-sm" ></button>
+    </ng-template>
+    <ng-template pTemplate="right">
+      <span class="p-input-icon-left" style="padding-right: 10px;">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText [placeholder]="'common.search' | translate">
+      </span>
+      <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
+    </ng-template>
+</p-toolbar>
   <p-table #dt1
   [value]="dataValues"
   [rows]="pageSize"
@@ -14,11 +28,10 @@
   [globalFilterFields]="columnFilter"
   [resizableColumns]="true"
   selectionMode="single"
-  scrollHeight="{{height}}px"
-  currentPageReportTemplate="Rekordy od {first} do {last} z {{totalItems}}"
+  currentPageReportTemplate="{first} - {last} / {{totalItems}}"
   styleClass="p-datatable-gridlines"
   responsiveLayout="scroll">
-  <ng-template pTemplate="caption">
+  <!-- <ng-template pTemplate="caption">
    <div class="row">
      <div class="col-md-8">{{title}}</div>
      <div [align]="'right'" class="col-md-4">
@@ -26,10 +39,10 @@
         <i class="pi pi-search"></i>
         <input type="text" pInputText [placeholder]="'common.search' | translate">
       </span>
-      <!-- <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton> -->
+      <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
      </div>
    </div>
-  </ng-template>
+  </ng-template> -->
   <ng-template pTemplate="header" let-columns>
   <tr>
     <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
