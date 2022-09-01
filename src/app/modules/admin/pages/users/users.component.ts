@@ -1,14 +1,14 @@
 import { Component, OnInit} from "@angular/core";
 import { LazyLoadEvent } from "primeng/api";
 import { BehaviorSubject, Observable} from "rxjs";
-import { ITableBase } from "src/app/Interfaces/table/ITableBase";
+import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableResponseService } from "src/app/services/table-response.service";
 import { TranslateService } from "@ngx-translate/core";
-import { ITableCrud } from "src/app/Interfaces/table/ITableCrud";
+import { ITableCrudComponent } from "src/app/Interfaces/table/ITableCrudComponent";
 import { UserDto } from "src/app/models/dto/userDto";
 
 @Component({
@@ -17,14 +17,16 @@ import { UserDto } from "src/app/models/dto/userDto";
   styleUrls: ["./users.component.css"]
 })
 
-export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
+
+export class UsersComponent implements OnInit, ITableComponent, ITableCrudComponent<UserDto>{
   columnPath = "/api/Users/GetUserGridData/Get";
   listPath = "/api/Users/GetUsers/Get";
   addPath = "/api/Users/ManageUser/Post";
   updatePath = "/api/Users/ManageUser/Put";
   deletePath = "/api/Users/DeleteUser/Delete";
   objectDto:UserDto;
-
+  editState:boolean;
+  objectEditDto:UserDto = {} as UserDto;
   dataObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
@@ -35,6 +37,7 @@ export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
   ) { }
 
   ngOnInit(): void {
+
   this.getColumns();
 
    this.reqObjBS.subscribe(request=> {
@@ -64,9 +67,11 @@ export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
   }
 
   getSelectedObjFromComponent(ev:any):void {
-        this.objectDto = ev.data;
-        console.log("object",this.objectDto);
-
+    if(ev.data != null){
+      this.objectDto = ev.data;
+      this.objectEditDto = {...ev.data}; //copy without reference
+      //this.objectDto = this.userService.getNewObject(ev.data);
+    }
   }
 
 
@@ -81,3 +86,5 @@ export class UsersComponent implements OnInit, ITableBase, ITableCrud<UserDto>{
   }
 
 }
+
+

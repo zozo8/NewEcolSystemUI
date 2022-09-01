@@ -32,26 +32,15 @@
   currentPageReportTemplate="{first} - {last} / {{totalItems}}"
   styleClass="p-datatable-gridlines"
   responsiveLayout="scroll">
-  <!-- <ng-template pTemplate="caption">
-   <div class="row">
-     <div class="col-md-8">{{title}}</div>
-     <div [align]="'right'" class="col-md-4">
-      <span class="p-input-icon-left" style="padding-right: 10px;">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText [placeholder]="'common.search' | translate">
-      </span>
-      <p-splitButton icon="pi pi-cog" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
-     </div>
-   </div>
-  </ng-template> -->
-  <ng-template pTemplate="header" let-columns>
+
+  <!-- <ng-template pTemplate="header" let-columns>
   <tr>
     <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
       <p-sortIcon field="{{col.columnName}}"></p-sortIcon>
       <p-columnFilter type="{{col.dataType}}" field="{{col.columnName}}" display="menu" ></p-columnFilter>
-  </th>
+    </th>
   </tr>
-  </ng-template>
+  </ng-template> -->
       <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr  [pSelectableRow]="rowData">
               <td *ngFor="let row of columns" >

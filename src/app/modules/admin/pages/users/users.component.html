@@ -1,4 +1,4 @@
-<p-splitter [panelSizes]="[70,30]">
+<p-splitter [panelSizes]="[60,40]">
   <ng-template pTemplate>
     <app-table style="width: 100%;"
       [dataTable]="dataObj"
@@ -11,15 +11,46 @@
   <ng-template pTemplate>
     <div style="width: 100%;">
       <form >
-        <p-panel title="Edycja użytkownika">
+        <p-panel title="Podgląd/edycja wybranego rekordu">
           <ng-template pTemplate="header">
-            Wybrany rekord: {{objectDto?.firstName}} {{objectDto?.lastName}}
+            Rekord:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" >{{objectDto?.firstName}} {{objectDto?.lastName}}</span>
           </ng-template>
           <ng-template pTemplate="content">
-             <div class="row">
-              <div class="col-md-6">1</div>
-              <div class="col-md-6">2</div>
-             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstName">Imię</label>
+                  <input pInputText type="text" [disabled]="!editState" id="firstName" name="firstName" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.firstName" />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Nazwisko</label>
+                  <input pInputText type="text" [disabled]="!editState" id="lastName" name="lastName" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.lastName" />
+                </div>
+                <div class="form-group">
+                  <label for="evaluationDate">Data ważności konta</label>
+                  <input pInputText type="datetime" [disabled]="!editState" id="evaluationDate" name="evaluationDate" value="true" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.evaluationDate" />
+                </div>
+                <div class="form-group">
+                  <label for="isAdmin">Czy admin</label>
+                  <p-checkbox [(ngModel)]="objectEditDto.isAdmin" [disabled]="!editState" [binary]="true" name="isAdmin" ></p-checkbox>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="userName">Nazwa użytkownika</label>
+                <input pInputText type="text" [disabled]="!editState" id="userName" name="userName" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.userName" />
+              </div>
+              <div class="form-group">
+                <label for="userEmail">E-mail</label>
+                <input pInputText type="text" [disabled]="!editState" id="userEmail" name="userEmail" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.userEmail" />
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Telefon</label>
+                <input pInputText type="text" [disabled]="!editState" id="phoneNumber" name="phoneNumber" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.phoneNumber" />
+              </div>
+            </div>
+            </div>
+
           </ng-template>
         </p-panel>
       </form>

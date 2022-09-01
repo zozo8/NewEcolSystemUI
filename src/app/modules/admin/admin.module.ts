@@ -9,6 +9,7 @@ import { SplitterModule } from "primeng/splitter";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { InputTextModule } from "primeng/inputtext";
 import { PanelModule } from "primeng/panel";
+import { CheckboxModule } from "primeng/checkbox";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -16,6 +17,7 @@ import { UsersComponent } from "./pages/users/users.component";
 import { TableComponent } from "src/app/universalComponents/table/table/table.component";
 import { HttpClientModule } from "@angular/common/http";
 import { TranslateModule} from "@ngx-translate/core";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { TranslateModule} from "@ngx-translate/core";
     SplitButtonModule,
     InputTextModule,
     TranslateModule,
-    PanelModule
+    PanelModule,
+    FormsModule,
+    CheckboxModule
 
   ]
 })
