@@ -7,4 +7,5 @@ export interface UserDto {
   lastName?: string;
   phoneNumber?: string;
   isAdmin?: boolean;
+
 }

@@ -1,18 +1,5 @@
 <div class="card">
-  <p-toolbar >
-    <ng-template pTemplate="left">
-      <button pButton label="Dodaj" icon="pi pi-plus" class="p-button-raised p-button-secondary p-button-text p-button-sm" ></button>
-      <button pButton label="Usuń" icon="pi pi-minus" class="p-button-raised p-button-secondary p-button-text p-button-sm" ></button>
-      <button pButton label="Edytuj" icon="pi pi-pencil" class="p-button-raised p-button-secondary p-button-text p-button-sm" ></button>
-    </ng-template>
-    <ng-template pTemplate="right">
-      <span class="p-input-icon-left" style="padding-right: 10px;">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText [placeholder]="'common.search' | translate">
-      </span>
-      <p-splitButton icon="pi pi-folder" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2" [model]="tableSettingItems"></p-splitButton>
-    </ng-template>
-</p-toolbar>
+
   <p-table #dt1
   [value]="dataValues"
   [rows]="pageSize"

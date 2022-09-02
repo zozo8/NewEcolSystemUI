@@ -10,6 +10,9 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { InputTextModule } from "primeng/inputtext";
 import { PanelModule } from "primeng/panel";
 import { CheckboxModule } from "primeng/checkbox";
+import { MenubarModule } from "primeng/menubar";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { MessagesModule } from "primeng/messages";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -40,7 +43,10 @@ import { FormsModule } from "@angular/forms";
     TranslateModule,
     PanelModule,
     FormsModule,
-    CheckboxModule
+    CheckboxModule,
+    MenubarModule,
+    ConfirmDialogModule,
+    MessagesModule
 
   ]
 })
