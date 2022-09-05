@@ -22,9 +22,9 @@
   <ng-template pTemplate>
     <div style="width: 100%;">
       <form (ngSubmit)="save()">
-        <p-panel [title]="'components.table-detail.header' | translate">
+        <p-panel [title]="'table-detail.header' | translate">
           <ng-template pTemplate="header">
-            {{'components.table-detail.record' | translate }}:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" *ngIf="objectDto" >{{objectDto.firstName}} {{objectDto.lastName}}</span>
+            {{'table-detail.record' | translate }}:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" *ngIf="objectDto" >{{objectDto.firstName}} {{objectDto.lastName}}</span>
           </ng-template>
           <ng-template pTemplate="content">
             <div class="row" *ngIf="objectEditDto">
@@ -64,7 +64,7 @@
             <div *ngIf="!objectEditDto">
               <p-messages severity="info">
                 <ng-template pTemplate>
-                  <p><i class="pi pi-info"></i> {{'components.table-detail.select_record' | translate }}</p>
+                  <p><i class="pi pi-info"></i> {{'table-detail.select_record' | translate }}</p>
                 </ng-template>
               </p-messages>
             </div>
@@ -73,7 +73,7 @@
             <button pButton type="submit" icon="pi pi-check" *ngIf="editState">{{submitValue}}</button>
             &nbsp;
             <button pButton *ngIf="editState" class="p-button-outlined" (click)="cancel()" title="Anuluj edycje rekordu">{{"btn.cancel" | translate}}</button>
-            <button pButton *ngIf="!editState" class="p-button-outlined" (click)="setEdit()" title="Edytuj ten rekord">{{"btn.edit" | translate}}</button>
+            <button pButton *ngIf="!editState" class="p-button-outlined" (click)="edit()" title="Edytuj ten rekord">{{"btn.edit" | translate}}</button>
           </ng-template>
         </p-panel>
       </form>
