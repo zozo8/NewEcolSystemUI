@@ -20,16 +20,16 @@
   styleClass="p-datatable-gridlines"
   responsiveLayout="scroll">
 
-  <!-- <ng-template pTemplate="header" let-columns>
+  <ng-template pTemplate="header" let-columns >
   <tr>
     <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
       <p-sortIcon field="{{col.columnName}}"></p-sortIcon>
       <p-columnFilter type="{{col.dataType}}" field="{{col.columnName}}" display="menu" ></p-columnFilter>
     </th>
   </tr>
-  </ng-template> -->
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr  [pSelectableRow]="rowData">
+  </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns" >
+          <tr  [pSelectableRow]="rowData" [pSelectableRowDisabled]="tableDisabled" >
               <td *ngFor="let row of columns" >
                 <div [ngSwitch]="row.dataType">
                   <span *ngSwitchCase="'date'">{{rowData[row.columnName] | date:"yyyy/MM/dd"}}</span>

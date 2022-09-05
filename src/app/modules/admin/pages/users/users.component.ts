@@ -1,5 +1,5 @@
 import { Component, OnInit} from "@angular/core";
-import { ConfirmationService, LazyLoadEvent, MenuItem } from "primeng/api";
+import { ConfirmationService, LazyLoadEvent, MenuItem, MessageService } from "primeng/api";
 import { BehaviorSubject, Observable} from "rxjs";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
@@ -17,7 +17,8 @@ import { environment } from "src/environments/environment";
 @Component({
   selector: "app-users",
   templateUrl: "./users.component.html",
-  styleUrls: ["./users.component.css"]
+  styleUrls: ["./users.component.css"],
+  providers:[MessageService, ConfirmationService]
 })
 
 
@@ -34,13 +35,15 @@ export class UsersComponent implements OnInit, ITableComponent, ITableCrudCompon
   dataObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
+  submitValue:string;
 
   constructor(
    private tableService:TableResponseService,
    private translateService:TranslateService,
    private userService:UserService,
-   private http:HttpClient//,
-   //private confirmationService:ConfirmationService
+   private http:HttpClient,
+   private messageService:MessageService,
+   private confirmationService:ConfirmationService
   ) {
   }
 
@@ -85,17 +88,17 @@ export class UsersComponent implements OnInit, ITableComponent, ITableCrudCompon
   getButtons():MenuItem[] {
     return [
       {
-        label:"Dodaj",
+        label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",
         command:()=>this.add()
       },
       {
-        label:"Usuń",
+        label:this.translateService.instant("btn.remove"),
         icon:"pi pi-fw pi-minus",
         command:()=>this.delete()
       },
       {
-        label:"Edytuj",
+        label:this.translateService.instant("btn.edit"),
         icon:"pi pi-fw pi-pencil",
         command:()=>this.edit()
       }
@@ -105,43 +108,75 @@ export class UsersComponent implements OnInit, ITableComponent, ITableCrudCompon
 
   add(): void {
     this.editState = true;
+    this.submitValue = this.translateService.instant("btn.add");
     this.objectDto = {};
     this.objectEditDto = {};
   }
   edit(): void {
     if(this.objectEditDto !== null){
       this.editState = true;
+      this.submitValue = this.translateService.instant("btn.edit");
+    } else {
+      this.messageService.add(
+        {severity:"warn", summary:this.translateService.instant("btn.warning"), detail:this.translateService.instant("components.table-menu.select_record") });
     }
 
   }
   delete(): void {
-    // if(this.objectDto.id !== null){
-    //   this.confirmationService.confirm({
-    //     message: "Czy napewno chcesz usunąc rekord?",
-    //     accept:()=>{
-      console.log("usuwanie");
+    if(this.objectDto.id !== null){
+      this.confirmationService.confirm({
+        message: this.translateService.instant("components.table-menu.remove_record_question"),
+        accept:()=>{
           this.http.delete(environment.endpointApiPath+this.deletePath+"/"+this.objectDto.id).subscribe({
-            complete:()=> console.log("Usunieto rekord")
-           })
-    //     }
-    //   })
-    // }
+            complete:()=>this.messageService.add(
+              {severity:"success", summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("components.table-menu.remove_record_success")
+            }),
+            error:()=>this.messageService.add(
+              {severity:"error", summary:this.translateService.instant("components.table-menu.error"), detail:this.translateService.instant("components.table-menu.remove_record_error")}
+              )
+           });
+        }
+      })
+    }
   }
 
   save():void{
     if(this.objectEditDto != undefined) {
-      console.log(this.objectEditDto.id);
       if(this.objectEditDto.id === undefined){
         this.objectEditDto.id = 0;
         this.http.post(environment.endpointApiPath+this.addPath,this.objectEditDto).subscribe({
-          complete:()=>console.log("Dodano uzytkownika toast!!!")
+          complete:()=>{
+            this.messageService.add(
+              {severity:"success",summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("components.table-menu.add_record_success")}
+              );
+            this.editState = false;
+          },
+          error:(er:any)=>this.messageService.add(
+            {severity:"error",summary:this.translateService.instant("components.table-menu.error"), detail:this.translateService.instant("components.table-menu.add_record_error")}
+            )
         });
       } else {
         this.http.put(environment.endpointApiPath+this.editPath+"/"+this.objectEditDto.id,this.objectEditDto).subscribe({
-          complete:()=>console.log("Edycja użytkownika  toast!")
-        })
+          complete:()=>{
+            this.messageService.add(
+              {severity:"success",summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("components.table-menu.edit_record_success")}
+              );
+            this.editState = false;
+          },
+          error:(er:any)=>this.messageService.add(
+            {severity:"error",summary:this.translateService.instant("components.table-menu.error"), detail:this.translateService.instant("components.table-menu.edit_record_error")}
+            )
+        });
       }
     }
+  }
+
+  cancel():void{
+    this.editState = false;
+  }
+
+  setEdit():void {
+    this.editState = true;
   }
 
 }

@@ -17,17 +17,19 @@ import { MessagesModule } from "primeng/messages";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
 import { UsersComponent } from "./pages/users/users.component";
-import { TableComponent } from "src/app/universalComponents/table/table/table.component";
+import { TableComponent } from "src/app/universalComponents/table/table.component";
 import { HttpClientModule } from "@angular/common/http";
 import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
+import { TableMenuComponent } from "src/app/universalComponents/table-menu/table-menu.component";
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     UsersComponent,
-    TableComponent
+    TableComponent,
+    TableMenuComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { FormsModule } from "@angular/forms";
     MenubarModule,
     ConfirmDialogModule,
     MessagesModule
+
 
   ]
 })

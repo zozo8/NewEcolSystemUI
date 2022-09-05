@@ -74,6 +74,9 @@ height:number;
 @Input()
 title:string;
 
+@Input()
+tableDisabled:boolean;
+
 @Output()
 newRequestParam = new EventEmitter<LazyLoadEvent>();
 

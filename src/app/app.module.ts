@@ -27,6 +27,7 @@ import { FormsModule } from "@angular/forms";
 
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { TableMenuComponent } from './universalComponents/table-menu/table-menu.component';
 
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {

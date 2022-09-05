@@ -31,7 +31,9 @@
 		"cancel": "Cancel",
 		"ok": "OK",
 		"add": "Add",
-		"show_details": "Show details..."
+		"show_details": "Show details...",
+		"edit": "Edit",
+		"remove": "Remove"
 	},
 	"common": {
 		"title_page": "NES 2.0 - Computerized Maintenance Management System",

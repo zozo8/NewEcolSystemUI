@@ -1,24 +1,18 @@
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog>
 <p-splitter [panelSizes]="[60,40]">
   <ng-template pTemplate>
 <div class="col-md-12">
-  <!-- <p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog> -->
-  <p-menubar [model]="buttons">
-    <ng-template pTemplate="start">
-      <i class="pi pi-users" style="font-size: 2rem;"></i>
-    </ng-template>
-    <ng-template pTemplate="end">
-      <span class="p-input-icon-left" style="padding-right: 10px;">
-        <i class="pi pi-search"></i>
-        <input type="text" class="p-inputtext-sm" pInputText [placeholder]="'common.search' | translate">
-      </span>
-      <p-splitButton icon="pi pi-folder" styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"></p-splitButton>
-    </ng-template>
-  </p-menubar>
+
+  <app-table-menu
+    [buttonList]="buttons"
+    [icon]="'pi-users'"></app-table-menu>
     <div class="row">
       <app-table style="width: 100%;"
       [dataTable]="dataObj"
       [title]="'pages.users.title' | translate"
       [columns]="columns"
+      [tableDisabled]="editState"
       (newRequestParam)="getRequestObjFromComponent($event)"
       (selectedObj)="getSelectedObjFromComponent($event)">
     </app-table>
@@ -28,9 +22,9 @@
   <ng-template pTemplate>
     <div style="width: 100%;">
       <form (ngSubmit)="save()">
-        <p-panel title="Podgląd/edycja wybranego rekordu">
+        <p-panel [title]="'components.table-detail.header' | translate">
           <ng-template pTemplate="header">
-            Rekord:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" *ngIf="objectDto" >{{objectDto.firstName}} {{objectDto.lastName}}</span>
+            {{'components.table-detail.record' | translate }}:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" *ngIf="objectDto" >{{objectDto.firstName}} {{objectDto.lastName}}</span>
           </ng-template>
           <ng-template pTemplate="content">
             <div class="row" *ngIf="objectEditDto">
@@ -67,9 +61,19 @@
               </div>
             </div>
             </div>
+            <div *ngIf="!objectEditDto">
+              <p-messages severity="info">
+                <ng-template pTemplate>
+                  <p><i class="pi pi-info"></i> {{'components.table-detail.select_record' | translate }}</p>
+                </ng-template>
+              </p-messages>
+            </div>
           </ng-template>
           <ng-template pTemplate="footer">
-            <button type="submit" pButton *ngIf="editState">Zapisz</button>
+            <button pButton type="submit" icon="pi pi-check" *ngIf="editState">{{submitValue}}</button>
+            &nbsp;
+            <button pButton *ngIf="editState" class="p-button-outlined" (click)="cancel()" title="Anuluj edycje rekordu">{{"btn.cancel" | translate}}</button>
+            <button pButton *ngIf="!editState" class="p-button-outlined" (click)="setEdit()" title="Edytuj ten rekord">{{"btn.edit" | translate}}</button>
           </ng-template>
         </p-panel>
       </form>

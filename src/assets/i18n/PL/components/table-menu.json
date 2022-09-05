@@ -1,0 +1,14 @@
+{
+  "remove":"Usuwanie",
+  "select_record":"Wybierz rekord do edycji",
+  "warning":"Uwaga",
+  "remove_record_question":"Czy napewno chcesz usunąc rekord?",
+  "error":"Błąd",
+  "remove_record_success":"Poprawnie usunięto rekord!",
+  "remove_record_error":"Błąd podczas usuwania rekordu!",
+  "add_record_success":"Poprawnie dodano rekord!",
+  "add_record_error":"Błąd podczas dodawania rekordu!",
+  "edit_record_success":"Poprawnie edytowano rekord!",
+  "edit_record_error":"Błąd podczas edycji rekordu!"
+
+}

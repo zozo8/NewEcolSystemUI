@@ -31,15 +31,17 @@
 		"cancel": "Anuluj",
 		"ok": "OK",
 		"add": "Dodaj",
-		"show_details": "Pokaż szczegóły..."
+		"show_details": "Pokaż szczegóły...",
+		"edit": "Edytuj",
+		"remove": "Usuń"
 	},
 	"common": {
 		"title_page": "NES 2.0 - System Utrzymania Ruchu",
 		"notifications": "Powiadomienia",
 		"language": "Język",
 		"minimal_menu": "Zwiń menu",
-		"show_menu": "Rozszerz menu",
-		"change_customer": "Zmień klienta...",
+		"show_menu": "Pokaż menu",
+		"change_customer": "Wybierz zakład(y)",
 		"search": "Wyszukaj...",
 		"1Adv": "Planowanie zadań",
 		"2Adv": "Ewidencja urządzeń",

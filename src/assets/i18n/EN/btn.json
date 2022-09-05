@@ -3,5 +3,7 @@
   "cancel":"Cancel",
   "ok":"OK",
   "add":"Add",
-  "show_details":"Show details..."
+  "show_details":"Show details...",
+  "edit":"Edit",
+  "remove":"Remove"
 }
