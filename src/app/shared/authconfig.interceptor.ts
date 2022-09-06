@@ -31,7 +31,6 @@ export class AuthconfigInterceptor implements HttpInterceptor {
   const tokenUR = localStorage.getItem("tokenUR");
   const token = localStorage.getItem("token");
   this.authService.isExpired();
-  console.log("interceptpor wejscie")
 
     if(!tokenUR) {
       return next.handle(request);
@@ -39,7 +38,6 @@ export class AuthconfigInterceptor implements HttpInterceptor {
         request = this.applyToken(request, tokenUR);
         return next.handle(request);
      } else {
-      console.log("tokeny ma, wykonanie zapytania");
         this.authService.setLastActivity();
         request = this.applyToken(request, token??"");
         return next.handle(request).pipe(
@@ -80,7 +78,6 @@ export class AuthconfigInterceptor implements HttpInterceptor {
   }
 
   applyToken(req: any, token: string): HttpRequest<any> {
-    console.log("dodanie tokena",token);
     return req.clone({
       headers: req.headers.set("Authorization", "Bearer " + token)
      });

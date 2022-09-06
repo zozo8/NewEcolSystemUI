@@ -1,15 +1,15 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { MenuItem } from "primeng/api";
-import { UserDto } from "src/app/models/dto/userDto";
+import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
   constructor(
-
+    private http:HttpClient,
+    private translateService:TranslateService
   ) { }
-
 
 
 

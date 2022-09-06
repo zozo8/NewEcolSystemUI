@@ -1,22 +1,23 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { LazyLoadEvent } from "primeng/api";
+import { LazyLoadEvent, MessageService } from "primeng/api";
 import { Observable } from "rxjs/internal/Observable";
 import { environment } from "src/environments/environment";
-import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model";
-import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
-import { RequestGridDataColumnValue } from "../models/requests/requestGridDataColumnValue.model";
-import { ResponseBodyGetList } from "../models/responses/responseBodyGetList.model";
+import { RequestBodyGetList } from "../../models/requests/requestBodyGetList.model";
+import { RequestGridDataColumn } from "../../models/requests/requestGridDataColumn.model";
+import { RequestGridDataColumnValue } from "../../models/requests/requestGridDataColumnValue.model";
+import { ResponseBodyGetList } from "../../models/responses/responseBodyGetList.model";
 import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
   providedIn: "root"
 })
-export class TableResponseService {
+export class TableService {
   constructor(
     private http:HttpClient,
     private translateService:TranslateService
-    ) { }
+    ) {
+    }
 
   // get response for table from api
   getResponseObj(requestPath:string, requestObj:RequestBodyGetList):Observable<ResponseBodyGetList> {
@@ -83,4 +84,7 @@ export class TableResponseService {
         return "text";
     }
   }
+
+
+
 }

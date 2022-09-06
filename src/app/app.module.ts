@@ -14,6 +14,7 @@ import { SidebarModule } from "primeng/sidebar";
 import { PanelMenuModule } from "primeng/panelmenu";
 import { TreeSelectModule } from "primeng/treeselect";
 import { SplitterModule} from "primeng/splitter";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -27,7 +28,8 @@ import { FormsModule } from "@angular/forms";
 
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import { TableMenuComponent } from './universalComponents/table-menu/table-menu.component';
+import { ConfirmationService, MessageService } from "primeng/api";
+import { TableMenuService } from "./universalComponents/table-menu/table-menu.service";
 
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -59,6 +61,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     PanelMenuModule,
     TreeSelectModule,
     SplitterModule,
+    ConfirmDialogModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,
@@ -73,7 +76,10 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthconfigInterceptor,
       multi:true
-    }
+    },
+    ConfirmationService,
+    MessageService,
+    TableMenuService
   ],
   exports:[
 

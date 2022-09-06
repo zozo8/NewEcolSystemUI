@@ -1,12 +1,12 @@
-<p-toast position="top-right"></p-toast>
-<p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog>
+<!-- <p-toast position="top-right"></p-toast>
+<p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog> -->
 <p-splitter [panelSizes]="[60,40]">
   <ng-template pTemplate>
 <div class="col-md-12">
-
   <app-table-menu
     [buttonList]="buttons"
-    [icon]="'pi-users'"></app-table-menu>
+    [icon]="'pi-users'">
+  </app-table-menu>
     <div class="row">
       <app-table style="width: 100%;"
       [dataTable]="dataObj"

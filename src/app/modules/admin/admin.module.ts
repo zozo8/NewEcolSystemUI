@@ -23,7 +23,6 @@ import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { TableMenuComponent } from "src/app/universalComponents/table-menu/table-menu.component";
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -49,8 +48,6 @@ import { TableMenuComponent } from "src/app/universalComponents/table-menu/table
     MenubarModule,
     ConfirmDialogModule,
     MessagesModule
-
-
   ]
 })
 export class AdminModule { }

@@ -3,13 +3,11 @@ import { LazyLoadEvent, MenuItem, MessageService } from "primeng/api";
 import { Observable } from "rxjs";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
-import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",
-  styleUrls: ["./table.component.css"],
-  providers:[MessageService]
+  styleUrls: ["./table.component.css"]
 })
 export class TableComponent {
   dataLoading: boolean;
@@ -84,7 +82,6 @@ newRequestParam = new EventEmitter<LazyLoadEvent>();
 selectedObj = new EventEmitter<any>();
 
   constructor(
-    private transalteService:TranslateService
   ) { }
 
   loadData(event:LazyLoadEvent):void {
@@ -96,7 +93,6 @@ selectedObj = new EventEmitter<any>();
   selectObj(ev:Event):void {
      this.selectedObj.emit(ev);
   }
-
 
 }
 

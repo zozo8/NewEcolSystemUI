@@ -1,3 +1,5 @@
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog>
 <div [@loadDashboardTrigger]="loadDashboard ? 'show': 'hide'" class="dashboard" style="background-image: url(./assets/images/dashboard_background.jpg);" >
   <p-menubar [model]="topMenu">
     <ng-template pTemplate="start">
