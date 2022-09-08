@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import { LazyLoadEvent, MenuItem, MessageService } from "primeng/api";
+import { Component, EventEmitter, Input, Output} from "@angular/core";
+import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { Observable } from "rxjs";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
@@ -28,7 +28,7 @@ get dataTable(): Observable<ResponseBodyGetList> {
 
 @Input()
 set dataTable(v : Observable<ResponseBodyGetList>) {
-if(v!== undefined){
+if(v!== undefined) {
 
   this._dataTable = v;
   this.dataLoading = true;
@@ -37,7 +37,7 @@ if(v!== undefined){
     next:(res:ResponseBodyGetList)=> {
       this.dataSource = res;
     },
-    complete:()=>{
+    complete:()=> {
 
       this.dataValues = this.dataSource.value.data;
       this.totalItems = this.dataSource.value.totalItems;
@@ -45,7 +45,7 @@ if(v!== undefined){
       this.pageSize = this.dataSource.value.pageSize;
       this.dataLoading = false;
     },
-    error:(err:Error)=>{
+    error:(err:Error)=> {
       this.dataLoading = false;
       console.error("Błąd:",err);
     }
@@ -55,13 +55,14 @@ if(v!== undefined){
 }
 
 private _columns : RequestGridDataColumnValue[];
-public get columns() : RequestGridDataColumnValue[] {
+public get columns(): RequestGridDataColumnValue[] {
   return this._columns;
 }
+
 @Input()
 public set columns(v : RequestGridDataColumnValue[]) {
   this.cols = v;
-  if(this.cols !== undefined){
+  if(this.cols !== undefined) {
     this.columnFilter = this.cols.map(el=>el.columnName);
   }
 }

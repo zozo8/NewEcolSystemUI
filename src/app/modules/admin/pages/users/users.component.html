@@ -1,83 +1,26 @@
-<!-- <p-toast position="top-right"></p-toast>
-<p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog> -->
 <p-splitter [panelSizes]="[60,40]">
   <ng-template pTemplate>
 <div class="col-md-12">
-  <app-table-menu
-    [buttonList]="buttons"
-    [icon]="'pi-users'">
-  </app-table-menu>
+  <app-table-menu [buttonList]="buttons" [icon]="'pi-users'"></app-table-menu>
     <div class="row">
       <app-table style="width: 100%;"
       [dataTable]="dataObj"
       [title]="'pages.users.title' | translate"
       [columns]="columns"
-      [tableDisabled]="editState"
+      [tableDisabled]="obj.editState"
       (newRequestParam)="getRequestObjFromComponent($event)"
       (selectedObj)="getSelectedObjFromComponent($event)">
     </app-table>
     </div>
   </div>
   </ng-template>
-  <ng-template pTemplate>
-    <div style="width: 100%;">
-      <form (ngSubmit)="save()">
-        <p-panel [title]="'table-detail.header' | translate">
-          <ng-template pTemplate="header">
-            {{'table-detail.record' | translate }}:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" *ngIf="objectDto" >{{objectDto.firstName}} {{objectDto.lastName}}</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <div class="row" *ngIf="objectEditDto">
-              <div class="col-sm">
-                <div class="form-group">
-                  <label for="firstName">Imię</label>
-                  <input pInputText type="text" [disabled]="!editState" id="firstName" name="firstName" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.firstName" />
-                </div>
-                <div class="form-group">
-                  <label for="lastName">Nazwisko</label>
-                  <input pInputText type="text" [disabled]="!editState" id="lastName" name="lastName" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.lastName" />
-                </div>
-                <div class="form-group">
-                  <label for="evaluationDate">Data ważności konta</label>
-                  <input pInputText type="date" [disabled]="!editState" id="evaluationDate" name="evaluationDate" value="true" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.evaluationDate" />
-                </div>
-                <div class="form-group">
-                  <label for="isAdmin">Czy admin</label>
-                  <p-checkbox [(ngModel)]="objectEditDto.isAdmin" [disabled]="!editState" [binary]="true" name="isAdmin" ></p-checkbox>
-                </div>
-            </div>
-            <div class="col-sm">
-              <div class="form-group">
-                <label for="userName">Nazwa użytkownika</label>
-                <input pInputText type="text" [disabled]="!editState" id="userName" name="userName" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.userName" />
-              </div>
-              <div class="form-group">
-                <label for="userEmail">E-mail</label>
-                <input pInputText type="text" [disabled]="!editState" id="userEmail" name="userEmail" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.userEmail" />
-              </div>
-              <div class="form-group">
-                <label for="phoneNumber">Telefon</label>
-                <input pInputText type="text" [disabled]="!editState" id="phoneNumber" name="phoneNumber" class="p-inputtext-sm form-control" [(ngModel)]="objectEditDto.phoneNumber" />
-              </div>
-            </div>
-            </div>
-            <div *ngIf="!objectEditDto">
-              <p-messages severity="info">
-                <ng-template pTemplate>
-                  <p><i class="pi pi-info"></i> {{'table-detail.select_record' | translate }}</p>
-                </ng-template>
-              </p-messages>
-            </div>
-          </ng-template>
-          <ng-template pTemplate="footer">
-            <button pButton type="submit" icon="pi pi-check" *ngIf="editState">{{submitValue}}</button>
-            &nbsp;
-            <button pButton *ngIf="editState" class="p-button-outlined" (click)="cancel()" title="Anuluj edycje rekordu">{{"btn.cancel" | translate}}</button>
-            <button pButton *ngIf="!editState" class="p-button-outlined" (click)="edit()" title="Edytuj ten rekord">{{"btn.edit" | translate}}</button>
-          </ng-template>
-        </p-panel>
-      </form>
-    </div>
+  <ng-template pTemplate >
+    <app-user-detail style="width: 100%"
+      [obj]="obj"
+      [addPath]="addPath"
+      [editPath]="editPath"
+      (refreshTable)="refreshTable()">
+    </app-user-detail>
   </ng-template>
 </p-splitter>
 

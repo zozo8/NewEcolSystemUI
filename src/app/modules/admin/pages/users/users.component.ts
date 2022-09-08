@@ -1,5 +1,5 @@
 import { Component, OnInit} from "@angular/core";
-import { LazyLoadEvent, MenuItem, MessageService } from "primeng/api";
+import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { BehaviorSubject, Observable} from "rxjs";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
@@ -8,7 +8,7 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableService } from "src/app/universalComponents/table/table.service";
 import { TranslateService } from "@ngx-translate/core";
-import { ITableCrudComponent } from "src/app/Interfaces/table/ITableCrudComponent";
+import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { UserDto } from "src/app/models/dto/userDto";
 import { TableMenuService } from "src/app/universalComponents/table-menu/table-menu.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
@@ -21,19 +21,15 @@ import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 })
 
 
-export class UsersComponent implements OnInit, ITableComponent, ITableCrudComponent<UserDto> {
+export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent<UserDto> {
   columnPath = "/api/Users/GetUserGridData/Get";
   listPath = "/api/Users/GetUsers/Get";
+  deletePath = "/api/Users/DeleteUser/Delete?id=";
   addPath = "/api/Users/ManageUser/Post";
   editPath = "/api/Users/ManageUser/Put";
-  deletePath = "/api/Users/DeleteUser/Delete?id=";
 
-  tableMenuObj:TableMenuStructure<UserDto,UserDto> = new TableMenuStructure<{},{}>();
+  obj:TableMenuStructure = new TableMenuStructure();
   buttons:MenuItem[];
-  objectDto:UserDto;
-  editState:boolean;
-  objectEditDto:UserDto;
-  submitValue:string;
 
   dataObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
@@ -42,21 +38,19 @@ export class UsersComponent implements OnInit, ITableComponent, ITableCrudCompon
   constructor(
    private tableService:TableService,
    private translateService:TranslateService,
-   private messageService:MessageService,
    private tableMenuService:TableMenuService
   ) {
   }
 
   ngOnInit(): void {
+    this.getColumns();
+    this.buttons = this.getButtons();
 
-  this.getColumns();
-  this.buttons = this.getButtons();
-
-   this.reqObjBS.subscribe(request=> {
-    if(request?.pageNumber !== 10000) {
-      this.dataObj = this.tableService.getResponseObj(this.listPath,request);
-    }
-   });
+    this.reqObjBS.subscribe(request=> {
+      if(request?.pageNumber !== 10000) {
+        this.dataObj = this.tableService.getResponseObj(this.listPath,request);
+      }
+    });
   }
 
   getColumns():void {
@@ -74,16 +68,27 @@ export class UsersComponent implements OnInit, ITableComponent, ITableCrudCompon
     this.reqObjBS.next(requestObj);
 }
 
+// emmiter from table components
   getRequestObjFromComponent(ev:LazyLoadEvent):void {
     this.prepareRequest(ev);
   }
 
   getSelectedObjFromComponent(ev:any):void {
     if(ev.data != null) {
-      this.objectDto = ev.data;
-     this.objectEditDto = {...ev.data}; // copy without reference
+      this.obj.objectDto = ev.data;
+     this.obj.objectEditDto = {...ev.data}; // copy without reference
     }
   }
+
+  //emmiter from detail component
+  refreshTable():void {
+    console.log("Odświeżenie tabelki");
+    this.prepareRequest(null);
+    this.obj.editState = false;
+  }
+
+
+  // buttons
 
   getButtons():MenuItem[] {
     return [
@@ -112,47 +117,26 @@ export class UsersComponent implements OnInit, ITableComponent, ITableCrudCompon
 
 
   add(): void {
-    this.editState = true;
-    this.submitValue = this.translateService.instant("btn.add");
-    this.objectDto = {};
-    this.objectEditDto = {};
+    this.tableMenuService.add(this.obj).subscribe({
+      next:(res:TableMenuStructure)=>this.obj = res
+    });
+
   }
   edit(): void {
-
-    // if(this.objectEditDto?.id !== null) {
-    //   this.editState = true;
-    //   this.submitValue = this.translateService.instant("btn.edit");
-    // } else {
-    //   this.messageService.add(
-    //     {
-    //       severity:"warn", summary:this.translateService.instant("btn.warning"), detail:this.translateService.instant("table-menu.select_record")
-    //     });
-    // }
+    this.tableMenuService.edit(this.obj).subscribe({
+      next:(res:TableMenuStructure)=>this.obj = res
+    });
   }
+
   delete(): void {
-      this.tableMenuService.delete(this.deletePath, this.objectDto.id).subscribe({
+      this.tableMenuService.delete(this.deletePath, this.obj.objectDto.id).subscribe({
         next:(res:boolean)=> {
-          if(res) { this.rebuildAfterChangeObjectDto(); }
+          if(res) { this.refreshTable(); }
         }
       });
     }
 
-  save():void {
-    this.tableMenuService.save(this.objectEditDto,this.objectEditDto.id,this.addPath, this.editPath).subscribe({
-      next:(res:boolean)=> {
-        if(res) { this.rebuildAfterChangeObjectDto(); }
-      }
-    });
-  }
 
-  cancel():void {
-    this.editState = false;
-  }
-
-  rebuildAfterChangeObjectDto():void {
-    this.prepareRequest(null);
-    this.editState = false;
-  }
 
 }
 

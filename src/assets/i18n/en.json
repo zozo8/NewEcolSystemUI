@@ -1,5 +1,6 @@
 {
 	"app_menu": {
+		"mainpage": "Main page",
 		"equipment_tree": "Equipment tree",
 		"orders_header": "Orders",
 		"orders": {
@@ -33,7 +34,8 @@
 		"add": "Add",
 		"show_details": "Show details...",
 		"edit": "Edit",
-		"remove": "Remove"
+		"remove": "Remove",
+		"refresh": "Refresh"
 	},
 	"common": {
 		"title_page": "NES 2.0 - Computerized Maintenance Management System",

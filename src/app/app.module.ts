@@ -15,6 +15,7 @@ import { PanelMenuModule } from "primeng/panelmenu";
 import { TreeSelectModule } from "primeng/treeselect";
 import { SplitterModule} from "primeng/splitter";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { OrganizationChartModule } from "primeng/organizationchart";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -62,6 +63,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TreeSelectModule,
     SplitterModule,
     ConfirmDialogModule,
+    OrganizationChartModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,

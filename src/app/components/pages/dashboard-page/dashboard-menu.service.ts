@@ -33,6 +33,11 @@ export class DashboardMenuService{
 
     return [
       {
+        label: this.translateService.instant("app_menu.mainpage"),
+        icon:"pi pi-home",
+        routerLink:"/dashboard/mainpage"
+      },
+      {
         label: this.translateService.instant("app_menu.equipment_tree"),
         icon:"pi pi-align-left",
         routerLink:""

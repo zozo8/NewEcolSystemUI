@@ -1,5 +1,6 @@
 {
 	"app_menu": {
+		"mainpage": "Strona główna",
 		"equipment_tree": "Drzewo urządzeń",
 		"orders_header": "Zlecenia",
 		"orders": {
@@ -33,7 +34,8 @@
 		"add": "Dodaj",
 		"show_details": "Pokaż szczegóły...",
 		"edit": "Edytuj",
-		"remove": "Usuń"
+		"remove": "Usuń",
+		"refresh": "Odśwież"
 	},
 	"common": {
 		"title_page": "NES 2.0 - System Utrzymania Ruchu",

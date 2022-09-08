@@ -22,13 +22,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { TableMenuComponent } from "src/app/universalComponents/table-menu/table-menu.component";
+import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     UsersComponent,
     TableComponent,
-    TableMenuComponent
+    TableMenuComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,
