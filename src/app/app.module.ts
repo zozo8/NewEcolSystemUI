@@ -16,6 +16,9 @@ import { TreeSelectModule } from "primeng/treeselect";
 import { SplitterModule} from "primeng/splitter";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { OrganizationChartModule } from "primeng/organizationchart";
+import { BadgeModule } from "primeng/badge";
+import { DropdownModule } from "primeng/dropdown";
+import { ChartModule } from "primeng/chart";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -31,6 +34,9 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { TableMenuService } from "./universalComponents/table-menu/table-menu.service";
+import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/modules.component";
+import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
+import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
 
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -42,7 +48,10 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppComponent,
     DashboardPageComponent,
     MainpageComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ModulesComponent,
+    ChartsComponent,
+    WarningsComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +73,9 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SplitterModule,
     ConfirmDialogModule,
     OrganizationChartModule,
+    BadgeModule,
+    DropdownModule,
+    ChartModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,

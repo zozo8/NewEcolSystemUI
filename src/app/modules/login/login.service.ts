@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { sha512 } from "js-sha512";
@@ -26,8 +26,15 @@ export class LoginService {
   loginToUR(obj:Login):Observable<ResponseLoginUR> {
     localStorage.removeItem("tokenUR");
     localStorage.removeItem("token");
+
+    // const httpOption = {
+    //   headers: new HttpHeaders({
+    //     "Access-Control-Allow-Origin":"http://nes.ecol.com.pl"
+    //   })
+    // };
+
     let loginObjUR = this.getLoginObjUR(obj);
-    return this.http.post<ResponseLoginUR>("/api/auth/login",loginObjUR);
+    return this.http.post<ResponseLoginUR>("/api/auth/login/",loginObjUR);
   }
 
 
@@ -71,6 +78,7 @@ export class LoginService {
     localStorage.setItem("refreshToken",res.refreshToken);
     localStorage.setItem("userId", res.id.toString());
     localStorage.setItem("userEmail", res.email);
+    localStorage.setItem("userName", res.userName);
 
     this.decodateToken(res);
   }

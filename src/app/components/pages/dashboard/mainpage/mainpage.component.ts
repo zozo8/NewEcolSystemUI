@@ -1,8 +1,7 @@
 import { Component, OnInit} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { TreeNode } from "primeng/api";
-import { AuthService } from "src/app/services/auth.service";
-import { DashboardMenuService } from "../../dashboard-page/dashboard-menu.service";
+import { MenuItem } from "primeng/api";
+import { MainpageService } from "./mainpage.service";
 
 @Component({
   selector: "app-mainpage",
@@ -10,38 +9,22 @@ import { DashboardMenuService } from "../../dashboard-page/dashboard-menu.servic
   styleUrls: ["./mainpage.component.css"]
 })
 export class MainpageComponent implements OnInit {
-  menuTree:TreeNode[] = [];
+
   loading:boolean;
+  selectedTemplate:MenuItem;
+  templateList:MenuItem[];
 
   constructor(
-    private dashboardMenuService:DashboardMenuService,
+
+    private mainpageService:MainpageService,
     private translateService:TranslateService
   ) { }
 
   ngOnInit(): void {
-    this.loading = true;
-    this.convertMenuItemToTreeNode();
-    console.log("menu",this.menuTree, this.menuTree.length);
-    this.loading = false;
+    this.templateList =this.mainpageService.getTemplateList();
+    this.selectedTemplate = this.templateList[0];
   }
 
-  convertMenuItemToTreeNode():void {
-    var n = 0;
-    var menuItem = this.dashboardMenuService.getLeftMenu();
 
-    this.menuTree.push({
-      label:menuItem[0].label,
-      expanded:true,
-      children:menuItem.filter((el,i)=> i>0)
-    });
-
-
-    // children:[{
-    //   label:menuItem[1].label,
-    //   type:"leaf",
-    //   key:menuItem[1].routerLink,
-    //   expanded:true
-    // }]
-  }
 
 }

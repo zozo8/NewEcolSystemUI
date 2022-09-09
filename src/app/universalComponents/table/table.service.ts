@@ -26,11 +26,12 @@ export class TableService {
 
    // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(columns:RequestGridDataColumnValue[], ev:LazyLoadEvent | null):RequestBodyGetList {
+  console.log("ev",ev);
+
    let pageNumber:number = (ev!=null)?((ev.first??0/10)+1):1;
    let pageSize:number = (ev?.rows !== 20)?ev?.rows??10:10;
    let sortField:string = (ev?.sortField !== undefined) ? ev.sortField : "id";
-   let isAscending:boolean = (ev?.sortOrder === 1)?true:false;
-
+   let isAscending:boolean = (ev?.sortOrder === 1)?false:true;
 
    let obj:RequestBodyGetList = {
      pageNumber:pageNumber,
@@ -43,6 +44,8 @@ export class TableService {
        filters:columns
      }
    };
+
+   console.log("requestObj",obj);
    return obj;
 
    }

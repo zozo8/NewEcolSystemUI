@@ -1,13 +1,20 @@
-<div style="margin-top: 25px;">
-  <p-organizationChart [value]="menuTree" styleClass="company">
-    <ng-template let-node pTemplate="default">
-      <span style="font-weight: bold;">{{node.label | translate}}</span>
-      <a [routerLink]="[node.key]">Otwórz okno</a>
-    </ng-template>
-    <ng-template let-node pTemplate="leaf">
-      <span>{{node.label | translate}}</span>
-      <a *ngIf="node.key" [routerLink]="[node.key]">Otwórz okno</a>
-    </ng-template>
-  </p-organizationChart>
+<div>
+  <div class="col-md-12 text-end" style="padding-right: 50px; padding-top: 20px;" >
+    <p-dropdown
+      [(ngModel)]="selectedTemplate"
+      [options]="templateList"
+      optionLabel="label"
+      placeholder="Wytbierz układ danych">
+      <ng-template pTemplate="option" let-option>
+        <div class="text-start">
+          <span><i [ngClass]="option.icon" ></i>&nbsp; {{option.label}}</span>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+<app-modules *ngIf="selectedTemplate?.id === 'modules'"></app-modules>
+<app-charts *ngIf="selectedTemplate?.id === 'charts'"></app-charts>
+<app-warnings *ngIf="selectedTemplate?.id === 'warnings'"></app-warnings>
+
 </div>
 

@@ -12,6 +12,7 @@ import {
   transition
 } from "@angular/animations";
 import { DashboardPageService } from "./dashboard-page.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-dashboard-page",
@@ -40,6 +41,8 @@ export class DashboardPageComponent implements OnInit {
   loadDashboard:boolean;
   clientNodes:any[];
   selectedClientNode:any[] = [];
+  userName:string;
+  appVersion:string;
 
   constructor(
     private authService:AuthService,
@@ -50,12 +53,14 @@ export class DashboardPageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.appVersion = environment.appVersion;
     this.setTimer();
     this.topMenu = this.getTopMenu();
     this.leftMenu = this.menuService.getLeftMenu();
     this.userMenu = this.menuService.getUserMenu();
     this.searchMenu = this.menuService.getSearchMenu();
     this.clientNodes = this.dashboardPageService.getClientNodes();
+    this.userName = localStorage.getItem("userName")??"";
 
     timer(500).subscribe(()=> {
       this.loadDashboard = true;
@@ -70,7 +75,7 @@ export class DashboardPageComponent implements OnInit {
     return [
       {
         title: this.translateService.instant("common.show_menu"),
-        icon:"pi pi-align-left",
+        icon:"pi pi-align-justify",
         command:()=> {
           this.display = !this.display;
          }

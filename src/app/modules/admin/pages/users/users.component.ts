@@ -82,7 +82,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
 
   //emmiter from detail component
   refreshTable():void {
-    console.log("Odświeżenie tabelki");
     this.prepareRequest(null);
     this.obj.editState = false;
   }

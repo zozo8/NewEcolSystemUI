@@ -2,7 +2,9 @@
   <form (ngSubmit)="save()">
     <p-panel [title]="'table-detail.header' | translate">
       <ng-template pTemplate="header">
-        {{'table-detail.record' | translate }}:<span style="padding-left: 10px; font-weight: bold; font-size: 20px;" *ngIf="obj.objectDto" >{{obj.objectDto.firstName}} {{obj.objectDto.lastName}}</span>
+        <div *ngIf="obj.objectDto">
+          <i class="pi pi-user"></i> <span style="padding-left: 10px; font-weight: bold; font-size: 20px;"  >{{obj.objectDto.firstName}} {{obj.objectDto.lastName}}</span>
+        </div>
       </ng-template>
       <ng-template pTemplate="content">
         <div class="row" *ngIf="obj.objectEditDto">
@@ -21,7 +23,7 @@
             </div>
             <div class="form-group">
               <label for="isAdmin">Czy admin</label>
-              <p-checkbox [(ngModel)]="obj.objectEditDto.isAdmin" [disabled]="!obj. editState" [binary]="true" name="isAdmin" ></p-checkbox>
+              <p-checkbox [(ngModel)]="obj.objectEditDto.isAdmin" [disabled]="!obj.editState" [binary]="true" name="isAdmin" ></p-checkbox>
             </div>
         </div>
         <div class="col-sm">

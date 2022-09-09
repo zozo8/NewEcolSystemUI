@@ -50,6 +50,10 @@
 		"3Adv": "Register lubricants",
 		"4Adv": "Reporting",
 		"empty_data": "No result",
+		"login": "login:",
+		"footer_left_a": "Ecol sp z o.o.",
+		"footer_left_b": "ul. Podmiejska 71A, 44-207 Rybnik",
+		"footer_right_a": "2022 Ecol",
 		"search_menu": {
 			"window": "Window",
 			"equipment": "Equipment",

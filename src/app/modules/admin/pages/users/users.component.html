@@ -1,31 +1,27 @@
-<p-splitter [panelSizes]="[60,40]">
-  <ng-template pTemplate>
-<div class="col-md-12">
-  <app-table-menu [buttonList]="buttons" [icon]="'pi-users'"></app-table-menu>
-    <div class="row">
-      <app-table style="width: 100%;"
-      [dataTable]="dataObj"
-      [title]="'pages.users.title' | translate"
-      [columns]="columns"
-      [tableDisabled]="obj.editState"
-      (newRequestParam)="getRequestObjFromComponent($event)"
-      (selectedObj)="getSelectedObjFromComponent($event)">
-    </app-table>
-    </div>
-  </div>
-  </ng-template>
-  <ng-template pTemplate >
-    <app-user-detail style="width: 100%"
-      [obj]="obj"
-      [addPath]="addPath"
-      [editPath]="editPath"
-      (refreshTable)="refreshTable()">
-    </app-user-detail>
-  </ng-template>
-</p-splitter>
 
-
-
-
-
+  <p-splitter [panelSizes]="[60,40]">
+    <ng-template pTemplate>
+      <div style="width: 100%;">
+        <app-table-menu [buttonList]="buttons" [icon]="'pi-users'"></app-table-menu>
+          <div class="row">
+            <app-table style="width: 100%;"
+            [dataTable]="dataObj"
+            [title]="'pages.users.title' | translate"
+            [columns]="columns"
+            [tableDisabled]="obj.editState"
+            (newRequestParam)="getRequestObjFromComponent($event)"
+            (selectedObj)="getSelectedObjFromComponent($event)">
+          </app-table>
+          </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate >
+      <app-user-detail style="width: 100%"
+        [obj]="obj"
+        [addPath]="addPath"
+        [editPath]="editPath"
+        (refreshTable)="refreshTable()">
+      </app-user-detail>
+    </ng-template>
+  </p-splitter>
 
