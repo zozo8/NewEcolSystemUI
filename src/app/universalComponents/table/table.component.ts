@@ -19,7 +19,7 @@ export class TableComponent {
   dataValues:any[];
   totalPages:number;
   pageSize:number = 0;
-  totalItems?:number;
+  totalRecords:number = 0;
 
 private _dataTable : Observable<ResponseBodyGetList>;
 get dataTable(): Observable<ResponseBodyGetList> {
@@ -40,7 +40,7 @@ if(v!== undefined) {
     complete:()=> {
       console.log("responseObj",this.dataSource);
       this.dataValues = this.dataSource.value.data;
-      this.totalItems = this.dataSource.value.totalItems;
+      this.totalRecords = this.dataSource.value.totalItems??0;
       this.totalPages = this.dataSource.value.totalPages;
       this.pageSize = this.dataSource.value.pageSize;
       this.dataLoading = false;

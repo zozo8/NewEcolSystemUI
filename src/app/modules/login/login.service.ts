@@ -29,12 +29,14 @@ export class LoginService {
 
     // const httpOption = {
     //   headers: new HttpHeaders({
-    //     "Access-Control-Allow-Origin":"http://nes.ecol.com.pl"
+    //     "Access-Control-Allow-Origin":"*",
+    //     "Content-Type":"application/json; charset=utf-8"
     //   })
     // };
 
+
     let loginObjUR = this.getLoginObjUR(obj);
-    return this.http.post<ResponseLoginUR>("/api/auth/login/",loginObjUR);
+    return this.http.post<ResponseLoginUR>(environment.endpointLoginUR+"/api/auth/login/",loginObjUR);
   }
 
 

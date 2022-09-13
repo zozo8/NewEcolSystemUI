@@ -30,6 +30,8 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
 
   obj:TableMenuStructure = new TableMenuStructure();
   buttons:MenuItem[];
+  tableFilter:LazyLoadEvent;
+ // buttonsBS = new BehaviorSubject<MenuItem[]>([{}]);
 
   dataObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
@@ -45,7 +47,9 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   ngOnInit(): void {
     this.getColumns();
     this.buttons = this.getButtons();
+   // this.buttonsBS.next(this.getButtons());
 
+    // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
         this.dataObj = this.tableService.getResponseObj(this.listPath,request);
@@ -58,19 +62,20 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
-        this.prepareRequest(null);
+        this.prepareRequest();
       }
   });
   }
 
-  prepareRequest(ev:LazyLoadEvent | null):void {
+  prepareRequest(ev?:LazyLoadEvent):void {
     let requestObj = this.tableService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
 }
 
 // emmiter from table components
   getRequestObjFromComponent(ev:LazyLoadEvent):void {
-    this.prepareRequest(ev);
+    this.tableFilter = ev;
+    this.prepareRequest(this.tableFilter);
   }
 
   getSelectedObjFromComponent(ev:any):void {
@@ -82,7 +87,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
 
   //emmiter from detail component
   refreshTable():void {
-    this.prepareRequest(null);
+    this.prepareRequest(this.tableFilter);
     this.obj.editState = false;
   }
 
@@ -94,22 +99,26 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
       {
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",
+        disabled:false,
         command:()=>this.add()
       },
       {
         label:this.translateService.instant("btn.remove"),
         icon:"pi pi-fw pi-minus",
+        disabled:false,
         command:()=>this.delete()
       },
       {
         label:this.translateService.instant("btn.edit"),
         icon:"pi pi-fw pi-pencil",
+        disabled:false,
         command:()=>this.edit()
       },
       {
         label:this.translateService.instant("btn.refresh"),
         icon:"pi pi-fw pi-refresh",
-        command:()=>this.prepareRequest(null)
+        disabled:false,
+        command:()=>this.prepareRequest(this.tableFilter)
       }
     ];
   }

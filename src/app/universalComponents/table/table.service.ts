@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { LazyLoadEvent, MessageService } from "primeng/api";
+import { FilterMetadata, LazyLoadEvent } from "primeng/api";
 import { Observable } from "rxjs/internal/Observable";
 import { environment } from "src/environments/environment";
 import { RequestBodyGetList } from "../../models/requests/requestBodyGetList.model";
@@ -13,6 +13,8 @@ import { TranslateService } from "@ngx-translate/core";
   providedIn: "root"
 })
 export class TableService {
+
+  ret:RequestGridDataColumnValue[];
   constructor(
     private http:HttpClient,
     private translateService:TranslateService
@@ -25,30 +27,51 @@ export class TableService {
    }
 
    // get request from api for default params or dynamic params from universal table component (ev)
-  getRequestObj(columns:RequestGridDataColumnValue[], ev:LazyLoadEvent | null):RequestBodyGetList {
-  console.log("ev",ev);
+  getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent):RequestBodyGetList {
+    console.log("start ev",ev, columns);
+    if(ev === undefined) {
+      return this.getStartFilterObj(columns);
+    } else {
+      let obj:RequestBodyGetList = {
+        pageNumber:(ev.first??0)/10+1,
+        pageSize:ev?.rows,
+        order:{
+          columnName:ev?.sortField ?? "id",
+          isAscending:(ev?.sortOrder === 1)?false:true
+        },
+        filter:{
+          filters:columns
+        }
+      };
 
-   let pageNumber:number = (ev!=null)?((ev.first??0/10)+1):1;
-   let pageSize:number = (ev?.rows !== 20)?ev?.rows??10:10;
-   let sortField:string = (ev?.sortField !== undefined) ? ev.sortField : "id";
-   let isAscending:boolean = (ev?.sortOrder === 1)?false:true;
-
-   let obj:RequestBodyGetList = {
-     pageNumber:pageNumber,
-     pageSize:pageSize,
-     order:{
-       columnName:sortField,
-       isAscending:isAscending
-     },
-     filter:{
-       filters:columns
-     }
-   };
-
-   console.log("requestObj",obj);
-   return obj;
+      console.log("end ev",obj);
+      return obj;
+    }
 
    }
+
+
+  // getFilters(obj:LazyLoadEvent,columns:RequestGridDataColumnValue[] ): RequestGridDataColumnValue[] {
+  //   var res:RequestGridDataColumnValue[];
+  //   columns.forEach(val=>{
+  //     let fil = obj.filters['id'].value;
+  //   })
+  // }
+
+   getStartFilterObj(columns:RequestGridDataColumnValue[]): RequestBodyGetList {
+    let obj:RequestBodyGetList = {
+      pageNumber:1,
+      pageSize:10,
+      order:{
+        columnName:"id",
+        isAscending:true
+      },
+      filter:{
+        filters:columns
+      }
+    };
+    return obj;
+  }
 
    // get column list for grid
    getFilterColumnName(path:string):Observable<RequestGridDataColumn> {
@@ -58,8 +81,7 @@ export class TableService {
    // set specyfic fdormat columns, require to create data, filters etc in table components
    GetColumnsOutput(columns: RequestGridDataColumnValue[]): RequestGridDataColumnValue[] {
     let columnsOutput:RequestGridDataColumnValue[] = [];
-    columns.forEach((res)=>
-    {
+    columns.forEach((res)=> {
       columnsOutput.push({
         columnName : res.columnName,
         dataType :this.getSepcificDataType(res.dataType),

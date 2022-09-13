@@ -103,10 +103,11 @@ export class LoginComponent implements OnInit {
         complete:()=> {
             this.loading = false;
         },
-        error:()=> {
+        error:(er:Error)=> {
           this.loading = false;
           this.hideAdvs = false;
           this.errorText = this.translateService.instant("pages.login_page.error");
+          console.error(er);
         }
       });
     });

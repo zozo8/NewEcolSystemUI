@@ -2,24 +2,25 @@
 
   <p-table #dt1
   [value]="dataValues"
+  [totalRecords]="totalRecords"
+  [paginator]="true"
   [rows]="pageSize"
-  [totalRecords]="totalPages"
+  [showCurrentPageReport]="true"
   [lazy]="true"
   [columns]="cols"
   [rowsPerPageOptions]="[10,25,50,100,500]"
   [loading]="dataLoading"
-  [paginator]="true"
   [showPageLinks]="true"
-  [showCurrentPageReport]="true"
-  (onLazyLoad)="loadData($event)"
   [globalFilterFields]="columnFilter"
   [resizableColumns]="true"
+  [scrollable]="true"
+  (onLazyLoad)="loadData($event)"
   (onRowSelect)="selectObj($event)"
   selectionMode="single"
-  currentPageReportTemplate="{first} - {last} / {{totalItems}}"
+  currentPageReportTemplate="{first} - {last} / {{totalRecords}}"
   styleClass="p-datatable-gridlines"
+  scrollHeight="800px"
   responsiveLayout="scroll">
-
   <ng-template pTemplate="header" let-columns >
   <tr>
     <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}

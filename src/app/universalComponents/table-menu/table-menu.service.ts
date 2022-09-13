@@ -97,7 +97,7 @@ export class TableMenuService {
 
       });
     } else {
-      this.http.put(environment.endpointApiPath+editPath+"/"+id,objectDto).subscribe({
+      this.http.put(environment.endpointApiPath+editPath+"?id="+id,objectDto).subscribe({
         complete:()=> {
           this.messageService.add(
             {severity:"success",summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("table-menu.edit_record_success")}
