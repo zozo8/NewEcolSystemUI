@@ -4,7 +4,7 @@
       [(ngModel)]="selectedTemplate"
       [options]="templateList"
       optionLabel="label"
-      placeholder="Wytbierz układ danych">
+      [placeholder]=" 'common.select_template' | translate">
       <ng-template pTemplate="option" let-option>
         <div class="text-start">
           <span><i [ngClass]="option.icon" ></i>&nbsp; {{option.label}}</span>

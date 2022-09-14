@@ -27,13 +27,6 @@ export class LoginService {
     localStorage.removeItem("tokenUR");
     localStorage.removeItem("token");
 
-    // const httpOption = {
-    //   headers: new HttpHeaders({
-    //     "Access-Control-Allow-Origin":"*",
-    //     "Content-Type":"application/json; charset=utf-8"
-    //   })
-    // };
-
 
     let loginObjUR = this.getLoginObjUR(obj);
     return this.http.post<ResponseLoginUR>(environment.endpointLoginUR+"/api/auth/login/",loginObjUR);
@@ -41,14 +34,12 @@ export class LoginService {
 
 
   authenticate(obj: ResponseLoginUR):void {
-    if(obj) {
         localStorage.setItem("tokenUR",obj.accessToken.value);
 
         this.http.get<ResponseLoginApi>(environment.endpointApiPath+"/Home/Authenticate")
         .subscribe({
           next:(res:ResponseLoginApi)=> {
             console.log("pobrany token: "+res.token);
-            // console.log("pobrany refresh token: "+res.refreshToken);
             this.setLocalStorageUserData(res);
           },
           error:(err:string)=> {
@@ -59,7 +50,6 @@ export class LoginService {
             this.router.navigate(["/dashboard/mainpage"]);
           }
         });
-    }
   }
 
   private getLoginObjUR(obj: Login):LoginCredentialMD {
@@ -103,5 +93,23 @@ export class LoginService {
     let buffer:Buffer = Buffer.from(arrayBuffer);
     let res:string = buffer.toString("base64");
     return res;
+  }
+
+  getCultureInfo():string {
+    let ret:string;
+    let ln = localStorage.getItem("actualLanguage");
+    switch (ln) {
+      case "pl":
+        ret = "pl-PL";
+        break;
+      case "en":
+        ret = "en-GB";
+        break;
+      default:
+        ret = "pl-PL";
+        break;
+    }
+
+    return ret;
   }
 }

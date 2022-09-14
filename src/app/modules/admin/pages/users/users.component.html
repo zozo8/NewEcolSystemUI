@@ -1,5 +1,5 @@
-
-  <p-splitter [panelSizes]="[60,40]">
+<div style="background-color: red; height: 100%;" >
+  <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
         <app-table-menu [buttonList]="buttons" [icon]="'pi-users'"></app-table-menu>
@@ -16,12 +16,26 @@
         </div>
     </ng-template>
     <ng-template pTemplate >
-      <app-user-detail style="width: 100%"
-        [obj]="obj"
-        [addPath]="addPath"
-        [editPath]="editPath"
-        (refreshTable)="refreshTable()">
-      </app-user-detail>
+      <p-tabView style="width: 100%;">
+        <p-tabPanel [header]="'common.selected_entity' | translate">
+          <app-user-form
+          [cols]="columns"
+          [obj]="obj"
+          [addPath]="addPath"
+          [editPath]="editPath"
+          (refreshTable)="refreshTable()">
+        </app-user-form>
+        </p-tabPanel>
+        <p-tabPanel [header]="'users-page.params' | translate">
+
+        </p-tabPanel>
+        <p-tabPanel [header]="'users-page.departments' | translate">
+
+        </p-tabPanel>
+      </p-tabView>
+
     </ng-template>
   </p-splitter>
+</div>
+
 

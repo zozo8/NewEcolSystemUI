@@ -40,7 +40,7 @@ export class TableService {
           isAscending:(ev?.sortOrder === 1)?false:true
         },
         filter:{
-          filters:columns
+          filters:this.getFilters(ev,columns)
         }
       };
 
@@ -51,12 +51,14 @@ export class TableService {
    }
 
 
-  // getFilters(obj:LazyLoadEvent,columns:RequestGridDataColumnValue[] ): RequestGridDataColumnValue[] {
-  //   var res:RequestGridDataColumnValue[];
-  //   columns.forEach(val=>{
-  //     let fil = obj.filters['id'].value;
-  //   })
-  // }
+  getFilters(ev:LazyLoadEvent,columns:RequestGridDataColumnValue[] ): RequestGridDataColumnValue[] {
+    var res:RequestGridDataColumnValue[];
+    console.log(ev, columns);
+    columns.forEach(val=>{
+       console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
+    });
+    return columns;
+  }
 
    getStartFilterObj(columns:RequestGridDataColumnValue[]): RequestBodyGetList {
     let obj:RequestBodyGetList = {

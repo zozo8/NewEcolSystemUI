@@ -38,7 +38,6 @@ if(v!== undefined) {
       this.dataSource = res;
     },
     complete:()=> {
-      console.log("responseObj",this.dataSource);
       this.dataValues = this.dataSource.value.data;
       this.totalRecords = this.dataSource.value.totalItems??0;
       this.totalPages = this.dataSource.value.totalPages;

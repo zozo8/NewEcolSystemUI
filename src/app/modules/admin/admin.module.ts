@@ -13,6 +13,7 @@ import { CheckboxModule } from "primeng/checkbox";
 import { MenubarModule } from "primeng/menubar";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { MessagesModule } from "primeng/messages";
+import { TabViewModule } from "primeng/tabview";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -22,7 +23,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { TableMenuComponent } from "src/app/universalComponents/table-menu/table-menu.component";
-import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
+import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { UserDetailComponent } from './pages/users/user-detail/user-detail.compo
     UsersComponent,
     TableComponent,
     TableMenuComponent,
-    UserDetailComponent
+    UserFormComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +50,8 @@ import { UserDetailComponent } from './pages/users/user-detail/user-detail.compo
     CheckboxModule,
     MenubarModule,
     ConfirmDialogModule,
-    MessagesModule
+    MessagesModule,
+    TabViewModule
   ]
 })
 export class AdminModule { }

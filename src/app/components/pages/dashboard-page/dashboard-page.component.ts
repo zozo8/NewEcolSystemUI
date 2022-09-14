@@ -53,7 +53,7 @@ export class DashboardPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.appVersion = environment.appVersion;
+    this.appVersion = environment.appVersion + localStorage.getItem("actualLanguage");
     this.setTimer();
     this.topMenu = this.getTopMenu();
     this.leftMenu = this.menuService.getLeftMenu();

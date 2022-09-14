@@ -79,7 +79,9 @@ export class AuthconfigInterceptor implements HttpInterceptor {
 
   applyToken(req: any, token: string): HttpRequest<any> {
     return req.clone({
-      headers: req.headers.set("Authorization", "Bearer " + token)
+      headers: req.headers
+                    .set("Authorization", "Bearer " + token)
+                    .set("CultureInfo",this.loginService.getCultureInfo())
      });
   }
 

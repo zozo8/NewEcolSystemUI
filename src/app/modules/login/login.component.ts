@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   this.startAnimations();
+    this.startAnimations();
   }
 
   startAnimations(){

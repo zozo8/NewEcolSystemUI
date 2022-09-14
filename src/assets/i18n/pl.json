@@ -54,6 +54,8 @@
 		"footer_left_a": "Ecol sp z o.o.",
 		"footer_left_b": "ul. Podmiejska 71A, 44-207 Rybnik",
 		"footer_right_a": "2022 Ecol",
+		"select_template": "Wybierz zestaw danych",
+		"selected_entity": "Wybrany obiekt",
 		"search_menu": {
 			"window": "Okno",
 			"equipment": "Urządzenie",
@@ -193,5 +195,9 @@
 		"add_record_error": "Błąd podczas dodawania rekordu!",
 		"edit_record_success": "Poprawnie edytowano rekord!",
 		"edit_record_error": "Błąd podczas edycji rekordu!"
+	},
+	"users-page": {
+		"params": "Parametry",
+		"departments": "Zakłady"
 	}
 }
