@@ -56,7 +56,7 @@ export class DashboardPageComponent implements OnInit {
     this.appVersion = environment.appVersion + localStorage.getItem("actualLanguage");
     this.setTimer();
     this.topMenu = this.getTopMenu();
-    this.leftMenu = this.menuService.getLeftMenu();
+    this.leftMenu = this.menuService.getMainMenu();
     this.userMenu = this.menuService.getUserMenu();
     this.searchMenu = this.menuService.getSearchMenu();
     this.clientNodes = this.dashboardPageService.getClientNodes();

@@ -36,7 +36,7 @@ export class LoginService {
   authenticate(obj: ResponseLoginUR):void {
         localStorage.setItem("tokenUR",obj.accessToken.value);
 
-        this.http.get<ResponseLoginApi>(environment.endpointApiPath+"/Home/Authenticate")
+        this.http.get<ResponseLoginApi>(environment.endpointApiPath+"/api/Home/Authenticate")
         .subscribe({
           next:(res:ResponseLoginApi)=> {
             console.log("pobrany token: "+res.token);

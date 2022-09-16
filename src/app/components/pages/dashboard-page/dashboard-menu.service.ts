@@ -29,7 +29,7 @@ export class DashboardMenuService{
     ];
   }
 
-  getLeftMenu():MenuItem[] {
+  getMainMenu():MenuItem[] {
 
     return [
       {

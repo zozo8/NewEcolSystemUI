@@ -1,33 +1,39 @@
-<div style="background-color: red; height: 100%;" >
+<p-breadcrumb [model]="breadcrumbList"></p-breadcrumb>
   <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
         <app-table-menu [buttonList]="buttons" [icon]="'pi-users'"></app-table-menu>
           <div class="row">
-            <app-table style="width: 100%;"
-            [dataTable]="dataObj"
-            [title]="'pages.users.title' | translate"
+            <app-table
+            [dataTable]="responseObj"
             [columns]="columns"
             [tableDisabled]="obj.editState"
-            (newRequestParam)="getRequestObjFromComponent($event)"
-            (selectedObj)="getSelectedObjFromComponent($event)">
+            (newRequestParam)="getLazyLoadEvent($event)"
+            (selectedObj)="getSelected($event)">
           </app-table>
           </div>
         </div>
     </ng-template>
     <ng-template pTemplate >
-      <p-tabView style="width: 100%;">
-        <p-tabPanel [header]="'common.selected_entity' | translate">
+      <p-tabView style="width: 100%">
+        <p-tabPanel  [header]="'common.selected_entity' | translate">
           <app-user-form
           [cols]="columns"
           [obj]="obj"
-          [addPath]="addPath"
-          [editPath]="editPath"
+          [addPath]="postPath"
+          [editPath]="putPath"
           (refreshTable)="refreshTable()">
         </app-user-form>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.params' | translate">
+        <p-tabPanel [header]="'users-page.groups' | translate">
+          <app-table>
 
+          </app-table>
+        </p-tabPanel>
+        <p-tabPanel [header]="'users-page.params' | translate">
+          <app-user-param>
+
+          </app-user-param>
         </p-tabPanel>
         <p-tabPanel [header]="'users-page.departments' | translate">
 
@@ -36,6 +42,5 @@
 
     </ng-template>
   </p-splitter>
-</div>
 
 

@@ -19,6 +19,7 @@ import { OrganizationChartModule } from "primeng/organizationchart";
 import { BadgeModule } from "primeng/badge";
 import { DropdownModule } from "primeng/dropdown";
 import { ChartModule } from "primeng/chart";
+import { MessagesModule } from "primeng/messages";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -37,6 +38,7 @@ import { TableMenuService } from "./universalComponents/table-menu/table-menu.se
 import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/modules.component";
 import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
 import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
+
 
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -76,6 +78,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BadgeModule,
     DropdownModule,
     ChartModule,
+    MessagesModule,
     TranslateModule.forRoot({
       loader: {
         provide:TranslateLoader,

@@ -93,7 +93,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
       })
     };
 
-    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/Home/RefreshToken",null,httpOptions)
+    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/api/Home/RefreshToken",null,httpOptions)
               .pipe(tap((res:ResponseLoginApi)=> {
                 this.loginService.setLocalStorageUserData(res);
               }));

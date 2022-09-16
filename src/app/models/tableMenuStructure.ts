@@ -1,8 +1,8 @@
-import { UserDto } from "./dto/userDto";
+import { User } from "./dto/modules/admin/user";
 
 export class TableMenuStructure {
   editState:boolean;
   submitValue:string;
-  objectDto:UserDto;
-  objectEditDto:UserDto;
+  objectDto:User;
+  objectEditDto:User;
 }

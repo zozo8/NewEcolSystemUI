@@ -2,8 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
-import { observableToBeFn } from "rxjs/internal/testing/TestScheduler";
+import { BehaviorSubject, Observable } from "rxjs";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { environment } from "src/environments/environment";
 
@@ -19,7 +18,7 @@ export class TableMenuService {
     private confirmationService:ConfirmationService
   ) { }
 
-  add(obj:TableMenuStructure):Observable<TableMenuStructure>{
+  post(obj:TableMenuStructure):Observable<TableMenuStructure>{
     var ret = new BehaviorSubject<TableMenuStructure>(obj);
     obj.editState = true;
     obj.submitValue = this.translateService.instant("btn.add");
@@ -29,7 +28,7 @@ export class TableMenuService {
     return ret.asObservable();
   }
 
-  edit(obj:TableMenuStructure):Observable<TableMenuStructure> {
+  put(obj:TableMenuStructure):Observable<TableMenuStructure> {
     var ret = new BehaviorSubject<TableMenuStructure>(obj);
 
     if(obj.objectEditDto?.id !== null) {
@@ -73,8 +72,6 @@ export class TableMenuService {
  }
 
  save(objectDto:any, id?:number, addPath?:string, editPath?:string):Observable<boolean> {
-
-
   var returnSubject = new BehaviorSubject<boolean>(false);
 
   if(objectDto !== undefined) {
@@ -97,16 +94,19 @@ export class TableMenuService {
 
       });
     } else {
+      console.log(editPath, objectDto);
       this.http.put(environment.endpointApiPath+editPath+"?id="+id,objectDto).subscribe({
         complete:()=> {
           this.messageService.add(
-            {severity:"success",summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("table-menu.edit_record_success")}
-            );
+            {severity:"success",summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("table-menu.edit_record_success")});
           returnSubject.next(true);
         },
-        error:(er:any)=>this.messageService.add(
-          {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.edit_record_error")}
-          )
+        error:(er:any)=>
+        {
+          console.error("Edit error",er);
+          this.messageService.add(
+            {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.edit_record_error")});
+        }
       });
     }
   }

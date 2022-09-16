@@ -8,10 +8,11 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableService } from "src/app/universalComponents/table/table.service";
 import { TranslateService } from "@ngx-translate/core";
-import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
-import { UserDto } from "src/app/models/dto/userDto";
+import { TableButtonsComponent } from "src/app/Interfaces/abstracts/TableButtonsComponent";
+import { User } from "src/app/models/dto/modules/admin/user";
 import { TableMenuService } from "src/app/universalComponents/table-menu/table-menu.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
+import { DashboardMenuService } from "src/app/components/pages/dashboard-page/dashboard-menu.service";
 
 @Component({
   selector: "app-users",
@@ -21,44 +22,45 @@ import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 })
 
 
-export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent<UserDto> {
+export class UsersComponent implements OnInit, ITableComponent {
   columnPath = "/api/Users/GetUserGridData/Get";
-  listPath = "/api/Users/GetUsers/Get";
+  getPath = "/api/Users/GetUsers/Get";
   deletePath = "/api/Users/DeleteUser/Delete?id=";
-  addPath = "/api/Users/ManageUser/Post";
-  editPath = "/api/Users/ManageUser/Put";
+  postPath = "/api/Users/ManageUser/Post";
+  putPath = "/api/Users/ManageUser/Put";
+  breadcrumbList:MenuItem[];
 
   obj:TableMenuStructure = new TableMenuStructure();
-  buttons:MenuItem[];
-  tableFilter:LazyLoadEvent;
- // buttonsBS = new BehaviorSubject<MenuItem[]>([{}]);
-
-  dataObj:Observable<ResponseBodyGetList>;
+  lazyLoadObj:LazyLoadEvent;
+  responseObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
+
+  buttons:MenuItem[];
 
   constructor(
    private tableService:TableService,
    private translateService:TranslateService,
-   private tableMenuService:TableMenuService
+   private tableMenuService:TableMenuService,
+   private dashboardMenuService:DashboardMenuService
   ) {
   }
 
   ngOnInit(): void {
     this.getColumns();
     this.buttons = this.getButtons();
-   // this.buttonsBS.next(this.getButtons());
+    this.breadcrumbList = this.dashboardMenuService.getMainMenu();
 
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
-        this.dataObj = this.tableService.getResponseObj(this.listPath,request);
+        this.responseObj = this.tableService.getResponseObj(this.getPath,request);
       }
     });
   }
 
   getColumns():void {
-     this.tableService.getFilterColumnName(this.columnPath).subscribe({
+     this.tableService.getColumns(this.columnPath).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -70,24 +72,24 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   prepareRequest(ev?:LazyLoadEvent):void {
     let requestObj = this.tableService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
-}
-
-// emmiter from table components
-  getRequestObjFromComponent(ev:LazyLoadEvent):void {
-    this.tableFilter = ev;
-    this.prepareRequest(this.tableFilter);
   }
 
-  getSelectedObjFromComponent(ev:any):void {
+// emmiter from table components
+  getLazyLoadEvent(ev:LazyLoadEvent):void {
+    this.lazyLoadObj = ev;
+    this.prepareRequest(this.lazyLoadObj);
+  }
+
+  getSelected(ev:any):void {
     if(ev.data != null) {
       this.obj.objectDto = ev.data;
-     this.obj.objectEditDto = {...ev.data}; // copy without reference
+      this.obj.objectEditDto = {...ev.data}; // copy without reference
     }
   }
 
   //emmiter from detail component
   refreshTable():void {
-    this.prepareRequest(this.tableFilter);
+    this.prepareRequest(this.lazyLoadObj);
     this.obj.editState = false;
   }
 
@@ -100,7 +102,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",
         disabled:false,
-        command:()=>this.add()
+        command:()=>this.post()
       },
       {
         label:this.translateService.instant("btn.remove"),
@@ -112,26 +114,26 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
         label:this.translateService.instant("btn.edit"),
         icon:"pi pi-fw pi-pencil",
         disabled:false,
-        command:()=>this.edit()
+        command:()=>this.put()
       },
       {
         label:this.translateService.instant("btn.refresh"),
         icon:"pi pi-fw pi-refresh",
         disabled:false,
-        command:()=>this.prepareRequest(this.tableFilter)
+        command:()=>this.prepareRequest(this.lazyLoadObj)
       }
     ];
   }
 
 
-  add(): void {
-    this.tableMenuService.add(this.obj).subscribe({
+  post(): void {
+    this.tableMenuService.post(this.obj).subscribe({
       next:(res:TableMenuStructure)=>this.obj = res
     });
-
   }
-  edit(): void {
-    this.tableMenuService.edit(this.obj).subscribe({
+
+  put(): void {
+    this.tableMenuService.put(this.obj).subscribe({
       next:(res:TableMenuStructure)=>this.obj = res
     });
   }

@@ -1,13 +1,12 @@
-<div class="card">
-
-  <p-table #dt1
+<div  style="width: 100%;">
+<p-table #dt1
   [value]="dataValues"
   [totalRecords]="totalRecords"
   [paginator]="true"
   [rows]="pageSize"
   [showCurrentPageReport]="true"
   [lazy]="true"
-  [columns]="cols"
+  [columns]="columns"
   [rowsPerPageOptions]="[10,25,50,100,500]"
   [loading]="dataLoading"
   [showPageLinks]="true"

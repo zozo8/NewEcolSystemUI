@@ -14,6 +14,7 @@ import { MenubarModule } from "primeng/menubar";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { MessagesModule } from "primeng/messages";
 import { TabViewModule } from "primeng/tabview";
+import { BreadcrumbModule } from "primeng/breadcrumb";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -24,6 +25,8 @@ import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { TableMenuComponent } from "src/app/universalComponents/table-menu/table-menu.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { FormComponent } from "src/app/universalComponents/form/form.component";
+import { UserParamComponent } from './pages/users/user-param/user-param.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     UsersComponent,
     TableComponent,
     TableMenuComponent,
-    UserFormComponent
+    UserFormComponent,
+    FormComponent,
+    UserParamComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +56,8 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     MenubarModule,
     ConfirmDialogModule,
     MessagesModule,
-    TabViewModule
+    TabViewModule,
+    BreadcrumbModule
   ]
 })
 export class AdminModule { }

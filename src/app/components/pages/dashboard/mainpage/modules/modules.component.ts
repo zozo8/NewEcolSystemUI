@@ -20,7 +20,7 @@ export class ModulesComponent implements OnInit {
 
   convertMenuItemToTreeNode():void {
     var n = 0;
-    var menuItem = this.dashboardMenuService.getLeftMenu();
+    var menuItem = this.dashboardMenuService.getMainMenu();
 
     this.menuTree.push({
       label:menuItem[0].label,

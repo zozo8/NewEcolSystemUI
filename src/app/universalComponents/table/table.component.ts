@@ -21,16 +21,9 @@ export class TableComponent {
   pageSize:number = 0;
   totalRecords:number = 0;
 
-private _dataTable : Observable<ResponseBodyGetList>;
-get dataTable(): Observable<ResponseBodyGetList> {
-  return this._dataTable;
-}
-
 @Input()
 set dataTable(v : Observable<ResponseBodyGetList>) {
 if(v!== undefined) {
-
-  this._dataTable = v;
   this.dataLoading = true;
 
   v.subscribe({
@@ -60,17 +53,14 @@ public get columns(): RequestGridDataColumnValue[] {
 
 @Input()
 public set columns(v : RequestGridDataColumnValue[]) {
-  this.cols = v;
-  if(this.cols !== undefined) {
+  this._columns = v;
+  if( this._columns !== undefined) {
     this.columnFilter = this.cols.map(el=>el.columnName);
   }
 }
 
 @Input()
 height:number;
-
-@Input()
-title:string;
 
 @Input()
 tableDisabled:boolean;

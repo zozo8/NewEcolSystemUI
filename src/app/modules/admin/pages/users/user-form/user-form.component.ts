@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input,Output } from "@angular/core";
+import { Component, EventEmitter, Input,OnInit,Output } from "@angular/core";
 import { ITableFormComponent } from "src/app/Interfaces/table/ITableFormComponent";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
@@ -30,29 +30,5 @@ export class UserFormComponent implements ITableFormComponent {
   ) { }
 
 
-  edit():void {
-    this.tableMenuService.edit(this.obj).subscribe({
-      next:(res:TableMenuStructure)=>this.obj = res
-    });
-  }
-
-  save():void {
-    this.tableMenuService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.addPath, this.editPath).subscribe({
-      next:(res:boolean)=> {
-        if(res) {
-          this.refreshTable.emit();
-        }
-      }
-    });
-  }
-
-  cancel():void {
-    this.obj.editState = false;
-    this.obj.objectEditDto = {};
-  }
-
-  getFieldName(field:string):string {
-    return this.cols.find(x=>x.columnName === field)?.displayName??"-";
-  }
 
 }

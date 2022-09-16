@@ -7,7 +7,6 @@ import { RequestBodyGetList } from "../../models/requests/requestBodyGetList.mod
 import { RequestGridDataColumn } from "../../models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "../../models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "../../models/responses/responseBodyGetList.model";
-import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
   providedIn: "root"
@@ -16,8 +15,7 @@ export class TableService {
 
   ret:RequestGridDataColumnValue[];
   constructor(
-    private http:HttpClient,
-    private translateService:TranslateService
+    private http:HttpClient
     ) {
     }
 
@@ -53,30 +51,16 @@ export class TableService {
 
   getFilters(ev:LazyLoadEvent,columns:RequestGridDataColumnValue[] ): RequestGridDataColumnValue[] {
     var res:RequestGridDataColumnValue[];
-    console.log(ev, columns);
-    columns.forEach(val=>{
-       console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
-    });
+    // columns.forEach(val=>{
+    //    console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
+    // });
     return columns;
   }
 
-   getStartFilterObj(columns:RequestGridDataColumnValue[]): RequestBodyGetList {
-    let obj:RequestBodyGetList = {
-      pageNumber:1,
-      pageSize:10,
-      order:{
-        columnName:"id",
-        isAscending:true
-      },
-      filter:{
-        filters:columns
-      }
-    };
-    return obj;
-  }
+
 
    // get column list for grid
-   getFilterColumnName(path:string):Observable<RequestGridDataColumn> {
+   getColumns(path:string):Observable<RequestGridDataColumn> {
     return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
    }
 
@@ -110,6 +94,21 @@ export class TableService {
       default:
         return "text";
     }
+  }
+
+  private getStartFilterObj(columns:RequestGridDataColumnValue[]): RequestBodyGetList {
+    let obj:RequestBodyGetList = {
+      pageNumber:1,
+      pageSize:10,
+      order:{
+        columnName:"id",
+        isAscending:true
+      },
+      filter:{
+        filters:columns
+      }
+    };
+    return obj;
   }
 
 
