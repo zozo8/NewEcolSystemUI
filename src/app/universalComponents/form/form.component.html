@@ -1,0 +1,33 @@
+
+<form (ngSubmit)="save()">
+  <p-panel header="{{title}}"  >
+    <ng-template pTemplate="icons">
+      <i class="pi pi-{{icon}}"></i>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <p-messages severity="success" *ngIf="obj.objectDto">
+        <ng-template pTemplate>
+          <ng-content select="[form=header]"></ng-content>
+        </ng-template>
+      </p-messages>
+      <div *ngIf="obj.objectEditDto">
+        <ng-content select="[form=body]"></ng-content>
+      </div>
+      <div *ngIf="!obj.objectEditDto">
+        <p-messages severity="info">
+          <ng-template pTemplate>
+            <p><i class="pi pi-info"></i> {{'table-detail.select_record' | translate }}</p>
+          </ng-template>
+        </p-messages>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer" *ngIf="obj">
+      <button pButton type="submit" *ngIf="obj.editState">{{obj.submitValue}}</button>
+        &nbsp;
+        <button pButton *ngIf="obj.editState" class="p-button-outlined" (click)="cancel()" title="Anuluj edycje rekordu">{{"btn.cancel" | translate}}</button>
+        <button pButton *ngIf="!obj.editState" class="p-button-outlined" (click)="edit()" title="Edytuj ten rekord">{{"btn.edit" | translate}}</button>
+    </ng-template>
+  </p-panel>
+  </form>
+
+
