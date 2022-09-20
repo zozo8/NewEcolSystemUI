@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root"
 })
-export class TableMenuService {
+export class TableButtonService {
 
   constructor(
     private translateService:TranslateService,

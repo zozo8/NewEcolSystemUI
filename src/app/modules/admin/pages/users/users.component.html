@@ -2,7 +2,7 @@
   <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
-        <app-table-menu [buttonList]="buttons" [icon]="'pi-users'"></app-table-menu>
+        <app-table-button [buttonList]="buttons" [icon]="'pi-users'"></app-table-button>
           <div class="row">
             <app-table
             [dataTable]="responseObj"
@@ -31,7 +31,7 @@
           </app-table>
         </p-tabPanel>
         <p-tabPanel [header]="'users-page.params' | translate">
-          <app-user-param>
+          <app-user-param [masterId]="obj.objectDto?.id">
 
           </app-user-param>
         </p-tabPanel>

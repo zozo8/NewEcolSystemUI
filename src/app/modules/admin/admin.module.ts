@@ -15,6 +15,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { MessagesModule } from "primeng/messages";
 import { TabViewModule } from "primeng/tabview";
 import { BreadcrumbModule } from "primeng/breadcrumb";
+import { DynamicDialogModule } from "primeng/dynamicdialog";
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
@@ -23,20 +24,21 @@ import { TableComponent } from "src/app/universalComponents/table/table.componen
 import { HttpClientModule } from "@angular/common/http";
 import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
-import { TableMenuComponent } from "src/app/universalComponents/table-menu/table-menu.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { FormComponent } from "src/app/universalComponents/form/form.component";
 import { UserParamComponent } from './pages/users/user-param/user-param.component';
+import { TableButtonComponent } from "src/app/universalComponents/table-button/table-button.component";
+import { FormDialogComponent } from "src/app/universalComponents/form-dialog/form-dialog.component";
 
 @NgModule({
   declarations: [
     AdminComponent,
     UsersComponent,
     TableComponent,
-    TableMenuComponent,
     UserFormComponent,
     FormComponent,
-    UserParamComponent
+    UserParamComponent,
+    TableButtonComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,11 @@ import { UserParamComponent } from './pages/users/user-param/user-param.componen
     ConfirmDialogModule,
     MessagesModule,
     TabViewModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    DynamicDialogModule
+  ],
+  entryComponents:[
+    FormDialogComponent
   ]
 })
 export class AdminModule { }

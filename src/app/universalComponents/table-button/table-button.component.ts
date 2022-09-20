@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
 
 @Component({
-  selector: "app-table-menu",
-  templateUrl: "./table-menu.component.html",
-  styleUrls: ["./table-menu.component.css"]
+  selector: "app-table-button",
+  templateUrl: "./table-button.component.html",
+  styleUrls: ["./table-button.component.css"]
 })
-export class TableMenuComponent implements OnInit {
+export class TableButtonComponent implements OnInit {
 
  @Input()
  buttonList:MenuItem[];

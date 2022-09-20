@@ -2,7 +2,7 @@
 <form (ngSubmit)="save()">
   <p-panel header="{{title}}"  >
     <ng-template pTemplate="icons">
-      <i class="pi pi-{{icon}}"></i>
+      <i class="pi {{icon}}"></i>
     </ng-template>
     <ng-template pTemplate="content">
       <p-messages severity="success" *ngIf="obj.objectDto">

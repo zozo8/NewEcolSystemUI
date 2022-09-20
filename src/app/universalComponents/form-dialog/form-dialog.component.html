@@ -1,0 +1,35 @@
+    <div class="row">
+      <div class="col-md">
+        <div class="form-group">
+          <label for="parameter" class="required-field">El. ze słownika</label>
+          <p-dropdown
+            [options]="options"
+            [(ngModel)]="selectedOption"
+            [filter]="true"
+            [placeholder]="'Wybierz wartość'"
+            id="parameter"
+            appendTo="body"
+            optionLabel="label"></p-dropdown>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-group">
+          <label for="value" class="required-field">Wartość</label>
+          <input pInputText type="text" id="value" [(ngModel)]="selectedOption.id">
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md">
+      <button pButton class="p-button-outlined">{{"btn.cancel" | translate}}</button>
+    </div>
+    <div class="col-md text-end">
+      <button pButton >{{"btn.select" | translate}}</button>
+    </div>
+  </div>
+
+
+
+
+
+

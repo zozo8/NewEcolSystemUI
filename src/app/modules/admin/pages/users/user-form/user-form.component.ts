@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input,OnInit,Output } from "@angular/core";
 import { ITableFormComponent } from "src/app/Interfaces/table/ITableFormComponent";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
-import { TableMenuService } from "src/app/universalComponents/table-menu/table-menu.service";
 
 @Component({
   selector: "app-user-form",
@@ -26,8 +25,11 @@ export class UserFormComponent implements ITableFormComponent {
   refreshTable = new EventEmitter();
 
   constructor(
-    private tableMenuService:TableMenuService
   ) { }
+
+  getRefreshTable():void{
+    this.refreshTable.emit();
+  }
 
 
 

@@ -1,10 +1,1 @@
-<app-table-menu
-  [buttonList]="buttons"
-  [icon]="'pi-globe'">
-</app-table-menu>
-<app-table
-  [dataTable]="responseObj"
-  [columns]="columns"
-  (newRequestParam)="getLazyLoadEvent($event)"
-  (selectedObj)="getSelected($event)">
-</app-table>
+<app-table-button [buttonList]="getButtons()"></app-table-button>

@@ -34,10 +34,11 @@ import { FormsModule } from "@angular/forms";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { TableMenuService } from "./universalComponents/table-menu/table-menu.service";
+import { TableButtonService } from "./universalComponents/table-button/table-button.service";
 import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/modules.component";
 import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
 import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
+import { FormDialogComponent } from './universalComponents/form-dialog/form-dialog.component';
 
 
 
@@ -53,7 +54,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NotfoundComponent,
     ModulesComponent,
     ChartsComponent,
-    WarningsComponent
+    WarningsComponent,
+    FormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +98,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     },
     ConfirmationService,
     MessageService,
-    TableMenuService
+    TableButtonService
   ],
   exports:[
 

@@ -1,9 +1,10 @@
 <app-form  #form [title]="'table-detail.header' | translate"
-                [icon]="'user'"
+                [icon]="'pi-user'"
                 [obj]="obj"
                 [cols]="cols"
                 [addPath]="addPath"
-                [editPath]="editPath">
+                [editPath]="editPath"
+                (refreshTable)="getRefreshTable()">
   <div form="header" *ngIf="obj.objectDto">
     <p>{{form.getFieldName('firstName') +" "+form.getFieldName('lastName')}}: <b>{{obj.objectDto.firstName +' '+ obj.objectDto.lastName}}</b></p>
     <p>{{form.getFieldName('userName')}}: <b>{{obj.objectDto.userName}}</b></p>

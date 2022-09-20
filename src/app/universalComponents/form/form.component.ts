@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
-import { TableMenuService } from "../table-menu/table-menu.service";
+import { TableButtonService } from "../table-button/table-button.service";
 
 @Component({
   selector: "app-form",
@@ -11,7 +11,7 @@ import { TableMenuService } from "../table-menu/table-menu.service";
 export class FormComponent {
 
   constructor(
-    private tableMenuService:TableMenuService
+    private tableButtonService:TableButtonService
   ) {
   }
 
@@ -42,7 +42,7 @@ export class FormComponent {
   }
 
   save():void {
-    this.tableMenuService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.addPath, this.editPath).subscribe({
+    this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.addPath, this.editPath).subscribe({
       next:(res:boolean)=> {
         if(res) {
           this.refreshTable.emit();
@@ -52,7 +52,7 @@ export class FormComponent {
   }
 
   edit():void {
-    this.tableMenuService.put(this.obj).subscribe({
+    this.tableButtonService.put(this.obj).subscribe({
       next:(res:TableMenuStructure)=>this.obj = res
     });
   }

@@ -8,11 +8,11 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableService } from "src/app/universalComponents/table/table.service";
 import { TranslateService } from "@ngx-translate/core";
-import { TableButtonsComponent } from "src/app/Interfaces/abstracts/TableButtonsComponent";
 import { User } from "src/app/models/dto/modules/admin/user";
-import { TableMenuService } from "src/app/universalComponents/table-menu/table-menu.service";
+import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { DashboardMenuService } from "src/app/components/pages/dashboard-page/dashboard-menu.service";
+import { BaseService } from "src/app/services/base.service";
 
 @Component({
   selector: "app-users",
@@ -41,8 +41,9 @@ export class UsersComponent implements OnInit, ITableComponent {
   constructor(
    private tableService:TableService,
    private translateService:TranslateService,
-   private tableMenuService:TableMenuService,
-   private dashboardMenuService:DashboardMenuService
+   private tableButtonService:TableButtonService,
+   private dashboardMenuService:DashboardMenuService,
+   private baseService:BaseService<User>
   ) {
   }
 
@@ -54,13 +55,13 @@ export class UsersComponent implements OnInit, ITableComponent {
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
-        this.responseObj = this.tableService.getResponseObj(this.getPath,request);
+        this.responseObj = this.baseService.getResponseObj(this.getPath,request);
       }
     });
   }
 
   getColumns():void {
-     this.tableService.getColumns(this.columnPath).subscribe({
+     this.baseService.getColumns(this.columnPath).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -70,7 +71,7 @@ export class UsersComponent implements OnInit, ITableComponent {
   }
 
   prepareRequest(ev?:LazyLoadEvent):void {
-    let requestObj = this.tableService.getRequestObj(this.columns, ev);
+    let requestObj = this.baseService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
   }
 
@@ -127,19 +128,19 @@ export class UsersComponent implements OnInit, ITableComponent {
 
 
   post(): void {
-    this.tableMenuService.post(this.obj).subscribe({
+    this.tableButtonService.post(this.obj).subscribe({
       next:(res:TableMenuStructure)=>this.obj = res
     });
   }
 
   put(): void {
-    this.tableMenuService.put(this.obj).subscribe({
+    this.tableButtonService.put(this.obj).subscribe({
       next:(res:TableMenuStructure)=>this.obj = res
     });
   }
 
   delete(): void {
-      this.tableMenuService.delete(this.deletePath, this.obj.objectDto.id).subscribe({
+      this.tableButtonService.delete(this.deletePath, this.obj.objectDto.id).subscribe({
         next:(res:boolean)=> {
           if(res) { this.refreshTable(); }
         }
