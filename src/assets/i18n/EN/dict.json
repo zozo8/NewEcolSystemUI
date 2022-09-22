@@ -1,0 +1,8 @@
+{
+  "select_value":"Select value",
+  "value":"Value",
+  "position":"Position of dictionary",
+  "header":{
+    "user_param":"User params dictionarie"
+  }
+}

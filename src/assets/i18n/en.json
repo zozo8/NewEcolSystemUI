@@ -35,7 +35,8 @@
 		"show_details": "Show details...",
 		"edit": "Edit",
 		"remove": "Remove",
-		"refresh": "Refresh"
+		"refresh": "Refresh",
+		"select": "Select"
 	},
 	"common": {
 		"title_page": "NES 2.0 - Computerized Maintenance Management System",
@@ -65,6 +66,14 @@
 			"settings": "Settings",
 			"user_profile": "User profile",
 			"logout": "Logout"
+		}
+	},
+	"dict": {
+		"select_value": "Select value",
+		"value": "Value",
+		"position": "Position of dictionary",
+		"header": {
+			"user_param": "User params dictionaries"
 		}
 	},
 	"pages": {

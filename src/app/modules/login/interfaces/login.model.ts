@@ -1,4 +1,4 @@
-export default interface Login {
+export default class Login {
   userName:string;
   password:string;
 }

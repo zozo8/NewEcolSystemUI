@@ -34,7 +34,7 @@
                   <img class="p-1" style="opacity: 0.3;" src="./assets/images/flags/FR.png"/>
                 </div>
                 <div class="col-md-6 text-end p-2">
-                  <button type="submit" pButton >{{"pages.login_page.login"| translate}}</button>
+                  <button type="submit" [disabled]="!loginObj.userName  || !loginObj.password" pButton >{{"pages.login_page.login"| translate}}</button>
                 </div>
               </div>
               <div class="row">

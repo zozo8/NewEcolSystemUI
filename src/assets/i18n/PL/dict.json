@@ -1,0 +1,8 @@
+{
+  "select_value":"Wybierz wartość",
+  "value":"Wartość",
+  "position":"Pozycja słownika",
+  "header":{
+    "user_param":"Słownik parametrów użytkownika"
+  }
+}

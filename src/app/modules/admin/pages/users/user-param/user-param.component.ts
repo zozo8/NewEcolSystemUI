@@ -1,16 +1,20 @@
-import { Component, Input} from "@angular/core";
+import { Component, Input, OnDestroy, OnInit} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { MenuItem, LazyLoadEvent } from "primeng/api";
+import { LazyLoadEvent, MenuItem} from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
+import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { ParamDict } from "src/app/models/dto/modules/admin/dictionary/paramDict";
-import { User } from "src/app/models/dto/modules/admin/user";
-import { UserParam } from "src/app/models/dto/modules/admin/userParam";
+import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
+import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
+import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
+import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
 import { FormDialogComponent } from "src/app/universalComponents/form-dialog/form-dialog.component";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
+import { TableService } from "src/app/universalComponents/table/table.service";
 
 @Component({
   selector: "app-user-param",
@@ -18,16 +22,22 @@ import { TableButtonService } from "src/app/universalComponents/table-button/tab
   styleUrls: ["./user-param.component.css"],
   providers:[DialogService]
 })
-export class UserParamComponent implements ITableButtonsComponent {
+export class UserParamComponent implements ITableButtonsComponent, ITableComponent , OnDestroy, OnInit{
 
   @Input()
-  masterId?:number
+  masterId?:number;
 
   buttons: MenuItem[];
   obj: TableMenuStructure;
   deletePath: string = "/api/UserParams/DeleteUserParam/Delete";
   postPath: string;
   putPath: string;
+
+  getPath: string = "/api/UserParams/GetUserParams/Get";
+  columns: RequestGridDataColumnValue[];
+  reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
+  responseObj: Observable<ResponseBodyGetList>;
+  lazyLoadObj:LazyLoadEvent;
 
   ref:DynamicDialogRef;
   dictionaryPath = "/api/ParamDicts/GetParamDicts/Get";
@@ -37,11 +47,60 @@ export class UserParamComponent implements ITableButtonsComponent {
     private tableButtonService:TableButtonService,
     private translateService:TranslateService,
     public dialogService:DialogService,
-    private baseService:BaseService<ParamDict>
+    private baseService:BaseService<ParamDict>,
+    private tableService:TableService
   ) {
 
   }
 
+  ngOnInit(): void {
+    this.getColumns();
+    this.getButtons();
+
+    this.reqObjBS.subscribe(request=> {
+      if(request?.pageNumber !== 10000) {
+        this.responseObj = this.baseService.getResponseObj(this.getPath,request);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if(this.ref){
+      this.ref.close();
+    }
+  }
+
+  // Table
+  getColumns(): void {
+    this.baseService.getColumns(this.columnPath).subscribe({
+      next:(res:RequestGridDataColumn)=> {
+         this.columns = this.tableService.GetColumnsOutput(res.value);
+      }, complete:()=> {
+        this.prepareRequest();
+      }
+  });
+  }
+
+  prepareRequest(ev?: LazyLoadEvent): void {
+    let requestObj = this.baseService.getRequestObj(this.columns, ev);
+    this.reqObjBS.next(requestObj);
+  }
+  getLazyLoadEvent(ev: LazyLoadEvent): void {
+    this.lazyLoadObj = ev;
+    this.prepareRequest(this.lazyLoadObj);
+  }
+  getSelected(ev: any): void {
+    throw new Error("Method not implemented.");
+  }
+
+  refreshTable():void {
+    this.prepareRequest(this.lazyLoadObj);
+    this.obj.editState = false;
+  }
+
+
+
+// tableBuittons
   getButtons(): MenuItem[] {
     return [
       {
@@ -66,29 +125,21 @@ export class UserParamComponent implements ITableButtonsComponent {
   }
 
   post(): void {
-    var data:MenuItem[]=[{
-      id:"2",
-      label:"test1"
-    },{
-      id:"3",
-      label:"test2"
-    }
-  ]
-    //var test = this.baseService.getList(this.dictionaryPath,this.columnPath);
-    //console.log("tesssssss",test);
+        var dictionary = this.baseService.getMenuItemList(this.dictionaryPath, this.columnPath, "id", "paramName");
 
         this.ref = this.dialogService.open(FormDialogComponent, {
-          data:data,
-          header:"Wybierz parametr"
+          data:dictionary,
+          contentStyle:{"width":"500px"},
+          header:this.translateService.instant("dict.header.user_param")
         });
 
-        this.ref.onClose.subscribe((obj:any)=>{
-          console.log("Wybrany obiekt",obj);
-        })
-
-
-
+        this.ref.onClose.subscribe((obj:MenuItem)=>{
+          if(obj){
+            console.log("selected:",obj);
+          }
+        });
   }
+
   delete(): void {
     throw new Error("Method not implemented.");
   }

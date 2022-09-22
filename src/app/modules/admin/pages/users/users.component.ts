@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit, ITableComponent {
 
   ngOnInit(): void {
     this.getColumns();
-    this.buttons = this.getButtons();
+    this.getButtons();
     this.breadcrumbList = this.dashboardMenuService.getMainMenu();
 
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
@@ -97,8 +97,9 @@ export class UsersComponent implements OnInit, ITableComponent {
 
   // buttons
 
-  getButtons():MenuItem[] {
-    return [
+  getButtons():void {
+    this.buttons =
+    [
       {
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",

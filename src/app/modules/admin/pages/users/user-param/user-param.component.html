@@ -1,1 +1,7 @@
-<app-table-button [buttonList]="getButtons()"></app-table-button>
+<app-table-button [buttonList]="getButtons()" [icon]="'pi-user-plus'"></app-table-button>
+<app-table
+    [dataTable]="responseObj"
+    [columns]="columns"
+    (newRequestParam)="getLazyLoadEvent($event)"
+    (selectedObj)="getSelected($event)"
+    ></app-table>

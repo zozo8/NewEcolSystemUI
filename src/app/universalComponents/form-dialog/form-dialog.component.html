@@ -1,30 +1,40 @@
     <div class="row">
-      <div class="col-md">
+      <div class="col-md-8">
         <div class="form-group">
-          <label for="parameter" class="required-field">El. ze słownika</label>
+          <label for="parameter" class="required-field">{{'dict.position' | translate}}</label>
           <p-dropdown
             [options]="options"
-            [(ngModel)]="selectedOption"
+            [(ngModel)]="selectedOption.id"
             [filter]="true"
-            [placeholder]="'Wybierz wartość'"
+            [placeholder]="'dict.select_value' | translate"
             id="parameter"
             appendTo="body"
-            optionLabel="label"></p-dropdown>
+            optionLabel="label"
+            optionValue="id"
+            [style]="{'width':'100%'}"
+            ></p-dropdown>
         </div>
       </div>
-      <div class="col-md">
+      <div class="col-md-4">
         <div class="form-group">
-          <label for="value" class="required-field">Wartość</label>
-          <input pInputText type="text" id="value" [(ngModel)]="selectedOption.id">
+          <label for="value" class="required-field">{{'dict.value'|translate}}</label>
+          <input
+              [disabled]="selectedOption.id === undefined"
+              pInputText
+              type="text"
+              id="value"
+              [(ngModel)]="selectedOption.label"
+              [style]="{'width':'100%'}"
+              >
         </div>
       </div>
     </div>
-  <div class="row">
+  <div class="row" style="padding-top: 30px;">
     <div class="col-md">
-      <button pButton class="p-button-outlined">{{"btn.cancel" | translate}}</button>
+      <button pButton class="p-button-outlined" (click)="cancel()">{{"btn.cancel" | translate}}</button>
     </div>
     <div class="col-md text-end">
-      <button pButton >{{"btn.select" | translate}}</button>
+      <button [disabled]="selectedOption.id === undefined || selectedOption.label === undefined" pButton (click)="submit()" >{{"btn.save" | translate}}</button>
     </div>
   </div>
 
