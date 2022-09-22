@@ -1,31 +1,31 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
-import { BehaviorSubject, observable, Observable, of, Subject, tap } from "rxjs";
+import { BehaviorSubject, filter, Observable, Subject} from "rxjs";
 import { environment } from "src/environments/environment";
-import { ParamDict } from "../models/dto/modules/admin/dictionary/paramDict";
+import { Filter } from "../models/requests/filter.model";
 import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "../models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "../models/responses/responseBodyGetList.model";
+import { TableService } from "../universalComponents/table/table.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class BaseService<T> {
-
-
   returnList:T[];
   listMenuItem:MenuItem[]=[];
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private tableService:TableService
   ) { }
 
   // get request from api for default params or dynamic params from universal table component (ev)
-  getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, pageSize?:number):RequestBodyGetList {
+  getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, pageSize?:number, filters?:Filter[]):RequestBodyGetList {
     if(ev === undefined) {
-      return this.getStartFilterObj(columns, pageSize);
+      return this.getStartFilterObj(columns, pageSize, filters);
     } else {
       let obj:RequestBodyGetList = {
         pageNumber:(ev.first??0)/10+1,
@@ -35,25 +35,14 @@ export class BaseService<T> {
           isAscending:(ev?.sortOrder === 1)?false:true
         },
         filter:{
-          filters:this.getFilters(ev,columns)
+          filters:this.prepareFilters(columns,undefined,filters)
         }
       };
-
-      console.log("end ev",obj);
       return obj;
     }
-
    }
 
-   private getFilters(ev:LazyLoadEvent,columns:RequestGridDataColumnValue[] ): RequestGridDataColumnValue[] {
-    var res:RequestGridDataColumnValue[];
-    // columns.forEach(val=>{
-    //    console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
-    // });
-    return columns;
-  }
-
-   private getStartFilterObj(columns:RequestGridDataColumnValue[], pageSize?:number): RequestBodyGetList {
+   private getStartFilterObj(columns:RequestGridDataColumnValue[], pageSize?:number, filter?:Filter[]): RequestBodyGetList {
     let obj:RequestBodyGetList = {
       pageNumber:1,
       pageSize:pageSize??10,
@@ -62,11 +51,35 @@ export class BaseService<T> {
         isAscending:true
       },
       filter:{
-        filters:columns
+        filters:this.prepareFilters(columns,undefined, filter)
       }
     };
     return obj;
   }
+
+   private prepareFilters(columns:RequestGridDataColumnValue[],ev?:LazyLoadEvent, filters?:Filter[] ): RequestGridDataColumnValue[] {
+    var res:RequestGridDataColumnValue[]=[];
+    columns.forEach(val=>{
+      let filterObj = filters?.find(x=>x.field === val.columnName);
+      let filterCols:Filter[] = [];
+      if(filterObj){
+        filterCols.push(filterObj);
+      }
+
+      res.push({
+        filters:filterCols,
+        columnName:val.columnName,
+        dataType: this.tableService.getSepcificDataType4Api(val.dataType),
+        displayName:val.dataType,
+        isVisible:val.isVisible
+      });
+     //  console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
+    });
+
+    return res;
+  }
+
+
 
     // get response for table from api
   getResponseObj(requestPath:string, requestObj:RequestBodyGetList):Observable<ResponseBodyGetList> {

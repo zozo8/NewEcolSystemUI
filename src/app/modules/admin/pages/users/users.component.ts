@@ -13,6 +13,7 @@ import { TableButtonService } from "src/app/universalComponents/table-button/tab
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { DashboardMenuService } from "src/app/components/pages/dashboard-page/dashboard-menu.service";
 import { BaseService } from "src/app/services/base.service";
+import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 
 @Component({
   selector: "app-users",
@@ -22,10 +23,10 @@ import { BaseService } from "src/app/services/base.service";
 })
 
 
-export class UsersComponent implements OnInit, ITableComponent {
+export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent {
   columnPath = "/api/Users/GetUserGridData/Get";
   getPath = "/api/Users/GetUsers/Get";
-  deletePath = "/api/Users/DeleteUser/Delete?id=";
+  deletePath = "/api/Users/DeleteUser/Delete";
   postPath = "/api/Users/ManageUser/Post";
   putPath = "/api/Users/ManageUser/Put";
   breadcrumbList:MenuItem[];
@@ -35,6 +36,8 @@ export class UsersComponent implements OnInit, ITableComponent {
   responseObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
+  selectedId: number;
+
 
   buttons:MenuItem[];
 
@@ -122,7 +125,7 @@ export class UsersComponent implements OnInit, ITableComponent {
         label:this.translateService.instant("btn.refresh"),
         icon:"pi pi-fw pi-refresh",
         disabled:false,
-        command:()=>this.prepareRequest(this.lazyLoadObj)
+        command:()=>this.refreshTable()
       }
     ];
   }

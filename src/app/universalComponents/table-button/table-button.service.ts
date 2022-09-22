@@ -51,7 +51,7 @@ export class TableButtonService {
       this.confirmationService.confirm({
         message: this.translateService.instant("table-menu.remove_record_question"),
         accept:()=> {
-            this.http.delete(environment.endpointApiPath+path+id).subscribe({
+            this.http.delete(environment.endpointApiPath+path+"?id="+id).subscribe({
             complete:()=> {
               this.messageService.add(
                 {severity:"success", summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("table-menu.remove_record_success")}
@@ -94,7 +94,6 @@ export class TableButtonService {
 
       });
     } else {
-      console.log(editPath, objectDto);
       this.http.put(environment.endpointApiPath+editPath+"?id="+id,objectDto).subscribe({
         complete:()=> {
           this.messageService.add(

@@ -1,5 +1,8 @@
-export interface RequestGridDataColumnValue {
-  filters: [any];
+import { Filter } from "./filter.model";
+
+
+export class RequestGridDataColumnValue {
+  filters?: Filter[];
   columnName:string;
   dataType:string;
   displayName:string;

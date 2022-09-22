@@ -13,6 +13,7 @@ export declare interface ITableComponent {
   reqObjBS:BehaviorSubject<RequestBodyGetList>;
   responseObj:Observable<ResponseBodyGetList>;
   lazyLoadObj:LazyLoadEvent;
+  selectedId:number;
 
   getColumns():void;
   prepareRequest(ev?:LazyLoadEvent):void;

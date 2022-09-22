@@ -3,9 +3,11 @@ import { TranslateService } from "@ngx-translate/core";
 import { LazyLoadEvent, MenuItem} from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { BehaviorSubject, Observable } from "rxjs";
+import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { ParamDict } from "src/app/models/dto/modules/admin/dictionary/paramDict";
+import { Filter } from "src/app/models/requests/filter.model";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
@@ -22,26 +24,37 @@ import { TableService } from "src/app/universalComponents/table/table.service";
   styleUrls: ["./user-param.component.css"],
   providers:[DialogService]
 })
-export class UserParamComponent implements ITableButtonsComponent, ITableComponent , OnDestroy, OnInit{
+export class UserParamComponent implements ITableButtonsComponent, ITableComponent , IDictionaryComponent, OnDestroy, OnInit{
 
+  private _masterId: number;
+  public get masterId(): number {
+    return this._masterId;
+  }
   @Input()
-  masterId?:number;
+  public set masterId(v:number) {
+    this._masterId = v;
+    this.prepareRequest();
+  }
+
 
   buttons: MenuItem[];
   obj: TableMenuStructure;
   deletePath: string = "/api/UserParams/DeleteUserParam/Delete";
-  postPath: string;
+  postPath: string = "/api/UserParams/ManageUserParam/Post";
   putPath: string;
 
   getPath: string = "/api/UserParams/GetUserParams/Get";
+  columnPath = "/api/UserParams/GetUserParamGridData/Get";
   columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
   responseObj: Observable<ResponseBodyGetList>;
   lazyLoadObj:LazyLoadEvent;
+  selectedId: number;
 
   ref:DynamicDialogRef;
+
   dictionaryPath = "/api/ParamDicts/GetParamDicts/Get";
-  columnPath = "/api/ParamDicts/GetParamDictGridData/Get";
+  dictionaryColumnPath = "/api/ParamDicts/GetParamDictGridData/Get";
 
   constructor(
     private tableButtonService:TableButtonService,
@@ -82,22 +95,34 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   prepareRequest(ev?: LazyLoadEvent): void {
-    let requestObj = this.baseService.getRequestObj(this.columns, ev);
-    this.reqObjBS.next(requestObj);
+
+    if(this.columns){
+      // xxx zmiana
+      let filters:Filter[] = [{
+        field:"userId",
+        value:this.masterId?.toString()??"",
+        comparision:"Equal"
+      }];
+
+      let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, filters);
+      this.reqObjBS.next(requestObj);
+    }
   }
   getLazyLoadEvent(ev: LazyLoadEvent): void {
     this.lazyLoadObj = ev;
     this.prepareRequest(this.lazyLoadObj);
   }
+
   getSelected(ev: any): void {
-    throw new Error("Method not implemented.");
+    if(ev){
+      this.selectedId = ev.data.id;
+      console.log(this.selectedId);
+    }
   }
 
   refreshTable():void {
     this.prepareRequest(this.lazyLoadObj);
-    this.obj.editState = false;
   }
-
 
 
 // tableBuittons
@@ -119,13 +144,13 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
         label:this.translateService.instant("btn.refresh"),
         icon:"pi pi-fw pi-refresh",
         disabled:false,
-        command:()=>this.refresh()
+        command:()=>this.refreshTable()
       }
     ];
   }
 
   post(): void {
-        var dictionary = this.baseService.getMenuItemList(this.dictionaryPath, this.columnPath, "id", "paramName");
+        var dictionary = this.baseService.getMenuItemList(this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName");
 
         this.ref = this.dialogService.open(FormDialogComponent, {
           data:dictionary,
@@ -141,15 +166,14 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   delete(): void {
-    throw new Error("Method not implemented.");
+    this.tableButtonService.delete(this.deletePath, this.selectedId).subscribe({
+      next:(res:boolean)=> {
+        if(res) { this.refreshTable(); }
+      }
+    });
   }
   put(): void {
     throw new Error("Method not implemented.");
   }
-  refresh(): void {
-    throw new Error("Method not implemented.");
-  }
-
-
 
 }

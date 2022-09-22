@@ -1,4 +1,4 @@
-import { LazyLoadEvent, MenuItem } from "primeng/api";
+import {  MenuItem } from "primeng/api";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 
 export interface ITableButtonsComponent {
@@ -12,5 +12,4 @@ export interface ITableButtonsComponent {
   post(): void;
   delete():void;
   put():void;
-  refresh():void;
 }

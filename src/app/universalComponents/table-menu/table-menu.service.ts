@@ -95,7 +95,6 @@ export class TableMenuService {
 
       });
     } else {
-      console.log(editPath, objectDto);
       this.http.put(environment.endpointApiPath+editPath+"?id="+id,objectDto).subscribe({
         complete:()=> {
           this.messageService.add(
