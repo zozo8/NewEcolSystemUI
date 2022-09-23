@@ -7,6 +7,7 @@ import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { ParamDict } from "src/app/models/dto/modules/admin/dictionary/paramDict";
+import { UserParam } from "src/app/models/dto/modules/admin/userParam";
 import { Filter } from "src/app/models/requests/filter.model";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
@@ -116,7 +117,6 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   getSelected(ev: any): void {
     if(ev){
       this.selectedId = ev.data.id;
-      console.log(this.selectedId);
     }
   }
 
@@ -150,17 +150,24 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   post(): void {
-        var dictionary = this.baseService.getMenuItemList(this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName");
+       var dictionary = this.baseService.getMenuItemList(this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"); //dokonczyc!
+        let obj:UserParam = {
+          id:0,
+          userId:this.masterId,
+          paramDictId:0,
+          paramValue:""
+        };
 
         this.ref = this.dialogService.open(FormDialogComponent, {
-          data:dictionary,
+          data:[[this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"],this.postPath,obj,["paramDictId","paramValue"]],
           contentStyle:{"width":"500px"},
           header:this.translateService.instant("dict.header.user_param")
         });
 
-        this.ref.onClose.subscribe((obj:MenuItem)=>{
-          if(obj){
-            console.log("selected:",obj);
+        this.ref.onClose.subscribe({next:(res:boolean)=> {
+            if(res){
+              this.refreshTable();
+            }
           }
         });
   }

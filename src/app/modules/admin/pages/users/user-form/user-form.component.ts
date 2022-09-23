@@ -10,10 +10,10 @@ import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 })
 export class UserFormComponent implements ITableFormComponent {
   @Input()
-  addPath:string;
+  postPath:string;
 
   @Input()
-  editPath:string;
+  putPath:string;
 
   @Input()
   cols:RequestGridDataColumnValue[];
@@ -25,7 +25,7 @@ export class UserFormComponent implements ITableFormComponent {
   refreshTable = new EventEmitter();
 
   constructor(
-  ) { }
+  ) {}
 
   getRefreshTable():void{
     this.refreshTable.emit();

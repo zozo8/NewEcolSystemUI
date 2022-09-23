@@ -20,8 +20,8 @@
           <app-user-form
           [cols]="columns"
           [obj]="obj"
-          [addPath]="postPath"
-          [editPath]="putPath"
+          [postPath]="postPath"
+          [putPath]="putPath"
           (refreshTable)="refreshTable()">
         </app-user-form>
         </p-tabPanel>
@@ -30,8 +30,8 @@
 
           </app-table>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.params' | translate">
-          <app-user-param [masterId]="obj.objectDto?.id??0"></app-user-param>
+        <p-tabPanel [header]="'users-page.params' | translate" #userParams  >
+          <app-user-param *ngIf="userParams.selected" [masterId]="obj.objectDto?.id??0"></app-user-param>
         </p-tabPanel>
         <p-tabPanel [header]="'users-page.departments' | translate">
 

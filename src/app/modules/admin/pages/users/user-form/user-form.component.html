@@ -2,8 +2,8 @@
                 [icon]="'pi-user'"
                 [obj]="obj"
                 [cols]="cols"
-                [addPath]="addPath"
-                [editPath]="editPath"
+                [postPath]="postPath"
+                [putPath]="putPath"
                 (refreshTable)="getRefreshTable()">
   <div form="header" *ngIf="obj.objectDto">
     <p>{{form.getFieldName('firstName') +" "+form.getFieldName('lastName')}}: <b>{{obj.objectDto.firstName +' '+ obj.objectDto.lastName}}</b></p>

@@ -71,13 +71,13 @@ export class TableButtonService {
     return returnSubject.asObservable();
  }
 
- save(objectDto:any, id?:number, addPath?:string, editPath?:string):Observable<boolean> {
+ save(objectDto:any, id:number, path?:string):Observable<boolean> {
   var returnSubject = new BehaviorSubject<boolean>(false);
 
   if(objectDto !== undefined) {
-    if(id === undefined) {
+    if(id === 0) {
       id = 0;
-      this.http.post(environment.endpointApiPath+addPath,objectDto)
+      this.http.post(environment.endpointApiPath+path,objectDto)
       .subscribe({
         complete:()=> {
           this.messageService.add(
@@ -89,12 +89,11 @@ export class TableButtonService {
           this.messageService.add(
             {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.add_record_error")}
             );
-            console.log("Error:",er,environment.endpointApiPath+addPath,objectDto );
         }
 
       });
     } else {
-      this.http.put(environment.endpointApiPath+editPath+"?id="+id,objectDto).subscribe({
+      this.http.put(environment.endpointApiPath+path+"?id="+id,objectDto).subscribe({
         complete:()=> {
           this.messageService.add(
             {severity:"success",summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("table-menu.edit_record_success")});
@@ -104,7 +103,8 @@ export class TableButtonService {
         {
           console.error("Edit error",er);
           this.messageService.add(
-            {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.edit_record_error")});
+            {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.edit_record_error")}
+            );
         }
       });
     }

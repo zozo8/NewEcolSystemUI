@@ -28,10 +28,10 @@ export class FormComponent {
   cols:RequestGridDataColumnValue[];
 
   @Input()
-  addPath:string;
+  postPath:string;
 
   @Input()
-  editPath:string;
+  putPath:string;
 
   @Output()
   refreshTable = new EventEmitter();
@@ -42,7 +42,8 @@ export class FormComponent {
   }
 
   save():void {
-    this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.addPath, this.editPath).subscribe({
+    let path = this.obj.objectEditDto.id > 0 ?this.putPath:this.postPath;
+    this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,path).subscribe({
       next:(res:boolean)=> {
         if(res) {
           this.refreshTable.emit();

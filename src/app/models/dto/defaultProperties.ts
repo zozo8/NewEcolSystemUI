@@ -1,3 +1,3 @@
 export class DefaultProperties {
-  id?:number;
+  id:number;
 }
