@@ -25,13 +25,11 @@
           (refreshTable)="refreshTable()">
         </app-user-form>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.groups' | translate">
-          <app-table>
-
-          </app-table>
+        <p-tabPanel [header]="'users-page.groups' | translate" #userGroup>
+          <app-user-group *ngIf="userGroup.selected" [masterId]="obj.objectDto?.id??''"></app-user-group>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.params' | translate" #userParams  >
-          <app-user-param *ngIf="userParams.selected" [masterId]="obj.objectDto?.id??0"></app-user-param>
+        <p-tabPanel [header]="'users-page.params' | translate" #userParam  >
+          <app-user-param *ngIf="userParam.selected" [masterId]="obj.objectDto?.id??''"></app-user-param>
         </p-tabPanel>
         <p-tabPanel [header]="'users-page.departments' | translate">
 

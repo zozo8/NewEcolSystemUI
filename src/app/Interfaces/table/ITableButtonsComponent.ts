@@ -8,8 +8,9 @@ export interface ITableButtonsComponent {
   postPath:string;
   putPath:string;
 
-  getButtons():void;
+  getButtons():MenuItem[];
   post(): void;
   delete():void;
   put():void;
+  refreshTable():void;
 }

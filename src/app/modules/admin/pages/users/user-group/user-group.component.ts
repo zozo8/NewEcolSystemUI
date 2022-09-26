@@ -1,12 +1,12 @@
-import { Component, Input, OnDestroy, OnInit} from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { LazyLoadEvent, MenuItem} from "primeng/api";
+import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
-import { UserParam } from "src/app/models/dto/modules/admin/userParam";
+import { UserUserGroup } from "src/app/models/dto/modules/admin/userUserGroup";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
@@ -18,12 +18,12 @@ import { TableButtonService } from "src/app/universalComponents/table-button/tab
 import { TableService } from "src/app/universalComponents/table/table.service";
 
 @Component({
-  selector: "app-user-param",
-  templateUrl: "./user-param.component.html",
-  styleUrls: ["./user-param.component.css"],
-  providers:[DialogService]
+  selector: "app-user-group",
+  templateUrl: "./user-group.component.html",
+  styleUrls: ["./user-group.component.css"],
+  providers: [DialogService]
 })
-export class UserParamComponent implements ITableButtonsComponent, ITableComponent , IDictionaryComponent, OnDestroy, OnInit {
+export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDictionaryComponent, ITableComponent, OnDestroy {
 
   private _masterId: number;
   public get masterId(): number {
@@ -37,32 +37,31 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   buttons: MenuItem[];
   obj: TableMenuStructure;
-  deletePath: string = "/api/UserParams/DeleteUserParam/Delete";
-  postPath: string = "/api/UserParams/ManageUserParam/Post";
+  deletePath: string = "/api/UserGroups/DeleteUserGroup/Delete";
+  postPath: string = "/api/UserGroups/ManageUserGroup/Post";
   putPath: string;
 
-  getPath: string = "/api/UserParams/GetUserParams/Get";
-  columnPath = "/api/UserParams/GetUserParamGridData/Get";
+  columnPath: string = "/api/UserGroups/GetUserGroupGridData/Get";
+  getPath: string = "/api/UserGroups/GetUserGroups/Get";
   columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
   responseObj: Observable<ResponseBodyGetList>;
-  lazyLoadObj:LazyLoadEvent;
+  lazyLoadObj: LazyLoadEvent;
   selectedId: number;
 
-  ref:DynamicDialogRef;
-
-  dictionaryPath = "/api/ParamDicts/GetParamDicts/Get";
-  dictionaryColumnPath = "/api/ParamDicts/GetParamDictGridData/Get";
+  dictionaryColumnPath: string = "/api/UserGroups/GetUserGroupGridData/Get";
+  dictionaryPath: string = "/api/UserGroups/GetUserGroups/Get";
+  ref: DynamicDialogRef;
 
   constructor(
-    private tableButtonService:TableButtonService,
     private translateService:TranslateService,
-    public dialogService:DialogService,
     private baseService:BaseService,
+    private dialogService:DialogService,
+    private tableButtonService:TableButtonService,
     private tableService:TableService
   ) {
 
-  }
+   }
 
   ngOnInit(): void {
     this.getColumns();
@@ -81,7 +80,6 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
     }
   }
 
-  // table
   getColumns(): void {
     this.baseService.getColumns(this.columnPath).subscribe({
       next:(res:RequestGridDataColumn)=> {
@@ -91,11 +89,8 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
       }
   });
   }
-
-  prepareRequest(ev?: LazyLoadEvent): void {
-
+  prepareRequest(ev?: LazyLoadEvent | undefined): void {
     if(this.columns) {
-
       let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","Equal");
       let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
       this.reqObjBS.next(requestObj);
@@ -105,21 +100,16 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
     this.lazyLoadObj = ev;
     this.prepareRequest(this.lazyLoadObj);
   }
-
   getSelected(ev: any): void {
     if(ev) {
       this.selectedId = ev.data.id;
     }
   }
 
-  refreshTable():void {
-    this.prepareRequest(this.lazyLoadObj);
-  }
+  // -----
 
-
-// tableBuittons
   getButtons(): MenuItem[] {
-    return [
+     return [
       {
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",
@@ -142,31 +132,29 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   post(): void {
-        let obj:UserParam = {
-          id:0,
-          userId:this.masterId,
-          paramDictId:0,
-          paramValue:""
-        };
+    let obj:UserUserGroup = {
+      id:0,
+      userId:this.masterId,
+      userGroupId:0
+    };
 
-        let filter = this.baseService.getFilter4request("isUser","true","Equal");
-        this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
-          data:[
-              [this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"],
-              this.postPath,
-              obj,
-              ["paramDictId","paramValue"],
-              [filter]],
-          contentStyle:{"width":"500px"},
-          header:this.translateService.instant("dict.header.user_param")
-        });
+    this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
+      data:[
+          [this.dictionaryPath, this.dictionaryColumnPath, "id", "groupName"],
+          this.postPath,
+          obj,
+          ["userGroupId"],
+          false],
+      contentStyle:{"width":"500px"},
+      header:this.translateService.instant("dict.header.user_param")
+    });
 
-        this.ref.onClose.subscribe({next:(res:boolean)=> {
-            if(res) {
-              this.refreshTable();
-            }
-          }
-        });
+    this.ref.onClose.subscribe({next:(res:boolean)=> {
+        if(res) {
+          this.refreshTable();
+        }
+      }
+    });
   }
 
   delete(): void {
@@ -176,9 +164,12 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
       }
     });
   }
-
   put(): void {
     throw new Error("Method not implemented.");
+  }
+
+  refreshTable(): void {
+    this.prepareRequest(this.lazyLoadObj);
   }
 
 }

@@ -29,6 +29,7 @@ import { FormComponent } from "src/app/universalComponents/form/form.component";
 import { UserParamComponent } from "./pages/users/user-param/user-param.component";
 import { TableButtonComponent } from "src/app/universalComponents/table-button/table-button.component";
 import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
+import { UserGroupComponent } from './pages/users/user-group/user-group.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/
     UserFormComponent,
     FormComponent,
     UserParamComponent,
-    TableButtonComponent
+    TableButtonComponent,
+    UserGroupComponent
   ],
   imports: [
     CommonModule,

@@ -15,10 +15,11 @@ import { TableButtonService } from "../../table-button/table-button.service";
 export class FormDictionaryValueDialogComponent<T> implements OnInit {
 
   options:MenuItem[];
-  // [dictionary[dictPath,dictColumnPath,prop id, prop label],path,object,[prop name = id, value],filter for query]
-  data:[[string,string,string,string],string,T,[string,string],Filter[]];
+  // [dictionary[dictPath,dictColumnPath,prop id, prop label],path,object,[prop name = id, value],filter for query,show value]
+  data:[[string,string,string,string],string,T,[string,string],Filter[],boolean];
   value:string;
   selectedOption:MenuItem = {};
+  showValue:boolean;
 
   constructor(
     public ref:DynamicDialogRef,
@@ -30,6 +31,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
 
   ngOnInit(): void {
     this.config.closeOnEscape = true;
+    this.showValue = this.config.data[5];
     if(this.config.data[0]) {
       let dictionary = this.baseService.getMenuItemList(
                             this.config.data[0][0],
@@ -60,9 +62,13 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
 
   private prepareObj(opt:MenuItem, obj:any):any {
     let id:string = this.config.data[3][0];
-    let label:string = this.config.data[3][1];
     obj[id] = opt.id;
-    obj[label] = opt.label;
+
+    if(this.showValue){
+      let label:string = this.config.data[3][1];
+      obj[label] = opt.label;
+    }
+
     return obj;
   }
 }

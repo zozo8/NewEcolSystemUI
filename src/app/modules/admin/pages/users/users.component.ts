@@ -8,7 +8,6 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableService } from "src/app/universalComponents/table/table.service";
 import { TranslateService } from "@ngx-translate/core";
-import { User } from "src/app/models/dto/modules/admin/user";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { DashboardMenuService } from "src/app/components/pages/dashboard-page/dashboard-menu.service";
@@ -100,8 +99,8 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
 
   // buttons
 
-  getButtons():void {
-    this.buttons =
+  getButtons():MenuItem[] {
+    return this.buttons =
     [
       {
         label:this.translateService.instant("btn.add"),

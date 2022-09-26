@@ -18,5 +18,5 @@ export declare interface ITableComponent {
   prepareRequest(ev?:LazyLoadEvent):void;
   getLazyLoadEvent(ev:LazyLoadEvent):void;
   getSelected(ev:any):void;
-  refreshTable():void;
+
 }
