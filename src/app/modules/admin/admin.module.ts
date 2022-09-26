@@ -26,9 +26,9 @@ import { TranslateModule} from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { FormComponent } from "src/app/universalComponents/form/form.component";
-import { UserParamComponent } from './pages/users/user-param/user-param.component';
+import { UserParamComponent } from "./pages/users/user-param/user-param.component";
 import { TableButtonComponent } from "src/app/universalComponents/table-button/table-button.component";
-import { FormDialogComponent } from "src/app/universalComponents/form-dialog/form-dialog.component";
+import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ import { FormDialogComponent } from "src/app/universalComponents/form-dialog/for
     DynamicDialogModule
   ],
   entryComponents:[
-    FormDialogComponent
+    FormDictionaryValueDialogComponent
   ]
 })
 export class AdminModule { }

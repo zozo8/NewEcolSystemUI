@@ -89,6 +89,7 @@ export class TableButtonService {
           this.messageService.add(
             {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.add_record_error")}
             );
+          console.error(er);
         }
 
       });

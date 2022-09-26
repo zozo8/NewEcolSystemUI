@@ -38,7 +38,7 @@ import { TableButtonService } from "./universalComponents/table-button/table-but
 import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/modules.component";
 import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
 import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
-import { FormDialogComponent } from './universalComponents/form-dialog/form-dialog.component';
+import { FormDictionaryValueDialogComponent } from "./universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 
 
 
@@ -55,7 +55,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ModulesComponent,
     ChartsComponent,
     WarningsComponent,
-    FormDialogComponent
+    FormDictionaryValueDialogComponent
   ],
   imports: [
     BrowserModule,

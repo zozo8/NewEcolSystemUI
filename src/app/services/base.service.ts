@@ -13,8 +13,8 @@ import { TableService } from "../universalComponents/table/table.service";
 @Injectable({
   providedIn: "root"
 })
-export class BaseService<T> {
-  returnList:T[];
+export class BaseService {
+  returnList:any[];
   listMenuItem:MenuItem[]=[];
 
   constructor(
@@ -59,10 +59,10 @@ export class BaseService<T> {
 
    private prepareFilters(columns:RequestGridDataColumnValue[],ev?:LazyLoadEvent, filters?:Filter[] ): RequestGridDataColumnValue[] {
     var res:RequestGridDataColumnValue[]=[];
-    columns.forEach(val=>{
+    columns.forEach(val=> {
       let filterObj = filters?.find(x=>x.field === val.columnName);
       let filterCols:Filter[] = [];
-      if(filterObj){
+      if(filterObj) {
         filterCols.push(filterObj);
       }
 
@@ -70,7 +70,7 @@ export class BaseService<T> {
         filters:filterCols,
         columnName:val.columnName,
         dataType: this.tableService.getSepcificDataType4Api(val.dataType),
-        displayName:val.dataType,
+        displayName:val.columnName,
         isVisible:val.isVisible
       });
      //  console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
@@ -93,9 +93,9 @@ export class BaseService<T> {
 
 
 // get list entity, get column and create request obj
-  getObservableList4path(path:string, columnPath:string):Observable<T[]> {
+  getObservableList4path(path:string, columnPath:string, filters:Filter[]):Observable<any[]> {
   var requestBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:100000});
-  var resBS = new Subject<T[]>();
+  var resBS = new Subject<any[]>();
   var columns:RequestGridDataColumnValue[];
 
    this.getColumns(columnPath).subscribe({
@@ -103,9 +103,8 @@ export class BaseService<T> {
       columns = res.value;
     },
     complete:()=> {
-       let requestObj = this.getRequestObj(columns,undefined, 10000);
+       let requestObj = this.getRequestObj(columns,undefined, 10000,filters);
        requestBS.next(requestObj);
-
     }
    });
 
@@ -125,12 +124,12 @@ export class BaseService<T> {
    return resBS.asObservable();
   }
 
-  getMenuItemList(listPath:string, columnPath:string, id:string, label:string):Observable<MenuItem[]> {
+  getMenuItemList(listPath:string, columnPath:string, id:string, label:string, filters:Filter[]):Observable<MenuItem[]> {
     let list:MenuItem[]=[];
     let retBS = new Subject<MenuItem[]>();
 
-    this.getObservableList4path(listPath,columnPath).subscribe({
-      next:(res:any[])=>{
+    this.getObservableList4path(listPath,columnPath,filters).subscribe({
+      next:(res:any[])=> {
         res.forEach(element => {
           list.push({
             id:element[id],
@@ -142,6 +141,16 @@ export class BaseService<T> {
     });
 
     return retBS.asObservable();
+  }
+
+  getFilter4request(prop:string, value:string, comparision:string):Filter{
+    let obj:Filter = {
+      field:prop,
+      value:value,
+      comparision:comparision
+    };
+
+    return obj;
   }
 
 }

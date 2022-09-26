@@ -6,16 +6,14 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
-import { ParamDict } from "src/app/models/dto/modules/admin/dictionary/paramDict";
 import { UserParam } from "src/app/models/dto/modules/admin/userParam";
-import { Filter } from "src/app/models/requests/filter.model";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
-import { FormDialogComponent } from "src/app/universalComponents/form-dialog/form-dialog.component";
+import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableService } from "src/app/universalComponents/table/table.service";
 
@@ -25,7 +23,7 @@ import { TableService } from "src/app/universalComponents/table/table.service";
   styleUrls: ["./user-param.component.css"],
   providers:[DialogService]
 })
-export class UserParamComponent implements ITableButtonsComponent, ITableComponent , IDictionaryComponent, OnDestroy, OnInit{
+export class UserParamComponent implements ITableButtonsComponent, ITableComponent , IDictionaryComponent, OnDestroy, OnInit {
 
   private _masterId: number;
   public get masterId(): number {
@@ -61,7 +59,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
     private tableButtonService:TableButtonService,
     private translateService:TranslateService,
     public dialogService:DialogService,
-    private baseService:BaseService<ParamDict>,
+    private baseService:BaseService,
     private tableService:TableService
   ) {
 
@@ -79,12 +77,12 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   ngOnDestroy(): void {
-    if(this.ref){
+    if(this.ref) {
       this.ref.close();
     }
   }
 
-  // Table
+  // table
   getColumns(): void {
     this.baseService.getColumns(this.columnPath).subscribe({
       next:(res:RequestGridDataColumn)=> {
@@ -97,15 +95,10 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   prepareRequest(ev?: LazyLoadEvent): void {
 
-    if(this.columns){
-      // xxx zmiana
-      let filters:Filter[] = [{
-        field:"userId",
-        value:this.masterId?.toString()??"",
-        comparision:"Equal"
-      }];
+    if(this.columns) {
 
-      let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, filters);
+      let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","Equal");
+      let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
       this.reqObjBS.next(requestObj);
     }
   }
@@ -115,7 +108,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   getSelected(ev: any): void {
-    if(ev){
+    if(ev) {
       this.selectedId = ev.data.id;
     }
   }
@@ -150,7 +143,6 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   post(): void {
-       var dictionary = this.baseService.getMenuItemList(this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"); //dokonczyc!
         let obj:UserParam = {
           id:0,
           userId:this.masterId,
@@ -158,14 +150,20 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
           paramValue:""
         };
 
-        this.ref = this.dialogService.open(FormDialogComponent, {
-          data:[[this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"],this.postPath,obj,["paramDictId","paramValue"]],
+        let filter = this.baseService.getFilter4request("isUser","true","Equal");
+        this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
+          data:[
+              [this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"],
+              this.postPath,
+              obj,
+              ["paramDictId","paramValue"],
+              [filter]],
           contentStyle:{"width":"500px"},
           header:this.translateService.instant("dict.header.user_param")
         });
 
         this.ref.onClose.subscribe({next:(res:boolean)=> {
-            if(res){
+            if(res) {
               this.refreshTable();
             }
           }
@@ -179,6 +177,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
       }
     });
   }
+
   put(): void {
     throw new Error("Method not implemented.");
   }

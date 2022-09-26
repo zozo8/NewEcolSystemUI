@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
    private translateService:TranslateService,
    private tableButtonService:TableButtonService,
    private dashboardMenuService:DashboardMenuService,
-   private baseService:BaseService<User>
+   private baseService:BaseService
   ) {
   }
 

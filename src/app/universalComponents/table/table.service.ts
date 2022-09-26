@@ -50,9 +50,7 @@ export class TableService {
         case "boolean":
           return "boolean";
         case "numeric":
-          return "int";
-        case "Int32":
-            return "int";
+          return "Int32";
         case "text":
           return "string";
         case "date":
