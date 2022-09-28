@@ -3,6 +3,8 @@
   "value":"Wartość",
   "position":"Pozycja słownika",
   "header":{
-    "user_param":"Słownik parametrów użytkownika"
+    "user_param":"Słownik parametrów użytkownika",
+    "user_group":"Słownik grup",
+    "user_department":"Słownik zakładów"
   }
 }

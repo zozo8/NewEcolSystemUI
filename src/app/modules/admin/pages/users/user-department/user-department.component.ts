@@ -6,8 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
-import { UserGroup } from "src/app/models/dto/modules/admin/dictionary/userGroup";
-import { UserUserGroup } from "src/app/models/dto/modules/admin/userUserGroup";
+import { UserDepartment } from "src/app/models/dto/modules/admin/userDepartment";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
@@ -20,12 +19,12 @@ import { TableButtonService } from "src/app/universalComponents/table-button/tab
 import { TableService } from "src/app/universalComponents/table/table.service";
 
 @Component({
-  selector: "app-user-group",
-  templateUrl: "./user-group.component.html",
-  styleUrls: ["./user-group.component.css"],
-  providers: [DialogService]
+  selector: "app-user-department",
+  templateUrl: "./user-department.component.html",
+  styleUrls: ["./user-department.component.css"],
+  providers:[DialogService]
 })
-export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDictionaryComponent, ITableComponent, OnDestroy {
+export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, IDictionaryComponent, ITableComponent, OnDestroy{
 
   private _masterId: number;
   public get masterId(): number {
@@ -45,8 +44,8 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   lazyLoadObj: LazyLoadEvent;
   selectedId: number;
   ref: DynamicDialogRef;
-  dictModel= UserGroup.name;
-  model= UserUserGroup.name;
+  dictModel="Department";
+  model= UserDepartment.name;
 
   constructor(
     private translateService:TranslateService,
@@ -88,7 +87,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
     if(this.columns && this.masterId) {
-      let filter = this.baseService.getFilter4request("userId",this.masterId.toString(),"Equal");
+      let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","Equal");
       let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
       this.reqObjBS.next(requestObj);
     }
@@ -129,22 +128,22 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
 
   post(): void {
-    let obj:UserUserGroup = {
+    let obj:UserDepartment= {
       id:0,
       userId:this.masterId,
-      userGroupId:0
+      departmentId:0
     };
 
     this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
       data:[
-          [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "groupName"],
+          [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "departmentName"],
           this.pathService.post(this.model),
           obj,
-          ["userGroupId"],
+          ["departmentId"],
           undefined,
           false],
       contentStyle:{"width":"500px"},
-      header:this.translateService.instant("dict.header.user_group")
+      header:this.translateService.instant("dict.header.user_department")
     });
 
     this.ref.onClose.subscribe({next:(res:boolean)=> {

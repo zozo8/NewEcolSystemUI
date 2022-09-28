@@ -3,6 +3,8 @@
   "value":"Value",
   "position":"Position of dictionary",
   "header":{
-    "user_param":"User params dictionarie"
+    "user_param":"User params dictionarie",
+    "user_group":"User group dictionarie",
+    "user_department":"User department dictionarie"
   }
 }

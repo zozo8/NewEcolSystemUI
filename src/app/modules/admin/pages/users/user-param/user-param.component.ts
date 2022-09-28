@@ -89,8 +89,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   prepareRequest(ev?: LazyLoadEvent): void {
 
-    if(this.columns) {
-
+    if(this.columns && this.masterId) {
       let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","Equal");
       let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
       this.reqObjBS.next(requestObj);

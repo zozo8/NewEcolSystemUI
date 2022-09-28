@@ -1,8 +1,8 @@
-import { DefaultProperties } from "../../defaultProperties"
+import { DefaultProperties } from "../../defaultProperties";
 
 export class UserDepartment extends DefaultProperties {
   userId:number;
   departmentId:number;
-  userName:string;
-  departmentName:string;
+  userName?:string;
+  departmentName?:string;
 }

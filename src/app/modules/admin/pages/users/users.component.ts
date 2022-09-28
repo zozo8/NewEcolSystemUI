@@ -15,6 +15,7 @@ import { BaseService } from "src/app/services/base.service";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { User } from "src/app/models/dto/modules/admin/user";
 import { PathService } from "src/app/services/path.service";
+import { IMasterPage } from "src/app/Interfaces/IMasterPage";
 
 @Component({
   selector: "app-users",
@@ -24,10 +25,9 @@ import { PathService } from "src/app/services/path.service";
 })
 
 
-export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent {
+export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent, IMasterPage {
 
   breadcrumbList:MenuItem[];
-
   obj:TableMenuStructure = new TableMenuStructure();
   lazyLoadObj:LazyLoadEvent;
   responseObj:Observable<ResponseBodyGetList>;
@@ -52,14 +52,10 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     this.putPath = pathService.put(this.model);
   }
 
-
-
-
-
   ngOnInit(): void {
     this.getColumns();
     this.getButtons();
-    this.breadcrumbList = this.dashboardMenuService.getMainMenu();
+    this.breadcrumbList = this.baseService.getBreadcrumb("users");
 
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
@@ -94,6 +90,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     if(ev.data != null) {
       this.obj.objectDto = ev.data;
       this.obj.objectEditDto = {...ev.data}; // copy without reference
+      this.selectedId = ev.data.id;
     }
   }
 

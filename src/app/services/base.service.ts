@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { BehaviorSubject, filter, Observable, Subject} from "rxjs";
 import { environment } from "src/environments/environment";
+import { DashboardMenuService } from "../components/pages/dashboard-page/dashboard-menu.service";
 import { Filter } from "../models/requests/filter.model";
 import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
@@ -14,13 +15,23 @@ import { TableService } from "../universalComponents/table/table.service";
   providedIn: "root"
 })
 export class BaseService {
+
   returnList:any[];
   listMenuItem:MenuItem[]=[];
 
   constructor(
     private http:HttpClient,
-    private tableService:TableService
+    private tableService:TableService,
+    private dashboardMenuService:DashboardMenuService
   ) { }
+
+  getBreadcrumb(page: string): MenuItem[] {
+    var ret = this.dashboardMenuService.getMainMenu();
+    var ret2 = ret.filter(x=>x.routerLink?.includes("users"));
+    console.log("breadcrumb",ret,ret2);
+
+    return ret;
+  }
 
   // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, pageSize?:number, filters?:Filter[]):RequestBodyGetList {

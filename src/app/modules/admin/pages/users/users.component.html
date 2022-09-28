@@ -31,8 +31,8 @@
         <p-tabPanel [header]="'users-page.params' | translate" #userParam  >
           <app-user-param *ngIf="userParam.selected" [masterId]="obj.objectDto?.id??''"></app-user-param>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.departments' | translate">
-
+        <p-tabPanel [header]="'users-page.departments' | translate" #userDepartment>
+          <app-user-department *ngIf="userDepartment.selected" [masterId]="selectedId"></app-user-department>
         </p-tabPanel>
       </p-tabView>
 
