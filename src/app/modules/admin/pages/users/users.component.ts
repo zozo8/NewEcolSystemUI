@@ -13,6 +13,8 @@ import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { DashboardMenuService } from "src/app/components/pages/dashboard-page/dashboard-menu.service";
 import { BaseService } from "src/app/services/base.service";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
+import { User } from "src/app/models/dto/modules/admin/user";
+import { PathService } from "src/app/services/path.service";
 
 @Component({
   selector: "app-users",
@@ -23,11 +25,7 @@ import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsCo
 
 
 export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent {
-  columnPath = "/api/Users/GetUserGridData/Get";
-  getPath = "/api/Users/GetUsers/Get";
-  deletePath = "/api/Users/DeleteUser/Delete";
-  postPath = "/api/Users/ManageUser/Post";
-  putPath = "/api/Users/ManageUser/Put";
+
   breadcrumbList:MenuItem[];
 
   obj:TableMenuStructure = new TableMenuStructure();
@@ -36,8 +34,10 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   columns:RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
   selectedId: number;
+  postPath: string;
+  putPath: string;
 
-
+  model= User.name;
   buttons:MenuItem[];
 
   constructor(
@@ -45,9 +45,16 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
    private translateService:TranslateService,
    private tableButtonService:TableButtonService,
    private dashboardMenuService:DashboardMenuService,
-   private baseService:BaseService
+   private baseService:BaseService,
+   private pathService:PathService
   ) {
+    this.postPath = pathService.post(this.model);
+    this.putPath = pathService.put(this.model);
   }
+
+
+
+
 
   ngOnInit(): void {
     this.getColumns();
@@ -57,13 +64,13 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
-        this.responseObj = this.baseService.getResponseObj(this.getPath,request);
+        this.responseObj = this.baseService.getResponseObj(this.pathService.getList(this.model),request);
       }
     });
   }
 
   getColumns():void {
-     this.baseService.getColumns(this.columnPath).subscribe({
+     this.baseService.getColumns(this.pathService.columnList(this.model)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -143,15 +150,12 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   }
 
   delete(): void {
-      this.tableButtonService.delete(this.deletePath, this.obj.objectDto.id).subscribe({
+      this.tableButtonService.delete(this.pathService.delete(this.model), this.obj.objectDto.id).subscribe({
         next:(res:boolean)=> {
           if(res) { this.refreshTable(); }
         }
       });
     }
-
-
-
 }
 
 

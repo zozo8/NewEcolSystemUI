@@ -34,7 +34,7 @@
       <button pButton class="p-button-outlined" (click)="cancel()">{{"btn.cancel" | translate}}</button>
     </div>
     <div class="col-md text-end">
-      <button [disabled]="selectedOption.id === undefined || selectedOption.label === undefined" pButton (click)="submit()" >{{"btn.save" | translate}}</button>
+      <button [disabled]="selectedOption.id === undefined || (selectedOption.label === undefined && showValue)" pButton (click)="submit()" >{{"btn.save" | translate}}</button>
     </div>
   </div>
 

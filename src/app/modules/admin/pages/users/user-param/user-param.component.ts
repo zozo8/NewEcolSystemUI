@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
+import { ParamDict } from "src/app/models/dto/modules/admin/dictionary/paramDict";
 import { UserParam } from "src/app/models/dto/modules/admin/userParam";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
@@ -13,6 +14,7 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
+import { PathService } from "src/app/services/path.service";
 import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableService } from "src/app/universalComponents/table/table.service";
@@ -37,29 +39,22 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   buttons: MenuItem[];
   obj: TableMenuStructure;
-  deletePath: string = "/api/UserParams/DeleteUserParam/Delete";
-  postPath: string = "/api/UserParams/ManageUserParam/Post";
-  putPath: string;
-
-  getPath: string = "/api/UserParams/GetUserParams/Get";
-  columnPath = "/api/UserParams/GetUserParamGridData/Get";
+  model = UserParam.name;
+  dictModel = ParamDict.name;
   columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
   responseObj: Observable<ResponseBodyGetList>;
   lazyLoadObj:LazyLoadEvent;
   selectedId: number;
-
   ref:DynamicDialogRef;
-
-  dictionaryPath = "/api/ParamDicts/GetParamDicts/Get";
-  dictionaryColumnPath = "/api/ParamDicts/GetParamDictGridData/Get";
 
   constructor(
     private tableButtonService:TableButtonService,
     private translateService:TranslateService,
     public dialogService:DialogService,
     private baseService:BaseService,
-    private tableService:TableService
+    private tableService:TableService,
+    private pathService:PathService
   ) {
 
   }
@@ -70,7 +65,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
-        this.responseObj = this.baseService.getResponseObj(this.getPath,request);
+        this.responseObj = this.baseService.getResponseObj(this.pathService.getList(this.model),request);
       }
     });
   }
@@ -83,7 +78,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   // table
   getColumns(): void {
-    this.baseService.getColumns(this.columnPath).subscribe({
+    this.baseService.getColumns(this.pathService.columnList(this.model)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -152,11 +147,12 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
         let filter = this.baseService.getFilter4request("isUser","true","Equal");
         this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
           data:[
-              [this.dictionaryPath, this.dictionaryColumnPath, "id", "paramName"],
-              this.postPath,
+              [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "paramName"],
+              this.pathService.post(this.model),
               obj,
               ["paramDictId","paramValue"],
-              [filter]],
+              [filter],
+              true],
           contentStyle:{"width":"500px"},
           header:this.translateService.instant("dict.header.user_param")
         });
@@ -170,7 +166,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   delete(): void {
-    this.tableButtonService.delete(this.deletePath, this.selectedId).subscribe({
+    this.tableButtonService.delete(this.pathService.delete(this.model), this.selectedId).subscribe({
       next:(res:boolean)=> {
         if(res) { this.refreshTable(); }
       }

@@ -93,7 +93,7 @@ export class BaseService {
 
 
 // get list entity, get column and create request obj
-  getObservableList4path(path:string, columnPath:string, filters:Filter[]):Observable<any[]> {
+  getObservableList4path(path:string, columnPath:string, filters?:Filter[]):Observable<any[]> {
   var requestBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:100000});
   var resBS = new Subject<any[]>();
   var columns:RequestGridDataColumnValue[];
@@ -124,7 +124,7 @@ export class BaseService {
    return resBS.asObservable();
   }
 
-  getMenuItemList(listPath:string, columnPath:string, id:string, label:string, filters:Filter[]):Observable<MenuItem[]> {
+  getMenuItemList(listPath:string, columnPath:string, id:string, label:string, filters?:Filter[]):Observable<MenuItem[]> {
     let list:MenuItem[]=[];
     let retBS = new Subject<MenuItem[]>();
 

@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
+import { UserGroup } from "src/app/models/dto/modules/admin/dictionary/userGroup";
 import { UserUserGroup } from "src/app/models/dto/modules/admin/userUserGroup";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
@@ -13,6 +14,7 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
+import { PathService } from "src/app/services/path.service";
 import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableService } from "src/app/universalComponents/table/table.service";
@@ -37,31 +39,26 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
 
   buttons: MenuItem[];
   obj: TableMenuStructure;
-  deletePath: string = "/api/UserGroups/DeleteUserGroup/Delete";
-  postPath: string = "/api/UserGroups/ManageUserGroup/Post";
-  putPath: string;
-
-  columnPath: string = "/api/UserGroups/GetUserGroupGridData/Get";
-  getPath: string = "/api/UserGroups/GetUserGroups/Get";
   columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
   responseObj: Observable<ResponseBodyGetList>;
   lazyLoadObj: LazyLoadEvent;
   selectedId: number;
-
-  dictionaryColumnPath: string = "/api/UserGroups/GetUserGroupGridData/Get";
-  dictionaryPath: string = "/api/UserGroups/GetUserGroups/Get";
   ref: DynamicDialogRef;
+  dictModel= UserGroup.name;
+  model= UserUserGroup.name;
 
   constructor(
     private translateService:TranslateService,
     private baseService:BaseService,
     private dialogService:DialogService,
     private tableButtonService:TableButtonService,
-    private tableService:TableService
+    private tableService:TableService,
+    private pathService:PathService
   ) {
 
    }
+
 
   ngOnInit(): void {
     this.getColumns();
@@ -69,7 +66,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
 
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
-        this.responseObj = this.baseService.getResponseObj(this.getPath,request);
+        this.responseObj = this.baseService.getResponseObj(this.pathService.getList(this.model),request);
       }
     });
   }
@@ -81,7 +78,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
 
   getColumns(): void {
-    this.baseService.getColumns(this.columnPath).subscribe({
+    this.baseService.getColumns(this.pathService.columnList(this.model)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -140,10 +137,11 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
 
     this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
       data:[
-          [this.dictionaryPath, this.dictionaryColumnPath, "id", "groupName"],
-          this.postPath,
+          [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "groupName"],
+          this.pathService.post(this.model),
           obj,
           ["userGroupId"],
+          undefined,
           false],
       contentStyle:{"width":"500px"},
       header:this.translateService.instant("dict.header.user_param")
@@ -158,7 +156,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
 
   delete(): void {
-    this.tableButtonService.delete(this.deletePath, this.selectedId).subscribe({
+    this.tableButtonService.delete(this.pathService.delete(this.model), this.selectedId).subscribe({
       next:(res:boolean)=> {
         if(res) { this.refreshTable(); }
       }

@@ -5,14 +5,12 @@ import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridD
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 
 export declare interface ITableComponent {
-  columnPath:string;
-  getPath:string;
-
   columns:RequestGridDataColumnValue[];
   reqObjBS:BehaviorSubject<RequestBodyGetList>;
   responseObj:Observable<ResponseBodyGetList>;
   lazyLoadObj:LazyLoadEvent;
   selectedId:number;
+
 
   getColumns():void;
   prepareRequest(ev?:LazyLoadEvent):void;
