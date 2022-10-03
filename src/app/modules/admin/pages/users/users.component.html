@@ -2,7 +2,7 @@
   <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
-        <app-table-button [buttonList]="buttons" [icon]="'pi-users'"></app-table-button>
+        <app-table-button [buttonList]="buttons" [icon]="'pi-users'" [model]="'User'"></app-table-button>
           <div class="row">
             <app-table
             [dataTable]="responseObj"

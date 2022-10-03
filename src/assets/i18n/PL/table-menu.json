@@ -9,6 +9,14 @@
   "add_record_success":"Poprawnie dodano rekord!",
   "add_record_error":"Błąd podczas dodawania rekordu!",
   "edit_record_success":"Poprawnie edytowano rekord!",
-  "edit_record_error":"Błąd podczas edycji rekordu!"
+  "edit_record_error":"Błąd podczas edycji rekordu!",
+  "column_name":"Nazwa kolumny",
+  "available_columns":"Dostępne kolumny",
+  "selected_columns":"Wybrane kolumny",
+  "setting":{
+    "select_grid":"Wybierz siatkę",
+    "select_columns":"Dostosuj kolumny...",
+    "select_save_grid":"Zapisz siatkę"
+  }
 
 }

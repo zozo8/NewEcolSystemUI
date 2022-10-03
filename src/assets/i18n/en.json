@@ -73,7 +73,9 @@
 		"value": "Value",
 		"position": "Position of dictionary",
 		"header": {
-			"user_param": "User params dictionaries"
+			"user_param": "User params dictionarie",
+			"user_group": "User group dictionarie",
+			"user_department": "User department dictionarie"
 		}
 	},
 	"pages": {
@@ -193,17 +195,25 @@
 		"select_record": "Select record in table"
 	},
 	"table-menu": {
-		"remove": "Usuwanie",
-		"select_record": "Wybierz rekord do edycji",
-		"warning": "Uwaga",
-		"remove_record_question": "Czy napewno chcesz usunąc rekord?",
-		"error": "Błąd",
-		"remove_record_success": "Poprawnie usunięto rekord!",
-		"remove_record_error": "Błąd podczas usuwania rekordu!",
-		"add_record_success": "Poprawnie dodano rekord!",
-		"add_record_error": "Błąd podczas dodawania rekordu!",
-		"edit_record_success": "Poprawnie edytowano rekord!",
-		"edit_record_error": "Błąd podczas edycji rekordu!"
+		"remove": "Remove",
+		"select_record": "Select record to edit",
+		"warning": "Warning",
+		"remove_record_question": "Are you sure? Do you want remove this record?",
+		"error": "Error",
+		"remove_record_success": "Remove record successfully",
+		"remove_record_error": "Error during remove record!",
+		"add_record_success": "Add record successfully",
+		"add_record_error": "Error during add record!",
+		"edit_record_success": "Edit record successfully",
+		"edit_record_error": "Error during edit record!",
+		"column_name": "Column name",
+		"available_columns": "Available columns",
+		"selected_columns": "Selected columns",
+		"setting": {
+			"select_grid": "Select grid",
+			"select_columns": "Select columns...",
+			"select_save_grid": "Save grid"
+		}
 	},
 	"users-page": {
 		"params": "Params",

@@ -45,7 +45,7 @@ export class TableService {
     }
   }
 
-    getSepcificDataType4Api(val:string):string {
+  getSepcificDataType4Api(val:string):string {
       switch (val) {
         case "boolean":
           return "boolean";
@@ -58,5 +58,5 @@ export class TableService {
         default:
           return val;
       }
-    }
+  }
 }

@@ -39,6 +39,9 @@ import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/
 import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
 import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
 import { FormDictionaryValueDialogComponent } from "./universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
+import { FormTableSetColumnComponent } from "./universalComponents/dialogs/form-table-set-column/form-table-set-column.component";
+import { DndModule } from "ngx-drag-drop";
+
 
 
 
@@ -55,7 +58,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ModulesComponent,
     ChartsComponent,
     WarningsComponent,
-    FormDictionaryValueDialogComponent
+    FormDictionaryValueDialogComponent,
+    FormTableSetColumnComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +91,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         useFactory:HttpLoaderFactory,
         deps:[HttpClient]
       }
-    })
+    }),
+    DndModule
 
   ],
   providers: [

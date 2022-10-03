@@ -20,8 +20,7 @@ import { IMasterPage } from "src/app/Interfaces/IMasterPage";
 @Component({
   selector: "app-users",
   templateUrl: "./users.component.html",
-  styleUrls: ["./users.component.css"],
-  providers:[]
+  styleUrls: ["./users.component.css"]
 })
 
 
@@ -40,6 +39,11 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   model= User.name;
   buttons:MenuItem[];
 
+
+  availableColumns:RequestGridDataColumnValue[];
+  selectedColumns:RequestGridDataColumnValue[];
+  draggedColumn?:RequestGridDataColumnValue;
+
   constructor(
    private tableService:TableService,
    private translateService:TranslateService,
@@ -55,6 +59,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   ngOnInit(): void {
     this.getColumns();
     this.getButtons();
+    //this.getColumnss("User");
     this.breadcrumbList = this.baseService.getBreadcrumb("users");
 
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
@@ -153,6 +158,35 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
         }
       });
     }
+
+
+    //do zaoprarnia
+
+    // getColumnss(model:string):void {
+    //   var path = this.pathService.columnList(model);
+    //   this.baseService.getColumns(path).subscribe({
+    //     next:(res:RequestGridDataColumn)=>{
+    //       this.availableColumns = res.value;
+    //       this.selectedColumns = [];
+    //     }
+    //   });
+    // }
+
+    // dragStartColumn():void{
+    //   console.log("drag start");
+    //  // this.draggedColumn = column;
+    // }
+
+    // dragEndColumn(ev:Event):void{
+    //   console.log("drag end", ev)
+    //   this.draggedColumn = undefined;
+    // }
+
+    // dropColumn():void{
+    //   console.log("drop");
+    // }
+
+
 }
 
 

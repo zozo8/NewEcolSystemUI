@@ -28,7 +28,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
     private tableButtonService:TableButtonService,
     private baseService:BaseService
   ) { }
-
+ // todo dq
   ngOnInit(): void {
     this.config.closeOnEscape = true;
     this.showValue = this.config.data[5];

@@ -9,7 +9,7 @@
     "test": "ng test",
     "combine-pl": "ngx-i18n-combine -i ./src/assets/i18n/PL/*.json -o ./src/assets/i18n/pl.json",
     "combine-en": "ngx-i18n-combine -i ./src/assets/i18n/EN/*.json -o ./src/assets/i18n/en.json",
-    "build-prod":"ng build --configuration=production"
+    "build-prod": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +29,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.6.0",
     "js-sha512": "^0.8.0",
+    "ngx-drag-drop": "^14.0.0",
     "ngx-i18n-combine": "^1.2.0",
     "popper.js": "^1.16.1",
     "primeicons": "^5.0.0",
