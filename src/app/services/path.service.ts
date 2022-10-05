@@ -26,9 +26,15 @@ export class PathService {
     return this.prefix+model+"s/Get"+model+"s/Get";
   }
 
+  get(model:string, id:number):string {
+    return this.prefix+model+"s/Get"+model+"/Get?id="+id;
+  }
+
   columnList(model:string):string {
     return this.prefix+model+"s/Get"+model+"GridData/Get";
   }
+
+  // dictionary
 
   dictionary(model:string):string {
     return this.prefix+model+"s/Get"+model+"s/Get";

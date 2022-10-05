@@ -1,15 +1,23 @@
 <app-form  #form [title]="'table-detail.header' | translate"
-                [icon]="'pi-user'"
+                [icon]="icon"
                 [obj]="obj"
                 [cols]="cols"
                 [postPath]="postPath"
                 [putPath]="putPath"
                 (refreshTable)="getRefreshTable()">
-  <div form="header" *ngIf="obj.objectDto">
-    <p>{{form.getFieldName('firstName') +" "+form.getFieldName('lastName')}}: <b>{{obj.objectDto.firstName +' '+ obj.objectDto.lastName}}</b></p>
-    <p>{{form.getFieldName('userName')}}: <b>{{obj.objectDto.userName}}</b></p>
-    <p>{{form.getFieldName('userEmail')}}: <b>{{obj.objectDto.userEmail}}</b></p>
-    <p>{{form.getFieldName('phoneNumber')}}: <b>{{obj.objectDto.phoneNumber}}</b></p>
+  <div class="row" form="header" *ngIf="obj.objectDto">
+    <div class="col-md-6">
+        <p>{{form.getFieldName('firstName') +" "+form.getFieldName('lastName')}}</p>
+        <p>{{form.getFieldName('userName')}}</p>
+        <p>{{form.getFieldName('userEmail')}}</p>
+        <p>{{form.getFieldName('phoneNumber')}}</p>
+    </div>
+    <div class="col-md-6">
+      <p><b>{{obj.objectDto.firstName}} {{obj.objectDto.lastName}}</b></p>
+      <p><b>{{obj.objectDto.userName}}</b></p>
+      <p><b>{{obj.objectDto.userEmail}}</b></p>
+      <p><b>{{obj.objectDto.phoneNumber}}</b></p>
+    </div>
   </div>
   <div class="row" form="body" *ngIf="obj.objectEditDto">
     <div class="col-md">

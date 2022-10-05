@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { MenuItem } from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { FormTableSetColumnComponent } from "../dialogs/form-table-set-column/form-table-set-column.component";
 
 @Component({
@@ -20,6 +21,9 @@ export class TableButtonComponent implements OnInit {
 
  @Input()
  model:string;
+
+ @Output()
+ selectedColumnList = new EventEmitter<RequestGridDataColumnValue[]>();
 
  setting:MenuItem[];
  ref:DynamicDialogRef;
@@ -54,6 +58,12 @@ export class TableButtonComponent implements OnInit {
       closeOnEscape:true,
       header:this.translateService.instant("table-menu.setting.select_columns"),
       data:[this.model]
+    });
+
+    this.ref.onClose.subscribe({
+      next:(res:RequestGridDataColumnValue[])=>{
+        this.selectedColumnList.emit(res);
+      }
     });
   }
 

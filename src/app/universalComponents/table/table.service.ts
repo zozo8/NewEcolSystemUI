@@ -1,5 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { ResponseBodyById } from "src/app/models/responses/responseBodyById.model";
+import { TableMenuStructure } from "src/app/models/tableMenuStructure";
+import { BaseService } from "src/app/services/base.service";
 import { RequestGridDataColumnValue } from "../../models/requests/requestGridDataColumnValue.model";
 
 @Injectable({
@@ -9,7 +13,8 @@ export class TableService {
 
   ret:RequestGridDataColumnValue[];
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private baseService:BaseService
     ) {
     }
 
@@ -19,7 +24,7 @@ export class TableService {
     columns.forEach((res)=> {
       columnsOutput.push({
         columnName : res.columnName,
-        dataType :this.getSepcificDataType4PrimeNg(res.dataType),
+        dataType :this.baseService.getSepcificDataType4PrimeNg(res.dataType),
         displayName : res.displayName,
         filters : res.filters,
         isVisible : res.isVisible
@@ -30,33 +35,16 @@ export class TableService {
     return columnsOutput;
   }
 
-  getSepcificDataType4PrimeNg(val:string):string {
-    switch (val) {
-      case "Boolean":
-        return "boolean";
-      case "Int":
-        return "numeric";
-      case "String":
-        return "text";
-      case "DateTime":
-        return "date";
-      default:
-        return val;
-    }
-  }
-
-  getSepcificDataType4Api(val:string):string {
-      switch (val) {
-        case "boolean":
-          return "boolean";
-        case "numeric":
-          return "Int32";
-        case "text":
-          return "string";
-        case "date":
-          return "datetime";
-        default:
-          return val;
+  getObjDto(path:string, obj:TableMenuStructure):Observable<TableMenuStructure> {
+    var retObj = new BehaviorSubject<TableMenuStructure>(obj);
+    this.baseService.getObjById(path).subscribe({
+      next:(res:ResponseBodyById)=>{
+        obj.objectDto = res.value;
+        obj.objectEditDto = {...res.value}; // copy without reference
+        retObj.next(obj);
       }
+    });
+
+    return retObj;
   }
 }

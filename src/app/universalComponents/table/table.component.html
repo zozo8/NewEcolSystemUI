@@ -14,7 +14,7 @@
   [resizableColumns]="true"
   [scrollable]="true"
   (onLazyLoad)="loadData($event)"
-  (onRowSelect)="selectObj($event)"
+  (onRowSelect)="selectObj(dt1.selection.id)"
   selectionMode="single"
   currentPageReportTemplate="{first} - {last} / {{totalRecords}}"
   styleClass="p-datatable-sm"
@@ -32,6 +32,7 @@
               <td *ngFor="let row of columns" >
                 <div [ngSwitch]="row.dataType">
                   <span *ngSwitchCase="'date'">{{rowData[row.columnName] | date:"yyyy/MM/dd"}}</span>
+                  <span *ngSwitchCase="'DateTime'">{{rowData[row.columnName] | date:"yyyy/MM/dd"}}</span>
                   <span *ngSwitchCase="'boolean'">
                       <i class="pi" [ngClass]="{'true-icon pi-check-circle': rowData[row.columnName], 'false-icon pi-times-circle': !rowData[row.columnName]}"></i>
                     </span>

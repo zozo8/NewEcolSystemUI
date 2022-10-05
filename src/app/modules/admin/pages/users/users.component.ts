@@ -1,6 +1,6 @@
 import { Component, OnInit} from "@angular/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
-import { BehaviorSubject, Observable} from "rxjs";
+import { BehaviorSubject, Observable,tap} from "rxjs";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
@@ -16,6 +16,7 @@ import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsCo
 import { User } from "src/app/models/dto/modules/admin/user";
 import { PathService } from "src/app/services/path.service";
 import { IMasterPage } from "src/app/Interfaces/IMasterPage";
+import { ResponseBodyById } from "src/app/models/responses/responseBodyById.model";
 
 @Component({
   selector: "app-users",
@@ -59,7 +60,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   ngOnInit(): void {
     this.getColumns();
     this.getButtons();
-    //this.getColumnss("User");
     this.breadcrumbList = this.baseService.getBreadcrumb("users");
 
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
@@ -91,12 +91,21 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     this.prepareRequest(this.lazyLoadObj);
   }
 
-  getSelected(ev:any):void {
-    if(ev.data != null) {
-      this.obj.objectDto = ev.data;
-      this.obj.objectEditDto = {...ev.data}; // copy without reference
-      this.selectedId = ev.data.id;
+  getSelected(id:number):void {
+    if(id != null) {
+      var path = this.pathService.get(this.model,id);
+      this.selectedId = id;
+
+      this.tableService.getObjDto(path,this.obj);
+      // this.tableService.getObjDto(path).subscribe({
+      //   next:(res:TableMenuStructure)=>this.obj = res
+      // });
     }
+  }
+
+  getSelectedColumns(cols:RequestGridDataColumnValue[]):void{
+    this.columns = cols;
+    this.prepareRequest(this.lazyLoadObj);
   }
 
   //emmiter from detail component
@@ -158,35 +167,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
         }
       });
     }
-
-
-    //do zaoprarnia
-
-    // getColumnss(model:string):void {
-    //   var path = this.pathService.columnList(model);
-    //   this.baseService.getColumns(path).subscribe({
-    //     next:(res:RequestGridDataColumn)=>{
-    //       this.availableColumns = res.value;
-    //       this.selectedColumns = [];
-    //     }
-    //   });
-    // }
-
-    // dragStartColumn():void{
-    //   console.log("drag start");
-    //  // this.draggedColumn = column;
-    // }
-
-    // dragEndColumn(ev:Event):void{
-    //   console.log("drag end", ev)
-    //   this.draggedColumn = undefined;
-    // }
-
-    // dropColumn():void{
-    //   console.log("drop");
-    // }
-
-
 }
 
 

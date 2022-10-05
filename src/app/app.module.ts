@@ -20,6 +20,7 @@ import { BadgeModule } from "primeng/badge";
 import { DropdownModule } from "primeng/dropdown";
 import { ChartModule } from "primeng/chart";
 import { MessagesModule } from "primeng/messages";
+import { TabViewModule } from "primeng/tabview";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -29,6 +30,7 @@ import { NotfoundComponent } from "./components/pages/notfound/notfound.componen
 import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
 import { FormsModule } from "@angular/forms";
+
 
 
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
@@ -41,6 +43,8 @@ import { WarningsComponent } from "./components/pages/dashboard/mainpage/warning
 import { FormDictionaryValueDialogComponent } from "./universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 import { FormTableSetColumnComponent } from "./universalComponents/dialogs/form-table-set-column/form-table-set-column.component";
 import { DndModule } from "ngx-drag-drop";
+import { LeftMenuComponent } from './components/pages/dashboard-page/left-menu/left-menu.component';
+import { DynamicTabDirective } from './directivies/dynamic-tab.directive';
 
 
 
@@ -59,7 +63,9 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ChartsComponent,
     WarningsComponent,
     FormDictionaryValueDialogComponent,
-    FormTableSetColumnComponent
+    FormTableSetColumnComponent,
+    LeftMenuComponent,
+    DynamicTabDirective
   ],
   imports: [
     BrowserModule,
@@ -92,8 +98,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps:[HttpClient]
       }
     }),
-    DndModule
-
+    DndModule,
+    TabViewModule
   ],
   providers: [
     {

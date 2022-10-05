@@ -21,6 +21,9 @@ export class UserFormComponent implements ITableFormComponent {
   @Input()
   obj:TableMenuStructure;
 
+  @Input()
+  icon:string;
+
   @Output()
   refreshTable = new EventEmitter();
 

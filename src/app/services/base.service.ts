@@ -1,13 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
-import { BehaviorSubject, filter, Observable, Subject} from "rxjs";
+import { BehaviorSubject, filter, Observable, Subject, tap} from "rxjs";
 import { environment } from "src/environments/environment";
 import { DashboardMenuService } from "../components/pages/dashboard-page/dashboard-menu.service";
 import { Filter } from "../models/requests/filter.model";
 import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "../models/requests/requestGridDataColumnValue.model";
+import { ResponseBodyById } from "../models/responses/responseBodyById.model";
 import { ResponseBodyGetList } from "../models/responses/responseBodyGetList.model";
 import { TableService } from "../universalComponents/table/table.service";
 
@@ -21,16 +22,16 @@ export class BaseService {
 
   constructor(
     private http:HttpClient,
-    private tableService:TableService,
     private dashboardMenuService:DashboardMenuService
   ) { }
 
   getBreadcrumb(page: string): MenuItem[] {
-    var ret = this.dashboardMenuService.getMainMenu();
-    var ret2 = ret.filter(x=>x.routerLink?.includes("users"));
-    console.log("breadcrumb",ret,ret2);
+    //var ret = this.dashboardMenuService.getMainMenu();
+   // var ret2 = ret.filter(x=>x.routerLink?.includes("users"));
+   // console.log("breadcrumb",ret,ret2);
 
-    return ret;
+    //return ret;
+    return [];
   }
 
   // get request from api for default params or dynamic params from universal table component (ev)
@@ -80,7 +81,7 @@ export class BaseService {
       res.push({
         filters:filterCols,
         columnName:val.columnName,
-        dataType: this.tableService.getSepcificDataType4Api(val.dataType),
+        dataType: this.getSepcificDataType4Api(val.dataType),
         displayName:val.columnName,
         isVisible:val.isVisible
       });
@@ -90,7 +91,35 @@ export class BaseService {
     return res;
   }
 
+  getSepcificDataType4Api(val:string):string {
+    switch (val) {
+      case "boolean":
+        return "boolean";
+      case "numeric":
+        return "Int32";
+      case "text":
+        return "string";
+      case "date":
+        return "datetime";
+      default:
+        return val;
+    }
+  }
 
+  getSepcificDataType4PrimeNg(val:string):string {
+    switch (val) {
+      case "Boolean":
+        return "boolean";
+      case "Int":
+        return "numeric";
+      case "String":
+        return "text";
+      case "DateTime":
+        return "date";
+      default:
+        return val;
+    }
+  }
 
     // get response for table from api
   getResponseObj(requestPath:string, requestObj:RequestBodyGetList):Observable<ResponseBodyGetList> {
@@ -100,6 +129,11 @@ export class BaseService {
     // get column list for grid
   getColumns(path:string):Observable<RequestGridDataColumn> {
     return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
+  }
+
+  // get obj by id
+  getObjById(path:string):Observable<ResponseBodyById> {
+    return this.http.get<ResponseBodyById>(environment.endpointApiPath+path).pipe(tap(console.log));
   }
 
 

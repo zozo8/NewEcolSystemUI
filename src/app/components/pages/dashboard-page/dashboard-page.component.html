@@ -31,7 +31,13 @@
     </p-menubar>
   </header>
   <main style="flex:1 1 auto;" class="container-fluid">
-    <router-outlet ></router-outlet>
+   <p-tabView>
+    <p-tabPanel [closable]="true"  *ngFor="let tab of tabs" header="{{tab.header}}" [selected]="tab.selected" [tooltip]="tab.tooltip">
+     <ng-template appDynamicTab></ng-template>
+<!-- <app-mainpage></app-mainpage> -->
+    </p-tabPanel>
+   </p-tabView>
+    <!-- <router-outlet ></router-outlet> -->
   </main>
   <footer>
     <p-menubar>
@@ -46,19 +52,10 @@
     </p-menubar>
   </footer>
 </body>
-<p-sidebar [(visible)]="display" styleClass="p-sidebar-sm" >
-  <ng-template pTemplate>
-    <div class="text-left">
-      <img src="./assets/images/logo.png" width="55" [title]="'common.title_page' | translate" >
-    </div>
-
-    <input pInputText type="text" style="width: 280px" [placeholder]="'common.search' | translate">
-    <p-panelMenu [model]="leftMenu">
-    </p-panelMenu>
-  </ng-template>
-
-</p-sidebar>
-
+<app-left-menu
+    [display]="display"
+    (changeDisplay)="changeStateDisplaySidebar()"
+    (refreshTabs)="refreshTabs($event)"></app-left-menu>
 
 
 

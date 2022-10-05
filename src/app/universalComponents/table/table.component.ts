@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output} from "@angular/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { Observable } from "rxjs";
+import { User } from "src/app/models/dto/modules/admin/user";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 
@@ -69,7 +70,7 @@ tableDisabled:boolean;
 newRequestParam = new EventEmitter<LazyLoadEvent>();
 
 @Output()
-selectedObj = new EventEmitter<any>();
+selectedId = new EventEmitter<number>();
 
   constructor(
   ) { }
@@ -80,8 +81,8 @@ selectedObj = new EventEmitter<any>();
     }
   }
 
-  selectObj(ev:Event):void {
-     this.selectedObj.emit(ev);
+  selectObj(id:number):void {
+     this.selectedId.emit(id);
   }
 
 }

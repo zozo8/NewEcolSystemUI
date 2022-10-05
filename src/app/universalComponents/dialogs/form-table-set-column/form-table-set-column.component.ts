@@ -11,7 +11,7 @@ import { PathService } from "src/app/services/path.service";
 @Component({
   selector: "app-form-table-set-column",
   templateUrl: "./form-table-set-column.component.html",
-  styleUrls: ["./form-table-set-column.component.scss"]
+  styleUrls: ["./form-table-set-column.component.css"]
 })
 export class FormTableSetColumnComponent implements OnInit {
 
@@ -38,6 +38,7 @@ export class FormTableSetColumnComponent implements OnInit {
 
 
   getColumns(model:string):void {
+    // pobrac ustawienia dla usera i grida, pokazadc jakie kolumny sa ustawione a jakie są do wyboru
     var path = this.pathService.columnList(model);
     this.baseService.getColumns(path).subscribe({
       next:(res:RequestGridDataColumn)=> {
@@ -78,6 +79,7 @@ export class FormTableSetColumnComponent implements OnInit {
   }
 
   save():void {
+   // tu zbudowac obiket i zapisac ustawienia pre user
     this.ref.close(this.selectedColumns);
   }
 

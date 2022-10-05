@@ -2,14 +2,18 @@
   <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
-        <app-table-button [buttonList]="buttons" [icon]="'pi-users'" [model]="'User'"></app-table-button>
+        <app-table-button
+              [buttonList]="buttons"
+              [icon]="'pi-users'"
+              [model]="'User'"
+              (selectedColumnList)="getSelectedColumns($event)"></app-table-button>
           <div class="row">
             <app-table
             [dataTable]="responseObj"
             [columns]="columns"
             [tableDisabled]="obj.editState"
             (newRequestParam)="getLazyLoadEvent($event)"
-            (selectedObj)="getSelected($event)">
+            (selectedId)="getSelected($event)">
           </app-table>
           </div>
         </div>
@@ -18,6 +22,7 @@
       <p-tabView style="width: 100%">
         <p-tabPanel  [header]="'common.selected_entity' | translate">
           <app-user-form
+          [icon]="'pi-user'"
           [cols]="columns"
           [obj]="obj"
           [postPath]="postPath"

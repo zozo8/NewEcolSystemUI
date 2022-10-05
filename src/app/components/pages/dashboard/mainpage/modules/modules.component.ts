@@ -19,14 +19,14 @@ export class ModulesComponent implements OnInit {
   }
 
   convertMenuItemToTreeNode():void {
-    var n = 0;
-    var menuItem = this.dashboardMenuService.getMainMenu();
+    // var n = 0;
+    // var menuItem = this.dashboardMenuService.getMainMenu();
 
-    this.menuTree.push({
-      label:menuItem[0].label,
-      expanded:true,
-      children:menuItem.filter((el,i)=> i>0)
-    });
+    // this.menuTree.push({
+    //   label:menuItem[0].label,
+    //   expanded:true,
+    //   children:menuItem.filter((el,i)=> i>0)
+    // });
 
 
     // children:[{
