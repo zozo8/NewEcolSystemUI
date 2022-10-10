@@ -4,4 +4,5 @@ export interface IMasterPage {
   postPath: string;
   putPath: string;
   breadcrumbList:MenuItem[];
+
 }

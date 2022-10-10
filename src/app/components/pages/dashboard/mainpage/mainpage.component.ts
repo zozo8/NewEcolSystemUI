@@ -13,6 +13,7 @@ export class MainpageComponent implements OnInit {
   loading:boolean;
   selectedTemplate:MenuItem;
   templateList:MenuItem[];
+  text:string;
 
   constructor(
 
@@ -22,8 +23,9 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit(): void {
     this.templateList =this.mainpageService.getTemplateList();
-    this.selectedTemplate = this.templateList[0];
+    this.selectedTemplate = this.templateList[1];
   }
+
 
 
 

@@ -35,6 +35,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     if(!tokenUR) {
       return next.handle(request);
     } else if (tokenUR && !token) {
+      console.log("token ur",tokenUR);
         request = this.applyToken(request, tokenUR);
         return next.handle(request);
      } else {

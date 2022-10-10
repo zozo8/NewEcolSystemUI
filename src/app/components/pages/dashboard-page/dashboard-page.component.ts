@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { timer } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
@@ -14,8 +14,8 @@ import {
 import { DashboardPageService } from "./dashboard-page.service";
 import { environment } from "src/environments/environment";
 import { Tab } from "src/app/models/tab.model";
+import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
 import { MainpageComponent } from "../dashboard/mainpage/mainpage.component";
-import { Console } from "console";
 
 @Component({
   selector: "app-dashboard-page",
@@ -47,6 +47,9 @@ export class DashboardPageComponent implements OnInit {
   userName:string;
   appVersion:string;
   tabs:Tab[] = [];
+  activeTab = 0;
+
+  @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
 
   constructor(
     private authService:AuthService,
@@ -60,18 +63,18 @@ export class DashboardPageComponent implements OnInit {
     this.appVersion = environment.appVersion + localStorage.getItem("actualLanguage");
     this.setTimer();
     this.topMenu = this.getTopMenu();
-    // this.leftMenu = this.menuService.getMainMenu(); //menu
     this.userMenu = this.menuService.getUserMenu();
     this.searchMenu = this.menuService.getSearchMenu();
     this.clientNodes = this.dashboardPageService.getClientNodes();
     this.userName = localStorage.getItem("userName")??"";
-    this.refreshTabs(
-      {
-        header:this.translateService.instant("app_menu.mainpage"),
-        component:MainpageComponent.name,
-        selected:true
-      }
-    );
+   // this.loadComponent();
+    // this.refreshTabs(
+    //   {
+    //     header:this.translateService.instant("app_menu.mainpage"),
+    //     component:MainpageComponent,
+    //     selected:true
+    //   }
+    // );
 
     timer(500).subscribe(()=> {
       this.loadDashboard = true;
@@ -101,7 +104,6 @@ export class DashboardPageComponent implements OnInit {
         this.authService.logout();
       }
     });
-
   }
 
 
@@ -109,21 +111,45 @@ export class DashboardPageComponent implements OnInit {
     console.log(ev, this.selectedClientNode);
   }
 
+  // private loadComponent(){
+  //     const viewContainerRef = this.dynamicTab.viewContainerRef;
+  //     viewContainerRef.clear();
+  //     const componentRef = viewContainerRef.createComponent(UsersComponent);
+  //     //componentRef.instance.text = "tekst wygenerrowany dynaicznie z dyrektywy";
+  // }
+
   refreshTabs(tab:Tab):void {
-    console.log("przekazany tab",tab);
-
-    if(!this.tabs.find(x=>x.component === tab.component)){
-      //this.tabs.forEach(x=>x.selected = false);
-      //console.log("taby",this.tabs)
+    var extTab = this.tabs.findIndex(x=>x.component === tab.component);
+    if(extTab === -1){
       this.tabs.push(tab);
-      //console.log("taby po dodaniu",this.tabs);
-      var last = this.tabs.length;
-      //console.log(last);
-      this.tabs[last-1].selected = true;
-    } else {
-      console.log("elemkent juz jest , nalezy ustawic mu widocznosc");
-    }
+      // tab.header = "Strona testowa "+Math.random().toString();
+      // tab.selected = true;
+      // tab.tooltip = "Jakis tekst w tooltipie";
 
+      //this.activeTab = this.tabs.length-1;
+
+
+      // console.log("aktualne taby",this.tabs);
+      // //console.log("taby po dodaniu",this.tabs);
+      // var last = this.tabs.length;
+      // //console.log(last);
+      // this.tabs[last-1].selected = true;
+      // console.log("aktualne taby 2",this.tabs);
+
+      const viewContainerRef = this.dynamicTab.viewContainerRef;
+      viewContainerRef.clear();
+      viewContainerRef.createComponent(tab.component);
+
+
+    } else {
+      this.activeTab = extTab;
+    }
+    this.display = false;
+  }
+
+  closeTab(ev:any):void{
+    console.log("iundex", ev.index);
+    this.tabs.splice(ev.index,1);
   }
 
   changeStateDisplaySidebar():void {

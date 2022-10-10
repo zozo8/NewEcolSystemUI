@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { sha512 } from "js-sha512";
-import { Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { environment } from "src/environments/environment";
 import Login from "./interfaces/login.model";
@@ -33,9 +33,10 @@ export class LoginService {
   }
 
 
-  authenticate(obj: ResponseLoginUR):void {
-        localStorage.setItem("tokenUR",obj.accessToken.value);
+  authenticate(obj: ResponseLoginUR):Observable<boolean> {
+        var res = new BehaviorSubject<boolean>(true);
 
+        localStorage.setItem("tokenUR",obj.accessToken.value);
         this.http.get<ResponseLoginApi>(environment.endpointApiPath+"/api/Home/Authenticate")
         .subscribe({
           next:(res:ResponseLoginApi)=> {
@@ -43,13 +44,17 @@ export class LoginService {
             this.setLocalStorageUserData(res);
           },
           error:(err:string)=> {
+          //  res.next(false);
             console.error("błąd pobierania z api:",err);
+            this.router.navigate(["/dashboard/mainpage"]);
           },
           complete:()=> {
             this.authService.setLastActivity();
             this.router.navigate(["/dashboard/mainpage"]);
           }
         });
+
+        return res;
   }
 
   private getLoginObjUR(obj: Login):LoginCredentialMD {

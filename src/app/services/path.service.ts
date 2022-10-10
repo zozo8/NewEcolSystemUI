@@ -10,28 +10,28 @@ export class PathService {
 
    }
 
-  delete(model:string):string {
-    return this.prefix+model+"s/Delete"+model+"/Delete";
+  delete(model:string, id:number):string {
+    return this.prefix+model+"s/"+id;
   }
 
   post(model:string):string {
-    return this.prefix+model+"s/Manage"+model+"/Post";
+    return this.prefix+model+"s/Manage";
   }
 
   put(model:string):string {
-    return this.prefix+model+"s/Manage"+model+"/Put";
+    return this.prefix+model+"s/Manage";
   }
 
   getList(model:string):string {
-    return this.prefix+model+"s/Get"+model+"s/Get";
+    return this.prefix+model+"s";
   }
 
   get(model:string, id:number):string {
-    return this.prefix+model+"s/Get"+model+"/Get?id="+id;
+    return this.prefix+model+"s?id="+id;
   }
 
-  columnList(model:string):string {
-    return this.prefix+model+"s/Get"+model+"GridData/Get";
+  columnList(id:number):string {
+    return this.prefix+"GridData?gridsDict="+id;
   }
 
   // dictionary

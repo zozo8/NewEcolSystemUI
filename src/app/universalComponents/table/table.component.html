@@ -17,17 +17,17 @@
   (onRowSelect)="selectObj(dt1.selection.id)"
   selectionMode="single"
   currentPageReportTemplate="{first} - {last} / {{totalRecords}}"
-  styleClass="p-datatable-sm"
+  styleClass="p-datatable-sm p-datatable-gridlines ui-datatable-scrollable-body "
   responsiveLayout="scroll">
-  <ng-template pTemplate="header" let-columns >
-  <tr>
-    <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
-      <p-sortIcon field="{{col.columnName}}"></p-sortIcon>
-      <p-columnFilter type="{{col.dataType}}" field="{{col.columnName}}" display="menu" ></p-columnFilter>
-    </th>
-  </tr>
-  </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns" >
+    <ng-template pTemplate="header" let-columns >
+      <tr>
+        <th *ngFor="let col of columns" pSortableColumn="{{col.columnName}}">{{col.displayName}}
+          <p-sortIcon field="{{col.columnName}}"></p-sortIcon>
+          <p-columnFilter type="{{col.dataType}}" field="{{col.columnName}}" display="menu" ></p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" >
           <tr  [pSelectableRow]="rowData" [pSelectableRowDisabled]="tableDisabled" >
               <td *ngFor="let row of columns" >
                 <div [ngSwitch]="row.dataType">
@@ -40,8 +40,8 @@
                 </div>
               </td>
           </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
           <tr>
               <td colspan="6">{{ "common.empty_data" | translate}}</td>
           </tr>

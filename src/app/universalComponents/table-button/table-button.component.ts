@@ -20,7 +20,7 @@ export class TableButtonComponent implements OnInit {
  icon:string;
 
  @Input()
- model:string;
+ gridId:number;
 
  @Output()
  selectedColumnList = new EventEmitter<RequestGridDataColumnValue[]>();
@@ -57,7 +57,7 @@ export class TableButtonComponent implements OnInit {
       contentStyle:{"width":"800px"},
       closeOnEscape:true,
       header:this.translateService.instant("table-menu.setting.select_columns"),
-      data:[this.model]
+      data:[this.gridId]
     });
 
     this.ref.onClose.subscribe({

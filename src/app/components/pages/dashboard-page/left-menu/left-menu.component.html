@@ -1,0 +1,17 @@
+<p-sidebar
+  [visible]="display"
+  [closeOnEscape]="true"
+  (onHide)="onHide($event)"
+  styleClass="p-sidebar-sm"  >
+  <ng-template pTemplate>
+    <div class="text-left">
+      <img src="./assets/images/logo.png" width="55" [title]="'common.title_page' | translate" >
+    </div>
+    <p-tree [value]="menu" [filter]="true" selectionMode="single" [(selection)]="selectedMenu" (onNodeSelect)="selectMenu($event)">
+      <ng-template let-node pTemplate="default">
+        {{node.label | translate}}
+      </ng-template>
+    </p-tree>
+  </ng-template>
+</p-sidebar>
+

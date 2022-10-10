@@ -16,7 +16,7 @@ import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsCo
 import { User } from "src/app/models/dto/modules/admin/user";
 import { PathService } from "src/app/services/path.service";
 import { IMasterPage } from "src/app/Interfaces/IMasterPage";
-import { ResponseBodyById } from "src/app/models/responses/responseBodyById.model";
+import { GridEnum } from "src/app/utils/gridEnum";
 
 @Component({
   selector: "app-users",
@@ -36,6 +36,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   selectedId: number;
   postPath: string;
   putPath: string;
+  gridId:number = GridEnum.Users;
 
   model= User.name;
   buttons:MenuItem[];
@@ -71,7 +72,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   }
 
   getColumns():void {
-     this.baseService.getColumns(this.pathService.columnList(this.model)).subscribe({
+     this.baseService.getColumns(this.pathService.columnList(this.gridId)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -161,7 +162,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   }
 
   delete(): void {
-      this.tableButtonService.delete(this.pathService.delete(this.model), this.obj.objectDto.id).subscribe({
+      this.tableButtonService.delete(this.pathService.delete(this.model, this.obj.objectDto.id)).subscribe({
         next:(res:boolean)=> {
           if(res) { this.refreshTable(); }
         }

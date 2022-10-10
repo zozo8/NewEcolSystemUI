@@ -98,7 +98,13 @@ export class LoginComponent implements OnInit {
     timer(2000).subscribe(()=> {
       this.loginService.loginToUR(this.loginObj).subscribe({
         next:(res:ResponseLoginUR)=> {
-          this.loginService.authenticate(res);
+          this.loginService.authenticate(res).subscribe({
+            next:(ret:boolean)=> {
+              if(!ret) {
+                this.errorText = this.translateService.instant("pages.login_page.wrong_authenticate");
+              }
+            }
+          });
         },
         complete:()=> {
             this.loading = false;

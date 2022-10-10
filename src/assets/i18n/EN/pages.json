@@ -6,7 +6,8 @@
     "error":"Wrong login or password!",
     "login":"Login",
     "logout":"Logout",
-    "forget_password":"Forgot password?"
+    "forget_password":"Forgot password?",
+    "wrong_authenticate":"Wrong authenticate!"
   },
   "users": {
     "title":"Users list"

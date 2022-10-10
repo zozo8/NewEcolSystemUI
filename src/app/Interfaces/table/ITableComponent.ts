@@ -10,6 +10,7 @@ export declare interface ITableComponent {
   responseObj:Observable<ResponseBodyGetList>;
   lazyLoadObj:LazyLoadEvent;
   selectedId:number;
+  gridId:number;
 
 
   getColumns():void;

@@ -86,7 +86,8 @@
 			"error": "Niepoprawny login lub hasło!",
 			"login": "Zaloguj",
 			"logout": "Wyloguj",
-			"forget_password": "Zapomniałeś hasła?"
+			"forget_password": "Zapomniałeś hasła?",
+			"wrong_authenticate": "Błąd autentykacji!"
 		},
 		"users": {
 			"title": "Lista użytkowników"

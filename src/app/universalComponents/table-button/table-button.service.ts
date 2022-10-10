@@ -44,14 +44,13 @@ export class TableButtonService {
     return ret.asObservable();
   }
 
-  delete(path:string, id?:number):Observable<boolean> {
+  delete(path:string):Observable<boolean> {
     var returnSubject = new BehaviorSubject<boolean>(false);
 
-    if(id !== null) {
       this.confirmationService.confirm({
         message: this.translateService.instant("table-menu.remove_record_question"),
         accept:()=> {
-            this.http.delete(environment.endpointApiPath+path+"?id="+id).subscribe({
+            this.http.delete(environment.endpointApiPath+path).subscribe({
             complete:()=> {
               this.messageService.add(
                 {severity:"success", summary:this.translateService.instant("btn.ok"), detail:this.translateService.instant("table-menu.remove_record_success")}
@@ -67,7 +66,6 @@ export class TableButtonService {
         }
       });
 
-    }
     return returnSubject.asObservable();
  }
 

@@ -31,10 +31,33 @@
     </p-menubar>
   </header>
   <main style="flex:1 1 auto;" class="container-fluid">
-   <p-tabView>
-    <p-tabPanel [closable]="true"  *ngFor="let tab of tabs" header="{{tab.header}}" [selected]="tab.selected" [tooltip]="tab.tooltip">
-     <ng-template appDynamicTab></ng-template>
-<!-- <app-mainpage></app-mainpage> -->
+   active tab: {{activeTab}}
+   <p-tabView  [(activeIndex)]="activeTab" (onClose)="closeTab($event)">
+    <p-tabPanel
+      [closable]="true"
+      [tooltip]="tab.tooltip"
+       [leftIcon]="'pi pi-user'"
+       [header]="tab.header"
+
+      *ngFor="let tab of tabs; let i = index, let l = last" >
+      <ng-template dynamicTab></ng-template>
+      <!-- <ng-template pTemplate="content">
+        <p>{{tab.header}}</p>
+        <p>index {{i}}</p>
+        <p>last {{l}}</p>
+        <p>activer tab{{activeTab}}</p>
+        <p>{{tab.selected}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+        <p>{{tab.tooltip}}</p>
+
+      </ng-template> -->
     </p-tabPanel>
    </p-tabView>
     <!-- <router-outlet ></router-outlet> -->
@@ -55,7 +78,8 @@
 <app-left-menu
     [display]="display"
     (changeDisplay)="changeStateDisplaySidebar()"
-    (refreshTabs)="refreshTabs($event)"></app-left-menu>
+    (refreshTabs)="refreshTabs($event)">
+</app-left-menu>
 
 
 

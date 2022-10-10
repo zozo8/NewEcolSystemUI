@@ -18,6 +18,7 @@ import { PathService } from "src/app/services/path.service";
 import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableService } from "src/app/universalComponents/table/table.service";
+import { GridEnum } from "src/app/utils/gridEnum";
 
 @Component({
   selector: "app-user-param",
@@ -47,6 +48,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   lazyLoadObj:LazyLoadEvent;
   selectedId: number;
   ref:DynamicDialogRef;
+  gridId = GridEnum.UserParams;
 
   constructor(
     private tableButtonService:TableButtonService,
@@ -78,7 +80,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   // table
   getColumns(): void {
-    this.baseService.getColumns(this.pathService.columnList(this.model)).subscribe({
+    this.baseService.getColumns(this.pathService.columnList(this.gridId)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -165,7 +167,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   }
 
   delete(): void {
-    this.tableButtonService.delete(this.pathService.delete(this.model), this.selectedId).subscribe({
+    this.tableButtonService.delete(this.pathService.delete(this.model,this.selectedId)).subscribe({
       next:(res:boolean)=> {
         if(res) { this.refreshTable(); }
       }

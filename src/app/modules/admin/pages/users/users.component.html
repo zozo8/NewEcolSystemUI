@@ -1,11 +1,12 @@
-<p-breadcrumb [model]="breadcrumbList"></p-breadcrumb>
+<div style="height: 90%; background-color: white;">
+ <!-- <p-breadcrumb [model]="breadcrumbList"></p-breadcrumb> -->
   <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
         <app-table-button
               [buttonList]="buttons"
               [icon]="'pi-users'"
-              [model]="'User'"
+              [gridId]="gridId"
               (selectedColumnList)="getSelectedColumns($event)"></app-table-button>
           <div class="row">
             <app-table
@@ -43,5 +44,4 @@
 
     </ng-template>
   </p-splitter>
-
-
+</div>
