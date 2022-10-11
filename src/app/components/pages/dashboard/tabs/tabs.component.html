@@ -1,0 +1,7 @@
+<app-dynamic-tab [hidden]="true"></app-dynamic-tab>
+<p-tabView >
+  <p-tabPanel *ngFor="let item of tabs; let i = index;" header="test">
+    <!-- <ng-template dynamicTab></ng-template> -->
+    <ng-container *view="ite.view"></ng-container>
+  </p-tabPanel>
+</p-tabView>

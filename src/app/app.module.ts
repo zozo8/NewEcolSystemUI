@@ -45,6 +45,8 @@ import { FormTableSetColumnComponent } from "./universalComponents/dialogs/form-
 import { DndModule } from "ngx-drag-drop";
 import { LeftMenuComponent } from './components/pages/dashboard-page/left-menu/left-menu.component';
 import { DynamicTabDirective } from './directivies/dynamic-tab.directive';
+import { TabsComponent } from './components/pages/dashboard/tabs/tabs.component';
+import { DynamicTabComponent } from './components/pages/dashboard/tabs/dynamic-tab/dynamic-tab.component';
 
 
 
@@ -65,7 +67,9 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FormDictionaryValueDialogComponent,
     FormTableSetColumnComponent,
     LeftMenuComponent,
-    DynamicTabDirective
+    DynamicTabDirective,
+    TabsComponent,
+    DynamicTabComponent
   ],
   imports: [
     BrowserModule,

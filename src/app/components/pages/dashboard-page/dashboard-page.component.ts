@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { timer } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
@@ -15,6 +15,7 @@ import { DashboardPageService } from "./dashboard-page.service";
 import { environment } from "src/environments/environment";
 import { Tab } from "src/app/models/tab.model";
 import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
+import { UsersComponent } from "src/app/modules/admin/pages/users/users.component";
 import { MainpageComponent } from "../dashboard/mainpage/mainpage.component";
 
 @Component({
@@ -35,7 +36,7 @@ import { MainpageComponent } from "../dashboard/mainpage/mainpage.component";
     ])
   ]
 })
-export class DashboardPageComponent implements OnInit {
+export class DashboardPageComponent implements OnInit  {
   leftMenu: MenuItem[];
   topMenu: MenuItem[];
   userMenu: MenuItem[];
@@ -49,7 +50,7 @@ export class DashboardPageComponent implements OnInit {
   tabs:Tab[] = [];
   activeTab = 0;
 
-  @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
+@ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
 
   constructor(
     private authService:AuthService,
@@ -68,13 +69,13 @@ export class DashboardPageComponent implements OnInit {
     this.clientNodes = this.dashboardPageService.getClientNodes();
     this.userName = localStorage.getItem("userName")??"";
    // this.loadComponent();
-    // this.refreshTabs(
-    //   {
-    //     header:this.translateService.instant("app_menu.mainpage"),
-    //     component:MainpageComponent,
-    //     selected:true
-    //   }
-    // );
+    this.refreshTabs(
+      {
+        header:this.translateService.instant("app_menu.mainpage"),
+        component:MainpageComponent,
+        selected:true
+      }
+    );
 
     timer(500).subscribe(()=> {
       this.loadDashboard = true;
@@ -122,6 +123,7 @@ export class DashboardPageComponent implements OnInit {
     var extTab = this.tabs.findIndex(x=>x.component === tab.component);
     if(extTab === -1){
       this.tabs.push(tab);
+
       // tab.header = "Strona testowa "+Math.random().toString();
       // tab.selected = true;
       // tab.tooltip = "Jakis tekst w tooltipie";
@@ -136,15 +138,24 @@ export class DashboardPageComponent implements OnInit {
       // this.tabs[last-1].selected = true;
       // console.log("aktualne taby 2",this.tabs);
 
-      const viewContainerRef = this.dynamicTab.viewContainerRef;
-      viewContainerRef.clear();
-      viewContainerRef.createComponent(tab.component);
-
-
+      // if(this.dynamicTab){
+        const viewContainerRef = this.dynamicTab.viewContainerRef;
+        viewContainerRef.clear();
+        const componentRef = viewContainerRef.createComponent(tab.component);
+        console.log("instance",componentRef.instance);
+      // }
     } else {
       this.activeTab = extTab;
     }
     this.display = false;
+  }
+
+  changeTab(ev:any):void{
+    console.log("index",ev.index);
+    const comp = this.tabs[ev.index].component;
+    const viewContainerRef = this.dynamicTab.viewContainerRef;
+    viewContainerRef.clear();
+    viewContainerRef.createComponent(comp);
   }
 
   closeTab(ev:any):void{
