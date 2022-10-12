@@ -5,8 +5,6 @@ import { Directive, ViewContainerRef } from "@angular/core";
 })
 export class DynamicTabDirective {
 
-  test:string;
-
   constructor(
     public viewContainerRef:ViewContainerRef
   ) { }

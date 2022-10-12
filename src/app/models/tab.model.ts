@@ -3,4 +3,5 @@ export interface Tab {
   component:any;
   selected:boolean;
   tooltip?:string;
+  icon?:string;
 }

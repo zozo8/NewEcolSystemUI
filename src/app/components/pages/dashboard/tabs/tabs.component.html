@@ -1,7 +1,10 @@
-<app-dynamic-tab [hidden]="true"></app-dynamic-tab>
-<p-tabView >
-  <p-tabPanel *ngFor="let item of tabs; let i = index;" header="test">
-    <!-- <ng-template dynamicTab></ng-template> -->
-    <ng-container *view="ite.view"></ng-container>
+<p-tabView  [(activeIndex)]="activeTab" (onClose)="closeTab($event)" (onChange)="changeTab($event)">
+  <p-tabPanel
+    [closable]="true"
+    [tooltip]="tab.tooltip"
+     [leftIcon]="tab.icon??''"
+     [header]="tab.header"
+    *ngFor="let tab of tabs; let i = index, let l = last" >
   </p-tabPanel>
-</p-tabView>
+  <ng-template dynamicTab></ng-template>
+ </p-tabView>

@@ -43,10 +43,10 @@ import { WarningsComponent } from "./components/pages/dashboard/mainpage/warning
 import { FormDictionaryValueDialogComponent } from "./universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
 import { FormTableSetColumnComponent } from "./universalComponents/dialogs/form-table-set-column/form-table-set-column.component";
 import { DndModule } from "ngx-drag-drop";
-import { LeftMenuComponent } from './components/pages/dashboard-page/left-menu/left-menu.component';
-import { DynamicTabDirective } from './directivies/dynamic-tab.directive';
-import { TabsComponent } from './components/pages/dashboard/tabs/tabs.component';
-import { DynamicTabComponent } from './components/pages/dashboard/tabs/dynamic-tab/dynamic-tab.component';
+import { LeftMenuComponent } from "./components/pages/dashboard-page/left-menu/left-menu.component";
+import { DynamicTabDirective } from "./directivies/dynamic-tab.directive";
+import { TabsComponent } from "./components/pages/dashboard/tabs/tabs.component";
+
 
 
 
@@ -68,8 +68,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FormTableSetColumnComponent,
     LeftMenuComponent,
     DynamicTabDirective,
-    TabsComponent,
-    DynamicTabComponent
+    TabsComponent
   ],
   imports: [
     BrowserModule,

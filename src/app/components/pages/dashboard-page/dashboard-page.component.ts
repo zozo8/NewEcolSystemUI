@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { timer } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
@@ -13,10 +13,8 @@ import {
 } from "@angular/animations";
 import { DashboardPageService } from "./dashboard-page.service";
 import { environment } from "src/environments/environment";
-import { Tab } from "src/app/models/tab.model";
+import { TabsComponent } from "../dashboard/tabs/tabs.component";
 import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
-import { UsersComponent } from "src/app/modules/admin/pages/users/users.component";
-import { MainpageComponent } from "../dashboard/mainpage/mainpage.component";
 
 @Component({
   selector: "app-dashboard-page",
@@ -47,10 +45,10 @@ export class DashboardPageComponent implements OnInit  {
   selectedClientNode:any[] = [];
   userName:string;
   appVersion:string;
-  tabs:Tab[] = [];
-  activeTab = 0;
 
-@ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
+  @ViewChild("tabsComponent") tabsComponent:TabsComponent;
+
+  @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
 
   constructor(
     private authService:AuthService,
@@ -68,14 +66,6 @@ export class DashboardPageComponent implements OnInit  {
     this.searchMenu = this.menuService.getSearchMenu();
     this.clientNodes = this.dashboardPageService.getClientNodes();
     this.userName = localStorage.getItem("userName")??"";
-   // this.loadComponent();
-    this.refreshTabs(
-      {
-        header:this.translateService.instant("app_menu.mainpage"),
-        component:MainpageComponent,
-        selected:true
-      }
-    );
 
     timer(500).subscribe(()=> {
       this.loadDashboard = true;
@@ -107,60 +97,8 @@ export class DashboardPageComponent implements OnInit  {
     });
   }
 
-
-  selectNodeClient(ev:Event) {
+  selectNodeClient(ev:Event):void {
     console.log(ev, this.selectedClientNode);
-  }
-
-  // private loadComponent(){
-  //     const viewContainerRef = this.dynamicTab.viewContainerRef;
-  //     viewContainerRef.clear();
-  //     const componentRef = viewContainerRef.createComponent(UsersComponent);
-  //     //componentRef.instance.text = "tekst wygenerrowany dynaicznie z dyrektywy";
-  // }
-
-  refreshTabs(tab:Tab):void {
-    var extTab = this.tabs.findIndex(x=>x.component === tab.component);
-    if(extTab === -1){
-      this.tabs.push(tab);
-
-      // tab.header = "Strona testowa "+Math.random().toString();
-      // tab.selected = true;
-      // tab.tooltip = "Jakis tekst w tooltipie";
-
-      //this.activeTab = this.tabs.length-1;
-
-
-      // console.log("aktualne taby",this.tabs);
-      // //console.log("taby po dodaniu",this.tabs);
-      // var last = this.tabs.length;
-      // //console.log(last);
-      // this.tabs[last-1].selected = true;
-      // console.log("aktualne taby 2",this.tabs);
-
-      // if(this.dynamicTab){
-        const viewContainerRef = this.dynamicTab.viewContainerRef;
-        viewContainerRef.clear();
-        const componentRef = viewContainerRef.createComponent(tab.component);
-        console.log("instance",componentRef.instance);
-      // }
-    } else {
-      this.activeTab = extTab;
-    }
-    this.display = false;
-  }
-
-  changeTab(ev:any):void{
-    console.log("index",ev.index);
-    const comp = this.tabs[ev.index].component;
-    const viewContainerRef = this.dynamicTab.viewContainerRef;
-    viewContainerRef.clear();
-    viewContainerRef.createComponent(comp);
-  }
-
-  closeTab(ev:any):void{
-    console.log("iundex", ev.index);
-    this.tabs.splice(ev.index,1);
   }
 
   changeStateDisplaySidebar():void {

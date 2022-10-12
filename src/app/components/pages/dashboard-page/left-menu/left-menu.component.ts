@@ -123,7 +123,6 @@ export class LeftMenuComponent implements OnInit {
       tooltip:item.node.data
     };
 
-   // this.changeDisplay.emit();
     this.refreshTabs.emit(tab);
   }
 

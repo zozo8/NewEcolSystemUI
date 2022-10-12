@@ -1,30 +1,69 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, QueryList, ViewChild, ViewChildren, ViewContainerRef, ViewRef } from '@angular/core';
-import { InitEditableRow } from 'primeng/table';
-import { Tab } from 'src/app/models/tab.model';
-import { UsersComponent } from 'src/app/modules/admin/pages/users/users.component';
-import { MainpageComponent } from '../mainpage/mainpage.component';
-import { DynamicTabComponent } from './dynamic-tab/dynamic-tab.component';
+import {  AfterContentInit, AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
+import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
+import { Tab } from "src/app/models/tab.model";
+import { MainpageComponent } from "../mainpage/mainpage.component";
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css']
+  selector: "app-tabs",
+  templateUrl: "./tabs.component.html",
+  styleUrls: ["./tabs.component.css"]
 })
-export class TabsComponent {
-  activeIndex:number;
-  tabs:Array<{view:ViewRef, component:any}> = [];
+export class TabsComponent implements OnInit {
 
-  @ViewChild(DynamicTabComponent) dynamicComponent:DynamicTabComponent;
+  tabs:Tab[] = [];
+  activeTab = 0;
+
+  @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
+
+  @Output()
+  changeDisplay = new EventEmitter();
 
   constructor(
+    private translateService:TranslateService
 
   ) { }
 
-  addComponent(compnent:any){
-    // let component = this.dynamicComponent.addComponent(component);
+
+  ngOnInit(): void {
+     this.refreshTabs(
+      {
+        header:this.translateService.instant("app_menu.mainpage"),
+        component:MainpageComponent,
+        selected:true
+      }
+    );
+  }
+
+  public refreshTabs(tab:Tab):void {
+    if (tab.component) {
+      var extTab = this.tabs.findIndex(x=>x.component === tab.component);
+      if(extTab === -1){
+        this.tabs.push(tab);
+
+        const viewContainerRef = this.dynamicTab.viewContainerRef;
+        viewContainerRef.clear();
+        viewContainerRef.createComponent(tab.component);
+
+      } else {
+        this.activeTab = extTab;
+      }
+    }
+
+    this.changeDisplay.emit();
   }
 
 
+  changeTab(ev:any):void{
+    const comp = this.tabs[ev.index].component;
+    const viewContainerRef = this.dynamicTab.viewContainerRef;
+    viewContainerRef.clear();
+    viewContainerRef.createComponent(comp);
+  }
+
+  closeTab(ev:any):void{
+    this.tabs.splice(ev.index,1);
+  }
 
 }
 
