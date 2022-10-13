@@ -14,8 +14,8 @@ import { BaseService } from "src/app/services/base.service";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { User } from "src/app/models/dto/modules/admin/user";
 import { PathService } from "src/app/services/path.service";
-import { IMasterPage } from "src/app/Interfaces/IMasterPage";
 import { GridEnum } from "src/app/utils/gridEnum";
+import { IMasterPage } from "src/app/Interfaces/IMasterPage";
 
 @Component({
   selector: "app-users",
