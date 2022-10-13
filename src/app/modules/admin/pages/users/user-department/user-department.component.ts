@@ -48,9 +48,9 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
   departmentId:number;
   userId:number;
   ref: DynamicDialogRef;
-  dictModel = Department.name;
+  dictModel = "Department";
   dictGridId= GridEnum.Departments;
-  model= UserDepartment.name;
+  model= "UserDepartment";
   gridId=GridEnum.UserDepartments;
 
   constructor(

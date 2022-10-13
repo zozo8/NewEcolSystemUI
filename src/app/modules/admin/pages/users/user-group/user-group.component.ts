@@ -47,8 +47,8 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   selectedId: number;
   ref: DynamicDialogRef;
   dictGridId= GridEnum.UserGroups;
-  dictModel = UserGroup.name;
-  model= UserUserGroup.name;
+  dictModel = "UserGroup";
+  model= "UserUserGroup";
   gridId=GridEnum.UserUserGroups;
 
   constructor(

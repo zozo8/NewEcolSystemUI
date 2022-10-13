@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   putPath: string;
   gridId:number = GridEnum.Users;
 
-  model= User.name;
+  model= "User";
   buttons:MenuItem[];
 
 
@@ -66,6 +66,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   }
 
   getColumns():void {
+    console.log("get columns",this.pathService.columnList(this.gridId));
      this.baseService.getColumns(this.pathService.columnList(this.gridId)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);

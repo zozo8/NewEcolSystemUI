@@ -6,10 +6,6 @@ import { Injectable } from "@angular/core";
 export class PathService {
   prefix="/api/";
 
-  constructor() {
-
-   }
-
   delete(model:string, id:number):string {
     return this.prefix+model+"s?id="+id;
   }

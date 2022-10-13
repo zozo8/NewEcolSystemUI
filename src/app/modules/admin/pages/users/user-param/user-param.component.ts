@@ -40,8 +40,8 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
 
   buttons: MenuItem[];
   obj: TableMenuStructure;
-  model = UserParam.name;
-  dictModel = ParamDict.name;
+  model = "UserParam";
+  dictModel = "ParamDict";
   dictGridId= GridEnum.Params;
   columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
