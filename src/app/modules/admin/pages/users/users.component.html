@@ -1,5 +1,4 @@
-<div style="height: 90%; background-color: white;">
- <!-- <p-breadcrumb [model]="breadcrumbList"></p-breadcrumb> -->
+<div>
   <p-splitter [panelSizes]="[50,50]">
     <ng-template pTemplate>
       <div style="width: 100%;">
@@ -14,13 +13,13 @@
             [columns]="columns"
             [tableDisabled]="obj.editState"
             (newRequestParam)="getLazyLoadEvent($event)"
-            (selectedId)="getSelected($event)">
+            (selectedObj)="getSelected($event)">
           </app-table>
           </div>
         </div>
     </ng-template>
     <ng-template pTemplate >
-      <p-tabView style="width: 100%">
+      <p-tabView [ngStyle]="{'width':'100%'}" >
         <p-tabPanel  [header]="'common.selected_entity' | translate">
           <app-user-form
           [icon]="'pi-user'"

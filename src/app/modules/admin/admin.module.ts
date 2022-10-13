@@ -14,7 +14,6 @@ import { MenubarModule } from "primeng/menubar";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { MessagesModule } from "primeng/messages";
 import { TabViewModule } from "primeng/tabview";
-import { BreadcrumbModule } from "primeng/breadcrumb";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 
 import { AdminRoutingModule } from "./admin-routing.module";
@@ -29,8 +28,10 @@ import { FormComponent } from "src/app/universalComponents/form/form.component";
 import { UserParamComponent } from "./pages/users/user-param/user-param.component";
 import { TableButtonComponent } from "src/app/universalComponents/table-button/table-button.component";
 import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
-import { UserGroupComponent } from './pages/users/user-group/user-group.component';
-import { UserDepartmentComponent } from './pages/users/user-department/user-department.component';
+import { UserGroupComponent } from "./pages/users/user-group/user-group.component";
+import { UserDepartmentComponent } from "./pages/users/user-department/user-department.component";
+import { DepartmentsComponent } from "./dictionaries/departments/departments.component";
+import { TaskTypesComponent } from './dictionaries/task-types/task-types.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { UserDepartmentComponent } from './pages/users/user-department/user-depa
     UserParamComponent,
     TableButtonComponent,
     UserGroupComponent,
-    UserDepartmentComponent
+    UserDepartmentComponent,
+    DepartmentsComponent,
+    TaskTypesComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +66,6 @@ import { UserDepartmentComponent } from './pages/users/user-department/user-depa
     ConfirmDialogModule,
     MessagesModule,
     TabViewModule,
-    BreadcrumbModule,
     DynamicDialogModule
   ],
   entryComponents:[

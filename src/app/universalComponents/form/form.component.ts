@@ -30,9 +30,6 @@ export class FormComponent {
   @Input()
   postPath:string;
 
-  @Input()
-  putPath:string;
-
   @Output()
   refreshTable = new EventEmitter();
 
@@ -42,8 +39,7 @@ export class FormComponent {
   }
 
   save():void {
-    let path = this.obj.objectEditDto.id > 0 ?this.putPath:this.postPath;
-    this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,path).subscribe({
+    this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.postPath).subscribe({
       next:(res:boolean)=> {
         if(res) {
           this.refreshTable.emit();

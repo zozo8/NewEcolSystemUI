@@ -10,7 +10,6 @@ import { TableService } from "src/app/universalComponents/table/table.service";
 import { TranslateService } from "@ngx-translate/core";
 import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
-import { DashboardMenuService } from "src/app/components/pages/dashboard-page/dashboard-menu.service";
 import { BaseService } from "src/app/services/base.service";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { User } from "src/app/models/dto/modules/admin/user";
@@ -26,8 +25,6 @@ import { GridEnum } from "src/app/utils/gridEnum";
 
 
 export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent, IMasterPage {
-
-  breadcrumbList:MenuItem[];
   obj:TableMenuStructure = new TableMenuStructure();
   lazyLoadObj:LazyLoadEvent;
   responseObj:Observable<ResponseBodyGetList>;
@@ -42,26 +39,23 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   buttons:MenuItem[];
 
 
-  availableColumns:RequestGridDataColumnValue[];
-  selectedColumns:RequestGridDataColumnValue[];
-  draggedColumn?:RequestGridDataColumnValue;
+  //availableColumns:RequestGridDataColumnValue[];
+  //selectedColumns:RequestGridDataColumnValue[];
+  //draggedColumn?:RequestGridDataColumnValue;
 
   constructor(
    private tableService:TableService,
    private translateService:TranslateService,
    private tableButtonService:TableButtonService,
-   private dashboardMenuService:DashboardMenuService,
    private baseService:BaseService,
-   private pathService:PathService
+   private pathService:PathService,
   ) {
     this.postPath = pathService.post(this.model);
-    this.putPath = pathService.put(this.model);
   }
 
   ngOnInit(): void {
     this.getColumns();
     this.getButtons();
-    this.breadcrumbList = this.baseService.getBreadcrumb("users");
 
     // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
@@ -92,16 +86,14 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     this.prepareRequest(this.lazyLoadObj);
   }
 
-  getSelected(id:number):void {
-    if(id != null) {
-      var path = this.pathService.get(this.model,id);
-      this.selectedId = id;
+  getSelected(obj:any):void {
+      var path = this.pathService.get(this.model,obj.id);
+      this.selectedId = obj.id;
 
       this.tableService.getObjDto(path,this.obj);
       // this.tableService.getObjDto(path).subscribe({
       //   next:(res:TableMenuStructure)=>this.obj = res
       // });
-    }
   }
 
   getSelectedColumns(cols:RequestGridDataColumnValue[]):void{

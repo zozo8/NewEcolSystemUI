@@ -46,9 +46,10 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   lazyLoadObj: LazyLoadEvent;
   selectedId: number;
   ref: DynamicDialogRef;
-  dictModel= UserGroup.name;
+  dictGridId= GridEnum.UserGroups;
+  dictModel = UserGroup.name;
   model= UserUserGroup.name;
-  gridId=GridEnum.UserGroups;
+  gridId=GridEnum.UserUserGroups;
 
   constructor(
     private translateService:TranslateService,
@@ -92,6 +93,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
     if(this.columns && this.masterId) {
       let filter = this.baseService.getFilter4request("userId",this.masterId.toString(),"Equal");
       let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
+      console.log("requestobj", requestObj);
       this.reqObjBS.next(requestObj);
     }
   }
@@ -99,11 +101,11 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
     this.lazyLoadObj = ev;
     this.prepareRequest(this.lazyLoadObj);
   }
-  getSelected(ev: any): void {
-    if(ev) {
-      this.selectedId = ev.data.id;
-    }
+
+  getSelected(obj: any): void {
+    this.selectedId = obj.id;
   }
+
 
   // -----
 
@@ -139,7 +141,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
 
     this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
       data:[
-          [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "groupName"],
+          [this.pathService.getList(this.dictModel), this.pathService.columnList(this.dictGridId), "id", "groupName"],
           this.pathService.post(this.model),
           obj,
           ["userGroupId"],
@@ -158,6 +160,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
 
   delete(): void {
+    console.log("selectedi",this.selectedId);
     this.tableButtonService.delete(this.pathService.delete(this.model,this.selectedId)).subscribe({
       next:(res:boolean)=> {
         if(res) { this.refreshTable(); }

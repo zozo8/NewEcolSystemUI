@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
+import { Department } from "src/app/models/dto/modules/admin/dictionary/department";
 import { UserDepartment } from "src/app/models/dto/modules/admin/userDepartment";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
@@ -44,8 +45,11 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
   responseObj: Observable<ResponseBodyGetList>;
   lazyLoadObj: LazyLoadEvent;
   selectedId: number;
+  departmentId:number;
+  userId:number;
   ref: DynamicDialogRef;
-  dictModel="Department";
+  dictModel = Department.name;
+  dictGridId= GridEnum.Departments;
   model= UserDepartment.name;
   gridId=GridEnum.UserDepartments;
 
@@ -98,13 +102,13 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
     this.lazyLoadObj = ev;
     this.prepareRequest(this.lazyLoadObj);
   }
-  getSelected(ev: any): void {
-    if(ev) {
-      this.selectedId = ev.data.id;
-    }
+
+  getSelected(obj: any): void {
+    this.selectedId = obj.id;
+    this.departmentId = obj.departmentId;
+    this.userId = obj.userId;
   }
 
-  // -----
 
   getButtons(): MenuItem[] {
      return [
@@ -138,7 +142,7 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
 
     this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
       data:[
-          [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "departmentName"],
+          [this.pathService.getList(this.dictModel), this.pathService.columnList(this.dictGridId), "id", "departmentName"],
           this.pathService.post(this.model),
           obj,
           ["departmentId"],
@@ -157,7 +161,7 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
   }
 
   delete(): void {
-    this.tableButtonService.delete(this.pathService.delete(this.model,this.selectedId)).subscribe({
+    this.tableButtonService.delete(this.pathService.deleteParams(this.model,"userId="+this.userId+"&departmentId="+this.departmentId)).subscribe({
       next:(res:boolean)=> {
         if(res) { this.refreshTable(); }
       }

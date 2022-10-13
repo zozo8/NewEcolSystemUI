@@ -70,7 +70,7 @@ tableDisabled:boolean;
 newRequestParam = new EventEmitter<LazyLoadEvent>();
 
 @Output()
-selectedId = new EventEmitter<number>();
+selectedObj = new EventEmitter<any>();
 
   constructor(
   ) { }
@@ -81,8 +81,8 @@ selectedId = new EventEmitter<number>();
     }
   }
 
-  selectObj(id:number):void {
-     this.selectedId.emit(id);
+  selectObj(obj:any):void {
+     this.selectedObj.emit(obj);
   }
 
 }

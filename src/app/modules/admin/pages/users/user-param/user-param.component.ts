@@ -42,6 +42,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   obj: TableMenuStructure;
   model = UserParam.name;
   dictModel = ParamDict.name;
+  dictGridId= GridEnum.Params;
   columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
   responseObj: Observable<ResponseBodyGetList>;
@@ -102,10 +103,8 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
     this.prepareRequest(this.lazyLoadObj);
   }
 
-  getSelected(ev: any): void {
-    if(ev) {
-      this.selectedId = ev.data.id;
-    }
+  getSelected(obj: any): void {
+    this.selectedId = obj.id;
   }
 
   refreshTable():void {
@@ -148,7 +147,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
         let filter = this.baseService.getFilter4request("isUser","true","Equal");
         this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
           data:[
-              [this.pathService.dictionary(this.dictModel), this.pathService.dictionaryColumnList(this.dictModel), "id", "paramName"],
+              [this.pathService.getList(this.dictModel), this.pathService.columnList(this.dictGridId), "id", "paramName"],
               this.pathService.post(this.model),
               obj,
               ["paramDictId","paramValue"],

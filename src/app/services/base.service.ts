@@ -72,6 +72,7 @@ export class BaseService {
    private prepareFilters(columns:RequestGridDataColumnValue[],ev?:LazyLoadEvent, filters?:Filter[] ): RequestGridDataColumnValue[] {
     var res:RequestGridDataColumnValue[]=[];
     columns.forEach(val=> {
+
       let filterObj = filters?.find(x=>x.field === val.columnName);
       let filterCols:Filter[] = [];
       if(filterObj) {
@@ -87,6 +88,12 @@ export class BaseService {
       });
      //  console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
     });
+
+    // filters?.forEach(filter=> {
+    //   if(!columns.find(x=>x.columnName === filter.field)){
+
+    //   }
+    // });
 
     return res;
   }

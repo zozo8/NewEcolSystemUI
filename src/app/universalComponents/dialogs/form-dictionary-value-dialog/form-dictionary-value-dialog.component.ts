@@ -28,7 +28,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
     private tableButtonService:TableButtonService,
     private baseService:BaseService
   ) { }
- // todo dq
+
   ngOnInit(): void {
     this.config.closeOnEscape = true;
     this.showValue = this.config.data[5];
@@ -51,6 +51,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
 
   submit():void {
     let obj = this.prepareObj(this.selectedOption,this.config.data[2]);
+    console.log("save",this.config.data[2], obj.id, this.config.data[1]);
     this.tableButtonService.save(this.config.data[2],obj.id,this.config.data[1]).subscribe({
       next:(res:boolean)=> {
         if(res) {

@@ -69,11 +69,11 @@ export class TableButtonService {
     return returnSubject.asObservable();
  }
 
- save(objectDto:any, id:number, path?:string):Observable<boolean> {
+ save(objectDto:any, id?:number, path?:string):Observable<boolean> {
   var returnSubject = new BehaviorSubject<boolean>(false);
 
   if(objectDto !== undefined) {
-    if(id === 0) {
+    if(id === undefined || id === 0) {
       id = 0;
       this.http.post(environment.endpointApiPath+path,objectDto)
       .subscribe({
