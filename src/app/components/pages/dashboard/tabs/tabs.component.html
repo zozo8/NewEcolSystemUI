@@ -6,9 +6,11 @@
      [leftIcon]="tab.icon??''"
      [header]="tab.header"
     *ngFor="let tab of tabs; let i = index, let l = last" >
+
   </p-tabPanel>
   <p-breadcrumb [model]="parents"></p-breadcrumb>
-  <ng-template dynamicTab>
-  </ng-template>
- </p-tabView>
+  <ng-template dynamicTab></ng-template>
+</p-tabView>
 
+ <!-- <ng-template #dynamicTab></ng-template>
+ <p-button (click)="newTab($event)">Nowa zakładka</p-button> -->

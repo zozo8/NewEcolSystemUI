@@ -94,8 +94,8 @@ export class TabsComponent implements OnInit {
     viewContainerRef.clear();
     viewContainerRef.createComponent(component);
   }
-  set(){
-    this.activeTab = 0;
+
+  newTab():void{
 
   }
 
