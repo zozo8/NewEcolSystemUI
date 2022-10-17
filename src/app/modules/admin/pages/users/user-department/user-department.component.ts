@@ -93,8 +93,8 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
   }
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
     if(this.columns && this.masterId) {
-      let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","Equal");
-      let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
+      let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","equals");
+      let requestObj = this.baseService.getRequestObj(this.columns, ev, [filter]);
       this.reqObjBS.next(requestObj);
     }
   }

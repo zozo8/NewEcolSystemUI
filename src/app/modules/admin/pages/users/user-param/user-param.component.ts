@@ -93,8 +93,8 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
   prepareRequest(ev?: LazyLoadEvent): void {
 
     if(this.columns && this.masterId) {
-      let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","Equal");
-      let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
+      let filter = this.baseService.getFilter4request("userId",this.masterId?.toString()??"","equals");
+      let requestObj = this.baseService.getRequestObj(this.columns, ev, [filter]);
       this.reqObjBS.next(requestObj);
     }
   }
@@ -144,7 +144,7 @@ export class UserParamComponent implements ITableButtonsComponent, ITableCompone
           paramValue:""
         };
 
-        let filter = this.baseService.getFilter4request("isUser","true","Equal");
+        let filter = this.baseService.getFilter4request("isUser","true","equals");
         this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
           data:[
               [this.pathService.getList(this.dictModel), this.pathService.columnList(this.dictGridId), "id", "paramName"],

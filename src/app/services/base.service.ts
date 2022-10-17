@@ -1,16 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { LazyLoadEvent, MenuItem } from "primeng/api";
-import { BehaviorSubject, filter, Observable, Subject, tap} from "rxjs";
+import { FilterMetadata, LazyLoadEvent, MenuItem } from "primeng/api";
+import { BehaviorSubject, Observable, Subject} from "rxjs";
 import { environment } from "src/environments/environment";
-import { DashboardMenuService } from "../components/pages/dashboard-page/dashboard-menu.service";
 import { Filter } from "../models/requests/filter.model";
 import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "../models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyById } from "../models/responses/responseBodyById.model";
 import { ResponseBodyGetList } from "../models/responses/responseBodyGetList.model";
-import { TableService } from "../universalComponents/table/table.service";
 
 @Injectable({
   providedIn: "root"
@@ -21,63 +19,66 @@ export class BaseService {
   listMenuItem:MenuItem[]=[];
 
   constructor(
-    private http:HttpClient,
-    private dashboardMenuService:DashboardMenuService
+    private http:HttpClient
   ) { }
 
-  getBreadcrumb(page: string): MenuItem[] {
-    //var ret = this.dashboardMenuService.getMainMenu();
-   // var ret2 = ret.filter(x=>x.routerLink?.includes("users"));
-   // console.log("breadcrumb",ret,ret2);
-
-    //return ret;
-    return [];
-  }
-
   // get request from api for default params or dynamic params from universal table component (ev)
-  getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, pageSize?:number, filters?:Filter[]):RequestBodyGetList {
+  getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, filters?:Filter[]):RequestBodyGetList {
+
     if(ev === undefined) {
-      return this.getStartFilterObj(columns, pageSize, filters);
+      ev = {
+        first:1,
+        rows:10,
+        sortField:"id",
+        sortOrder:-1
+      };
     } else {
+       let first = ev.first??0;
+       let rows = ev.rows??10;
+       ev.first = (first/rows)+1;
+    }
+
       let obj:RequestBodyGetList = {
-        pageNumber:(ev.first??0)/10+1,
+        pageNumber:ev.first,
         pageSize:ev?.rows,
         order:{
           columnName:ev?.sortField ?? "id",
           isAscending:(ev?.sortOrder === 1)?false:true
         },
         filter:{
-          filters:this.prepareFilters(columns,undefined,filters)
+          filters:this.prepareFilters(columns,ev,filters)
         }
       };
       return obj;
-    }
    }
 
-   private getStartFilterObj(columns:RequestGridDataColumnValue[], pageSize?:number, filter?:Filter[]): RequestBodyGetList {
-    let obj:RequestBodyGetList = {
-      pageNumber:1,
-      pageSize:pageSize??10,
-      order:{
-        columnName:"id",
-        isAscending:true
-      },
-      filter:{
-        filters:this.prepareFilters(columns,undefined, filter)
-      }
-    };
-    return obj;
-  }
 
    private prepareFilters(columns:RequestGridDataColumnValue[],ev?:LazyLoadEvent, filters?:Filter[] ): RequestGridDataColumnValue[] {
     var res:RequestGridDataColumnValue[]=[];
-    columns.forEach(val=> {
 
+    columns.forEach(val=> {
+      // dla słownikaów
       let filterObj = filters?.find(x=>x.field === val.columnName);
       let filterCols:Filter[] = [];
       if(filterObj) {
         filterCols.push(filterObj);
       }
+
+      // z tabelki
+      if(ev?.filters !== undefined ){
+
+            let metaData:FilterMetadata = ev?.filters![val.columnName];
+            let filtersString = JSON.stringify(metaData);
+            let filters:FilterMetadata[] = JSON.parse(filtersString);
+            filters.forEach(el => {
+              if(el.value !== null){
+                filterCols.push({
+                  comparision:el.matchMode,
+                  value:el.value
+                });
+              }
+            });
+        }
 
       res.push({
         filters:filterCols,
@@ -86,14 +87,7 @@ export class BaseService {
         displayName:val.columnName,
         isVisible:val.isVisible
       });
-     //  console.log("filters:",ev.filters![val.columnName]); // dokonczyc, trzeba jakos dobrac sie do filtrów i je przeslac dalej
     });
-
-    // filters?.forEach(filter=> {
-    //   if(!columns.find(x=>x.columnName === filter.field)){
-
-    //   }
-    // });
 
     return res;
   }
@@ -101,13 +95,13 @@ export class BaseService {
   getSepcificDataType4Api(val:string):string {
     switch (val) {
       case "boolean":
-        return "boolean";
+        return "Boolean";
       case "numeric":
         return "Int32";
       case "text":
-        return "string";
+        return "String";
       case "date":
-        return "datetime";
+        return "DateTime";
       default:
         return val;
     }
@@ -140,7 +134,7 @@ export class BaseService {
 
   // get obj by id
   getObjById(path:string):Observable<ResponseBodyById> {
-    return this.http.get<ResponseBodyById>(environment.endpointApiPath+path).pipe(tap(console.log));
+    return this.http.get<ResponseBodyById>(environment.endpointApiPath+path);
   }
 
 
@@ -155,7 +149,7 @@ export class BaseService {
       columns = res.value;
     },
     complete:()=> {
-       let requestObj = this.getRequestObj(columns,undefined, 10000,filters);
+       let requestObj = this.getRequestObj(columns,undefined,filters);
        requestBS.next(requestObj);
     }
    });

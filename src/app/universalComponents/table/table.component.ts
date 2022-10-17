@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, Output} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { Observable } from "rxjs";
-import { User } from "src/app/models/dto/modules/admin/user";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 
@@ -10,7 +9,7 @@ import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetLis
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.css"]
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   dataLoading: boolean;
   cols:RequestGridDataColumnValue[] =[];
   dataSource:ResponseBodyGetList;
@@ -21,6 +20,7 @@ export class TableComponent {
   totalPages:number;
   pageSize:number = 0;
   totalRecords:number = 0;
+  ev:LazyLoadEvent;
 
 @Input()
 set dataTable(v : Observable<ResponseBodyGetList>) {
@@ -75,8 +75,18 @@ selectedObj = new EventEmitter<any>();
   constructor(
   ) { }
 
+  ngOnInit(): void {
+
+  }
+
   loadData(event:LazyLoadEvent):void {
+
     if(event.first !== 0 || event.rows !== 0) {
+      if(event.sortField === undefined){
+        event.sortField = "id";
+        event.sortOrder = -1;
+      }
+
       this.newRequestParam.emit(event);
     }
   }

@@ -91,9 +91,8 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
     if(this.columns && this.masterId) {
-      let filter = this.baseService.getFilter4request("userId",this.masterId.toString(),"Equal");
-      let requestObj = this.baseService.getRequestObj(this.columns, ev,undefined, [filter]);
-      console.log("requestobj", requestObj);
+      let filter = this.baseService.getFilter4request("userId",this.masterId.toString(),"equals");
+      let requestObj = this.baseService.getRequestObj(this.columns, ev, [filter]);
       this.reqObjBS.next(requestObj);
     }
   }
@@ -160,7 +159,6 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
 
   delete(): void {
-    console.log("selectedi",this.selectedId);
     this.tableButtonService.delete(this.pathService.delete(this.model,this.selectedId)).subscribe({
       next:(res:boolean)=> {
         if(res) { this.refreshTable(); }

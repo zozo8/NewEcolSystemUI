@@ -51,7 +51,6 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
 
   submit():void {
     let obj = this.prepareObj(this.selectedOption,this.config.data[2]);
-    console.log("save",this.config.data[2], obj.id, this.config.data[1]);
     this.tableButtonService.save(this.config.data[2],obj.id,this.config.data[1]).subscribe({
       next:(res:boolean)=> {
         if(res) {

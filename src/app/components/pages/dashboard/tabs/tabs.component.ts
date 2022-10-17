@@ -41,7 +41,6 @@ export class TabsComponent implements OnInit {
 
   public refreshTabs(tab:Tab):void {
     if (tab.component) {
-      console.log("start", this.activeTab);
       var extTab = this.tabs.findIndex(x=>x.component === tab.component);
       if(extTab === -1){
         this.tabs.push(tab);
@@ -49,7 +48,6 @@ export class TabsComponent implements OnInit {
         this.populateTabByComponent(tab.component);
         this.setParents(tab);
         this.activeTab = this.activeTab === undefined?0:(this.activeTab+1);
-        console.log(this.activeTab);
 
       } else {
         this.activeTab = extTab;

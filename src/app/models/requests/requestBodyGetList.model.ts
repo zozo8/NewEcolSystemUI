@@ -1,3 +1,4 @@
+import { LazyLoadEvent } from "primeng/api";
 import { FilterRequest } from "./filterRequest.model";
 import { Order } from "./order.model";
 

@@ -90,7 +90,6 @@ export class TableMenuService {
           this.messageService.add(
             {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.add_record_error")}
             );
-            console.log("Error:",er,environment.endpointApiPath+addPath,objectDto );
         }
 
       });
