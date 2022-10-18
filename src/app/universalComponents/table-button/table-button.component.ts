@@ -23,7 +23,8 @@ export class TableButtonComponent implements OnInit {
  gridId:number;
 
  @Output()
- selectedColumnList = new EventEmitter<RequestGridDataColumnValue[]>();
+ //selectedColumnList = new EventEmitter<RequestGridDataColumnValue[]>();
+ selectedColumnList = new EventEmitter<void>();
 
  setting:MenuItem[];
  ref:DynamicDialogRef;
@@ -62,7 +63,7 @@ export class TableButtonComponent implements OnInit {
 
     this.ref.onClose.subscribe({
       next:(res:RequestGridDataColumnValue[])=>{
-        this.selectedColumnList.emit(res);
+        this.selectedColumnList.emit();
       }
     });
   }

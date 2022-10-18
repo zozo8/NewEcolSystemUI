@@ -12,7 +12,6 @@ import { TableButtonService } from "src/app/universalComponents/table-button/tab
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
-import { User } from "src/app/models/dto/modules/admin/user";
 import { PathService } from "src/app/services/path.service";
 import { GridEnum } from "src/app/utils/gridEnum";
 import { IMasterPage } from "src/app/Interfaces/IMasterPage";
@@ -37,11 +36,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
 
   model= "User";
   buttons:MenuItem[];
-
-
-  //availableColumns:RequestGridDataColumnValue[];
-  //selectedColumns:RequestGridDataColumnValue[];
-  //draggedColumn?:RequestGridDataColumnValue;
 
   constructor(
    private tableService:TableService,
@@ -77,6 +71,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
 
   prepareRequest(ev?:LazyLoadEvent):void {
     let requestObj = this.baseService.getRequestObj(this.columns, ev);
+    console.log("request aftre set columns", ev, this.columns);
     this.reqObjBS.next(requestObj);
   }
 
@@ -96,9 +91,10 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
       // });
   }
 
-  getSelectedColumns(cols:RequestGridDataColumnValue[]):void{
-    this.columns = cols;
-    this.prepareRequest(this.lazyLoadObj);
+  getSelectedColumns():void{
+    console.log("----- pobranie swiezego ustawienia kolumn! -----");
+    this.getColumns();
+   // this.prepareRequest(this.lazyLoadObj);
   }
 
   //emmiter from detail component
