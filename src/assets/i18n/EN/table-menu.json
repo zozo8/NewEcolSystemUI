@@ -16,7 +16,7 @@
   "setting":{
     "select_grid":"Select grid",
     "select_columns":"Select columns...",
-    "select_save_grid":"Save grid"
+    "save_grid":"Save grid"
   }
 
 }

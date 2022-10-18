@@ -25,6 +25,7 @@ export class BaseService {
   // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, filters?:Filter[]):RequestBodyGetList {
 
+    console.log("ev",ev);
     if(ev === undefined) {
       ev = {
         first:1,
@@ -35,7 +36,7 @@ export class BaseService {
     } else {
        let first = ev.first??0;
        let rows = ev.rows??10;
-       ev.first = (first/rows)+1;
+       ev.first = Math.floor(first/rows)+1;
     }
 
       let obj:RequestBodyGetList = {
@@ -57,6 +58,7 @@ export class BaseService {
     var res:RequestGridDataColumnValue[]=[];
 
     columns.forEach(val=> {
+
       // dla słownikaów
       let filterObj = filters?.find(x=>x.field === val.columnName);
       let filterCols:Filter[] = [];
@@ -66,19 +68,17 @@ export class BaseService {
 
       // z tabelki
       if(ev?.filters !== undefined ){
-
-            let metaData:FilterMetadata = ev?.filters![val.columnName];
-            let filtersString = JSON.stringify(metaData);
-            let filters:FilterMetadata[] = JSON.parse(filtersString);
-            filters.forEach(el => {
-              if(el.value !== null){
-                filterCols.push({
-                  comparision:el.matchMode,
-                  value:el.value
-                });
-              }
+        let filtersString = JSON.stringify(ev?.filters![val.columnName]);
+        let filters:FilterMetadata[] = JSON.parse(filtersString);
+        filters.forEach(el => {
+          if(el.value !== null){
+            filterCols.push({
+              comparision:(el.value === true)? "equals":el.matchMode,
+              value:(el.value === true)?"1":el.value.toString()
             });
-        }
+          }
+        });
+      }
 
       res.push({
         filters:filterCols,
@@ -92,10 +92,11 @@ export class BaseService {
     return res;
   }
 
+
   getSepcificDataType4Api(val:string):string {
     switch (val) {
       case "boolean":
-        return "Boolean";
+        return "boolean";
       case "numeric":
         return "Int32";
       case "text":
@@ -111,7 +112,7 @@ export class BaseService {
     switch (val) {
       case "Boolean":
         return "boolean";
-      case "Int":
+      case "Int32":
         return "numeric";
       case "String":
         return "text";

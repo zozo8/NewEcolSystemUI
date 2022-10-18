@@ -16,7 +16,7 @@
   "setting":{
     "select_grid":"Wybierz siatkę",
     "select_columns":"Dostosuj kolumny...",
-    "select_save_grid":"Zapisz siatkę"
+    "save_grid":"Zapisz siatkę"
   }
 
 }
