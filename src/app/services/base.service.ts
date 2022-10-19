@@ -24,8 +24,6 @@ export class BaseService {
 
   // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(columns:RequestGridDataColumnValue[], ev?:LazyLoadEvent, filters?:Filter[]):RequestBodyGetList {
-
-    console.log("ev",ev);
     if(ev === undefined) {
       ev = {
         first:1,
@@ -128,7 +126,14 @@ export class BaseService {
     return this.http.post<ResponseBodyGetList>(environment.endpointApiPath+requestPath,requestObj);
   }
 
-    // get column list for grid
+
+  // getColumnsByGridId(gridId:number):Observable<RequestGridDataColumn> {
+  //   //czy są zapisane dla usera, jak nie to startowe
+
+  //   return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
+  // }
+
+  // get column list for grid
   getColumns(path:string):Observable<RequestGridDataColumn> {
     return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
   }

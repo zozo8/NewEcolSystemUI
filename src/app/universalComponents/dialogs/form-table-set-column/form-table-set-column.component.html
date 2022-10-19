@@ -8,7 +8,6 @@
           [rows]="10"
           [showCurrentPageReport]="true"
           [lazy]="true"
-          [rowsPerPageOptions]="[10,25,50]"
           [showPageLinks]="true"
           [resizableColumns]="true"
           [scrollable]="true"
@@ -62,7 +61,7 @@
       <button pButton class="p-button-outlined" (click)="cancel()">{{"btn.cancel" | translate}}</button>
     </div>
     <div class="col-md text-end">
-      <button [disabled]="selectedColumns.length === 0" pButton (click)="save()" >{{"table-menu.setting.select_save_grid" | translate}}</button>
+      <button [disabled]="selectedColumns.length === 0" pButton (click)="save()" >{{"table-menu.setting.save_grid" | translate}}</button>
     </div>
   </div>
 
