@@ -3,7 +3,7 @@
     [closable]="true"
     [tooltip]="tab.tooltip"
     [leftIcon]="tab.icon??''"
-    [header]="i+' '+l+' '+tab.header"
+    [header]="tab.header"
     [selected]="i === activeTab"
     *ngFor="let tab of tabs; let i = index, let l = last" >
      <!-- <p-breadcrumb [model]="tab.parent"></p-breadcrumb> -->
