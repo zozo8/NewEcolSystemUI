@@ -64,6 +64,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
 
 
   ngOnInit(): void {
+    console.log("onInit ", this.masterId);
     this.getColumns();
     this.getButtons();
 
@@ -90,6 +91,7 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   });
   }
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
+    console.log("prepare request", ev, this.masterId, this.columns );
     if(this.columns && this.masterId) {
       let filter = this.baseService.getFilter4request("userId",this.masterId.toString(),"equals");
       let requestObj = this.baseService.getRequestObj(this.columns, ev, [filter]);
@@ -106,10 +108,8 @@ export class UserGroupComponent implements OnInit, ITableButtonsComponent, IDict
   }
 
 
-  // -----
-
-  getButtons(): MenuItem[] {
-     return [
+  getButtons():void {
+     this.buttons = [
       {
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",

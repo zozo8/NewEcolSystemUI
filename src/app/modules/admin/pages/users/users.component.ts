@@ -38,11 +38,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
   model= "User";
   buttons:MenuItem[];
 
-
-  //availableColumns:RequestGridDataColumnValue[];
-  //selectedColumns:RequestGridDataColumnValue[];
-  //draggedColumn?:RequestGridDataColumnValue;
-
   constructor(
    private tableService:TableService,
    private translateService:TranslateService,
@@ -91,9 +86,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
       this.selectedId = obj.id;
 
       this.tableService.getObjDto(path,this.obj);
-      // this.tableService.getObjDto(path).subscribe({
-      //   next:(res:TableMenuStructure)=>this.obj = res
-      // });
   }
 
   getSelectedColumns(cols:RequestGridDataColumnValue[]):void{
@@ -107,8 +99,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     this.obj.editState = false;
   }
 
-
-  // buttons
 
   getButtons():MenuItem[] {
     return this.buttons =

@@ -110,8 +110,8 @@ export class UserDepartmentComponent implements OnInit, ITableButtonsComponent, 
   }
 
 
-  getButtons(): MenuItem[] {
-     return [
+  getButtons(): void {
+     this.buttons =  [
       {
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",

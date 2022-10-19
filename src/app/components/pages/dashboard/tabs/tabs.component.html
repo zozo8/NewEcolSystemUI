@@ -1,16 +1,13 @@
-<p-tabView   [(activeIndex)]="activeTab" (onClose)="closeTab($event)" (onChange)="changeTab($event)">
+<p-tabView [(activeIndex)]="activeTab" (onClose)="closeTab($event)" (onChange)="changeTab($event)">
   <p-tabPanel
-
     [closable]="true"
     [tooltip]="tab.tooltip"
-     [leftIcon]="tab.icon??''"
-     [header]="tab.header"
+    [leftIcon]="tab.icon??''"
+    [header]="i+' '+l+' '+tab.header"
+    [selected]="i === activeTab"
     *ngFor="let tab of tabs; let i = index, let l = last" >
-
+     <!-- <p-breadcrumb [model]="tab.parent"></p-breadcrumb> -->
+     <ng-container *ngComponentOutlet="tab.component"></ng-container>
   </p-tabPanel>
-  <p-breadcrumb [model]="parents"></p-breadcrumb>
-  <ng-template dynamicTab></ng-template>
 </p-tabView>
 
- <!-- <ng-template #dynamicTab></ng-template>
- <p-button (click)="newTab($event)">Nowa zakładka</p-button> -->

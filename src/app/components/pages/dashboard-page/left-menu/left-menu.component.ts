@@ -43,7 +43,12 @@ export class LeftMenuComponent implements OnInit {
       component:item.node.component,
       tooltip:item.node.data,
       icon:item.node.icon,
-      parent:item.node.parent
+      parent: [{
+        label:item.node.parent,
+        icon:item.node.icon,
+        tooltip:item.node.data
+      }]
+      //parent:item.node.parent
     };
     this.changeDisplay.emit();
     this.refreshTabs.emit(tab);

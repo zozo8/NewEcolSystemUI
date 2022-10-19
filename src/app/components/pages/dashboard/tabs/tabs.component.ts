@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
+import { AfterContentInit, Component, ComponentFactoryResolver, ContentChildren, EventEmitter, OnInit, Output, QueryList, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { MenuItem} from "primeng/api";
 import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
 import { Tab } from "src/app/models/tab.model";
+import { UsersComponent } from "src/app/modules/admin/pages/users/users.component";
 import { LeftMenuService } from "../../dashboard-page/left-menu/left-menu.service";
 import { MainpageComponent } from "../mainpage/mainpage.component";
 
@@ -11,11 +12,11 @@ import { MainpageComponent } from "../mainpage/mainpage.component";
   templateUrl: "./tabs.component.html",
   styleUrls: ["./tabs.component.css"]
 })
-export class TabsComponent implements OnInit {
+export class TabsComponent {
 
   tabs:Tab[] = [];
   activeTab:number;
-  parents:MenuItem[] = [];
+  //parents:MenuItem[] = [];
 
   @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
 
@@ -25,7 +26,6 @@ export class TabsComponent implements OnInit {
   constructor(
     private translateService:TranslateService,
     private leftMenuService:LeftMenuService
-
   ) { }
 
 
@@ -40,63 +40,73 @@ export class TabsComponent implements OnInit {
   }
 
   public refreshTabs(tab:Tab):void {
+    //console.log("start tab", tab);
     if (tab.component) {
       var extTab = this.tabs.findIndex(x=>x.component === tab.component);
       if(extTab === -1){
         this.tabs.push(tab);
+       // console.log("po dodaniu do tablicy", this.tabs);
 
-        this.populateTabByComponent(tab.component);
-        this.setParents(tab);
+        //this.populateTabByComponent(tab.component);
+        //this.setParents(tab);
         this.activeTab = this.activeTab === undefined?0:(this.activeTab+1);
+        console.log("active tab - new", this.activeTab);
 
       } else {
         this.activeTab = extTab;
-        this.populateTabByComponent(tab.component);
+        console.log("active tab - reopen", this.activeTab);
+        //this.populateTabByComponent(tab.component);
       }
     }
 
     this.changeDisplay.emit();
   }
 
-  private setParents(tab:Tab):void {
-    this.parents = [];
+  // private setParents(tab:Tab):void {
+  //   this.parents = [];
 
-    if(tab.parent){
-      this.parents.push({
-        label: this.translateService.instant(tab.parent?.label??""),
-        icon:tab.parent?.icon,
-        tooltip:tab.parent?.data
-      }
-      );
-    };
+  //   if(tab.parent){
+  //     this.parents.push({
+  //       label: this.translateService.instant(tab.parent?.label??""),
+  //       icon:tab.parent?.icon,
+  //       tooltip:tab.parent?.data
+  //     }
+  //     );
+  //   };
 
-    this.parents.push(
-    {
-      label:tab.header,
-      icon:tab.icon,
-      tooltip:tab.tooltip
-    });
-  }
+  //   this.parents.push(
+  //   {
+  //     label:tab.header,
+  //     icon:tab.icon,
+  //     tooltip:tab.tooltip
+  //   });
+  // }
 
   changeTab(ev:any):void{
-    const comp = this.tabs[ev.index].component;
-    this.populateTabByComponent(comp);
+    console.log("wybrabny tab ",ev.index);
+   // const comp = this.tabs[ev.index].component;
+   // this.populateTabByComponent(comp);
   }
 
   closeTab(ev:any):void{
     this.tabs.splice(ev.index,1);
+    //wyliczienie ostatniegi i otwarcie go
   }
 
-  private populateTabByComponent(component:any):void {
-    const viewContainerRef = this.dynamicTab.viewContainerRef;
-    viewContainerRef.clear();
-    viewContainerRef.createComponent(component);
-  }
+  // private populateTabByComponent(component:any):void {
+  //   const viewContainerRef = this.dynamicTab.viewContainerRef;
+  //   viewContainerRef.clear();
+  //   viewContainerRef.createComponent(component);
+  // }
 
-  newTab():void{
+  // addTab() {
 
-  }
+  //   this.refreshTabs({
+  //     header:"users",
+  //     component:UsersComponent,
+  //     tooltip:"jakeis tam dane dot users component",
+  //     icon:"pi pi-user"
+  //   });
+  // }
 
 }
-
-

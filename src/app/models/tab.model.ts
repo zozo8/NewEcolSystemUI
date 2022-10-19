@@ -1,9 +1,10 @@
-import { TreeNode } from "primeng/api";
+import { MenuItem, TreeNode } from "primeng/api";
 
 export interface Tab {
   header:string;
   component:any;
   tooltip?:string;
   icon?:string;
-  parent?:TreeNode;
+  parent?:MenuItem[];
+  active?:boolean;
 }

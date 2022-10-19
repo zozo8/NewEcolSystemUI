@@ -13,8 +13,17 @@ import { FormTableSetColumnComponent } from "../dialogs/form-table-set-column/fo
 })
 export class TableButtonComponent implements OnInit {
 
+
+ private _buttonList : MenuItem[];
+ public get buttonList() : MenuItem[] {
+  return this._buttonList;
+ }
+
  @Input()
- buttonList:MenuItem[];
+ public set buttonList(v : MenuItem[]) {
+  this._buttonList = v;
+ }
+
 
  @Input()
  icon:string;
@@ -34,6 +43,7 @@ export class TableButtonComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("table button", this.buttonList);
     this.setting = [
       {
         label:this.translateService.instant("table-menu.setting.select_grid"),
@@ -49,8 +59,6 @@ export class TableButtonComponent implements OnInit {
       }
     ];
   }
-
-
 
   selectColumns():void{
     this.ref = this.dialogService.open(FormTableSetColumnComponent, {

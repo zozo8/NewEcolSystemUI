@@ -20,21 +20,21 @@
     </ng-template>
     <ng-template pTemplate >
       <p-tabView [ngStyle]="{'width':'100%'}" >
-        <p-tabPanel  [header]="'common.selected_entity' | translate">
-          <app-user-form
-          [icon]="'pi-user'"
-          [cols]="columns"
-          [obj]="obj"
-          [postPath]="postPath"
-          [putPath]="putPath"
-          (refreshTable)="refreshTable()">
-        </app-user-form>
+        <p-tabPanel  [header]="'common.selected_entity' | translate" #userForm>
+            <app-user-form
+            [icon]="'pi-user'"
+            [cols]="columns"
+            [obj]="obj"
+            [postPath]="postPath"
+            [putPath]="putPath"
+            (refreshTable)="refreshTable()">
+          </app-user-form>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.groups' | translate" #userGroup>
-          <app-user-group *ngIf="userGroup.selected" [masterId]="obj.objectDto?.id??''"></app-user-group>
+       <p-tabPanel [header]="'users-page.groups' | translate" #userGroup>
+          <app-user-group *ngIf="userGroup.selected"  [masterId]="selectedId"></app-user-group>
         </p-tabPanel>
         <p-tabPanel [header]="'users-page.params' | translate" #userParam  >
-          <app-user-param *ngIf="userParam.selected" [masterId]="obj.objectDto?.id??''"></app-user-param>
+          <app-user-param *ngIf="userParam.selected" [masterId]="selectedId"></app-user-param>
         </p-tabPanel>
         <p-tabPanel [header]="'users-page.departments' | translate" #userDepartment>
           <app-user-department *ngIf="userDepartment.selected" [masterId]="selectedId"></app-user-department>

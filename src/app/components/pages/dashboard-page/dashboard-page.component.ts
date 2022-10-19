@@ -15,6 +15,8 @@ import { DashboardPageService } from "./dashboard-page.service";
 import { environment } from "src/environments/environment";
 import { TabsComponent } from "../dashboard/tabs/tabs.component";
 import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
+import { UsersComponent } from "src/app/modules/admin/pages/users/users.component";
+import { MainpageComponent } from "../dashboard/mainpage/mainpage.component";
 
 @Component({
   selector: "app-dashboard-page",
@@ -46,8 +48,6 @@ export class DashboardPageComponent implements OnInit  {
   userName:string;
   appVersion:string;
 
-  @ViewChild("tabsComponent") tabsComponent:TabsComponent;
-
   @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
 
   constructor(
@@ -59,7 +59,7 @@ export class DashboardPageComponent implements OnInit  {
 
 
   ngOnInit(): void {
-    this.appVersion = environment.appVersion + localStorage.getItem("actualLanguage");
+    this.appVersion = environment.appVersion +" "+ this.translateService.currentLang;
     this.setTimer();
     this.topMenu = this.getTopMenu();
     this.userMenu = this.menuService.getUserMenu();
@@ -104,5 +104,4 @@ export class DashboardPageComponent implements OnInit  {
   changeStateDisplaySidebar():void {
     this.display = false;
   }
-
 }

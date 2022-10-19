@@ -5,7 +5,7 @@ export interface ITableButtonsComponent {
   buttons:MenuItem[];
   obj:TableMenuStructure;
   model:string;
-  getButtons():MenuItem[];
+  getButtons():void;
   post(): void;
   delete():void;
   put():void;
