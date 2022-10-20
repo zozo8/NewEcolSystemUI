@@ -1,49 +1,49 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
-import { BehaviorSubject, Observable,tap} from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
+import { IMasterPage } from "src/app/Interfaces/IMasterPage";
+import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
-import { TableService } from "src/app/universalComponents/table/table.service";
-import { TranslateService } from "@ngx-translate/core";
-import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
-import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { PathService } from "src/app/services/path.service";
+import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
+import { TableService } from "src/app/universalComponents/table/table.service";
 import { GridEnum } from "src/app/utils/gridEnum";
-import { IMasterPage } from "src/app/Interfaces/IMasterPage";
 
 @Component({
-  selector: "app-users",
-  templateUrl: "./users.component.html",
-  styleUrls: ["./users.component.css"]
+  selector: "app-product-trade-name",
+  templateUrl: "./product-trade-name.component.html",
+  styleUrls: ["./product-trade-name.component.css"]
 })
 
 
-export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent, IMasterPage {
-  obj:TableMenuStructure = new TableMenuStructure();
-  lazyLoadObj:LazyLoadEvent;
-  responseObj:Observable<ResponseBodyGetList>;
-  columns:RequestGridDataColumnValue[];
+export class ProductTradeNameComponent implements OnInit, ITableComponent, ITableButtonsComponent, IMasterPage {
+
+  buttons: MenuItem[];
+  obj: TableMenuStructure;
+  model = "ProductTradeName";
+
+  columns: RequestGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({pageNumber:10000});
+  responseObj: Observable<ResponseBodyGetList>;
+  lazyLoadObj: LazyLoadEvent;
   selectedId: number;
+  gridId = GridEnum.ProductTradeName;
   postPath: string;
   putPath: string;
-  gridId:number = GridEnum.Users;
-
-  model= "User";
-  buttons:MenuItem[];
-
 
   constructor(
-   private tableService:TableService,
-   private translateService:TranslateService,
-   private tableButtonService:TableButtonService,
-   private baseService:BaseService,
-   private pathService:PathService,
+    private baseService:BaseService,
+    private pathService:PathService,
+    private tableService:TableService,
+    private translateService:TranslateService,
+    private tableButtonService:TableButtonService
   ) {
     this.postPath = pathService.post(this.model);
   }
@@ -52,7 +52,6 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     this.getColumns();
     this.getButtons();
 
-    // ustawiam nasłuchiwanie aby przy zmianie BS odpalił getResponseObj i zasilił tabele z danymi
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
         this.responseObj = this.baseService.getResponseObj(this.pathService.getList(this.model),request);
@@ -60,8 +59,8 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     });
   }
 
-  getColumns():void {
-     this.baseService.getColumns(this.pathService.columnList(this.gridId)).subscribe({
+  getColumns(): void {
+    this.baseService.getColumns(this.pathService.columnList(this.gridId)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
       }, complete:()=> {
@@ -69,40 +68,22 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
       }
   });
   }
-
-  prepareRequest(ev?:LazyLoadEvent):void {
+  prepareRequest(ev?: LazyLoadEvent | undefined): void {
     let requestObj = this.baseService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
   }
-
-// emmiter from table components
-  getLazyLoadEvent(ev:LazyLoadEvent):void {
+  getLazyLoadEvent(ev: LazyLoadEvent): void {
     this.lazyLoadObj = ev;
     this.prepareRequest(this.lazyLoadObj);
   }
-
-  getSelected(ev:any):void {
-      var path = this.pathService.get(this.model,ev.id);
-      this.selectedId = ev.id;
-
-      this.tableService.getObjDto(path,this.obj);
+  getSelected(ev: any): void {
+    var path = this.pathService.get(this.model,ev.id);
+    this.selectedId = ev.id;
+    this.tableService.getObjDto(path,this.obj);
   }
 
-  getSelectedColumns():void{
-    console.log("----- pobranie swiezego ustawienia kolumn! -----");
-    this.getColumns();
-   // this.prepareRequest(this.lazyLoadObj);
-  }
-
-  //emmiter from detail component
-  refreshTable():void {
-    this.prepareRequest(this.lazyLoadObj);
-    this.obj.editState = false;
-  }
-
-
-  getButtons():void {
-    this.buttons =  [
+  getButtons(): void {
+    this.buttons =[
       {
         label:this.translateService.instant("btn.add"),
         icon:"pi pi-fw pi-plus",
@@ -116,18 +97,41 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
         command:()=>this.delete()
       },
       {
+        label:this.translateService.instant("btn.edit"),
+        icon:"pi pi-fw pi-pencil",
+        disabled:false,
+        command:()=>this.put()
+      },
+      {
         label:this.translateService.instant("btn.refresh"),
         icon:"pi pi-fw pi-refresh",
         disabled:false,
         command:()=>this.refreshTable()
+      },
+      {
+        label:"Odśwież z podsumowaniem",
+        icon:"pi pi-fw pi-refresh",
+        disabled:true
+      },
+      {
+        label:"Korekta grupowa",
+        icon:"pi pi-fw pi-pencil",
+        disabled:true
       }
     ];
   }
 
-
   post(): void {
     this.tableButtonService.post(this.obj).subscribe({
       next:(res:TableMenuStructure)=>this.obj = res
+    });
+  }
+
+  delete(): void {
+    this.tableButtonService.delete(this.pathService.delete(this.model, this.obj.objectDto.id)).subscribe({
+      next:(res:boolean)=> {
+        if(res) { this.refreshTable(); }
+      }
     });
   }
 
@@ -137,13 +141,9 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
     });
   }
 
-  delete(): void {
-      this.tableButtonService.delete(this.pathService.delete(this.model, this.obj.objectDto.id)).subscribe({
-        next:(res:boolean)=> {
-          if(res) { this.refreshTable(); }
-        }
-      });
-    }
+  refreshTable(): void {
+    this.prepareRequest(this.lazyLoadObj);
+    this.obj.editState = false;
+  }
+
 }
-
-

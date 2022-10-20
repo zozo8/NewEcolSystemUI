@@ -17,7 +17,7 @@
       </div>
       <div class="col-md" *ngIf="showValue">
         <div class="form-group">
-          <label for="value" class="required-field">{{'dict.value'|translate}}</label>
+          <label for="value" class="required-field">{{'dict.value'| translate }}</label>
           <input
               [disabled]="selectedOption.id === undefined"
               pInputText
@@ -37,9 +37,6 @@
       <button [disabled]="selectedOption.id === undefined || (selectedOption.label === undefined && showValue)" pButton (click)="submit()" >{{"btn.save" | translate}}</button>
     </div>
   </div>
-
-
-
 
 
 

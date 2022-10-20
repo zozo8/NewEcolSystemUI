@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { Observable } from "rxjs";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
@@ -73,6 +74,7 @@ newRequestParam = new EventEmitter<LazyLoadEvent>();
 selectedObj = new EventEmitter<any>();
 
   constructor(
+    private translateService:TranslateService
   ) { }
 
   ngOnInit(): void {

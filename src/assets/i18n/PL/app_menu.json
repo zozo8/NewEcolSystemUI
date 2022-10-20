@@ -19,7 +19,8 @@
     "dictionaries_header":"Słowniki",
     "dictionaries":{
       "task_types":"Typy zadań",
-      "task_groups":"Grupy zadań"
+      "task_groups":"Grupy zadań",
+      "product_groups":"Grupy produktów"
     },
     "admin_header":"Administracja",
     "admin":{

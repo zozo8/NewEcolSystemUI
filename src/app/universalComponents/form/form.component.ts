@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { TableButtonService } from "../table-button/table-button.service";
@@ -11,7 +12,8 @@ import { TableButtonService } from "../table-button/table-button.service";
 export class FormComponent {
 
   constructor(
-    private tableButtonService:TableButtonService
+    private tableButtonService:TableButtonService,
+    private translateService:TranslateService
   ) {
   }
 
@@ -58,7 +60,4 @@ export class FormComponent {
     this.obj.editState = false;
     this.obj.objectEditDto = {};
   }
-
-
-
 }

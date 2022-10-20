@@ -32,17 +32,13 @@ import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from "@angular/common/
 import { AuthconfigInterceptor } from "./shared/authconfig.interceptor";
 import { FormsModule } from "@angular/forms";
 
-
-
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { TableButtonService } from "./universalComponents/table-button/table-button.service";
 import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/modules.component";
 import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
 import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
-import { FormDictionaryValueDialogComponent } from "./universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
-import { FormTableSetColumnComponent } from "./universalComponents/dialogs/form-table-set-column/form-table-set-column.component";
+
 import { DndModule } from "ngx-drag-drop";
 import { LeftMenuComponent } from "./components/pages/dashboard-page/left-menu/left-menu.component";
 import { DynamicTabDirective } from "./directivies/dynamic-tab.directive";
@@ -61,8 +57,6 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     ModulesComponent,
     ChartsComponent,
     WarningsComponent,
-    FormDictionaryValueDialogComponent,
-    FormTableSetColumnComponent,
     LeftMenuComponent,
     DynamicTabDirective,
     TabsComponent
@@ -109,11 +103,9 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       multi:true
     },
     ConfirmationService,
-    MessageService,
-    TableButtonService
+    MessageService
   ],
   exports:[
-
   ],
   bootstrap: [AppComponent]
 })

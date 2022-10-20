@@ -16,43 +16,28 @@ import { MessagesModule } from "primeng/messages";
 import { TabViewModule } from "primeng/tabview";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 
-import { AdminRoutingModule } from "./admin-routing.module";
-import { AdminComponent } from "./admin.component";
-import { UsersComponent } from "./pages/users/users.component";
-import { HttpClientModule } from "@angular/common/http";
-import { TranslateModule} from "@ngx-translate/core";
-import { FormsModule } from "@angular/forms";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { UserParamComponent } from "./pages/users/user-param/user-param.component";
+import { DictionariesRoutingModule } from "./dictionaries-routing.module";
+import { DictionariesComponent } from "./dictionaries.component";
+import { ProductTradeNameComponent } from "./pages/product-trade-name/product-trade-name.component";
 import { UniversalComponentsModule } from "../universal-components/universal-components.module";
 
-import { UserGroupComponent } from "./pages/users/user-group/user-group.component";
-import { UserDepartmentComponent } from "./pages/users/user-department/user-department.component";
 
 @NgModule({
   declarations: [
-    AdminComponent,
-    UsersComponent,
-    UserFormComponent,
-    UserParamComponent,
-    UserGroupComponent,
-    UserDepartmentComponent
-
+    DictionariesComponent,
+    ProductTradeNameComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule,
-    HttpClientModule,
+    DictionariesRoutingModule,
+    ButtonModule,
     TableModule,
     ToastModule,
-    ButtonModule,
     ToolbarModule,
     SplitterModule,
     SplitButtonModule,
     InputTextModule,
-    TranslateModule,
     PanelModule,
-    FormsModule,
     CheckboxModule,
     MenubarModule,
     ConfirmDialogModule,
@@ -60,9 +45,6 @@ import { UserDepartmentComponent } from "./pages/users/user-department/user-depa
     TabViewModule,
     DynamicDialogModule,
     UniversalComponentsModule
-  ]//,
-  // entryComponents:[
-  //   FormDictionaryValueDialogComponent
-  // ]
+  ]
 })
-export class AdminModule { }
+export class DictionariesModule { }
