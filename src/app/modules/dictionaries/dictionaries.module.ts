@@ -20,12 +20,14 @@ import { DictionariesRoutingModule } from "./dictionaries-routing.module";
 import { DictionariesComponent } from "./dictionaries.component";
 import { ProductTradeNameComponent } from "./pages/product-trade-name/product-trade-name.component";
 import { UniversalComponentsModule } from "../universal-components/universal-components.module";
+import { ProductTradeNameFormComponent } from './pages/product-trade-name/product-trade-name-form/product-trade-name-form.component';
 
 
 @NgModule({
   declarations: [
     DictionariesComponent,
-    ProductTradeNameComponent
+    ProductTradeNameComponent,
+    ProductTradeNameFormComponent
   ],
   imports: [
     CommonModule,

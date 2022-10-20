@@ -23,6 +23,8 @@ export class TableComponent implements OnInit {
   totalRecords:number = 0;
   ev:LazyLoadEvent;
 
+  totalItems:number;
+
 @Input()
 set dataTable(v : Observable<ResponseBodyGetList>) {
 if(v!== undefined) {
@@ -38,6 +40,7 @@ if(v!== undefined) {
       this.totalPages = this.dataSource.value.totalPages;
       this.pageSize = this.dataSource.value.pageSize;
       this.dataLoading = false;
+      this.totalItems = this.dataSource.value.totalItems??0;
     },
     error:(err:Error)=> {
       this.dataLoading = false;

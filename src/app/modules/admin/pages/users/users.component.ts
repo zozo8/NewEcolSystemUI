@@ -24,7 +24,7 @@ import { IMasterPage } from "src/app/Interfaces/IMasterPage";
 
 
 export class UsersComponent implements OnInit, ITableComponent, ITableButtonsComponent, IMasterPage {
-  obj:TableMenuStructure = new TableMenuStructure();
+  obj:TableMenuStructure;
   lazyLoadObj:LazyLoadEvent;
   responseObj:Observable<ResponseBodyGetList>;
   columns:RequestGridDataColumnValue[];
@@ -46,6 +46,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
    private pathService:PathService,
   ) {
     this.postPath = pathService.post(this.model);
+    this.obj = new TableMenuStructure();
   }
 
   ngOnInit(): void {
@@ -143,7 +144,7 @@ export class UsersComponent implements OnInit, ITableComponent, ITableButtonsCom
           if(res) { this.refreshTable(); }
         }
       });
-    }
+  }
 }
 
 

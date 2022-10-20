@@ -32,18 +32,18 @@ export class LeftMenuService {
           }
         ]
       },
-      // {
-      //   label:"app_menu.dictionaries_header",
-      //   icon:"pi pi-book",
-      //   children:[
-      //     {
-      //       label:"app_menu.product_groups",
-      //       icon:"pi pi-bookmark-fill",
-      //       component:ProductTradeNameComponent,
-      //       data:"Zakładka wyświetla liste grup produktów grupujących środki smarne."
-      //     }
-      //   ]
-      // }
+      {
+        label:"app_menu.dictionaries_header",
+        icon:"pi pi-book",
+        children:[
+          {
+            label:"app_menu.dictionaries.product_groups",
+            icon:"pi pi-bookmark-fill",
+            component:ProductTradeNameComponent,
+            data:"Zakładka wyświetla liste grup produktów grupujących środki smarne."
+          }
+        ]
+      }
   ];
   }
 }

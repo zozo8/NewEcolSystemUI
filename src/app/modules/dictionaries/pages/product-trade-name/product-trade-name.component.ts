@@ -46,15 +46,18 @@ export class ProductTradeNameComponent implements OnInit, ITableComponent, ITabl
     private tableButtonService:TableButtonService
   ) {
     this.postPath = pathService.post(this.model);
+    this.obj = new TableMenuStructure();
   }
 
   ngOnInit(): void {
     this.getColumns();
-    this.getButtons();
+     this.getButtons();
 
     this.reqObjBS.subscribe(request=> {
       if(request?.pageNumber !== 10000) {
+        console.log("request", request);
         this.responseObj = this.baseService.getResponseObj(this.pathService.getList(this.model),request);
+        console.log("responseiobj", this.responseObj);
       }
     });
   }
@@ -63,6 +66,7 @@ export class ProductTradeNameComponent implements OnInit, ITableComponent, ITabl
     this.baseService.getColumns(this.pathService.columnList(this.gridId)).subscribe({
       next:(res:RequestGridDataColumn)=> {
          this.columns = this.tableService.GetColumnsOutput(res.value);
+         console.log("columns", this.columns);
       }, complete:()=> {
         this.prepareRequest();
       }

@@ -1,5 +1,4 @@
-<div>
-  <p-splitter [panelSizes]="[70,30]">
+<p-splitter [panelSizes]="[70,30]">
     <ng-template pTemplate>
       <div style="width: 100%;">
         <app-table-button
@@ -20,8 +19,10 @@
     </ng-template>
     <ng-template pTemplate >
       <p-tabView [ngStyle]="{'width':'100%'}" >
-         edycja
+         <app-product-trade-name-form>
+
+         </app-product-trade-name-form>
       </p-tabView>
     </ng-template>
   </p-splitter>
-</div>
+

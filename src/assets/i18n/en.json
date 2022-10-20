@@ -20,7 +20,8 @@
 		"dictionaries_header": "Dictionaries",
 		"dictionaries": {
 			"task_types": "Task types",
-			"task_groups": "Task groups"
+			"task_groups": "Task groups",
+			"product_groups": "Product groups"
 		},
 		"admin_header": "Administrations",
 		"admin": {
