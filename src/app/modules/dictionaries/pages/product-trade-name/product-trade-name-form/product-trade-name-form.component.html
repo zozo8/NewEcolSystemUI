@@ -15,14 +15,36 @@
     </div>
   </div>
   <div class="row" form="body" *ngIf="obj.objectEditDto">
-    <div class="col-md">
-      <div class="form-group">
-        <label for="firstName" class="required-field">{{form.getFieldName('name')}}</label>
-        <input pInputText type="text" [disabled]="!obj.editState" id="name" name="name" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.name" />
+    <div class="row">
+      <div class="col-md">
+        <div class="form-group">
+          <label for="name" class="required-field">{{form.getFieldName('name')}}</label>
+          <input pInputText type="text" [disabled]="!obj.editState" id="name" name="name" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.name" />
+        </div>
+        <div class="form-group">
+          <label for="description" class="required-field">{{form.getFieldName('description')}}</label>
+          <input pInputText type="text" [disabled]="!obj.editState" id="description" name="description" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.description" />
+        </div>
       </div>
-      <div class="form-group">
-        <label for="lastName" class="required-field">{{form.getFieldName('lastName')}}</label>
-        <input pInputText type="text" [disabled]="!obj.editState" id="lastName" name="lastName" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.description" />
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <p-button label="Typ kosztorysu" styleClass="p-button-link required-field"></p-button>
+          <p-dropdown
+           placeholder="Wybierz.."
+           [disabled]="!obj.editState"
+           [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <p-button label="Typ odpadu" styleClass="p-button-link required-field"></p-button>
+          <p-dropdown
+          placeholder="Wybierz.."
+          [disabled]="!obj.editState"
+          [style]="{'width':'100%'}"></p-dropdown>
+        </div>
       </div>
     </div>
   </div>

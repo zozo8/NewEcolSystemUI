@@ -23,6 +23,7 @@ import { UniversalComponentsModule } from "../universal-components/universal-com
 import { ProductTradeNameFormComponent } from "./pages/product-trade-name/product-trade-name-form/product-trade-name-form.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
+import { DropdownModule } from "primeng/dropdown";
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { FormsModule } from "@angular/forms";
     DynamicDialogModule,
     UniversalComponentsModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ]
 })
 export class DictionariesModule { }
