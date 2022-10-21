@@ -22,6 +22,7 @@ import { ChartModule } from "primeng/chart";
 import { MessagesModule } from "primeng/messages";
 import { TabViewModule } from "primeng/tabview";
 import { BreadcrumbModule } from "primeng/breadcrumb";
+import { AutoCompleteModule } from "primeng/autocomplete";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -43,6 +44,7 @@ import { DndModule } from "ngx-drag-drop";
 import { LeftMenuComponent } from "./components/pages/dashboard-page/left-menu/left-menu.component";
 import { DynamicTabDirective } from "./directivies/dynamic-tab.directive";
 import { TabsComponent } from "./components/pages/dashboard/tabs/tabs.component";
+import { SearchPageComponent } from './components/pages/dashboard-page/search-page/search-page.component';
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -59,7 +61,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     WarningsComponent,
     LeftMenuComponent,
     DynamicTabDirective,
-    TabsComponent
+    TabsComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
     DndModule,
     TabViewModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    AutoCompleteModule
   ],
   providers: [
     {

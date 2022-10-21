@@ -1,5 +1,5 @@
 <p-toast position="top-right"></p-toast>
-<p-confirmDialog [baseZIndex]="10000" header="Usuwanie rekordu" icon="pi pi-question"></p-confirmDialog>
+<p-confirmDialog [baseZIndex]="10000" [header]=" 'common.remove_record' | translate" icon="pi pi-question"></p-confirmDialog>
 
 <body [@loadDashboardTrigger]="loadDashboard ? 'show': 'hide'" style="min-height:100vh; background-image: url(./assets/images/dashboard_background.jpg);" class="d-flex flex-column dashboard">
   <header>
@@ -11,9 +11,7 @@
       </ng-template>
       <ng-template pTemplate="end">
         <span class="p-input-icon-left" style="padding-right: 15px;">
-          <p-splitButton [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [model]="searchMenu" styleClass="p-button-raised p-button-secondary p-button-text"></p-splitButton>
-          <i class="pi pi-search"></i>
-            <input type="text" style="width: 60vh;" pInputText [placeholder]="'common.search'|translate" >
+          <app-search-page (refreshTabs)="tabsComponent.refreshTabs($event)"> </app-search-page>
         </span>
         <i class="pi pi-bell" pBadge value="15" [title]=" 'common.notifications' | translate"></i>
         <span style="padding-left: 20px; padding-right: 10px;">{{"common.login"|translate}} <span style="font-weight: bold;">{{userName}}</span></span>

@@ -40,7 +40,7 @@ export class DashboardPageComponent implements OnInit  {
   leftMenu: MenuItem[];
   topMenu: MenuItem[];
   userMenu: MenuItem[];
-  searchMenu: MenuItem[];
+
   display:boolean;
   loadDashboard:boolean;
   clientNodes:any[];
@@ -63,7 +63,7 @@ export class DashboardPageComponent implements OnInit  {
     this.setTimer();
     this.topMenu = this.getTopMenu();
     this.userMenu = this.menuService.getUserMenu();
-    this.searchMenu = this.menuService.getSearchMenu();
+
     this.clientNodes = this.dashboardPageService.getClientNodes();
     this.userName = localStorage.getItem("userName")??"";
 

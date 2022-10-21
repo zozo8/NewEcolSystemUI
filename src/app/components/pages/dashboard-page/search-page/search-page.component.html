@@ -1,0 +1,17 @@
+<p-splitButton
+    [showTransitionOptions]="'300ms'"
+    [hideTransitionOptions]="'300ms'"
+    [icon]="'pi pi-search'"
+    [model]="searchMenu"
+    styleClass="p-button-raised p-button-secondary p-button-text"
+    ></p-splitButton>
+<p-autoComplete
+    [placeholder]="'common.search'|translate"
+    [ngStyle]="{'width': '500px'}"
+    [suggestions]="pages"
+    [(ngModel)]="selectedItem"
+    (completeMethod)="search($event)"
+    (onSelect)="select($event)"
+    field="label"
+    >
+</p-autoComplete>

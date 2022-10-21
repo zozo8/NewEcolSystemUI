@@ -8,8 +8,6 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class DashboardMenuService{
 
-
-
   constructor(
       private translateService:TranslateService,
       private authService:AuthService
@@ -23,10 +21,12 @@ export class DashboardMenuService{
         label:this.translateService.instant("common.search_menu.window")
       },
       {
-        label:this.translateService.instant("common.search_menu.equipment")
+        label:this.translateService.instant("common.search_menu.equipment"),
+        disabled:true
       },
       {
-        label:this.translateService.instant("common.search_menu.point")
+        label:this.translateService.instant("common.search_menu.point"),
+        disabled:true
       }
     ];
   }
