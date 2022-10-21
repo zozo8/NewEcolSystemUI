@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyById } from "src/app/models/responses/responseBodyById.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
-import { RequestGridDataColumnValue } from "../../models/requests/requestGridDataColumnValue.model";
 
 @Injectable({
   providedIn: "root"

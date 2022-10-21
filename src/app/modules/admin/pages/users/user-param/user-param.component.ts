@@ -6,18 +6,17 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { IDictionaryComponent } from "src/app/Interfaces/IDictionaryComponent";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { ITableComponent } from "src/app/Interfaces/table/ITableComponent";
-import { ParamDict } from "src/app/models/dto/modules/admin/dictionary/paramDict";
 import { UserParam } from "src/app/models/dto/modules/admin/userParam";
 import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
+import { FormDictionaryValueDialogComponent } from "src/app/modules/universal-components/components/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
+import { TableButtonService } from "src/app/modules/universal-components/components/table-button/table-button.service";
+import { TableService } from "src/app/modules/universal-components/components/table/table.service";
 import { BaseService } from "src/app/services/base.service";
 import { PathService } from "src/app/services/path.service";
-import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
-import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
-import { TableService } from "src/app/universalComponents/table/table.service";
 import { GridEnum } from "src/app/utils/gridEnum";
 
 @Component({

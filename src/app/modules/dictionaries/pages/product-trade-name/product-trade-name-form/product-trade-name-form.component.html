@@ -1,1 +1,31 @@
-<p>product-trade-name-form works!</p>
+<app-form  #form [title]="'table-detail.header' | translate"
+                [icon]="icon"
+                [obj]="obj"
+                [cols]="cols"
+                [postPath]="postPath"
+                (refreshTable)="getRefreshTable()">
+  <div class="row" form="header" *ngIf="obj.objectDto">
+    <div class="col-md-6">
+        <p>{{form.getFieldName('name')}}</p>
+        <p>{{form.getFieldName('description')}}</p>
+    </div>
+    <div class="col-md-6">
+      <p><b>{{obj.objectDto.name}}</b></p>
+      <p><b>{{obj.objectDto.description}}</b></p>
+    </div>
+  </div>
+  <div class="row" form="body" *ngIf="obj.objectEditDto">
+    <div class="col-md">
+      <div class="form-group">
+        <label for="firstName" class="required-field">{{form.getFieldName('name')}}</label>
+        <input pInputText type="text" [disabled]="!obj.editState" id="name" name="name" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.name" />
+      </div>
+      <div class="form-group">
+        <label for="lastName" class="required-field">{{form.getFieldName('lastName')}}</label>
+        <input pInputText type="text" [disabled]="!obj.editState" id="lastName" name="lastName" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.description" />
+      </div>
+    </div>
+  </div>
+</app-form>
+
+

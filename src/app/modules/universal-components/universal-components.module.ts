@@ -12,14 +12,15 @@ import { DropdownModule } from "primeng/dropdown";
 import { UniversalComponentsRoutingModule } from "./universal-components-routing.module";
 import { UniversalComponentsComponent } from "./universal-components.component";
 
-import { FormDictionaryValueDialogComponent } from "src/app/universalComponents/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
-import { TableComponent } from "src/app/universalComponents/table/table.component";
-import { FormTableSetColumnComponent } from "src/app/universalComponents/dialogs/form-table-set-column/form-table-set-column.component";
-import { TableButtonComponent } from "src/app/universalComponents/table-button/table-button.component";
-import { FormComponent } from "src/app/universalComponents/form/form.component";
-import { TableButtonService} from "src/app/universalComponents/table-button/table-button.service";
+
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
+import { TableComponent } from "./components/table/table.component";
+import { TableButtonComponent } from "./components/table-button/table-button.component";
+import { FormTableSetColumnComponent } from "./components/dialogs/form-table-set-column/form-table-set-column.component";
+import { FormComponent } from "./components/form/form.component";
+import { FormDictionaryValueDialogComponent } from "./components/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component";
+import { TableButtonService } from "./components/table-button/table-button.service";
 
 
 @NgModule({

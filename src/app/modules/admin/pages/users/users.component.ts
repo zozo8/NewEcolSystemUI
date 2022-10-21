@@ -6,15 +6,15 @@ import { RequestBodyGetList } from "src/app/models/requests/requestBodyGetList.m
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
-import { TableService } from "src/app/universalComponents/table/table.service";
 import { TranslateService } from "@ngx-translate/core";
-import { TableButtonService } from "src/app/universalComponents/table-button/table-button.service";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { BaseService } from "src/app/services/base.service";
 import { ITableButtonsComponent } from "src/app/Interfaces/table/ITableButtonsComponent";
 import { PathService } from "src/app/services/path.service";
 import { GridEnum } from "src/app/utils/gridEnum";
 import { IMasterPage } from "src/app/Interfaces/IMasterPage";
+import { TableService } from "src/app/modules/universal-components/components/table/table.service";
+import { TableButtonService } from "src/app/modules/universal-components/components/table-button/table-button.service";
 
 @Component({
   selector: "app-users",
