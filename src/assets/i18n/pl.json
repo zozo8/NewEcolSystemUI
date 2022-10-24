@@ -58,10 +58,10 @@
 		"footer_right_a": "2022 Ecol",
 		"select_template": "Wybierz zestaw danych",
 		"selected_entity": "Wybrany obiekt",
+		"remove_record": "Usuwanie rekordu",
 		"search_menu": {
 			"window": "Okno",
-			"equipment": "Urządzenie",
-			"point": "Punkt serwisowy"
+			"tree_element": "El. drzewa"
 		},
 		"user_menu": {
 			"settings": "Ustawienia",

@@ -12,6 +12,6 @@
     [(ngModel)]="selectedItem"
     (completeMethod)="search($event)"
     (onSelect)="select($event)"
-    field="label"
+    [field]="'label' | translate"
     >
 </p-autoComplete>
