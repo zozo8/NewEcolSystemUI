@@ -21,11 +21,7 @@ export class DashboardMenuService{
         label:this.translateService.instant("common.search_menu.window")
       },
       {
-        label:this.translateService.instant("common.search_menu.equipment"),
-        disabled:true
-      },
-      {
-        label:this.translateService.instant("common.search_menu.point"),
+        label:this.translateService.instant("common.search_menu.tree_element"),
         disabled:true
       }
     ];

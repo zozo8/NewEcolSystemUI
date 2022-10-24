@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { getPackedSettings } from "http2";
 import { TreeNode } from "primeng/api";
 import { BehaviorSubject, Observable } from "rxjs";
 import { UsersComponent } from "src/app/modules/admin/pages/users/users.component";
@@ -30,7 +29,7 @@ export class LeftMenuService {
         icon:"pi pi-lock",
         children:[
           {
-            label:"app_menu.admin.users",
+            label:this.translateService.instant("app_menu.admin.users"),
             icon:"pi pi-user",
             component:UsersComponent,
             data:"Zakładka wyświetla listę użytkowników. Umożliwa ich edycję oraz przypisywanie im grup, parametrów i zakładów."
@@ -52,23 +51,20 @@ export class LeftMenuService {
   ];
   }
 
-  getPages(val:string):Observable<TreeNode[]>{
+  getPages(ev:any):Observable<TreeNode[]>{
     var ret = new BehaviorSubject<TreeNode[]>([]);
     var pages:TreeNode[] = [];
     this.getMenu().forEach(item=>{
-      console.log("item", item.children);
        if(item.children !== undefined){
-        item.children?.filter(x=>x.label?.toLowerCase().includes(val)).forEach(ch=>{
-          console.log("ch", ch);
+        item.children?.filter(x=>x.label?.toLowerCase().includes(ev.query)).forEach(ch=>{
           pages.push(ch);
-        });
+         });
       } else {
-        if(item.label?.toLowerCase().includes(val)){
+        if(item.label?.toLowerCase().includes(ev.query)){
           pages.push(item);
         }
       }
     });
-    console.log("pages", pages);
     ret.next(pages);
 
     return ret.asObservable();

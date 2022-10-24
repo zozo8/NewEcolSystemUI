@@ -34,7 +34,6 @@ export class SearchPageComponent implements OnInit {
   }
 
   select(item:any):void{
-    console.log("selected item", item);
     var tab:Tab = {
       header:item.label,
       component:item.component,
@@ -47,6 +46,8 @@ export class SearchPageComponent implements OnInit {
       }]
     };
 
+    console.log("sel;ectedItem",this.selectedItem);
+    this.selectedItem = {};
     this.refreshTabs.emit(tab);
   }
 

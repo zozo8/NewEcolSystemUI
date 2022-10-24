@@ -9,8 +9,9 @@
     </div>
     <p-tree [value]="menu" [filter]="true" selectionMode="single" [(selection)]="selectedMenu" (onNodeSelect)="selectMenu($event)">
       <ng-template let-node pTemplate="default">
-        {{node.label | translate}}
+        {{node.label}}
       </ng-template>
+      {{menu}}
     </p-tree>
   </ng-template>
 </p-sidebar>

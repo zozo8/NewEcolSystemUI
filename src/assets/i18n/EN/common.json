@@ -17,10 +17,10 @@
   "footer_right_a":"2022 Ecol",
   "select_template":"Select layout",
   "selected_entity":"Selected object",
+  "remove_record":"Remove record",
   "search_menu": {
     "window":"Window",
-    "equipment":"Equipment",
-    "point":"Lubricant point"
+    "tree_element":"Tree element"
   },
   "user_menu":
   {

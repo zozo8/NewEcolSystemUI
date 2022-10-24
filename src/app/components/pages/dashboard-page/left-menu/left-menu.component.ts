@@ -39,7 +39,7 @@ export class LeftMenuComponent implements OnInit {
 
   selectMenu(item:any):void {
     var tab:Tab = {
-      header:this.translateService.instant(item.node.label??""),
+      header:item.node.label,
       component:item.node.component,
       tooltip:item.node.data,
       icon:item.node.icon,
