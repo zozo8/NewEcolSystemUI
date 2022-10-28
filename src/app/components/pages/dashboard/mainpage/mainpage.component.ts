@@ -16,17 +16,28 @@ export class MainpageComponent implements OnInit {
   text:string;
 
   constructor(
-
-    private mainpageService:MainpageService,
+    //private mainpageService:MainpageService,
     private translateService:TranslateService
   ) { }
 
   ngOnInit(): void {
-    this.templateList =this.mainpageService.getTemplateList();
+    this.getTemplateList();
     this.selectedTemplate = this.templateList[1];
   }
 
 
-
-
+  getTemplateList():void {
+    this.templateList = [
+      {
+        label:this.translateService.instant("main-page.template1"),
+        icon:"pi pi-microsoft",
+        id:"modules"
+      },
+      {
+        label:this.translateService.instant("main-page.template2"),
+        icon:"pi pi-chart-line",
+        id:"charts"
+      }
+    ];
+  }
 }

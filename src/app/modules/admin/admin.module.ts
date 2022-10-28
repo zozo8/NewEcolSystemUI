@@ -17,7 +17,6 @@ import { TabViewModule } from "primeng/tabview";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 
 import { AdminRoutingModule } from "./admin-routing.module";
-import { AdminComponent } from "./admin.component";
 import { UsersComponent } from "./pages/users/users.component";
 import { HttpClientModule } from "@angular/common/http";
 import { TranslateModule} from "@ngx-translate/core";
@@ -31,7 +30,6 @@ import { UserDepartmentComponent } from "./pages/users/user-department/user-depa
 
 @NgModule({
   declarations: [
-    AdminComponent,
     UsersComponent,
     UserFormComponent,
     UserParamComponent,

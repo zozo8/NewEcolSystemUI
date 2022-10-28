@@ -44,7 +44,6 @@ if(v!== undefined) {
     },
     error:(err:Error)=> {
       this.dataLoading = false;
-      console.error("Błąd:",err);
     }
   });
 }

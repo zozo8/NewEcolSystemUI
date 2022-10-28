@@ -1,47 +1,44 @@
-import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import { DynamicTabDirective } from "src/app/directivies/dynamic-tab.directive";
-import { Tab } from "src/app/models/tab.model";
-import { LeftMenuService } from "../../dashboard-page/left-menu/left-menu.service";
-import { MainpageComponent } from "../mainpage/mainpage.component";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Tab } from 'src/app/models/tab.model';
+import { LeftMenuService } from '../../dashboard-page/left-menu/left-menu.service';
+import { MainpageComponent } from '../mainpage/mainpage.component';
 
 @Component({
-  selector: "app-tabs",
-  templateUrl: "./tabs.component.html",
-  styleUrls: ["./tabs.component.css"]
+  selector: 'app-tabs',
+  templateUrl: './tabs.component.html',
+  styleUrls: ['./tabs.component.css'],
 })
 export class TabsComponent {
-
-  tabs:Tab[] = [];
-  activeTab:number;
-
-  @ViewChild(DynamicTabDirective, {static:true}) dynamicTab!:DynamicTabDirective;
+  tabs: Tab[] = [];
+  activeTab: number;
 
   @Output()
   changeDisplay = new EventEmitter();
 
   constructor(
-    private translateService:TranslateService,
-    private leftMenuService:LeftMenuService
-  ) { }
-
+    private translateService: TranslateService,
+    private leftMenuService: LeftMenuService
+  ) {}
 
   ngOnInit(): void {
-    const start = this.leftMenuService.getMenu().filter(x=>x.component === MainpageComponent)[0];
+    const start = this.leftMenuService
+      .getMenu()
+      .filter((x) => x.component === MainpageComponent)[0];
     this.refreshTabs({
-      header:this.translateService.instant(start.label??""),
-      component:start.component,
-      tooltip:start.data,
-      icon:start.icon
+      header: this.translateService.instant(start.label ?? ''),
+      component: start.component,
+      tooltip: start.data,
+      icon: start.icon,
     });
   }
 
-  public refreshTabs(tab:Tab):void {
+  public refreshTabs(tab: Tab): void {
     if (tab.component) {
-      var extTab = this.tabs.findIndex(x=>x.component === tab.component);
-      if(extTab === -1){
+      let extTab = this.tabs.findIndex((x) => x.component === tab.component);
+      if (extTab === -1) {
         this.tabs.push(tab);
-        this.activeTab = this.activeTab === undefined?0:(this.activeTab+1);
+        this.activeTab = this.activeTab === undefined ? 0 : this.activeTab + 1;
       } else {
         this.activeTab = extTab;
       }
@@ -70,8 +67,7 @@ export class TabsComponent {
   //   });
   // }
 
-
-  closeTab(ev:any):void{
-    this.tabs.splice(ev.index,1);
+  closeTab(ev: any): void {
+    this.tabs.splice(ev.index, 1);
   }
 }

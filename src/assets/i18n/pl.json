@@ -79,6 +79,11 @@
 			"user_department": "Słownik zakładów"
 		}
 	},
+	"main-page": {
+		"template1": "Struktura modułów",
+		"template2": "Wykresy i podsumowania",
+		"template3": "Komunikaty"
+	},
 	"pages": {
 		"login_page": {
 			"username": "Nazwa użytkownika",

@@ -26,10 +26,8 @@ export class FormTableSetColumnService {
         var columnObj = this.getColumnObj(gridId, el, userId);
         this.http.post<ResponseBodyById>(environment.endpointApiPath+requestPath,columnObj).subscribe();
       });
-      console.log("ustawiło kolumy");
       bs.next(true);
     } else {
-      console.log("błąd ustawiania kolumn");
       bs.next(false);
     }
 

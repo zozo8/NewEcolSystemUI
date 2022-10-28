@@ -101,7 +101,6 @@ export class TableMenuService {
           returnSubject.next(true);
         },
         error:(er:any)=> {
-          console.error("Edit error",er);
           this.messageService.add(
             {severity:"error",summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.edit_record_error")});
         }

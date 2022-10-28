@@ -1,15 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { ITableFormComponent } from "src/app/Interfaces/table/ITableFormComponent";
-import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
-import { TableMenuStructure } from "src/app/models/tableMenuStructure";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ITableFormComponent } from 'src/app/Interfaces/table/ITableFormComponent';
+import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
+import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 
 @Component({
-  selector: "app-product-trade-name-form",
-  templateUrl: "./product-trade-name-form.component.html",
-  styleUrls: ["./product-trade-name-form.component.css"]
+  selector: 'app-product-trade-name-form',
+  templateUrl: './product-trade-name-form.component.html',
+  styleUrls: ['./product-trade-name-form.component.css'],
 })
 export class ProductTradeNameFormComponent implements ITableFormComponent {
-
   @Input()
   postPath: string;
   @Input()
@@ -24,12 +23,9 @@ export class ProductTradeNameFormComponent implements ITableFormComponent {
   @Output()
   refreshTable = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  getRefreshTable():void{
+  getRefreshTable(): void {
     this.refreshTable.emit();
   }
-
-
-
 }

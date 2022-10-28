@@ -38,13 +38,11 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ModulesComponent } from "./components/pages/dashboard/mainpage/modules/modules.component";
 import { ChartsComponent } from "./components/pages/dashboard/mainpage/charts/charts.component";
-import { WarningsComponent } from "./components/pages/dashboard/mainpage/warnings/warnings.component";
 
 import { DndModule } from "ngx-drag-drop";
 import { LeftMenuComponent } from "./components/pages/dashboard-page/left-menu/left-menu.component";
-import { DynamicTabDirective } from "./directivies/dynamic-tab.directive";
 import { TabsComponent } from "./components/pages/dashboard/tabs/tabs.component";
-import { SearchPageComponent } from './components/pages/dashboard-page/search-page/search-page.component';
+import { SearchPageComponent } from "./components/pages/dashboard-page/search-page/search-page.component";
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -58,9 +56,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NotfoundComponent,
     ModulesComponent,
     ChartsComponent,
-    WarningsComponent,
     LeftMenuComponent,
-    DynamicTabDirective,
     TabsComponent,
     SearchPageComponent
   ],

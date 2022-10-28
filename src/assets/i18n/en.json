@@ -79,6 +79,11 @@
 			"user_department": "User department dictionarie"
 		}
 	},
+	"main-page": {
+		"template1": "Structure of modules",
+		"template2": "Charts and notifications",
+		"template3": "Warnin gs"
+	},
 	"pages": {
 		"login_page": {
 			"username": "User name",

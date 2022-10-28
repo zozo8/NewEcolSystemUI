@@ -1,40 +1,35 @@
-import { Component, EventEmitter, Input,OnInit,Output } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import { ITableFormComponent } from "src/app/Interfaces/table/ITableFormComponent";
-import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
-import { TableMenuStructure } from "src/app/models/tableMenuStructure";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ITableFormComponent } from 'src/app/Interfaces/table/ITableFormComponent';
+import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
+import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 
 @Component({
-  selector: "app-user-form",
-  templateUrl: "./user-form.component.html",
-  styleUrls: ["./user-form.component.css"]
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent implements ITableFormComponent {
   @Input()
-  postPath:string;
+  postPath: string;
 
   @Input()
-  putPath:string;
+  putPath: string;
 
   @Input()
-  cols:RequestGridDataColumnValue[];
+  cols: RequestGridDataColumnValue[];
 
   @Input()
-  obj:TableMenuStructure;
+  obj: TableMenuStructure;
 
   @Input()
-  icon:string;
+  icon: string;
 
   @Output()
   refreshTable = new EventEmitter();
 
-  constructor(
-  ) {}
+  constructor() {}
 
-  getRefreshTable():void{
+  getRefreshTable(): void {
     this.refreshTable.emit();
   }
-
-
-
 }

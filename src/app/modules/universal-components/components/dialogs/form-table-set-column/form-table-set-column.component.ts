@@ -89,7 +89,6 @@ export class FormTableSetColumnComponent implements OnInit {
    var allColumns = this.availableColumns.concat(this.selectedColumns);
     this.formTableSetColumnService.setColumnByUserIdGridId(this.gridId, allColumns).subscribe({
       next:(res:boolean)=> {
-        console.log("res po save kolumn",res);
         if(!res) {
           this.messageService.add(
               {severity:"error", summary:this.translateService.instant("table-menu.error"), detail:this.translateService.instant("table-menu.remove_record_error")}

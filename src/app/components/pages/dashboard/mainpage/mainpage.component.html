@@ -1,20 +1,25 @@
-<div style="height: 100%; background-color: white;">
-  <div class="col-md-12 text-end" style="padding-right: 50px; padding-top: 20px;" >
+<div style="height: 100%; background-color: white">
+  <div
+    class="col-md-12 text-end"
+    style="padding-right: 50px; padding-top: 20px"
+  >
     <p-dropdown
       [(ngModel)]="selectedTemplate"
       [options]="templateList"
       optionLabel="label"
-      [placeholder]=" 'common.select_template' | translate">
+      [placeholder]="'common.select_template' | translate"
+    >
       <ng-template pTemplate="option" let-option>
         <div class="text-start">
-          <span><i [ngClass]="option.icon" ></i>&nbsp; {{option.label}}</span>
+          <span>
+            <em [ngClass]="option.icon"></em>&nbsp; {{ option.label }}
+          </span>
         </div>
       </ng-template>
     </p-dropdown>
   </div>
-<app-modules *ngIf="selectedTemplate?.id === 'modules'"></app-modules>
-<app-charts *ngIf="selectedTemplate?.id === 'charts'"></app-charts>
-<app-warnings *ngIf="selectedTemplate?.id === 'warnings'"></app-warnings>
-
+  <div [ngSwitch]="selectedTemplate.id">
+    <app-modules *ngSwitchCase="'modules'"></app-modules>
+    <app-charts *ngSwitchCase="'charts'"></app-charts>
+  </div>
 </div>
-
