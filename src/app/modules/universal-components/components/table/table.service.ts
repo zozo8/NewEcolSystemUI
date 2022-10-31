@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { ResponseBodyById } from "src/app/models/responses/responseBodyById.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
+import { ApiService } from "src/app/services/api.service";
 import { BaseService } from "src/app/services/base.service";
 
 @Injectable({
@@ -14,7 +15,8 @@ export class TableService {
   ret:RequestGridDataColumnValue[];
   constructor(
     private http:HttpClient,
-    private baseService:BaseService
+    private baseService:BaseService,
+    private apiService:ApiService
     ) {
     }
 
@@ -37,7 +39,7 @@ export class TableService {
 
   getObjDto(path:string, obj:TableMenuStructure):Observable<TableMenuStructure> {
     var retObj = new BehaviorSubject<TableMenuStructure>(obj);
-    this.baseService.getObjById(path).subscribe({
+    this.apiService.getObjById(path).subscribe({
       next:(res:ResponseBodyById)=>{
         obj.objectDto = res.value;
         obj.objectEditDto = {...res.value}; // copy without reference

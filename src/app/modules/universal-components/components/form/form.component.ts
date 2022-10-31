@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import { Subscription } from "rxjs";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
 import { TableMenuStructure } from "src/app/models/tableMenuStructure";
 import { TableButtonService } from "../table-button/table-button.service";
@@ -10,6 +11,8 @@ import { TableButtonService } from "../table-button/table-button.service";
   styleUrls: ["./form.component.css"]
 })
 export class FormComponent {
+  private saveSubscription: Subscription;
+  private putSubscription: Subscription;
 
   constructor(
     private tableButtonService:TableButtonService,
@@ -41,18 +44,20 @@ export class FormComponent {
   }
 
   save():void {
-    this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.postPath).subscribe({
+    this.saveSubscription = this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.postPath).subscribe({
       next:(res:boolean)=> {
         if(res) {
           this.refreshTable.emit();
         }
-      }
+      },
+      complete:()=>this.saveSubscription.unsubscribe()
     });
   }
 
   edit():void {
-    this.tableButtonService.put(this.obj).subscribe({
-      next:(res:TableMenuStructure)=>this.obj = res
+    this.putSubscription = this.tableButtonService.put(this.obj).subscribe({
+      next:(res:TableMenuStructure)=>this.obj = res,
+      complete:()=>this.putSubscription.unsubscribe()
     });
   }
 

@@ -1,18 +1,12 @@
-import { Injectable } from "@angular/core";
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpErrorResponse,
-  HttpHeaders,
-  HttpClient
+  HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest
 } from "@angular/common/http";
-import { BehaviorSubject, catchError, filter, Observable, switchMap, take,tap } from "rxjs";
-import { AuthService } from "../services/auth.service";
-import { ResponseLoginApi } from "../modules/login/interfaces/responseLoginApi.model";
-import { LoginService } from "../modules/login/login.service";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, catchError, filter, Observable, switchMap, take, tap } from "rxjs";
 import { environment } from "src/environments/environment";
+import { ResponseLoginApi } from "../interfaces/responseLoginApi.model";
+import { LoginService } from "../login.service";
+import { AuthService } from "./auth.service";
 
 
 @Injectable()

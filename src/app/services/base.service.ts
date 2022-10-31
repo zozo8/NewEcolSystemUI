@@ -1,14 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FilterMetadata, LazyLoadEvent, MenuItem } from "primeng/api";
-import { BehaviorSubject, Observable, Subject} from "rxjs";
-import { environment } from "src/environments/environment";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { Filter } from "../models/requests/filter.model";
 import { RequestBodyGetList } from "../models/requests/requestBodyGetList.model";
 import { RequestGridDataColumn } from "../models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "../models/requests/requestGridDataColumnValue.model";
-import { ResponseBodyById } from "../models/responses/responseBodyById.model";
 import { ResponseBodyGetList } from "../models/responses/responseBodyGetList.model";
+import { ApiService } from "./api.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,7 +18,8 @@ export class BaseService {
   listMenuItem:MenuItem[]=[];
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private apiService:ApiService
   ) { }
 
   // get request from api for default params or dynamic params from universal table component (ev)
@@ -51,12 +51,9 @@ export class BaseService {
       return obj;
    }
 
-
    private prepareFilters(columns:RequestGridDataColumnValue[],ev?:LazyLoadEvent, filters?:Filter[] ): RequestGridDataColumnValue[] {
     var res:RequestGridDataColumnValue[]=[];
-
     columns.forEach(val=> {
-
       // dla słownikaów
       let filterObj = filters?.find(x=>x.field === val.columnName);
       let filterCols:Filter[] = [];
@@ -121,27 +118,6 @@ export class BaseService {
     }
   }
 
-    // get response for table from api
-  getResponseObj(requestPath:string, requestObj:RequestBodyGetList):Observable<ResponseBodyGetList> {
-    return this.http.post<ResponseBodyGetList>(environment.endpointApiPath+requestPath,requestObj);
-  }
-
-
-  // getColumnsByGridId(gridId:number):Observable<RequestGridDataColumn> {
-  //   //czy są zapisane dla usera, jak nie to startowe
-
-  //   return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
-  // }
-
-  // get column list for grid
-  getColumns(path:string):Observable<RequestGridDataColumn> {
-    return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
-  }
-
-  // get obj by id
-  getObjById(path:string):Observable<ResponseBodyById> {
-    return this.http.get<ResponseBodyById>(environment.endpointApiPath+path);
-  }
 
 
 // get list entity, get column and create request obj
@@ -150,7 +126,7 @@ export class BaseService {
   var resBS = new Subject<any[]>();
   var columns:RequestGridDataColumnValue[];
 
-   this.getColumns(columnPath).subscribe({
+   this.apiService.getColumns(columnPath).subscribe({
     next:(res:RequestGridDataColumn)=> {
       columns = res.value;
     },
@@ -162,7 +138,7 @@ export class BaseService {
 
    requestBS.subscribe((req)=> {
     if(req.pageNumber!== 100000) {
-      this.getResponseObj(path,req).subscribe({
+      this.apiService.getResponseObj(path,req).subscribe({
         next:(res:ResponseBodyGetList)=> {
           this.returnList = res.value.data;
         },

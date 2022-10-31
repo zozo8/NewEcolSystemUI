@@ -3,12 +3,14 @@ import { TranslateService } from "@ngx-translate/core";
 import { DndDropEvent } from "ngx-drag-drop";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Subscription } from "rxjs";
 import { RequestGridDataColumn } from "src/app/models/requests/requestGridDataColumn.model";
 import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
-
+import { ApiService } from "src/app/services/api.service";
 import { BaseService } from "src/app/services/base.service";
 import { PathService } from "src/app/services/path.service";
 import { FormTableSetColumnService } from "./form-table-set-column.service";
+
 
 @Component({
   selector: "app-form-table-set-column",
@@ -22,6 +24,7 @@ export class FormTableSetColumnComponent implements OnInit {
   draggedColumn:RequestGridDataColumnValue | null;
   title:string;
   gridId:number;
+  private getColumnsSubscription: Subscription;
 
   constructor(
     public ref:DynamicDialogRef,
@@ -30,7 +33,8 @@ export class FormTableSetColumnComponent implements OnInit {
     private pathService:PathService,
     private translateService:TranslateService,
     private formTableSetColumnService:FormTableSetColumnService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private apiService:ApiService
   ) { }
 
   ngOnInit(): void {
@@ -45,12 +49,14 @@ export class FormTableSetColumnComponent implements OnInit {
   getColumns(gridId:number):void {
     // pobrac ustawienia dla usera i grida, pokazadc jakie kolumny sa ustawione a jakie są do wyboru
     var path = this.pathService.columnList(gridId);
-    this.baseService.getColumns(path).subscribe({
+    this.getColumnsSubscription = this.apiService.getColumns(path).subscribe({
       next:(res:RequestGridDataColumn)=> {
         this.availableColumns = res.value.filter(x=>x.isVisible === false);
         this.selectedColumns =  res.value.filter(x=>x.isVisible === true);
-      }
-    });
+      },
+      complete:()=>this.getColumnsSubscription.unsubscribe()
+    }
+    );
   }
 
   onDragStartAvailableColumns(ev:DragEvent, col:RequestGridDataColumnValue):void {

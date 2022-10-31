@@ -3,13 +3,13 @@ import {
   state,
   style,
   transition,
-  trigger,
+  trigger
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 import { timer } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/modules/login/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { DashboardMenuService } from './dashboard-menu.service';
 
@@ -50,7 +50,7 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private menuService: DashboardMenuService,
-    private translateService: TranslateService // ,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {

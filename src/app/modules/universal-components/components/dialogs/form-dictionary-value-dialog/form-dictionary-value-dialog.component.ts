@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { MenuItem } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Subscription } from "rxjs";
 import { Filter } from "src/app/models/requests/filter.model";
 import { BaseService } from "src/app/services/base.service";
 import { TableButtonService } from "../../table-button/table-button.service";
@@ -20,6 +21,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
   value:string;
   selectedOption:MenuItem = {};
   showValue:boolean;
+  private saveSubscription: Subscription;
 
   constructor(
     public ref:DynamicDialogRef,
@@ -51,12 +53,13 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
 
   submit():void {
     let obj = this.prepareObj(this.selectedOption,this.config.data[2]);
-    this.tableButtonService.save(this.config.data[2],obj.id,this.config.data[1]).subscribe({
+    this.saveSubscription = this.tableButtonService.save(this.config.data[2],obj.id,this.config.data[1]).subscribe({
       next:(res:boolean)=> {
         if(res) {
           this.ref.close(res);
         }
-      }
+      },
+      complete:()=>this.saveSubscription.unsubscribe()
     });
   }
 

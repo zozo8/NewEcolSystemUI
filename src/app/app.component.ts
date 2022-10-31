@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { PrimeNGConfig } from "primeng/api";
-import { LoginService } from "./modules/login/login.service";
-import { AuthService } from "./services/auth.service";
+import { AuthService } from "./modules/login/auth/auth.service";
 
 @Component({
   selector: "app-root",
@@ -14,8 +13,7 @@ export class AppComponent implements OnInit,OnDestroy {
   constructor(
     private translateService:TranslateService,
     private primeNgConfig: PrimeNGConfig,
-    private authService:AuthService,
-    private loginService:LoginService
+    private authService:AuthService
     ) {
 
   }

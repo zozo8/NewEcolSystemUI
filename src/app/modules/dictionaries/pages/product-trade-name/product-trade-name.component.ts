@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IMasterPage } from 'src/app/Interfaces/IMasterPage';
 import { ITableButtonsComponent } from 'src/app/Interfaces/table/ITableButtonsComponent';
 import { ITableComponent } from 'src/app/Interfaces/table/ITableComponent';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
@@ -12,9 +13,9 @@ import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetLis
 import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
+import { ApiService } from 'src/app/services/api.service';
 import { BaseService } from 'src/app/services/base.service';
 import { PathService } from 'src/app/services/path.service';
-import { GridEnum } from 'src/app/utils/gridEnum';
 
 @Component({
   selector: 'app-product-trade-name',
@@ -51,7 +52,8 @@ export class ProductTradeNameComponent
     private pathService: PathService,
     private tableService: TableService,
     private translateService: TranslateService,
-    private tableButtonService: TableButtonService
+    private tableButtonService: TableButtonService,
+    private apiService:ApiService
   ) {
     this.postPath = pathService.post(this.model);
     this.obj = new TableMenuStructure();
@@ -63,7 +65,7 @@ export class ProductTradeNameComponent
 
     this.reqObjBS.subscribe((request) => {
       if (request?.pageNumber !== 10000) {
-        this.responseObj = this.baseService.getResponseObj(
+        this.responseObj = this.apiService.getResponseObj(
           this.pathService.getList(this.model),
           request
         );
@@ -73,7 +75,7 @@ export class ProductTradeNameComponent
 
   getColumns(): void {
     this.compsiteSub.add(
-      this.baseService
+      this.apiService
         .getColumns(this.pathService.columnList(this.gridId))
         .subscribe({
           next: (res: RequestGridDataColumn) => {

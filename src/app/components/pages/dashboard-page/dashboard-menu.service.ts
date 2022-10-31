@@ -1,7 +1,7 @@
-import { MenuItem } from "primeng/api";
-import { TranslateService } from "@ngx-translate/core";
 import { Injectable } from "@angular/core";
-import { AuthService } from "src/app/services/auth.service";
+import { TranslateService } from "@ngx-translate/core";
+import { MenuItem } from "primeng/api";
+import { AuthService } from "src/app/modules/login/auth/auth.service";
 
 @Injectable({
   providedIn: "root"

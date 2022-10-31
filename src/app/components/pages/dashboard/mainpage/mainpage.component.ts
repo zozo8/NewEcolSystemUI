@@ -1,7 +1,6 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { MenuItem } from "primeng/api";
-import { MainpageService } from "./mainpage.service";
 
 @Component({
   selector: "app-mainpage",
@@ -16,7 +15,6 @@ export class MainpageComponent implements OnInit {
   text:string;
 
   constructor(
-    //private mainpageService:MainpageService,
     private translateService:TranslateService
   ) { }
 

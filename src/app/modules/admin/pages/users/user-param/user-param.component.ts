@@ -7,6 +7,7 @@ import { IDictionaryComponent } from 'src/app/Interfaces/IDictionaryComponent';
 import { ITableButtonsComponent } from 'src/app/Interfaces/table/ITableButtonsComponent';
 import { ITableComponent } from 'src/app/Interfaces/table/ITableComponent';
 import { UserParam } from 'src/app/models/dto/modules/admin/userParam';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
@@ -15,9 +16,9 @@ import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 import { FormDictionaryValueDialogComponent } from 'src/app/modules/universal-components/components/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
+import { ApiService } from 'src/app/services/api.service';
 import { BaseService } from 'src/app/services/base.service';
 import { PathService } from 'src/app/services/path.service';
-import { GridEnum } from 'src/app/utils/gridEnum';
 
 @Component({
   selector: 'app-user-param',
@@ -65,7 +66,8 @@ export class UserParamComponent
     public dialogService: DialogService,
     private baseService: BaseService,
     private tableService: TableService,
-    private pathService: PathService
+    private pathService: PathService,
+    private apiService:ApiService
   ) {}
 
   ngOnInit(): void {
@@ -74,7 +76,7 @@ export class UserParamComponent
 
     this.reqObjBS.subscribe((request) => {
       if (request?.pageNumber !== 10000) {
-        this.responseObj = this.baseService.getResponseObj(
+        this.responseObj = this.apiService.getResponseObj(
           this.pathService.getList(this.model),
           request
         );
@@ -91,7 +93,7 @@ export class UserParamComponent
 
   getColumns(): void {
     this.compsiteSub.add(
-      this.baseService
+      this.apiService
         .getColumns(this.pathService.columnList(this.gridId))
         .subscribe({
           next: (res: RequestGridDataColumn) => {

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { DashboardPageComponent } from "./components/pages/dashboard-page/dashboard-page.component";
 import { MainpageComponent } from "./components/pages/dashboard/mainpage/mainpage.component";
 import { NotfoundComponent } from "./components/pages/notfound/notfound.component";
-import { AuthGuard } from "./shared/auth.guard";
+import { AuthGuard } from "./modules/login/auth/auth.guard";
 import { LoginGuard } from "./modules/login/login.guard";
 
 // cli new module: ng generate module customers --route customers --module app.module

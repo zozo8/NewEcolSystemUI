@@ -9,20 +9,14 @@
 >
   <div class="row" form="header" *ngIf="obj.objectDto">
     <div class="col-md-6">
-      <p>
-        {{
-          form.getFieldName("firstName") + " " + form.getFieldName("lastName")
-        }}
-      </p>
+      <p> {{form.getFieldName("firstName") + " " + form.getFieldName("lastName")}}</p>
       <p>{{ form.getFieldName("userName") }}</p>
       <p>{{ form.getFieldName("userEmail") }}</p>
       <p>{{ form.getFieldName("phoneNumber") }}</p>
     </div>
     <div class="col-md-6">
       <p>
-        <strong
-          >{{ obj.objectDto.firstName }} {{ obj.objectDto.lastName }}</strong
-        >
+        <strong>{{ obj.objectDto.firstName }} {{ obj.objectDto.lastName }}</strong>
       </p>
       <p>
         <strong>{{ obj.objectDto.userName }}</strong>
@@ -37,100 +31,94 @@
   </div>
   <div class="row" form="body" *ngIf="obj.objectEditDto">
     <div class="col-md">
-      <div class="form-group">
-        <label for="firstName" class="required-field">{{
-          form.getFieldName("firstName")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [disabled]="!obj.editState"
-          id="firstName"
-          name="firstName"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.firstName"
-        />
-      </div>
-      <div class="form-group">
-        <label for="lastName" class="required-field">{{
-          form.getFieldName("lastName")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [disabled]="!obj.editState"
-          id="lastName"
-          name="lastName"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.lastName"
-        />
-      </div>
-      <div class="form-group">
-        <label for="evaluationDate" class="required-field">{{
-          form.getFieldName("evaluationDate")
-        }}</label>
-        <input
-          pInputText
-          type="date"
-          [disabled]="!obj.editState"
-          id="evaluationDate"
-          name="evaluationDate"
-          value="true"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.evaluationDate"
-        />
-      </div>
-      <div class="form-group">
-        <label for="isAdmin">{{ form.getFieldName("isAdmin") }}</label>
-        <p-checkbox
-          [(ngModel)]="obj.objectEditDto.isAdmin"
-          [disabled]="!obj.editState"
-          [binary]="true"
-          name="isAdmin"
-        ></p-checkbox>
-      </div>
+      <ng-template
+        [ngTemplateOutlet]="fieldInputText"
+        [ngTemplateOutletContext]="{field:'firstName', model:obj.objectEditDto, require:true, state:obj.editState}">
+      </ng-template>
+      <ng-template
+        [ngTemplateOutlet]="fieldInputText"
+        [ngTemplateOutletContext]="{field:'lastName', model:obj.objectEditDto, require:true, state:obj.editState}">
+      </ng-template>
+      <ng-template
+        [ngTemplateOutlet]="fieldInputDate"
+        [ngTemplateOutletContext]="{field:'evaluationDate', model:obj.objectEditDto, state:obj.editState}">
+      </ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="fieldInputCheckbox"
+        [ngTemplateOutletContext]="{field:'isAdmin', model:obj.objectEditDto, state:obj.editState}">
+      </ng-template>
     </div>
     <div class="col-md">
-      <div class="form-group">
-        <label for="userName" class="required-field">{{
-          form.getFieldName("userName")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [disabled]="!obj.editState"
-          id="userName"
-          name="userName"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.userName"
-        />
-      </div>
-      <div class="form-group">
-        <label for="userEmail" class="required-field">{{
-          form.getFieldName("userEmail")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [disabled]="!obj.editState"
-          id="userEmail"
-          name="userEmail"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.userEmail"
-        />
-      </div>
-      <div class="form-group">
-        <label for="phoneNumber">{{ form.getFieldName("phoneNumber") }}</label>
-        <input
-          pInputText
-          type="text"
-          [disabled]="!obj.editState"
-          id="phoneNumber"
-          name="phoneNumber"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.phoneNumber"
-        />
-      </div>
+      <ng-template
+        [ngTemplateOutlet]="fieldInputText"
+        [ngTemplateOutletContext]="{field:'userName', model:obj.objectEditDto, state:obj.editState, require:true}">
+      </ng-template>
+      <ng-template
+        [ngTemplateOutlet]="fieldInputText"
+        [ngTemplateOutletContext]="{field:'userEmail', model:obj.objectEditDto, state:obj.editState, require:true}">
+      </ng-template>
+      <ng-template
+        [ngTemplateOutlet]="fieldInputText"
+        [ngTemplateOutletContext]="{field:'phoneNumber', model:obj.objectEditDto, state:obj.editState}">
+    </ng-template>
     </div>
   </div>
 </app-form>
+
+
+
+<ng-template #fieldInputDate
+  let-field="field"
+  let-model="model"
+  let-require="require"
+  let-state="state">
+  <div class="form-group">
+    <label [for]="field" [ngClass]="{'required-field':require===true}">{{ form.getFieldName(field) }}</label>
+    <input
+      pInputText
+      type='date'
+      [disabled]="!state"
+      [value]="true"
+      id={{field}}
+      name={{field}}
+      class="p-inputtext-sm form-control"
+      [(ngModel)]= "model[field]"
+    />
+  </div>
+</ng-template>
+
+<ng-template #fieldInputCheckbox
+  let-field="field"
+  let-model="model"
+  let-require="require"
+  let-state="state">
+  <div class="form-group">
+    <label [for]="field">{{ form.getFieldName(field) }}</label>
+    <p-checkbox
+      [(ngModel)]="model[field]"
+      [disabled]="!state"
+      [binary]="true"
+      name={{field}}>
+    </p-checkbox>
+  </div>
+</ng-template>
+
+<ng-template #fieldInputText
+let-field="field"
+let-model="model"
+let-require="require"
+let-state="state">
+<div class="form-group">
+  <label  [for]="field" [ngClass]="{'required-field':require===true}">{{ form.getFieldName(field) }}</label>
+  <input
+    pInputText
+    type='text'
+    [disabled]="!state"
+    id={{field}}
+    name={{field}}
+    class="p-inputtext-sm form-control"
+    [(ngModel)]= "model[field]"
+  />
+</div>
+</ng-template>
