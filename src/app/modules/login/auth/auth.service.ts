@@ -1,58 +1,52 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private router:Router
-  ) { }
+  loginObj: ResponseLoginApi;
+  loginObjSub: Subscription;
 
-  logout():void {
-    let ln:string = localStorage.getItem("language")??"pl";
+  constructor(private router: Router) {}
+
+  logout(): void {
+    let ln: string = localStorage.getItem('language') ?? 'pl';
     localStorage.clear();
-    localStorage.setItem("language", ln);
-    this.router.navigate(["/"]);
+    localStorage.setItem('language', ln);
+    this.router.navigate(['/']);
   }
 
   isExpired(): boolean {
-    if (localStorage.getItem("tokenExp")) {
-      const exp = parseInt(localStorage.getItem("tokenExp")??"");
+    if (localStorage.getItem('tokenExp')) {
+      const exp = parseInt(localStorage.getItem('tokenExp') ?? '');
       const actualDate = (new Date().getTime() + 1) / 1000;
       //console.log("exp: " + exp + " actualDate:" + actualDate + " różnica: " + (exp - actualDate).toString());
-      return exp>=actualDate;
-
+      return exp >= actualDate;
     }
 
     return false;
   }
 
-
-
-  setLastActivity():void {
-    const date = new Date().getTime() + (10 * 60000);
-    localStorage.setItem("lastActivity", date.toString());
+  setLastActivity(): void {
+    const date = new Date().getTime() + 10 * 60000;
+    localStorage.setItem('lastActivity', date.toString());
   }
 
   checkLastActivity(): boolean {
     const actualDate = new Date().getTime();
-    let lastAct = localStorage.getItem("lastActivity");
-    if(lastAct) {
+    let lastAct = localStorage.getItem('lastActivity');
+    if (lastAct) {
       let lastActivity = Number.parseInt(lastAct);
       if (actualDate > lastActivity) {
         return false;
-      }
-      else {
+      } else {
         return true;
       }
     } else {
       return false;
     }
   }
-
 }
-
-
-
-

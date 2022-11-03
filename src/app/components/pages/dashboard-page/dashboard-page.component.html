@@ -36,10 +36,10 @@
           value="15"
           [title]="'common.notifications' | translate"
         ></em>
-        <span style="padding-left: 20px; padding-right: 10px"
-          >{{ "common.login" | translate }}
-          <span style="font-weight: bold">{{ userName }}</span></span
-        >
+        <span style="padding-left: 20px; padding-right: 10px">
+          {{ "common.login" | translate
+          }}<strong> {{ userName$ | async }} </strong>
+        </span>
         <p-treeSelect
           [options]="clientNodes"
           [placeholder]="'common.change_customer' | translate"

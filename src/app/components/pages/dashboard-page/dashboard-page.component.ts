@@ -3,13 +3,16 @@ import {
   state,
   style,
   transition,
-  trigger
+  trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
-import { timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
+import { ResponseLoginApi } from 'src/app/modules/login/interfaces/responseLoginApi.model';
+import { getUserName } from 'src/app/modules/login/state/login.selector';
 import { environment } from 'src/environments/environment';
 import { DashboardMenuService } from './dashboard-menu.service';
 
@@ -44,13 +47,14 @@ export class DashboardPageComponent implements OnInit {
   loadDashboard: boolean;
   clientNodes: any[];
   selectedClientNode: any[] = [];
-  userName: string;
+  userName$: Observable<string>;
   appVersion: string;
 
   constructor(
     private authService: AuthService,
     private menuService: DashboardMenuService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private store: Store<ResponseLoginApi>
   ) {}
 
   ngOnInit(): void {
@@ -60,8 +64,7 @@ export class DashboardPageComponent implements OnInit {
     this.userMenu = this.menuService.getUserMenu();
 
     this.getClientNodes();
-    this.userName = localStorage.getItem('userName') ?? '';
-
+    this.userName$ = this.store.select(getUserName);
     timer(500).subscribe(() => {
       this.loadDashboard = true;
     });

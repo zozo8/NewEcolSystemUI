@@ -1,56 +1,80 @@
 import {
-  HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, filter, Observable, switchMap, take, tap } from "rxjs";
-import { environment } from "src/environments/environment";
-import { ResponseLoginApi } from "../interfaces/responseLoginApi.model";
-import { LoginService } from "../login.service";
-import { AuthService } from "./auth.service";
-
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {
+  BehaviorSubject,
+  catchError,
+  filter,
+  Observable,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
+import { BaseService } from 'src/app/services/base.service';
+import { environment } from 'src/environments/environment';
+import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
+import { LoginService } from '../login.service';
+import { getRefreshToken, getToken } from '../state/login.selector';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthconfigInterceptor implements HttpInterceptor {
-
   isRefreshingToken = false;
-  tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
-    private authService:AuthService,
-    private loginService:LoginService,
-    private http:HttpClient
+    private authService: AuthService,
+    private loginService: LoginService,
+    private http: HttpClient,
+    private store: Store<ResponseLoginApi>,
+    private baseService: BaseService
   ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
-  const tokenUR = localStorage.getItem("tokenUR");
-  const token = localStorage.getItem("token");
-  this.authService.isExpired();
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const tokenUR = localStorage.getItem('tokenUR');
+    const token = this.baseService.getValueFromObservable(
+      this.store.select(getToken)
+    );
+    this.authService.isExpired();
 
-    if(!tokenUR) {
+    if (!tokenUR) {
       return next.handle(request);
     } else if (tokenUR && !token) {
-        request = this.applyToken(request, tokenUR);
-        return next.handle(request);
-     } else {
-        this.authService.setLastActivity();
-        request = this.applyToken(request, token??"");
-        return next.handle(request).pipe(
-          catchError((err:any)=> {
-            if (err instanceof HttpErrorResponse && err.status === 401) {
-              return this.refreshToken(request, next);
-            } else {
-              return next.handle(request);
-            }
-          })
-        );
+      request = this.applyToken(request, tokenUR);
+      return next.handle(request);
+    } else {
+      this.authService.setLastActivity();
+      request = this.applyToken(request, token ?? '');
+      return next.handle(request).pipe(
+        catchError((err: any) => {
+          if (err instanceof HttpErrorResponse && err.status === 401) {
+            return this.refreshToken(request, next);
+          } else {
+            return next.handle(request);
+          }
+        })
+      );
     }
   }
 
-
-  refreshToken(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+  private refreshToken(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     if (!this.isRefreshingToken) {
       this.isRefreshingToken = true;
-      this.tokenSubject.next("");
+      this.tokenSubject.next('');
 
       return this.refreshTokenApi().pipe(
         switchMap((res: ResponseLoginApi) => {
@@ -62,36 +86,43 @@ export class AuthconfigInterceptor implements HttpInterceptor {
       );
     } else {
       return this.tokenSubject.pipe(
-        filter(token => token != null),
+        filter((token) => token != null),
         take(1),
-        switchMap(jwt => {
+        switchMap((jwt) => {
           return next.handle(this.applyToken(request, jwt));
         })
       );
     }
   }
 
-  applyToken(req: any, token: string): HttpRequest<any> {
+  private applyToken(req: any, token: string): HttpRequest<any> {
     return req.clone({
       headers: req.headers
-                    .set("Authorization", "Bearer " + token)
-                    .set("CultureInfo",this.loginService.getCultureInfo())
-     });
+        .set('Authorization', 'Bearer ' + token)
+        .set('CultureInfo', this.loginService.getCultureInfo()),
+    });
   }
 
-  refreshTokenApi(): Observable<ResponseLoginApi> {
-    let refreshToken = localStorage.getItem("refreshToken")??"";
+  private refreshTokenApi(): Observable<ResponseLoginApi> {
+    const refreshToken = this.baseService.getValueFromObservable(
+      this.store.select(getRefreshToken)
+    );
     const httpOptions = {
       headers: new HttpHeaders({
-        "RefreshToken":refreshToken
-      })
+        RefreshToken: refreshToken,
+      }),
     };
 
-    return this.http.post<ResponseLoginApi>(environment.endpointApiPath+"/api/Home/RefreshToken",null,httpOptions)
-              .pipe(tap((res:ResponseLoginApi)=> {
-                this.loginService.setLocalStorageUserData(res);
-              }));
-
+    return this.http
+      .post<ResponseLoginApi>(
+        environment.endpointApiPath + '/api/Home/RefreshToken',
+        null,
+        httpOptions
+      )
+      .pipe(
+        tap((res: ResponseLoginApi) => {
+          this.loginService.setLocalStorageUserData(res);
+        })
+      );
   }
-
 }

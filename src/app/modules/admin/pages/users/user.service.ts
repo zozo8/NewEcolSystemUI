@@ -1,17 +1,13 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class UserService {
   constructor(
-    private http:HttpClient,
-    private translateService:TranslateService
-  ) { }
-
-
-
-
+    private http: HttpClient,
+    private translateService: TranslateService
+  ) {}
 }

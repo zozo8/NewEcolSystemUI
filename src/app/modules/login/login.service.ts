@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,6 +10,7 @@ import Login from './interfaces/login.model';
 import { ResponseLoginApi } from './interfaces/responseLoginApi.model';
 import { LoginCredentialMD } from './interfaces/UR/loginCredentialMD.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
+import { saveLoginObject } from './state/login.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<ResponseLoginApi>
   ) {}
 
   loginToUR(obj: Login): Observable<ResponseLoginUR> {
@@ -41,11 +44,11 @@ export class LoginService {
       )
       .subscribe({
         next: (res: ResponseLoginApi) => {
-          console.log('pobrany token: ' + res.token);
+          //console.log('pobrany token: ' + res.token);
           this.setLocalStorageUserData(res);
         },
         error: (err: string) => {
-          console.error('błąd pobierania z api:', err);
+          //  console.error('błąd pobierania z api:', err);
           this.router.navigate(['/dashboard/mainpage']);
         },
         complete: () => {
@@ -70,7 +73,8 @@ export class LoginService {
   }
 
   setLocalStorageUserData(res: ResponseLoginApi): void {
-    localStorage.setItem('token', res.token);
+    this.store.dispatch(saveLoginObject({ obj: res }));
+    //localStorage.setItem('token', res.token);
     localStorage.setItem('refreshToken', res.refreshToken);
     localStorage.setItem('userId', res.id.toString());
     localStorage.setItem('userEmail', res.email);

@@ -1,22 +1,20 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { LoginComponent } from "./login.component";
-import { FormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
 
-import { ButtonModule } from "primeng/button";
-import { InputTextModule } from "primeng/inputtext";
-import { PanelModule } from "primeng/panel";
-import { ProgressBarModule } from "primeng/progressbar";
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
+import { ProgressBarModule } from 'primeng/progressbar';
 
-
-import { LoginRoutingModule } from "./login-routing.module";
-import { TranslateModule} from "@ngx-translate/core";
-
+import { StoreModule } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
+import { LoginRoutingModule } from './login-routing.module';
+import { loginReducer } from './state/login.reducer';
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
@@ -25,9 +23,9 @@ import { TranslateModule} from "@ngx-translate/core";
     InputTextModule,
     PanelModule,
     ProgressBarModule,
-    TranslateModule
+    TranslateModule,
+    StoreModule.forFeature('login', loginReducer),
   ],
-  exports:[
-  ]
+  exports: [],
 })
-export class LoginModule { }
+export class LoginModule {}

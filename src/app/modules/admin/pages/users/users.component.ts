@@ -53,7 +53,7 @@ export class UsersComponent
     private tableButtonService: TableButtonService,
     private baseService: BaseService,
     private pathService: PathService,
-    private apiService:ApiService
+    private apiService: ApiService
   ) {
     this.postPath = pathService.post(this.model);
     this.obj = new TableMenuStructure();
