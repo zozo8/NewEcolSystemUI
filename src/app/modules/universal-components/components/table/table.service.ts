@@ -5,7 +5,7 @@ import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridD
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 import { ApiService } from 'src/app/services/api.service';
-import { BaseService } from 'src/app/services/base.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class TableService {
   ret: RequestGridDataColumnValue[];
   constructor(
     private http: HttpClient,
-    private baseService: BaseService,
+    private commonService: CommonService,
     private apiService: ApiService
   ) {}
 
@@ -26,7 +26,7 @@ export class TableService {
     columns.forEach((res) => {
       columnsOutput.push({
         columnName: res.columnName,
-        dataType: this.baseService.getSepcificDataType4PrimeNg(res.dataType),
+        dataType: this.commonService.getSepcificDataType4PrimeNg(res.dataType),
         displayName: res.displayName,
         filters: res.filters,
         isVisible: res.isVisible,

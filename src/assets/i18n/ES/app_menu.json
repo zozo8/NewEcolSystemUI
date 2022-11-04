@@ -1,0 +1,29 @@
+{
+    "mainpage":"Página principal",
+    "equipment_tree":"Árbol de equipos",
+    "orders_header":"Pedidos",
+    "orders":{
+      "orders":"Pedidos",
+      "order_cards":"Pedir tarjetas"
+    },
+    "browsers_header":"Navegadores",
+    "browsers":{
+      "tree_elements_header":"Elementos del árbol",
+      "tree_elements":{
+        "objects":"Objetos",
+        "nodes":"Nodos",
+        "equipments":"Equipos",
+        "lubricant_points":"Puntos de lubricación"
+      }
+    },
+    "dictionaries_header":"Diccionarios",
+    "dictionaries":{
+      "task_types":"Tipos de tareas",
+      "task_groups":"Grupos de trabajo",
+      "product_groups":"Grupos de productos"
+    },
+    "admin_header":"Administraciones",
+    "admin":{
+      "users":"Usuarios"
+    }
+}

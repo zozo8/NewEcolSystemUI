@@ -54,7 +54,7 @@
 		"empty_data": "No result",
 		"login": "login:",
 		"footer_left_a": "Ecol sp z o.o.",
-		"footer_left_b": "ul. Podmiejska 71A, 44-207 Rybnik",
+		"footer_left_b": "Podmiejska Street 71A, 44-207 Rybnik",
 		"footer_right_a": "2022 Ecol",
 		"select_template": "Select layout",
 		"selected_entity": "Selected object",
@@ -82,7 +82,7 @@
 	"main-page": {
 		"template1": "Structure of modules",
 		"template2": "Charts and notifications",
-		"template3": "Warnin gs"
+		"template3": "Warnings"
 	},
 	"pages": {
 		"login_page": {

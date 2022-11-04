@@ -1,0 +1,230 @@
+{
+	"app_menu": {
+		"mainpage": "Página principal",
+		"equipment_tree": "Árbol de equipos",
+		"orders_header": "Pedidos",
+		"orders": {
+			"orders": "Pedidos",
+			"order_cards": "Pedir tarjetas"
+		},
+		"browsers_header": "Navegadores",
+		"browsers": {
+			"tree_elements_header": "Elementos del árbol",
+			"tree_elements": {
+				"objects": "Objetos",
+				"nodes": "Nodos",
+				"equipments": "Equipos",
+				"lubricant_points": "Puntos de lubricación"
+			}
+		},
+		"dictionaries_header": "Diccionarios",
+		"dictionaries": {
+			"task_types": "Tipos de tareas",
+			"task_groups": "Grupos de trabajo",
+			"product_groups": "Grupos de productos"
+		},
+		"admin_header": "Administraciones",
+		"admin": {
+			"users": "Usuarios"
+		}
+	},
+	"btn": {
+		"save": "Guardar",
+		"cancel": "Cancelar",
+		"ok": "OK",
+		"add": "Añadir",
+		"show_details": "Mostrar detalles...",
+		"edit": "Editar",
+		"remove": "Eliminar",
+		"refresh": "Actualizar",
+		"select": "Seleccione"
+	},
+	"common": {
+		"title_page": "NES 2.0 - Sistema informático de gestión del mantenimiento",
+		"notifications": "Notificaciones",
+		"language": "Idioma",
+		"minimal_menu": "Minimizar el menú",
+		"show_menu": "Mostrar menú",
+		"change_customer": "Cambiar de cliente...",
+		"search": "Busque en...",
+		"1Adv": "Tareas de planificación",
+		"2Adv": "Registrar equipos",
+		"3Adv": "Registrar equipos",
+		"4Adv": "Informes",
+		"empty_data": "Sin resultado",
+		"login": "inicio de sesión:",
+		"footer_left_a": "Ecol sp z o.o.",
+		"footer_left_b": "Podmiejska Street 71A, 44-207 Rybnik",
+		"footer_right_a": "2022 Ecol",
+		"select_template": "inicio de sesión",
+		"selected_entity": "Objeto seleccionado",
+		"remove_record": "Eliminar el registro",
+		"search_menu": {
+			"window": "Ventana",
+			"tree_element": "Elemento del árbol"
+		},
+		"user_menu": {
+			"settings": "Ajustes",
+			"user_profile": "Perfil del usuario",
+			"logout": "Cierre de sesión"
+		}
+	},
+	"dict": {
+		"select_value": "Seleccione el valor",
+		"value": "Valor",
+		"position": "Posición del diccionario",
+		"header": {
+			"user_param": "Diccionario de parámetros de usuario",
+			"user_group": "Diccionarios de grupos de usuarios",
+			"user_department": "Diccionario del departamento de usuarios"
+		}
+	},
+	"main-page": {
+		"template1": "Estructura de los módulos",
+		"template2": "Gráficos y notificaciones",
+		"template3": "Advertencias"
+	},
+	"pages": {
+		"login_page": {
+			"username": "Nombre de usuario",
+			"password": "Contraseña",
+			"title": "Inicio de sesión",
+			"error": "Nombre de usuario o contraseña incorrectos.",
+			"login": "Inicio de sesión",
+			"logout": "Cierre de sesión",
+			"forget_password": "¿Ha olvidado su contraseña?",
+			"wrong_authenticate": "¡Autenticación incorrecta!"
+		},
+		"users": {
+			"title": "Lista de usuarios"
+		}
+	},
+	"primeng": {
+		"startsWith": "Comienza con",
+		"contains": "Contiene",
+		"notContains": "No contiene",
+		"endsWith": "Termina con",
+		"equals": "Es igual a",
+		"notEquals": "No es igual",
+		"noFilter": "Sin filtro",
+		"lt": "Menos de",
+		"lte": "Menos de o igual a",
+		"gt": "Mayor que",
+		"gte": "Mayor o igual que",
+		"is": "Es",
+		"isNot": "No es",
+		"before": "Antes de",
+		"after": "Después de",
+		"dateIs": "La fecha es",
+		"dateIsNot": "La fecha no es",
+		"dateBefore": "La fecha es anterior a",
+		"dateAfter": "La fecha es posterior a",
+		"clear": "Borrar",
+		"apply": "Aplicar",
+		"matchAll": "Combinar todo",
+		"matchAny": "Coincidir con cualquier",
+		"addRule": "Añadir regla",
+		"removeRule": "Eliminar la regla",
+		"accept": "Sí",
+		"reject": "No",
+		"choose": "Elija",
+		"upload": "Subir a",
+		"cancel": "Cancelar",
+		"dayNames": [
+			"Domingo",
+			"Lunes",
+			"Martes",
+			"Miércoles",
+			"Jueves",
+			"Viernes",
+			"Sábado"
+		],
+		"dayNamesShort": [
+			"Dom",
+			"Lun",
+			"Mar",
+			"Mié",
+			"Jue",
+			"Vie",
+			"Sáb"
+		],
+		"dayNamesMin": [
+			"Do",
+			"Lu",
+			"Ma",
+			"Mi",
+			"Ju",
+			"Vi",
+			"Sá"
+		],
+		"monthNames": [
+			"Enero",
+			"Febrero",
+			"Marzo",
+			"Abril",
+			"Mayo",
+			"Junio",
+			"Julio",
+			"Agosto",
+			"Septiembre",
+			"Octubre",
+			"Noviembre",
+			"Diciembre"
+		],
+		"monthNamesShort": [
+			"Ene",
+			"Feb",
+			"Mar",
+			"Abr",
+			"May",
+			"Jun",
+			"Jul",
+			"Ago",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dic"
+		],
+		"dateFormat": "mm/dd/yy",
+		"firstDayOfWeek": 0,
+		"today": "Hoy",
+		"weekHeader": "Wk",
+		"weak": "Débil",
+		"medium": "Medio",
+		"strong": "Fuerte",
+		"passwordPrompt": "Introduzca una contraseña",
+		"emptyMessage": "No se han encontrado resultados",
+		"emptyFilterMessage": "No se han encontrado resultados"
+	},
+	"table-detail": {
+		"header": "Previsualizar/editar el registro seleccionado",
+		"record": "Registro",
+		"select_record": "Seleccionar el registro en la tabla"
+	},
+	"table-menu": {
+		"remove": "Eliminar",
+		"select_record": "Seleccione el registro a editar",
+		"warning": "Advertencia",
+		"remove_record_question": "¿Está seguro? ¿Quiere eliminar este registro?",
+		"error": "Error",
+		"remove_record_success": "Eliminar el registro con éxito",
+		"remove_record_error": "Error durante la eliminación del registro.",
+		"add_record_success": "Añadir registro con éxito",
+		"add_record_error": "Error durante la adición de un registro.",
+		"edit_record_success": "Editar registro con éxito",
+		"edit_record_error": "¡Error durante la edición del registro!",
+		"column_name": "Nombre de la columna",
+		"available_columns": "Columnas disponibles",
+		"selected_columns": "Columnas seleccionadas",
+		"setting": {
+			"select_grid": "Seleccione la cuadrícula",
+			"select_columns": "Seleccione las columnas...",
+			"save_grid": "Guardar la red"
+		}
+	},
+	"users-page": {
+		"params": "Parámetros",
+		"departments": "Departamentos",
+		"groups": "Grupos"
+	}
+}

@@ -1,0 +1,31 @@
+{
+  "title_page":"NES 2.0 - Sistema informático de gestión del mantenimiento",
+  "notifications":"Notificaciones",
+  "language":"Idioma",
+  "minimal_menu":"Minimizar el menú",
+  "show_menu":"Mostrar menú",
+  "change_customer":"Cambiar de cliente...",
+  "search":"Busque en...",
+  "1Adv":"Tareas de planificación",
+  "2Adv":"Registrar equipos",
+  "3Adv":"Registrar equipos",
+  "4Adv":"Informes",
+  "empty_data":"Sin resultado",
+  "login":"inicio de sesión:",
+  "footer_left_a":"Ecol sp z o.o.",
+  "footer_left_b":"Podmiejska Street 71A, 44-207 Rybnik",
+  "footer_right_a":"2022 Ecol",
+  "select_template":"inicio de sesión",
+  "selected_entity":"Objeto seleccionado",
+  "remove_record":"Eliminar el registro",
+  "search_menu": {
+    "window":"Ventana",
+    "tree_element":"Elemento del árbol"
+  },
+  "user_menu":
+  {
+    "settings":"Ajustes",
+    "user_profile":"Perfil del usuario",
+    "logout":"Cierre de sesión"
+  }
+}

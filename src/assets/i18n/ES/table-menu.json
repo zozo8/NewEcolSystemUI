@@ -1,0 +1,22 @@
+{
+  "remove":"Eliminar",
+  "select_record":"Seleccione el registro a editar",
+  "warning":"Advertencia",
+  "remove_record_question":"¿Está seguro? ¿Quiere eliminar este registro?",
+  "error":"Error",
+  "remove_record_success":"Eliminar el registro con éxito",
+  "remove_record_error":"Error durante la eliminación del registro.",
+  "add_record_success":"Añadir registro con éxito",
+  "add_record_error":"Error durante la adición de un registro.",
+  "edit_record_success":"Editar registro con éxito",
+  "edit_record_error":"¡Error durante la edición del registro!",
+  "column_name":"Nombre de la columna",
+  "available_columns":"Columnas disponibles",
+  "selected_columns":"Columnas seleccionadas",
+  "setting":{
+    "select_grid":"Seleccione la cuadrícula",
+    "select_columns":"Seleccione las columnas...",
+    "save_grid":"Guardar la red"
+  }
+
+}

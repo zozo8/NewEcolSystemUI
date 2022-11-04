@@ -14,8 +14,14 @@ import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { ApiService } from 'src/app/services/api.service';
-import { BaseService } from 'src/app/services/base.service';
-import { PathService } from 'src/app/services/path.service';
+import { CommonService } from 'src/app/services/common.service';
+import {
+  columnListPath,
+  deleteModelPath,
+  getModelListPath,
+  getModelPath,
+  postModelPath,
+} from 'src/app/services/path';
 
 @Component({
   selector: 'app-users',
@@ -51,11 +57,10 @@ export class UsersComponent
     private tableService: TableService,
     private translateService: TranslateService,
     private tableButtonService: TableButtonService,
-    private baseService: BaseService,
-    private pathService: PathService,
+    private CommonService: CommonService,
     private apiService: ApiService
   ) {
-    this.postPath = pathService.post(this.model);
+    this.postPath = postModelPath(this.model);
     this.obj = new TableMenuStructure();
   }
 
@@ -66,7 +71,7 @@ export class UsersComponent
     this.reqObjBS.subscribe((request) => {
       if (request?.pageNumber !== 10000) {
         this.responseObj = this.apiService.getResponseObj(
-          this.pathService.getList(this.model),
+          getModelListPath(this.model),
           request
         );
       }
@@ -75,21 +80,19 @@ export class UsersComponent
 
   getColumns(): void {
     this.compositeSubscription.add(
-      this.apiService
-        .getColumns(this.pathService.columnList(this.gridId))
-        .subscribe({
-          next: (res: RequestGridDataColumn) => {
-            this.columns = this.tableService.GetColumnsOutput(res.value);
-          },
-          complete: () => {
-            this.prepareRequest();
-          },
-        })
+      this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
+        next: (res: RequestGridDataColumn) => {
+          this.columns = this.tableService.GetColumnsOutput(res.value);
+        },
+        complete: () => {
+          this.prepareRequest();
+        },
+      })
     );
   }
 
   prepareRequest(ev?: LazyLoadEvent): void {
-    let requestObj = this.baseService.getRequestObj(this.columns, ev);
+    let requestObj = this.CommonService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
   }
 
@@ -99,7 +102,7 @@ export class UsersComponent
   }
 
   getSelected(ev: any): void {
-    let path = this.pathService.get(this.model, ev.id);
+    let path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;
 
     this.tableService.getObjDto(path, this.obj);
@@ -157,7 +160,7 @@ export class UsersComponent
 
   delete(): void {
     this.deleteSubscription = this.tableButtonService
-      .delete(this.pathService.delete(this.model, this.obj.objectDto.id))
+      .delete(deleteModelPath(this.model, this.obj.objectDto.id))
       .subscribe({
         next: (res: boolean) => {
           if (res) {

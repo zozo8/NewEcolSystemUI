@@ -1,0 +1,15 @@
+{
+  "login_page":{
+    "username":"Nutzername",
+    "password": "Passwort",
+    "title":"Login",
+    "error":"Falsches Login oder Passwort!",
+    "login":"Login",
+    "logout":"Abmeldung",
+    "forget_password":"Passwort vergessen?",
+    "wrong_authenticate":"Falsche Authentifizierung!"
+  },
+  "users": {
+    "title":"Benutzerliste"
+  }
+}

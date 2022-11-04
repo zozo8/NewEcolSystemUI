@@ -1,0 +1,29 @@
+{
+    "mainpage":"Homepage",
+    "equipment_tree":"Gerätebaum",
+    "orders_header":"Bestellungen",
+    "orders":{
+      "orders":"Bestellungen",
+      "order_cards":"Bestellseite"
+    },
+    "browsers_header":"Browsers",
+    "browsers":{
+      "tree_elements_header":"Baumelemente",
+      "tree_elements":{
+        "objects":"Objekte",
+        "nodes":"Knotenpunkte",
+        "equipments":"Ausrüstung",
+        "lubricant_points":"Schmierstellen"
+      }
+    },
+    "dictionaries_header":"Wörterbücher",
+    "dictionaries":{
+      "task_types":"Aufgabentypen",
+      "task_groups":"Aufgabengruppen",
+      "product_groups":"Produktgruppe"
+    },
+    "admin_header":"Verwaltungen",
+    "admin":{
+      "users":"Benutzer"
+    }
+}

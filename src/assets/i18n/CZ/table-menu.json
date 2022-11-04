@@ -1,0 +1,22 @@
+{
+  "remove":"Odstranění stránky",
+  "select_record":"Vyberte záznam, který chcete upravit",
+  "warning":"Varování",
+  "remove_record_question":"Jste si jistý? Chcete tento záznam odstranit?",
+  "error":"Chyba",
+  "remove_record_success":"Úspěšné odstranění záznamu",
+  "remove_record_error":"Chyba při odstraňování záznamu!",
+  "add_record_success":"Úspěšné přidání záznamu",
+  "add_record_error":"Chyba při přidávání záznamu!",
+  "edit_record_success":"Úspěšná úprava záznamu",
+  "edit_record_error":"Chyba při editaci záznamu!",
+  "column_name":"Název sloupce",
+  "available_columns":"Dostupné sloupce",
+  "selected_columns":"Vybrané sloupce",
+  "setting":{
+    "select_grid":"Vybrat mřížku",
+    "select_columns":"Vybrat sloupce...",
+    "save_grid":"Uložit mřížku"
+  }
+
+}

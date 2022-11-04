@@ -4,13 +4,18 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { authenticatePath, loginToURPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/auth.service';
 import Login from './interfaces/login.model';
 import { ResponseLoginApi } from './interfaces/responseLoginApi.model';
 import { LoginCredentialMD } from './interfaces/UR/loginCredentialMD.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
-import { saveLoginObject } from './state/login.actions';
+import {
+  saveLoginObject,
+  saveTokenExp,
+  saveTokenUr,
+} from './state/login.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -24,76 +29,61 @@ export class LoginService {
   ) {}
 
   loginToUR(obj: Login): Observable<ResponseLoginUR> {
-    localStorage.removeItem('tokenUR');
-    localStorage.removeItem('token');
-
-    let loginObjUR = this.getLoginObjUR(obj);
+    const loginObjUR: LoginCredentialMD = this.getLoginObjUR(obj);
     return this.http.post<ResponseLoginUR>(
-      environment.endpointLoginUR + '/api/auth/login/',
+      environment.endpointLoginUR + loginToURPath(),
       loginObjUR
     );
   }
 
   authenticate(obj: ResponseLoginUR): Observable<boolean> {
-    var res = new BehaviorSubject<boolean>(true);
+    const resBs = new BehaviorSubject<boolean>(false);
 
-    localStorage.setItem('tokenUR', obj.accessToken.value);
+    // localStorage.setItem('tokenUR', obj.accessToken.value);
+    this.store.dispatch(saveTokenUr({ token: obj.accessToken.value }));
     this.http
-      .get<ResponseLoginApi>(
-        environment.endpointApiPath + '/api/Home/Authenticate'
-      )
+      .get<ResponseLoginApi>(environment.endpointApiPath + authenticatePath())
       .subscribe({
         next: (res: ResponseLoginApi) => {
-          //console.log('pobrany token: ' + res.token);
-          this.setLocalStorageUserData(res);
+          this.setLoginStateStore(res);
         },
         error: (err: string) => {
-          //  console.error('błąd pobierania z api:', err);
-          this.router.navigate(['/dashboard/mainpage']);
+          resBs.next(false);
+          //this.router.navigate(['/dashboard/mainpage']);
         },
         complete: () => {
           this.authService.setLastActivity();
           this.router.navigate(['/dashboard/mainpage']);
+          resBs.next(true);
         },
       });
 
-    return res;
+    return resBs;
+  }
+
+  setLoginStateStore(res: ResponseLoginApi) {
+    this.store.dispatch(saveLoginObject({ obj: res }));
+    this.decodateToken(res);
   }
 
   private getLoginObjUR(obj: Login): LoginCredentialMD {
     let res: LoginCredentialMD = {
-      app: 'ES',
-      hashName: 'Sha512',
+      app: environment.urApp,
+      hashName: environment.urHashName,
       hashedPassword: this.getHashedPassword(obj.password),
       login: obj.userName,
-      instance: 'ESW',
+      instance: environment.urInstance,
     };
 
     return res;
   }
 
-  setLocalStorageUserData(res: ResponseLoginApi): void {
-    this.store.dispatch(saveLoginObject({ obj: res }));
-    //localStorage.setItem('token', res.token);
-    localStorage.setItem('refreshToken', res.refreshToken);
-    localStorage.setItem('userId', res.id.toString());
-    localStorage.setItem('userEmail', res.email);
-    localStorage.setItem('userName', res.userName);
-
-    this.decodateToken(res);
-  }
-
   decodateToken(res: ResponseLoginApi): void {
     const decodate = JSON.parse(window.atob(res.token.split('.')[1]));
-    localStorage.setItem('tokenExp', decodate.exp);
+    this.store.dispatch(saveTokenExp({ exp: decodate.exp }));
     const rights: string[] =
       decodate['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    if (rights) {
-      const admin = rights.filter((x) => x.includes('Administrator')); // do zmiany
-      if (admin) {
-        localStorage.setItem('admin', 'true');
-      }
-    }
+    // const admin = rights.filter((x) => x.includes('Administrator')); // do zmiany
   }
 
   getHashedPassword(password: string): string {

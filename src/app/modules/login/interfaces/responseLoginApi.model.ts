@@ -6,4 +6,6 @@ export interface ResponseLoginApi {
   refreshToken: string;
   departmentsId?: number[];
   language: string;
+  tokenExp: number;
+  tokenUr: string;
 }

@@ -12,6 +12,18 @@ export const changeDepartment = createAction(
 );
 
 export const changeLanguage = createAction(
-  '[Login Service] changelanguage',
+  '[Login Service] changeLanguage',
   props<{ language: string }>()
 );
+
+export const saveTokenExp = createAction(
+  '[Login Service] saveTokenExp',
+  props<{ exp: number }>()
+);
+
+export const saveTokenUr = createAction(
+  '[Login Service] saveTokenUr',
+  props<{ token: string }>()
+);
+
+export const clearTokens = createAction('[Auth Service] clearTokens');

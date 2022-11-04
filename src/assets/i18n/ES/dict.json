@@ -1,0 +1,10 @@
+{
+  "select_value":"Seleccione el valor",
+  "value":"Valor",
+  "position":"Posición del diccionario",
+  "header":{
+    "user_param":"Diccionario de parámetros de usuario",
+    "user_group":"Diccionarios de grupos de usuarios",
+    "user_department":"Diccionario del departamento de usuarios"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "login_page":{
+    "username":"Uživatelské jméno",
+    "password": "Heslo",
+    "title":"Přihlášení",
+    "error":"Špatné přihlašovací jméno nebo heslo!",
+    "login":"Přihlášení",
+    "logout":"Odhlášení",
+    "forget_password":"Zapomněli jste heslo?",
+    "wrong_authenticate":"Špatné ověření!"
+  },
+  "users": {
+    "title":"Seznam uživatelů"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "select_value":"Zvolte hodnotu",
+  "value":"Hodnota",
+  "position":"Poloha slovníku",
+  "header":{
+    "user_param":"User params dictionarie",
+    "user_group":"Slovník skupiny uživatelů",
+    "user_department":"Uživatelské oddělení dictionarie"
+  }
+}

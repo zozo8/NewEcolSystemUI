@@ -1,0 +1,22 @@
+{
+  "remove":"entfernen",
+  "select_record":"Zu bearbeitenden Datensatz auswählen",
+  "warning":"Warnung",
+  "remove_record_question":"Sind Sie sicher? Möchten Sie diesen Datensatz entfernen?",
+  "error":"Fehler",
+  "remove_record_success":"Datensatz erfolgreich entfernen",
+  "remove_record_error":"Fehler beim Entfernen des Datensatzes!",
+  "add_record_success":"Datensatz erfolgreich hinzufügen",
+  "add_record_error":"Fehler beim Hinzufügen eines Datensatzes!",
+  "edit_record_success":"Datensatz erfolgreich bearbeiten",
+  "edit_record_error":"Fehler beim Bearbeiten des Datensatzes!",
+  "column_name":"Name der Säule",
+  "available_columns":"Verfügbare Spalten",
+  "selected_columns":"Ausgewählte Spalten",
+  "setting":{
+    "select_grid":"Gitter auswählen",
+    "select_columns":"Spalten auswählen...",
+    "save_grid":"Gitter speichern"
+  }
+
+}

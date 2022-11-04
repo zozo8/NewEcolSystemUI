@@ -1,0 +1,15 @@
+{
+  "login_page":{
+    "username":"Nombre de usuario",
+    "password": "Contraseña",
+    "title":"Inicio de sesión",
+    "error":"Nombre de usuario o contraseña incorrectos.",
+    "login":"Inicio de sesión",
+    "logout":"Cierre de sesión",
+    "forget_password":"¿Ha olvidado su contraseña?",
+    "wrong_authenticate":"¡Autenticación incorrecta!"
+  },
+  "users": {
+    "title":"Lista de usuarios"
+  }
+}

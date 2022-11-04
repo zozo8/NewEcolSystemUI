@@ -1,0 +1,230 @@
+{
+	"app_menu": {
+		"mainpage": "Hlavní stránka",
+		"equipment_tree": "Strom vybavení",
+		"orders_header": "Objednávky",
+		"orders": {
+			"orders": "Objednávky",
+			"order_cards": "Objednávkové karty"
+		},
+		"browsers_header": "Prohlížeče",
+		"browsers": {
+			"tree_elements_header": "Stromové prvky",
+			"tree_elements": {
+				"objects": "Objekty",
+				"nodes": "Uzly",
+				"equipments": "Vybavení",
+				"lubricant_points": "Mazací body"
+			}
+		},
+		"dictionaries_header": "Slovníky",
+		"dictionaries": {
+			"task_types": "Typy úloh",
+			"task_groups": "Skupiny úkolů",
+			"product_groups": "Skupiny výrobků"
+		},
+		"admin_header": "Správy",
+		"admin": {
+			"users": "Správy"
+		}
+	},
+	"btn": {
+		"save": "Uložit",
+		"cancel": "Zrušit",
+		"ok": "OK",
+		"add": "Přidat",
+		"show_details": "Zobrazit podrobnosti...",
+		"edit": "Upravit",
+		"remove": "Odstranění stránky",
+		"refresh": "Obnovit",
+		"select": "Vyberte"
+	},
+	"common": {
+		"title_page": "NES 2.0 - Počítačový systém řízení údržby",
+		"notifications": "Oznámení",
+		"language": "Jazyk",
+		"minimal_menu": "Minimalizovat nabídku",
+		"show_menu": "Zobrazit nabídku",
+		"change_customer": "Změna klienta...",
+		"search": "Vyhledávání...",
+		"1Adv": "Úkoly plánování",
+		"2Adv": "Registrace zařízení",
+		"3Adv": "Registrace maziv",
+		"4Adv": "Hlášení",
+		"empty_data": "Žádný výsledek",
+		"login": "přihlášení:",
+		"footer_left_a": "Ecol sp z o.o.",
+		"footer_left_b": "Podmiejska Street 71A, 44-207 Rybnik",
+		"footer_right_a": "2022 Ecol",
+		"select_template": "Zvolte rozvržení",
+		"selected_entity": "Vybraný objekt",
+		"remove_record": "Odstranění záznamu",
+		"search_menu": {
+			"window": "Okno",
+			"tree_element": "Stromový prvek"
+		},
+		"user_menu": {
+			"settings": "Nastavení",
+			"user_profile": "Profil uživatele",
+			"logout": "Odhlášení"
+		}
+	},
+	"dict": {
+		"select_value": "Zvolte hodnotu",
+		"value": "Hodnota",
+		"position": "Poloha slovníku",
+		"header": {
+			"user_param": "User params dictionarie",
+			"user_group": "Slovník skupiny uživatelů",
+			"user_department": "Uživatelské oddělení dictionarie"
+		}
+	},
+	"main-page": {
+		"template1": "Struktura modulů",
+		"template2": "Grafy a oznámení",
+		"template3": "Varování"
+	},
+	"pages": {
+		"login_page": {
+			"username": "Uživatelské jméno",
+			"password": "Heslo",
+			"title": "Přihlášení",
+			"error": "Špatné přihlašovací jméno nebo heslo!",
+			"login": "Přihlášení",
+			"logout": "Odhlášení",
+			"forget_password": "Zapomněli jste heslo?",
+			"wrong_authenticate": "Špatné ověření!"
+		},
+		"users": {
+			"title": "Seznam uživatelů"
+		}
+	},
+	"primeng": {
+		"startsWith": "Začíná na",
+		"contains": "Obsahuje",
+		"notContains": "Neobsahuje",
+		"endsWith": "Končí",
+		"equals": "Rovná se",
+		"notEquals": "Ne rovná se",
+		"noFilter": "Žádný filtr",
+		"lt": "Méně než",
+		"lte": "Méně nebo rovno",
+		"gt": "Větší než",
+		"gte": "Větší nebo rovno",
+		"is": "Je",
+		"isNot": "Není",
+		"before": "Před",
+		"after": "Po",
+		"dateIs": "Datum je",
+		"dateIsNot": "Datum není",
+		"dateBefore": "Datum je před",
+		"dateAfter": "Datum je po",
+		"clear": "Přehledně",
+		"apply": "Použít",
+		"matchAll": "Zápas všeho druhu",
+		"matchAny": "Shoda s libovolným",
+		"addRule": "Přidat pravidlo",
+		"removeRule": "Odstranění pravidla",
+		"accept": "Ano",
+		"reject": "Ne",
+		"choose": "Vyberte si",
+		"upload": "Upload",
+		"cancel": "Zrušit",
+		"dayNames": [
+			"Neděle",
+			"Pondělí",
+			"Úterý",
+			"Středa",
+			"Čtvrtek",
+			"Pátek",
+			"sobota"
+		],
+		"dayNamesShort": [
+			"Ned",
+			"Pon",
+			"Úte",
+			"Stř",
+			"Čtv",
+			"Pát",
+			"Sob"
+		],
+		"dayNamesMin": [
+			"Ned",
+			"Po",
+			"Út",
+			"St",
+			"Čt",
+			"Pá",
+			"So"
+		],
+		"monthNames": [
+			"Leden",
+			"Únor",
+			"Březen",
+			"Duben",
+			"Květen",
+			"červen",
+			"Červenec",
+			"Srpen",
+			"září",
+			"Říjen",
+			"Listopad",
+			"Prosinec"
+		],
+		"monthNamesShort": [
+			"Led",
+			"Úno",
+			"ře",
+			"Dub",
+			"Kvě",
+			"čer",
+			"Čer",
+			"Srp",
+			"zář",
+			"Říj",
+			"Lis",
+			"Pro"
+		],
+		"dateFormat": "mm/dd/yy",
+		"firstDayOfWeek": 0,
+		"today": "Dnes",
+		"weekHeader": "Wk",
+		"weak": "Slabé",
+		"medium": "Střední",
+		"strong": "Silný",
+		"passwordPrompt": "Zadejte heslo",
+		"emptyMessage": "Nebyly nalezeny žádné výsledky",
+		"emptyFilterMessage": "Nebyly nalezeny žádné výsledky"
+	},
+	"table-detail": {
+		"header": "Náhled/úprava vybraného záznamu",
+		"record": "Záznam",
+		"select_record": "Výběr záznamu v tabulce"
+	},
+	"table-menu": {
+		"remove": "Odstranění stránky",
+		"select_record": "Vyberte záznam, který chcete upravit",
+		"warning": "Varování",
+		"remove_record_question": "Jste si jistý? Chcete tento záznam odstranit?",
+		"error": "Chyba",
+		"remove_record_success": "Úspěšné odstranění záznamu",
+		"remove_record_error": "Chyba při odstraňování záznamu!",
+		"add_record_success": "Úspěšné přidání záznamu",
+		"add_record_error": "Chyba při přidávání záznamu!",
+		"edit_record_success": "Úspěšná úprava záznamu",
+		"edit_record_error": "Chyba při editaci záznamu!",
+		"column_name": "Název sloupce",
+		"available_columns": "Dostupné sloupce",
+		"selected_columns": "Vybrané sloupce",
+		"setting": {
+			"select_grid": "Vybrat mřížku",
+			"select_columns": "Vybrat sloupce...",
+			"save_grid": "Uložit mřížku"
+		}
+	},
+	"users-page": {
+		"params": "Params",
+		"departments": "Oddělení",
+		"groups": "Skupiny"
+	}
+}

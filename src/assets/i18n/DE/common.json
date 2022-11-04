@@ -1,0 +1,33 @@
+{
+  "title_page":"NES 2.0 - Computergestütztes Wartungsmanagement-System",
+  "notifications":"Benachrichtigungen",
+  "language":"Sprache",
+  "minimal_menu":"Minimenü",
+  "show_menu":"Menü anzeigen",
+  "change_customer":"Kunde wechseln",
+  "search":"Suche...",
+  "1Adv":"Planungsaufgaben",
+  "2Adv":"Registerausstattungen",
+  "3Adv":"Schmiermittel registrieren",
+  "4Adv":"Berichterstattung",
+  "empty_data":"kein Ergebnis",
+  "login":"Anmeldung:",
+  "footer_left_a":"Ecol sp z o.o.",
+  "footer_left_b":"st. Podmiejska 71A, 44-207 Rybnik",
+  "footer_right_a":"2022 Ecol",
+  "select_template":"Layouts auswählen",
+  "selected_entity":"Ausgewähltes Objekt",
+  "remove_record":"Datensatz entfernen",
+  "search_menu": {
+    "window":"Fenster",
+    "tree_element":"Baumelement"
+  },
+  "user_menu":
+  {
+    "settings":"Einstellungen",
+    "user_profile":"Benutzerprofil",
+    "logout":"Abmeldung"
+  }
+
+}
+

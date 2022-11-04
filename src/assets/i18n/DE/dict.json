@@ -1,0 +1,10 @@
+{
+  "select_value":"Wert wählen",
+  "value":"Wert",
+  "position":"Position des Wörterbuchs",
+  "header":{
+    "user_param":"Benutzer-Parameter-Wörterbuch",
+    "user_group":"Wörterbuch der Benutzergruppe",
+    "user_department":"Benutzerabteilung Wörterbuch"
+  }
+}

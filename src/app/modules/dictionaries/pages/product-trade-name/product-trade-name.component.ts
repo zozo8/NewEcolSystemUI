@@ -14,8 +14,14 @@ import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { ApiService } from 'src/app/services/api.service';
-import { BaseService } from 'src/app/services/base.service';
-import { PathService } from 'src/app/services/path.service';
+import { CommonService } from 'src/app/services/common.service';
+import {
+  columnListPath,
+  deleteModelPath,
+  getModelListPath,
+  getModelPath,
+  postModelPath,
+} from 'src/app/services/path';
 
 @Component({
   selector: 'app-product-trade-name',
@@ -48,14 +54,13 @@ export class ProductTradeNameComponent
   putSub: Subscription;
 
   constructor(
-    private baseService: BaseService,
-    private pathService: PathService,
+    private commonService: CommonService,
     private tableService: TableService,
     private translateService: TranslateService,
     private tableButtonService: TableButtonService,
-    private apiService:ApiService
+    private apiService: ApiService
   ) {
-    this.postPath = pathService.post(this.model);
+    this.postPath = postModelPath(this.model);
     this.obj = new TableMenuStructure();
   }
 
@@ -66,7 +71,7 @@ export class ProductTradeNameComponent
     this.reqObjBS.subscribe((request) => {
       if (request?.pageNumber !== 10000) {
         this.responseObj = this.apiService.getResponseObj(
-          this.pathService.getList(this.model),
+          getModelListPath(this.model),
           request
         );
       }
@@ -75,20 +80,18 @@ export class ProductTradeNameComponent
 
   getColumns(): void {
     this.compsiteSub.add(
-      this.apiService
-        .getColumns(this.pathService.columnList(this.gridId))
-        .subscribe({
-          next: (res: RequestGridDataColumn) => {
-            this.columns = this.tableService.GetColumnsOutput(res.value);
-          },
-          complete: () => {
-            this.prepareRequest();
-          },
-        })
+      this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
+        next: (res: RequestGridDataColumn) => {
+          this.columns = this.tableService.GetColumnsOutput(res.value);
+        },
+        complete: () => {
+          this.prepareRequest();
+        },
+      })
     );
   }
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
-    let requestObj = this.baseService.getRequestObj(this.columns, ev);
+    let requestObj = this.commonService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
   }
   getLazyLoadEvent(ev: LazyLoadEvent): void {
@@ -96,7 +99,7 @@ export class ProductTradeNameComponent
     this.prepareRequest(this.lazyLoadObj);
   }
   getSelected(ev: any): void {
-    var path = this.pathService.get(this.model, ev.id);
+    var path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;
     this.tableService.getObjDto(path, this.obj);
   }
@@ -151,7 +154,7 @@ export class ProductTradeNameComponent
 
   delete(): void {
     this.deleteSub = this.tableButtonService
-      .delete(this.pathService.delete(this.model, this.obj.objectDto.id))
+      .delete(deleteModelPath(this.model, this.obj.objectDto.id))
       .subscribe({
         next: (res: boolean) => {
           if (res) {

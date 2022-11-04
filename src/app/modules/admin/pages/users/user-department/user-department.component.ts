@@ -17,8 +17,13 @@ import { FormDictionaryValueDialogComponent } from 'src/app/modules/universal-co
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { ApiService } from 'src/app/services/api.service';
-import { BaseService } from 'src/app/services/base.service';
-import { PathService } from 'src/app/services/path.service';
+import { CommonService } from 'src/app/services/common.service';
+import {
+  columnListPath,
+  deleteModelWithParamsPath,
+  getModelListPath,
+  postModelPath,
+} from 'src/app/services/path';
 
 @Component({
   selector: 'app-user-department',
@@ -63,12 +68,11 @@ export class UserDepartmentComponent
 
   constructor(
     private translateService: TranslateService,
-    private baseService: BaseService,
+    private commonService: CommonService,
     private dialogService: DialogService,
     private tableButtonService: TableButtonService,
     private tableService: TableService,
-    private pathService: PathService,
-    private apiService:ApiService
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -78,7 +82,7 @@ export class UserDepartmentComponent
     this.reqObjBS.subscribe((request) => {
       if (request?.pageNumber !== 10000) {
         this.responseObj = this.apiService.getResponseObj(
-          this.pathService.getList(this.model),
+          getModelListPath(this.model),
           request
         );
       }
@@ -92,25 +96,23 @@ export class UserDepartmentComponent
   }
 
   getColumns(): void {
-    this.apiService
-      .getColumns(this.pathService.columnList(this.gridId))
-      .subscribe({
-        next: (res: RequestGridDataColumn) => {
-          this.columns = this.tableService.GetColumnsOutput(res.value);
-        },
-        complete: () => {
-          this.prepareRequest();
-        },
-      });
+    this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
+      next: (res: RequestGridDataColumn) => {
+        this.columns = this.tableService.GetColumnsOutput(res.value);
+      },
+      complete: () => {
+        this.prepareRequest();
+      },
+    });
   }
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
     if (this.columns && this.masterId) {
-      let filter = this.baseService.getFilter4request(
+      let filter = this.commonService.getFilter4request(
         'userId',
         this.masterId?.toString() ?? '',
         'equals'
       );
-      let requestObj = this.baseService.getRequestObj(this.columns, ev, [
+      let requestObj = this.commonService.getRequestObj(this.columns, ev, [
         filter,
       ]);
       this.reqObjBS.next(requestObj);
@@ -160,12 +162,12 @@ export class UserDepartmentComponent
     this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
       data: [
         [
-          this.pathService.getList(this.dictModel),
-          this.pathService.columnList(this.dictGridId),
+          getModelListPath(this.dictModel),
+          columnListPath(this.dictGridId),
           'id',
           'departmentName',
         ],
-        this.pathService.post(this.model),
+        postModelPath(this.model),
         obj,
         ['departmentId'],
         undefined,
@@ -188,7 +190,7 @@ export class UserDepartmentComponent
   delete(): void {
     this.deleteSub = this.tableButtonService
       .delete(
-        this.pathService.deleteParams(
+        deleteModelWithParamsPath(
           this.model,
           'userId=' + this.userId + '&departmentId=' + this.departmentId
         )

@@ -18,11 +18,12 @@ import {
   take,
   tap,
 } from 'rxjs';
-import { BaseService } from 'src/app/services/base.service';
+import { CommonService } from 'src/app/services/common.service';
+import { refreshTokenPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
 import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
 import { LoginService } from '../login.service';
-import { getRefreshToken, getToken } from '../state/login.selector';
+import { getRefreshToken, getToken, getTokenUr } from '../state/login.selector';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -35,22 +36,25 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     private loginService: LoginService,
     private http: HttpClient,
     private store: Store<ResponseLoginApi>,
-    private baseService: BaseService
+    private commonService: CommonService
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const tokenUR = localStorage.getItem('tokenUR');
-    const token = this.baseService.getValueFromObservable(
+    // const tokenUR = localStorage.getItem('tokenUR');
+    const tokenUR = this.commonService.getValueFromObservable(
+      this.store.select(getTokenUr)
+    );
+    const token = this.commonService.getValueFromObservable(
       this.store.select(getToken)
     );
     this.authService.isExpired();
 
-    if (!tokenUR) {
+    if (tokenUR === '') {
       return next.handle(request);
-    } else if (tokenUR && !token) {
+    } else if (tokenUR !== '' && token === '') {
       request = this.applyToken(request, tokenUR);
       return next.handle(request);
     } else {
@@ -104,7 +108,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
   }
 
   private refreshTokenApi(): Observable<ResponseLoginApi> {
-    const refreshToken = this.baseService.getValueFromObservable(
+    const refreshToken = this.commonService.getValueFromObservable(
       this.store.select(getRefreshToken)
     );
     const httpOptions = {
@@ -115,13 +119,13 @@ export class AuthconfigInterceptor implements HttpInterceptor {
 
     return this.http
       .post<ResponseLoginApi>(
-        environment.endpointApiPath + '/api/Home/RefreshToken',
+        environment.endpointApiPath + refreshTokenPath,
         null,
         httpOptions
       )
       .pipe(
         tap((res: ResponseLoginApi) => {
-          this.loginService.setLocalStorageUserData(res);
+          this.loginService.setLoginStateStore(res);
         })
       );
   }

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FilterMetadata, LazyLoadEvent, MenuItem } from 'primeng/api';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
@@ -12,12 +11,12 @@ import { ApiService } from './api.service';
 @Injectable({
   providedIn: 'root',
 })
-export class BaseService {
+export class CommonService {
   returnList: any[];
   listMenuItem: MenuItem[] = [];
   valueSub: Subscription;
 
-  constructor(private http: HttpClient, private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {}
 
   // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(

@@ -1,0 +1,29 @@
+{
+    "mainpage":"Hlavní stránka",
+    "equipment_tree":"Strom vybavení",
+    "orders_header":"Objednávky",
+    "orders":{
+      "orders":"Objednávky",
+      "order_cards":"Objednávkové karty"
+    },
+    "browsers_header":"Prohlížeče",
+    "browsers":{
+      "tree_elements_header":"Stromové prvky",
+      "tree_elements":{
+        "objects":"Objekty",
+        "nodes":"Uzly",
+        "equipments":"Vybavení",
+        "lubricant_points":"Mazací body"
+      }
+    },
+    "dictionaries_header":"Slovníky",
+    "dictionaries":{
+      "task_types":"Typy úloh",
+      "task_groups":"Skupiny úkolů",
+      "product_groups":"Skupiny výrobků"
+    },
+    "admin_header":"Správy",
+    "admin":{
+      "users":"Správy"
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "title_page":"NES 2.0 - Počítačový systém řízení údržby",
+  "notifications":"Oznámení",
+  "language":"Jazyk",
+  "minimal_menu":"Minimalizovat nabídku",
+  "show_menu":"Zobrazit nabídku",
+  "change_customer":"Změna klienta...",
+  "search":"Vyhledávání...",
+  "1Adv":"Úkoly plánování",
+  "2Adv":"Registrace zařízení",
+  "3Adv":"Registrace maziv",
+  "4Adv":"Hlášení",
+  "empty_data":"Žádný výsledek",
+  "login":"přihlášení:",
+  "footer_left_a":"Ecol sp z o.o.",
+  "footer_left_b":"Podmiejska Street 71A, 44-207 Rybnik",
+  "footer_right_a":"2022 Ecol",
+  "select_template":"Zvolte rozvržení",
+  "selected_entity":"Vybraný objekt",
+  "remove_record":"Odstranění záznamu",
+  "search_menu": {
+    "window":"Okno",
+    "tree_element":"Stromový prvek"
+  },
+  "user_menu":
+  {
+    "settings":"Nastavení",
+    "user_profile":"Profil uživatele",
+    "logout":"Odhlášení"
+  }
+}

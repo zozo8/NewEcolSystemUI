@@ -10,6 +10,8 @@ export const initialState: ResponseLoginApi = {
   userName: '',
   departmentsId: [],
   language: 'pl',
+  tokenExp: 0,
+  tokenUr: '',
 };
 
 export const loginReducer = createReducer(
@@ -21,6 +23,16 @@ export const loginReducer = createReducer(
     token: obj.token,
     userName: obj.userName,
     language: obj.language,
+    tokenExp: obj.tokenExp,
+    tokenUr: obj.tokenUr,
+  })),
+  on(loginActions.saveTokenExp, (state, { exp }) => ({
+    ...state,
+    tokenExp: exp,
+  })),
+  on(loginActions.saveTokenUr, (state, { token }) => ({
+    ...state,
+    tokenUr: token,
   })),
   on(loginActions.changeDepartment, (state, { departments }) => ({
     ...state,
@@ -29,5 +41,10 @@ export const loginReducer = createReducer(
   on(loginActions.changeLanguage, (state, { language }) => ({
     ...state,
     language: language,
+  })),
+  on(loginActions.clearTokens, (state) => ({
+    ...state,
+    token: '',
+    tokenUr: '',
   }))
 );
