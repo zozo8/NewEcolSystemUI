@@ -1,15 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
 import * as loginActions from './login.actions';
+import { LoginState } from './loginState.model';
 
-export const initialState: ResponseLoginApi = {
+export const initialState: LoginState = {
   email: '',
   id: 0,
   refreshToken: '',
   token: '',
   userName: '',
   departmentsId: [],
-  language: 'pl',
   tokenExp: 0,
   tokenUr: '',
 };
@@ -22,7 +21,6 @@ export const loginReducer = createReducer(
     refreshToken: obj.refreshToken,
     token: obj.token,
     userName: obj.userName,
-    language: obj.language,
     tokenExp: obj.tokenExp,
     tokenUr: obj.tokenUr,
   })),
@@ -37,10 +35,6 @@ export const loginReducer = createReducer(
   on(loginActions.changeDepartment, (state, { departments }) => ({
     ...state,
     departmentsId: departments,
-  })),
-  on(loginActions.changeLanguage, (state, { language }) => ({
-    ...state,
-    language: language,
   })),
   on(loginActions.clearTokens, (state) => ({
     ...state,

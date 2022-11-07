@@ -5,7 +5,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
-import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import { columnListPath } from 'src/app/services/path';

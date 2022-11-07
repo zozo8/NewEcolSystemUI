@@ -35,6 +35,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.6.0",
     "js-sha512": "^0.8.0",
+    "ngrx-store-localstorage": "^14.0.0",
     "ngx-drag-drop": "^14.0.0",
     "ngx-i18n-combine": "^1.2.0",
     "popper.js": "^1.16.1",

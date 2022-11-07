@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
-import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 

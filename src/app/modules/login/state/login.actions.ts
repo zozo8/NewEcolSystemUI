@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
+import { LoginState } from './loginState.model';
 
 export const saveLoginObject = createAction(
   '[Login Service] saveLoginObject',
-  props<{ obj: ResponseLoginApi }>()
+  props<{ obj: LoginState }>()
 );
 
 export const changeDepartment = createAction(

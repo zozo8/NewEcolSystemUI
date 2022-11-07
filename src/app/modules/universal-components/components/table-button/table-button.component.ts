@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { FormTableSetColumnComponent } from '../dialogs/form-table-set-column/form-table-set-column.component';
 
 @Component({

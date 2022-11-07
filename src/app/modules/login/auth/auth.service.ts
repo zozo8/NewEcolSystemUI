@@ -3,26 +3,26 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
-import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
 import { clearTokens } from '../state/login.actions';
-import { getToken, getTokenExp } from '../state/login.selector';
+import { getTokenExp } from '../state/login.selector';
+import { LoginState } from '../state/loginState.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loginObj: ResponseLoginApi;
+  loginObj: LoginState;
   loginObjSub: Subscription;
 
   constructor(
     private router: Router,
-    private loginStore: Store<ResponseLoginApi>,
+    private loginStore: Store<LoginState>,
     private commonService: CommonService
   ) {}
 
   logout(): void {
     let ln: string = localStorage.getItem('language') ?? 'pl';
-    //localStorage.clear();
+    localStorage.clear();
     this.loginStore.dispatch(clearTokens());
     localStorage.setItem('language', ln);
     this.router.navigate(['/']);
@@ -46,22 +46,24 @@ export class AuthService {
 
   checkLastActivity(): boolean {
     // do zmiany wg review
-    // const actualDate = new Date().getTime();
-    // let lastAct = localStorage.getItem('lastActivity');
-    // if (lastAct) {
-    //   let lastActivity = Number.parseInt(lastAct);
-    //   if (actualDate > lastActivity) {
-    //     return false;
-    //   } else {
-    //     return true;
-    //   }
-    // } else {
-    //   return false;
-    // }
+    const actualDate = new Date().getTime();
+    let lastAct = localStorage.getItem('lastActivity');
+    if (lastAct) {
+      let lastActivity = Number.parseInt(lastAct);
+      if (actualDate > lastActivity) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
 
-    const token = this.commonService.getValueFromObservable(
-      this.loginStore.select(getToken)
-    );
-    return token ?? '' !== '' ? true : false;
+    // const token = this.commonService.getValueFromObservable(
+    //   this.loginStore.select(getToken)
+    // );
+
+    // const res = (token ?? '') !== '' ? true : false;
+    // return res;
   }
 }

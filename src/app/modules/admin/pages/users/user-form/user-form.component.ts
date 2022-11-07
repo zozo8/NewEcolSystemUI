@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ITableFormComponent } from 'src/app/Interfaces/table/ITableFormComponent';
-import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
-import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
+import { ITableFormComponent } from 'src/app/modules/universal-components/interfaces/ITableFormComponent';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 
 @Component({
   selector: 'app-user-form',

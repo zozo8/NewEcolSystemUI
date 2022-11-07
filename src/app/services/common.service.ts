@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Filter } from '../models/requests/filter.model';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from '../models/requests/requestGridDataColumn.model';
-import { RequestGridDataColumnValue } from '../models/requests/requestGridDataColumnValue.model';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
+import { RequestGridDataColumnValue } from '../modules/universal-components/models/requestGridDataColumnValue.model';
 import { ApiService } from './api.service';
 
 @Injectable({

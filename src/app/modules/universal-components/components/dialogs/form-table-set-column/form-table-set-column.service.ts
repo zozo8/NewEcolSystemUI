@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { ColumnSetting } from 'src/app/models/requests/columnSetting.model';
-import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
-import { ResponseLoginApi } from 'src/app/modules/login/interfaces/responseLoginApi.model';
 import { getUserId } from 'src/app/modules/login/state/login.selector';
+import { LoginState } from 'src/app/modules/login/state/loginState.model';
 import { CommonService } from 'src/app/services/common.service';
 import { postModelPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 export class FormTableSetColumnService {
   constructor(
     private http: HttpClient,
-    private store: Store<ResponseLoginApi>,
+    private store: Store<LoginState>,
     private commonService: CommonService
   ) {}
 

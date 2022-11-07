@@ -11,8 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 import { Observable, timer } from 'rxjs';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
-import { ResponseLoginApi } from 'src/app/modules/login/interfaces/responseLoginApi.model';
 import { getUserName } from 'src/app/modules/login/state/login.selector';
+import { LoginState } from 'src/app/modules/login/state/loginState.model';
 import { environment } from 'src/environments/environment';
 import { DashboardMenuService } from './dashboard-menu.service';
 
@@ -54,12 +54,12 @@ export class DashboardPageComponent implements OnInit {
     private authService: AuthService,
     private menuService: DashboardMenuService,
     private translateService: TranslateService,
-    private store: Store<ResponseLoginApi>
+    private store: Store<LoginState>
   ) {}
 
   ngOnInit(): void {
     this.appVersion = `${environment.appVersion} ${this.translateService.currentLang}`;
-    this.setTimer();
+    //this.setTimer();
     this.topMenu = this.getTopMenu();
     this.userMenu = this.menuService.getUserMenu();
 

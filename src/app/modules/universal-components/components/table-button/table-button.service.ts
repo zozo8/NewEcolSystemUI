@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
+import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

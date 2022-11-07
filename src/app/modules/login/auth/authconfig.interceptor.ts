@@ -21,9 +21,9 @@ import {
 import { CommonService } from 'src/app/services/common.service';
 import { refreshTokenPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
-import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
 import { LoginService } from '../login.service';
 import { getRefreshToken, getToken, getTokenUr } from '../state/login.selector';
+import { LoginState } from '../state/loginState.model';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private loginService: LoginService,
     private http: HttpClient,
-    private store: Store<ResponseLoginApi>,
+    private store: Store<LoginState>,
     private commonService: CommonService
   ) {}
 
@@ -81,7 +81,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
       this.tokenSubject.next('');
 
       return this.refreshTokenApi().pipe(
-        switchMap((res: ResponseLoginApi) => {
+        switchMap((res: LoginState) => {
           this.isRefreshingToken = false;
           this.tokenSubject.next(res.token);
 
@@ -107,7 +107,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     });
   }
 
-  private refreshTokenApi(): Observable<ResponseLoginApi> {
+  private refreshTokenApi(): Observable<LoginState> {
     const refreshToken = this.commonService.getValueFromObservable(
       this.store.select(getRefreshToken)
     );
@@ -118,13 +118,13 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     };
 
     return this.http
-      .post<ResponseLoginApi>(
+      .post<LoginState>(
         environment.endpointApiPath + refreshTokenPath,
         null,
         httpOptions
       )
       .pipe(
-        tap((res: ResponseLoginApi) => {
+        tap((res: LoginState) => {
           this.loginService.setLoginStateStore(res);
         })
       );

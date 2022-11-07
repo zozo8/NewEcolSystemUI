@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ResponseLoginApi } from '../interfaces/responseLoginApi.model';
+import { LoginState } from './loginState.model';
 
-export const getState = createFeatureSelector<ResponseLoginApi>('login'); //login bo to zostało uzyte w deklaracji reducer w module
+export const getState = createFeatureSelector<LoginState>('login'); //login bo to zostało uzyte w deklaracji reducer w module
 export const getUserName = createSelector(getState, (state) => state.userName);
 export const getToken = createSelector(getState, (state) => state.token);
 export const getTokenUr = createSelector(getState, (state) => state.tokenUr);
@@ -11,4 +11,3 @@ export const getRefreshToken = createSelector(
   (state) => state.refreshToken
 );
 export const getUserId = createSelector(getState, (state) => state.id);
-export const getLanguage = createSelector(getState, (state) => state.language);

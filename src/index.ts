@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { ResponseLoginApi } from './app/modules/login/interfaces/responseLoginApi.model';
+import { ResponseLoginApi } from './app/modules/login/state/loginState.model';
 
 export const selectLogin = (state: ResponseLoginApi) => state;
 

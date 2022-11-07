@@ -1,67 +1,67 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import { Subscription } from "rxjs";
-import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
-import { TableMenuStructure } from "src/app/models/tableMenuStructure";
-import { TableButtonService } from "../table-button/table-button.service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
+import { TableButtonService } from '../table-button/table-button.service';
 
 @Component({
-  selector: "app-form",
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.css"]
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
   private saveSubscription: Subscription;
   private putSubscription: Subscription;
 
   constructor(
-    private tableButtonService:TableButtonService,
-    private translateService:TranslateService
-  ) {
-  }
+    private tableButtonService: TableButtonService,
+    private translateService: TranslateService
+  ) {}
 
   @Input()
-  title?:string;
+  title?: string;
 
   @Input()
-  icon?:string;
+  icon?: string;
 
   @Input()
-  obj:TableMenuStructure;
+  obj: TableMenuStructure;
 
   @Input()
-  cols:RequestGridDataColumnValue[];
+  cols: RequestGridDataColumnValue[];
 
   @Input()
-  postPath:string;
+  postPath: string;
 
   @Output()
   refreshTable = new EventEmitter();
 
-
-  getFieldName(field:string):string {
-    return this.cols.find(x=>x.columnName === field)?.displayName??"-";
+  getFieldName(field: string): string {
+    return this.cols.find((x) => x.columnName === field)?.displayName ?? '-';
   }
 
-  save():void {
-    this.saveSubscription = this.tableButtonService.save(this.obj.objectEditDto,this.obj.objectEditDto.id,this.postPath).subscribe({
-      next:(res:boolean)=> {
-        if(res) {
-          this.refreshTable.emit();
-        }
-      },
-      complete:()=>this.saveSubscription.unsubscribe()
-    });
+  save(): void {
+    this.saveSubscription = this.tableButtonService
+      .save(this.obj.objectEditDto, this.obj.objectEditDto.id, this.postPath)
+      .subscribe({
+        next: (res: boolean) => {
+          if (res) {
+            this.refreshTable.emit();
+          }
+        },
+        complete: () => this.saveSubscription.unsubscribe(),
+      });
   }
 
-  edit():void {
+  edit(): void {
     this.putSubscription = this.tableButtonService.put(this.obj).subscribe({
-      next:(res:TableMenuStructure)=>this.obj = res,
-      complete:()=>this.putSubscription.unsubscribe()
+      next: (res: TableMenuStructure) => (this.obj = res),
+      complete: () => this.putSubscription.unsubscribe(),
     });
   }
 
-  cancel():void {
+  cancel(): void {
     this.obj.editState = false;
     this.obj.objectEditDto = {};
   }

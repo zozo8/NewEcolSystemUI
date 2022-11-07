@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { LazyLoadEvent, MenuItem } from "primeng/api";
 import { Observable } from "rxjs";
-import { RequestGridDataColumnValue } from "src/app/models/requests/requestGridDataColumnValue.model";
+import { RequestGridDataColumnValue } from "src/app/modules/universal-components/models/requestGridDataColumnValue.model";
 import { ResponseBodyGetList } from "src/app/models/responses/responseBodyGetList.model";
 
 @Component({

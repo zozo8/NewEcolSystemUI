@@ -8,14 +8,15 @@ import { authenticatePath, loginToURPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/auth.service';
 import Login from './interfaces/login.model';
-import { ResponseLoginApi } from './interfaces/responseLoginApi.model';
 import { LoginCredentialMD } from './interfaces/UR/loginCredentialMD.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import {
+  clearTokens,
   saveLoginObject,
   saveTokenExp,
   saveTokenUr,
 } from './state/login.actions';
+import { LoginState } from './state/loginState.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,10 +26,12 @@ export class LoginService {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private store: Store<ResponseLoginApi>
+    private loginStore: Store<LoginState>
   ) {}
 
   loginToUR(obj: Login): Observable<ResponseLoginUR> {
+    this.loginStore.dispatch(clearTokens());
+
     const loginObjUR: LoginCredentialMD = this.getLoginObjUR(obj);
     return this.http.post<ResponseLoginUR>(
       environment.endpointLoginUR + loginToURPath(),
@@ -40,11 +43,11 @@ export class LoginService {
     const resBs = new BehaviorSubject<boolean>(false);
 
     // localStorage.setItem('tokenUR', obj.accessToken.value);
-    this.store.dispatch(saveTokenUr({ token: obj.accessToken.value }));
+    this.loginStore.dispatch(saveTokenUr({ token: obj.accessToken.value }));
     this.http
-      .get<ResponseLoginApi>(environment.endpointApiPath + authenticatePath())
+      .get<LoginState>(environment.endpointApiPath + authenticatePath())
       .subscribe({
-        next: (res: ResponseLoginApi) => {
+        next: (res: LoginState) => {
           this.setLoginStateStore(res);
         },
         error: (err: string) => {
@@ -61,8 +64,8 @@ export class LoginService {
     return resBs;
   }
 
-  setLoginStateStore(res: ResponseLoginApi) {
-    this.store.dispatch(saveLoginObject({ obj: res }));
+  setLoginStateStore(res: LoginState) {
+    this.loginStore.dispatch(saveLoginObject({ obj: res }));
     this.decodateToken(res);
   }
 
@@ -78,9 +81,9 @@ export class LoginService {
     return res;
   }
 
-  decodateToken(res: ResponseLoginApi): void {
+  decodateToken(res: LoginState): void {
     const decodate = JSON.parse(window.atob(res.token.split('.')[1]));
-    this.store.dispatch(saveTokenExp({ exp: decodate.exp }));
+    this.loginStore.dispatch(saveTokenExp({ exp: decodate.exp }));
     const rights: string[] =
       decodate['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     // const admin = rights.filter((x) => x.includes('Administrator')); // do zmiany

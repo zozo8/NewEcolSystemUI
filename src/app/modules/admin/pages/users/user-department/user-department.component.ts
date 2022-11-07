@@ -3,19 +3,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { IDictionaryComponent } from 'src/app/Interfaces/IDictionaryComponent';
-import { ITableButtonsComponent } from 'src/app/Interfaces/table/ITableButtonsComponent';
-import { ITableComponent } from 'src/app/Interfaces/table/ITableComponent';
-import { UserDepartment } from 'src/app/models/dto/modules/admin/userDepartment';
-import { GridEnum } from 'src/app/models/enums/gridEnum';
+import { GridEnum } from 'src/app/models/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
-import { RequestGridDataColumnValue } from 'src/app/models/requests/requestGridDataColumnValue.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { TableMenuStructure } from 'src/app/models/tableMenuStructure';
+import { IDictionaryComponent } from 'src/app/modules/dictionaries/interfaces/IDictionaryComponent';
 import { FormDictionaryValueDialogComponent } from 'src/app/modules/universal-components/components/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
+import { ITableButtonsComponent } from 'src/app/modules/universal-components/interfaces/ITableButtonsComponent';
+import { ITableComponent } from 'src/app/modules/universal-components/interfaces/ITableComponent';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import {
@@ -24,6 +23,7 @@ import {
   getModelListPath,
   postModelPath,
 } from 'src/app/services/path';
+import { UserDepartment } from '../../../models/userDepartment';
 
 @Component({
   selector: 'app-user-department',

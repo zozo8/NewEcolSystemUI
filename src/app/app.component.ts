@@ -1,41 +1,37 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import { PrimeNGConfig } from "primeng/api";
-import { AuthService } from "./modules/login/auth/auth.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { PrimeNGConfig } from 'primeng/api';
+import { AuthService } from './modules/login/auth/auth.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit,OnDestroy {
-
+export class AppComponent implements OnInit, OnDestroy {
   constructor(
-    private translateService:TranslateService,
+    private translateService: TranslateService,
     private primeNgConfig: PrimeNGConfig,
-    private authService:AuthService
-    ) {
-
-  }
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-
     if (!this.authService.checkLastActivity()) {
       this.authService.logout();
     }
 
-    this.translateService.addLangs(["pl", "en", "de"]);
-    const lan = localStorage.getItem( "actualLanguage" ) ?? "pl";
+    this.translateService.addLangs(['pl', 'en', 'de', 'es', 'cz']);
+    const lan = localStorage.getItem('actualLanguage') ?? 'pl';
 
-    if ( lan !== "null" ) {
+    if (lan !== 'null') {
       this.translateService.use(lan);
     } else {
-      this.translateService.setDefaultLang("pl");
+      this.translateService.setDefaultLang('pl');
     }
 
-      this.translateService.get("primeng").subscribe(res => {
-        this.primeNgConfig.setTranslation(res);
-      });
+    this.translateService.get('primeng').subscribe((res) => {
+      this.primeNgConfig.setTranslation(res);
+    });
   }
 
   ngOnDestroy(): void {
