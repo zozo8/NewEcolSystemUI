@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
 import * as loginActions from './login.actions';
 import { LoginState } from './loginState.model';
 
@@ -8,21 +9,20 @@ export const initialState: LoginState = {
   refreshToken: '',
   token: '',
   userName: '',
-  departmentsId: [],
   tokenExp: 0,
   tokenUr: '',
+  language: environment.languages[0],
 };
 
 export const loginReducer = createReducer(
   initialState,
   on(loginActions.saveLoginObject, (state, { obj }) => ({
+    ...state,
     id: obj.id,
     email: obj.email,
     refreshToken: obj.refreshToken,
     token: obj.token,
     userName: obj.userName,
-    tokenExp: obj.tokenExp,
-    tokenUr: obj.tokenUr,
   })),
   on(loginActions.saveTokenExp, (state, { exp }) => ({
     ...state,
@@ -40,5 +40,9 @@ export const loginReducer = createReducer(
     ...state,
     token: '',
     tokenUr: '',
+  })),
+  on(loginActions.setLanguage, (state, { language }) => ({
+    ...state,
+    language: language,
   }))
 );

@@ -6,11 +6,14 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, timer } from 'rxjs';
 import Login from './interfaces/login.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import { LoginService } from './login.service';
+import { setLanguage } from './state/login.actions';
+import { LoginState } from './state/loginState.model';
 
 @Component({
   selector: 'app-login',
@@ -79,7 +82,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private store: Store<LoginState>
   ) {}
 
   ngOnInit(): void {
@@ -133,7 +137,8 @@ export class LoginComponent implements OnInit {
   }
 
   setLanguage(ln: string): void {
+    this.store.dispatch(setLanguage({ language: ln }));
     this.translateService.use(ln);
-    localStorage.setItem('actualLanguage', ln);
+    //localStorage.setItem('actualLanguage', ln);
   }
 }

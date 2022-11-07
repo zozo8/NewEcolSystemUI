@@ -6,4 +6,5 @@ export const environment = {
   urApp: 'ES',
   urHashName: 'Sha512',
   urInstance: 'ESW',
+  languages: ['pl', 'en', 'de', 'es', 'cz'],
 };

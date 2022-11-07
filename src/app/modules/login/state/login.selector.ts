@@ -11,3 +11,4 @@ export const getRefreshToken = createSelector(
   (state) => state.refreshToken
 );
 export const getUserId = createSelector(getState, (state) => state.id);
+export const getLanguage = createSelector(getState, (state) => state.language);

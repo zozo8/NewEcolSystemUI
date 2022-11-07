@@ -21,10 +21,10 @@ export class AuthService {
   ) {}
 
   logout(): void {
-    let ln: string = localStorage.getItem('language') ?? 'pl';
+    //let ln: string = localStorage.getItem('language') ?? 'pl';
     localStorage.clear();
     this.loginStore.dispatch(clearTokens());
-    localStorage.setItem('language', ln);
+    //localStorage.setItem('language', ln);
     this.router.navigate(['/']);
   }
 

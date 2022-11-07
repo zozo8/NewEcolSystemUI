@@ -11,7 +11,6 @@ import Login from './interfaces/login.model';
 import { LoginCredentialMD } from './interfaces/UR/loginCredentialMD.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import {
-  clearTokens,
   saveLoginObject,
   saveTokenExp,
   saveTokenUr,
@@ -30,7 +29,7 @@ export class LoginService {
   ) {}
 
   loginToUR(obj: Login): Observable<ResponseLoginUR> {
-    this.loginStore.dispatch(clearTokens());
+    // this.loginStore.dispatch(clearTokens());
 
     const loginObjUR: LoginCredentialMD = this.getLoginObjUR(obj);
     return this.http.post<ResponseLoginUR>(
