@@ -1,4 +1,154 @@
-<div style="background-image: url(./assets/images/login_background.jpg)">
+<div class="pages-body login-page flex flex-column">
+  <div
+    class="topbar p-3 flex justify-content-between flex-row align-items-center"
+  >
+    <div class="topbar-left ml-3 flex" routerLink="/">
+      <div class="logo">
+        <img src="assets/layout/images/logo2x.png" alt="" />
+      </div>
+    </div>
+    <div class="topbar-right mr-3 flex">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="ecol.com.pl"
+        [routerLink]="['/']"
+        class="p-button-text p-button-plain topbar-button"
+      ></button>
+    </div>
+  </div>
+
+  <div class="align-self-center mt-auto mb-auto">
+    <form (ngSubmit)="login()">
+      <div class="pages-panel card flex flex-column">
+        <div class="pages-header px-3 py-1">
+          <h2>{{ "pages.login_page.title" | translate }}</h2>
+        </div>
+
+        <h4>{{ "common.title_page" | translate }}</h4>
+
+        <div class="pages-detail mb-6 px-6">
+          Please use the form to sign-in Ultima network
+        </div>
+
+        <div class="input-panel flex flex-column px-3">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-envelope"></i>
+            </span>
+            <span class="p-float-label">
+              <input
+                type="text"
+                id="userName"
+                pInputText
+                name="userName"
+                [(ngModel)]="loginObj.userName"
+              />
+              <label for="userName">{{
+                "pages.login_page.username" | translate
+              }}</label>
+            </span>
+          </div>
+
+          <div class="p-inputgroup mt-3 mb-6">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-lock"></i>
+            </span>
+            <span class="p-float-label">
+              <input
+                type="password"
+                id="password"
+                pInputText
+                name="password"
+                [(ngModel)]="loginObj.password"
+              />
+              <label for="password">{{
+                "pages.login_page.password" | translate
+              }}</label>
+            </span>
+          </div>
+        </div>
+
+        <p-button
+          type="submit"
+          [label]="'pages.login_page.login' | translate"
+          class="login-button mb-6 px-3"
+          [disabled]="!loginObj.userName || !loginObj.password"
+        ></p-button>
+        <div class="row" [@showContentTrigger]="showContent ? 'show' : 'hide'">
+          <img
+            class="p-1 map"
+            style="width: 35px"
+            alt="pl"
+            src="./assets/images/flags/PL.png"
+            (click)="setLanguage('pl')"
+          />
+          <img
+            class="p-1 map"
+            style="width: 35px"
+            alt="en"
+            src="./assets/images/flags/GB.png"
+            (click)="setLanguage('en')"
+          />
+          <img
+            class="p-1 map"
+            style="width: 35px"
+            alt="de"
+            src="./assets/images/flags/DE.png"
+            (click)="setLanguage('de')"
+          />
+          <img
+            class="p-1 map"
+            style="width: 35px"
+            alt="cz"
+            src="./assets/images/flags/CZ.png"
+            (click)="setLanguage('cz')"
+          />
+          <img
+            class="p-1 map"
+            style="width: 35px"
+            alt="fr"
+            src="./assets/images/flags/ES.png"
+            (click)="setLanguage('es')"
+          />
+        </div>
+        <div class="row">
+          <p-progressBar
+            mode="indeterminate"
+            [style]="{ height: '6px' }"
+            *ngIf="loading"
+          ></p-progressBar>
+          <div class="alert alert-danger" *ngIf="errorText">
+            {{ errorText }}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    [@hideAdvTrigger]="hideAdvs ? 'endHideAdv' : 'startHideAdv'"
+    class="text-center"
+    style="font-size: 23px; color: white; padding-top: 20px"
+  >
+    <p>
+      <span [@showAdvTrigger]="showAdv[0] ? 'endShowAdv' : 'startShowAdv'">{{
+        "common.1Adv" | translate
+      }}</span>
+      <span [@showAdvTrigger]="showAdv[1] ? 'endShowAdv' : 'startShowAdv'">{{
+        "common.2Adv" | translate
+      }}</span>
+      <span [@showAdvTrigger]="showAdv[2] ? 'endShowAdv' : 'startShowAdv'">{{
+        "common.3Adv" | translate
+      }}</span>
+      <span [@showAdvTrigger]="showAdv[3] ? 'endShowAdv' : 'startShowAdv'">{{
+        "common.4Adv" | translate
+      }}</span>
+    </p>
+  </div>
+</div>
+
+<!-- <div style="background-image: url(./assets/images/login_background.jpg)">
   <div class="container" style="height: 100vh">
     <div class="row h-100">
       <div class="col-md-12">
@@ -137,4 +287,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

@@ -1,4 +1,4 @@
-.login_module {
+/* .login_module {
   margin: auto;
   padding: 10% 0px 0px 0px;
 }
@@ -12,4 +12,9 @@
   font-size: 12px;
   text-decoration: none;
 }
+ */
 
+ .map {
+  cursor: pointer;
+
+ }
