@@ -53,6 +53,9 @@ export class UsersComponent
   private putSubscription: Subscription;
   deleteSubscription: Subscription;
 
+  static icon = 'pi pi-user';
+  static header = 'jakis szerszy opis okna uzytkownikow';
+
   constructor(
     private tableService: TableService,
     private translateService: TranslateService,

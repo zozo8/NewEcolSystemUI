@@ -12,6 +12,7 @@ export const initialState: LoginState = {
   tokenExp: 0,
   tokenUr: '',
   language: environment.languages[0],
+  tabs: [],
 };
 
 export const loginReducer = createReducer(
@@ -44,5 +45,13 @@ export const loginReducer = createReducer(
   on(loginActions.setLanguage, (state, { language }) => ({
     ...state,
     language: language,
+  })),
+  on(loginActions.addTab, (state, { tab }) => ({
+    ...state,
+    tabs: [...state.tabs, tab],
+  })),
+  on(loginActions.removeTab, (state, { tab }) => ({
+    ...state,
+    tabs: [...state.tabs.splice(0, tab.component), ...state.tabs.splice(1)],
   }))
 );

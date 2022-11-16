@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, timer } from 'rxjs';
@@ -71,14 +71,14 @@ import { LoginState } from './state/loginState.model';
     ]),
   ],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loading: boolean;
   errorText: string;
   panelTitle: string;
   showContent: boolean;
   showAdv: boolean[] = [false, false, false, false];
   hideAdvs: boolean;
-  private loginSub: Subscription;
+  private compsiteSubs = new Subscription();
 
   constructor(
     private loginService: LoginService,
@@ -108,37 +108,43 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.errorText = '';
     timer(2000).subscribe(() => {
-      this.loginSub = this.loginService.loginToUR(this.loginObj).subscribe({
-        next: (res: ResponseLoginUR) => {
-          this.loginService.authenticate(res).subscribe({
-            next: (ret: boolean) => {
-              if (!ret) {
-                this.errorText = this.translateService.instant(
-                  'pages.login_page.wrong_authenticate'
-                );
-              }
-            },
-          });
-          this.loginSub.unsubscribe();
-        },
-        complete: () => {
-          this.loading = false;
-        },
-        error: (er: Error) => {
-          this.loading = false;
-          this.hideAdvs = false;
-          this.errorText = this.translateService.instant(
-            'pages.login_page.error'
-          );
-          console.error(er);
-        },
-      });
+      this.compsiteSubs.add(
+        this.loginService.loginToUR(this.loginObj).subscribe({
+          next: (res: ResponseLoginUR) => {
+            this.compsiteSubs.add(
+              this.loginService.authenticate(res).subscribe({
+                next: (resAuth: boolean) => {
+                  if (resAuth === false) {
+                    this.printErrorMessage();
+                  }
+                },
+              })
+            );
+          },
+          complete: () => {
+            this.loading = false;
+          },
+          error: (er: Error) => {
+            this.printErrorMessage();
+          },
+        })
+      );
     });
+  }
+
+  printErrorMessage() {
+    this.loading = false;
+    this.hideAdvs = false;
+    this.errorText = this.translateService.instant('pages.login_page.error');
   }
 
   setLanguage(ln: string): void {
     this.store.dispatch(setLanguage({ language: ln }));
     this.translateService.use(ln);
     //localStorage.setItem('actualLanguage', ln);
+  }
+
+  ngOnDestroy(): void {
+    this.compsiteSubs.unsubscribe();
   }
 }

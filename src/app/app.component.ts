@@ -15,6 +15,15 @@ import { CommonService } from './services/common.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  topbarTheme = 'blue';
+  menuTheme = 'light';
+  layoutMode = 'light';
+  menuMode = 'static';
+  inlineMenuPosition = 'bottom';
+  inputStyle = 'filled';
+  ripple = true;
+  isRTL = false;
+
   constructor(
     private translateService: TranslateService,
     private primeNgConfig: PrimeNGConfig,
@@ -27,21 +36,17 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!this.authService.checkLastActivity()) {
       this.authService.logout();
     }
-
     this.translateService.addLangs(environment.languages);
     let lan: string = this.commonService.getValueFromObservable(
       this.store.select(getLanguage)
     ); //localStorage.getItem('actualLanguage') ?? 'pl';
-
     if (lan) {
       this.translateService.use(lan);
     } else {
       lan = environment.languages[0];
       this.translateService.setDefaultLang(lan);
     }
-
     this.store.dispatch(setLanguage({ language: lan }));
-
     this.translateService.get('primeng').subscribe((res) => {
       this.primeNgConfig.setTranslation(res);
     });

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Tab } from 'src/app/models/tab.model';
 import { LoginState } from './loginState.model';
 
 export const saveLoginObject = createAction(
@@ -26,4 +27,14 @@ export const clearTokens = createAction('[Auth Service] clearTokens');
 export const setLanguage = createAction(
   '[Login component] setLanguage',
   props<{ language: string }>()
+);
+
+export const addTab = createAction(
+  '[Menuitem component] add tab',
+  props<{ tab: Tab }>()
+);
+
+export const removeTab = createAction(
+  '[Menuitem component] remove tab',
+  props<{ tab: Tab }>()
 );

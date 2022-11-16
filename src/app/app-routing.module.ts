@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardPageComponent } from './components/pages/dashboard-page/dashboard-page.component';
-import { MainpageComponent } from './components/pages/dashboard/mainpage/mainpage.component';
-import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 import { AuthGuard } from './modules/login/auth/auth.guard';
 import { LoginGuard } from './modules/login/login.guard';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { Summary1Component } from './pages/summary1/summary1.component';
 
 // cli new module: ng generate module customers --route customers --module app.module
 const routes: Routes = [
@@ -21,8 +21,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'mainpage',
-        component: MainpageComponent,
+        path: 'summary1',
+        component: Summary1Component,
         canActivate: [AuthGuard],
       },
     ],

@@ -1,3 +1,5 @@
+import { Tab } from 'src/app/models/tab.model';
+
 export interface LoginState {
   id: number;
   userName: string;
@@ -5,7 +7,7 @@ export interface LoginState {
   token: string;
   refreshToken: string;
   departmentsId?: number[];
-  tabs?: any[];
+  tabs: Tab[];
   tokenExp: number;
   tokenUr: string;
   language: string;

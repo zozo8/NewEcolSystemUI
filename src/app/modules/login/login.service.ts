@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { authenticatePath, loginToURPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/auth.service';
@@ -39,7 +39,7 @@ export class LoginService {
   }
 
   authenticate(obj: ResponseLoginUR): Observable<boolean> {
-    const resBs = new BehaviorSubject<boolean>(false);
+    const resBs = new Subject<boolean>();
 
     // localStorage.setItem('tokenUR', obj.accessToken.value);
     this.loginStore.dispatch(saveTokenUr({ token: obj.accessToken.value }));
@@ -51,11 +51,10 @@ export class LoginService {
         },
         error: (err: string) => {
           resBs.next(false);
-          //this.router.navigate(['/dashboard/mainpage']);
         },
         complete: () => {
           this.authService.setLastActivity();
-          this.router.navigate(['/dashboard/mainpage']);
+          this.router.navigate(['/dashboard/summary1']);
           resBs.next(true);
         },
       });

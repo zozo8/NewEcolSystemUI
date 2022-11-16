@@ -4,7 +4,7 @@ import { TreeNode } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UsersComponent } from 'src/app/modules/admin/pages/users/users.component';
 import { ProductTradeNameComponent } from 'src/app/modules/dictionaries/pages/product-trade-name/product-trade-name.component';
-import { MainpageComponent } from '../../dashboard/mainpage/mainpage.component';
+import { Summary1Component } from 'src/app/pages/summary1/summary1.component';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class LeftMenuService {
       {
         label: this.translateService.instant('app_menu.mainpage'),
         icon: 'pi pi-home',
-        component: MainpageComponent,
+        component: Summary1Component,
         data: 'Zakładka wyświetla wykresy, podsumowania i komunikaty systemowe.',
       },
       {
@@ -26,7 +26,7 @@ export class LeftMenuService {
         children: [
           {
             label: this.translateService.instant('app_menu.admin.users'),
-            icon: 'pi pi-user',
+            icon: UsersComponent.icon,
             component: UsersComponent,
             data: 'Zakładka wyświetla listę użytkowników. Umożliwa ich edycję oraz przypisywanie im grup, parametrów i zakładów.',
           },

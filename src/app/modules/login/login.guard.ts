@@ -23,9 +23,9 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.checkLastActivity()) {
-      this.router.navigate(['/dashboard/mainpage']);
-    }
+    // if (this.authService.checkLastActivity()) {
+    //   this.router.navigate(['/dashboard/mainpage']);
+    // }
 
     return true;
   }

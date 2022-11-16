@@ -1,13 +1,14 @@
 <p-tabView [(activeIndex)]="activeTab" (onClose)="closeTab($event)">
+  {{ tabs.length }}
   <p-tabPanel
     [closable]="true"
     [tooltip]="tab.tooltip"
-    [leftIcon]="tab.icon??''"
+    [leftIcon]="tab.icon ?? ''"
     [header]="tab.header"
     [selected]="i === activeTab"
-    *ngFor="let tab of tabs; let i = index, let l = last" >
-     <!-- <p-breadcrumb [model]="tab.parent"></p-breadcrumb> -->
-     <ng-container *ngComponentOutlet="tab.component"></ng-container>
+    *ngFor="let tab of tabs; let i = index; let l = last"
+  >
+    <!-- <ng-container *ngComponentOutlet="tab.component"></ng-container> -->
+    <p>tabs {{ tabs.length }}</p>
   </p-tabPanel>
 </p-tabView>
-
