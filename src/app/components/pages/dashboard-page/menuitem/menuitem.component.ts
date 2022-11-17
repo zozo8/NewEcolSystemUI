@@ -10,7 +10,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
 import { Tab } from 'src/app/models/tab.model';
-import { addTab } from 'src/app/modules/login/state/login.actions';
 import { LoginState } from 'src/app/modules/login/state/loginState.model';
 import { DashboardPageComponent } from '../dashboard-page.component';
 import { MenuService } from '../menu.service';
@@ -189,13 +188,14 @@ export class MenuitemComponent implements OnInit {
         tooltip: this.item.label,
       };
 
-      this.store.dispatch(
-        addTab({
-          tab: tab,
-        })
-      );
+      //ti jest bład przy dodawaniu tabów, nie w tabach!!!!!!
+      // this.store.dispatch(
+      //   addTab({
+      //     tab: tab,
+      //   })
+      // );
 
-      // this.dashboard.addTab(tab);
+      this.dashboard.addTab(tab);
     }
   }
 

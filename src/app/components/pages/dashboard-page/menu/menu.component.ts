@@ -26,20 +26,20 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-fw pi-home',
         items: [
           {
-            label: 'Wykresy i podsumowania',
-            icon: 'pi pi-fw pi-chart-line',
-            routerLink: ['/'],
+            label: Summary1Component.header,
+            icon: Summary1Component.icon,
             badge: '4',
             badgeClass: 'p-badge-info',
             component: Summary1Component,
+            tooltip: Summary1Component.tooltip,
           },
           {
-            label: 'Wykresy i podsumowania 2',
-            icon: 'pi pi-fw pi-chart-pie',
-            routerLink: ['/'],
+            label: Summary2Component.header,
+            icon: Summary2Component.icon,
             badge: '2',
             badgeClass: 'p-badge-info',
             component: Summary2Component,
+            tooltip: Summary2Component.tooltip,
           },
         ],
       },
@@ -60,9 +60,10 @@ export class MenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-prime',
                 items: [
                   {
-                    label: 'Grupy produktów',
-                    icon: 'pi pi-fw pi-prime',
+                    label: ProductTradeNameComponent.header,
+                    icon: ProductTradeNameComponent.icon,
                     component: ProductTradeNameComponent,
+                    tooltip: ProductTradeNameComponent.tooltip,
                   },
                   {
                     label: 'Grupy zadań',
@@ -75,7 +76,7 @@ export class MenuComponent implements OnInit {
                 ],
               },
               {
-                label: this.translateService.instant('app_menu.admin.users'),
+                label: UsersComponent.header,
                 icon: UsersComponent.icon,
                 component: UsersComponent,
                 tooltip: UsersComponent.header,

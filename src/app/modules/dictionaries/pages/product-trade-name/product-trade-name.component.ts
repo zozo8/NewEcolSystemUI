@@ -53,6 +53,11 @@ export class ProductTradeNameComponent
   deleteSub: Subscription;
   putSub: Subscription;
 
+  static header = 'Grupy produktów';
+  static icon = 'pi pi-fw pi-list';
+  static tooltip =
+    'Globalny słownik grup produktów przypisywanych do produktów';
+
   constructor(
     private commonService: CommonService,
     private tableService: TableService,

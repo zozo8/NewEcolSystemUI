@@ -1,7 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MegaMenuItem } from 'primeng/api';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MegaMenuItem, TreeNode } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
+import { Tab } from 'src/app/models/tab.model';
+import { UsersComponent } from 'src/app/modules/admin/pages/users/users.component';
+import { ProductTradeNameComponent } from 'src/app/modules/dictionaries/pages/product-trade-name/product-trade-name.component';
 import { DashboardPageComponent } from '../dashboard-page.component';
 
 @Component({
@@ -21,7 +24,7 @@ import { DashboardPageComponent } from '../dashboard-page.component';
     ]),
   ],
 })
-export class TopbarComponent {
+export class TopbarComponent implements OnInit {
   activeItem: number;
 
   model: MegaMenuItem[] = [
@@ -155,10 +158,15 @@ export class TopbarComponent {
 
   @ViewChild('searchInput') searchInputViewChild: ElementRef;
 
+  pages: TreeNode[];
+  selectedPage: TreeNode;
+
   constructor(
     public app: AppComponent,
     public dashboard: DashboardPageComponent
   ) {}
+
+  ngOnInit(): void {}
 
   onSearchAnimationEnd(event: any) {
     switch (event.toState) {
@@ -166,5 +174,33 @@ export class TopbarComponent {
         this.searchInputViewChild.nativeElement.focus();
         break;
     }
+  }
+
+  select(item: any): void {
+    const tab: Tab = {
+      header: item.label,
+      component: item.component,
+      tooltip: item.label,
+    };
+
+    this.selectedPage = {};
+    this.dashboard.searchClick = true;
+    this.dashboard.addTab(tab);
+  }
+
+  search(ev: any): void {
+    const data = [
+      {
+        label: 'Użytkownicy',
+        component: UsersComponent,
+      },
+      {
+        label: 'Grupy produktów',
+        component: ProductTradeNameComponent,
+      },
+    ];
+
+    //to ma isc z jednego zródła
+    this.pages = data.filter((x) => x.label.toLowerCase().includes(ev.query));
   }
 }

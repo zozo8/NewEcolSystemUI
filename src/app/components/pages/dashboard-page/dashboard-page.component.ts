@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { Observable, timer } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
+import { Tab } from 'src/app/models/tab.model';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
 import { LoginState } from 'src/app/modules/login/state/loginState.model';
 import { environment } from 'src/environments/environment';
@@ -72,6 +73,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   selectedClientNode: any[] = [];
   userName$: Observable<string>;
   appVersion: string;
+  newTab: Tab;
 
   constructor(
     private authService: AuthService,
@@ -282,6 +284,10 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  addTab(tab: Tab) {
+    this.newTab = tab;
   }
 
   // getTopMenu(): MenuItem[] {

@@ -53,14 +53,25 @@
             <span class="p-inputgroup-addon"
               ><em class="pi pi-search"></em
             ></span>
-            <input
+            <p-autoComplete
+              #searchInput
+              pInputText
+              [placeholder]="'common.search' | translate"
+              [(ngModel)]="selectedPage"
+              [suggestions]="pages"
+              [field]="'label'"
+              (completeMethod)="search($event)"
+              (onSelect)="select($event)"
+              (click)="dashboard.searchClick = true"
+            ></p-autoComplete>
+            <!-- <input
               #searchInput
               type="text"
               pInputText
               placeholder="Search"
               (click)="dashboard.searchClick = true"
               (keydown)="dashboard.onSearchKeydown($event)"
-            />
+            /> -->
             <span class="p-inputgroup-addon">
               <button
                 pButton

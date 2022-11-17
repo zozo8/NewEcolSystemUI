@@ -2,14 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { BreadcrumbService } from 'src/app/components/pages/dashboard-page/breadcrumb/breadcrumb.service';
 import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/dashboard-page.component';
-import { HeaderComponent } from 'src/app/modules/universal-components/interfaces/IHeaderComponent';
 
 @Component({
   selector: 'app-summary1',
   templateUrl: './summary1.component.html',
   styleUrls: ['./summary1.component.scss'],
 })
-export class Summary1Component extends HeaderComponent implements OnInit {
+export class Summary1Component implements OnInit {
   cities: any[];
   products: any[];
   ordersChart: any;
@@ -27,18 +26,17 @@ export class Summary1Component extends HeaderComponent implements OnInit {
   chatMessages: any[];
   chatEmojis: any[];
 
-  header = 'Wykresy i podsumowania 1';
-  icon = 'pi pi-fw pi-home';
-  tooltip? = 'Szerszy opis tego okna';
+  static header = 'Wykresy i podsumowania 1';
+  static icon = 'pi pi-fw pi-home';
+  static tooltip =
+    'Aktualne informacje zobrazowane w formie wykresów i tabel podsumowujących.';
 
   @ViewChild('chatcontainer') chatContainerViewChild: ElementRef;
   constructor(
     public app: AppComponent,
     public appMain: DashboardPageComponent,
     private breadcrumbService: BreadcrumbService
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.products = [];

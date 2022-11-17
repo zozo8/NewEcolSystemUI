@@ -11,82 +11,50 @@ import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/
 })
 export class Summary2Component implements OnInit {
   cities: any[];
-
   products: any[];
-
   chartMonthlyData: any;
-
   chartMonthlyOptions: any;
-
   doughnutData: any;
-
   doughnutOptions: any;
-
   storeATotalValue = 100;
-
   storeADiff = 0;
-
   storeAStatus = 0;
-
   storeAData: any;
-
   storeAOptions: any;
-
   storeBTotalValue = 120;
-
   storeBDiff = 0;
-
   storeBStatus = 0;
-
   storeBData: any;
-
   storeBOptions: any;
-
   storeCTotalValue = 150;
-
   storeCDiff = 0;
-
   storeCStatus = 0;
-
   storeCData: any;
-
   storeCOptions: any;
-
   storeDTotalValue = 80;
-
   storeDDiff = 0;
-
   storeDStatus = 0;
-
   storeDData: any;
-
   storeDOptions: any;
-
   storeInterval: any;
-
   pieData: any;
-
   pieOptions: any;
-
   mainData: any;
-
   events: any[];
-
   selectedCity: any;
 
   @ViewChild('doughnut') doughnutViewChild: UIChart;
-
   @ViewChild('bar') chartViewChild: UIChart;
-
   @ViewChild('storeA') storeAViewChild: UIChart;
-
   @ViewChild('storeB') storeBViewChild: UIChart;
-
   @ViewChild('storeC') storeCViewChild: UIChart;
-
   @ViewChild('storeD') storeDViewChild: UIChart;
-
   @ViewChild('pie') pieViewChild: UIChart;
+
+  static header = 'Wykresy i podsumowania 2';
+  static icon = 'pi pi-fw pi-home';
+  static tooltip =
+    'Aktualne informacje zobrazowane w formie wykresów i tabel podsumowujących.';
 
   constructor(
     public app: AppComponent,
