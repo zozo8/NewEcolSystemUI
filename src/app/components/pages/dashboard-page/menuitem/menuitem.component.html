@@ -5,7 +5,7 @@
   <a
     [attr.href]="item.url"
     (click)="itemClick($event)"
-    *ngIf="(!item.routerLink || item.items) && item.visible !== false"
+    *ngIf="(!item.routerLink || item.children) && item.visible !== false"
     (keydown.enter)="itemClick($event)"
     [attr.target]="item.target"
     [attr.tabindex]="0"
@@ -27,12 +27,12 @@
     >
     <em
       class="pi pi-fw pi-angle-down layout-submenu-toggler"
-      *ngIf="item.items"
+      *ngIf="item.children"
     ></em>
   </a>
   <a
     (click)="itemClick($event)"
-    *ngIf="item.routerLink && !item.items && item.visible !== false"
+    *ngIf="item.routerLink && !item.children && item.visible !== false"
     [routerLink]="item.routerLink"
     routerLinkActive="active-menuitem-routerlink"
     [routerLinkActiveOptions]="{ exact: !item.preventExact }"
@@ -56,18 +56,19 @@
     >
     <em
       class="pi pi-fw pi-angle-down layout-submenu-toggler"
-      *ngIf="item.items"
+      *ngIf="item.children"
     ></em>
   </a>
   <ul
     *ngIf="
-      ((item.items && root) || (item.items && active)) && item.visible !== false
+      ((item.children && root) || (item.children && active)) &&
+      item.visible !== false
     "
     [@children]="
       root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'
     "
   >
-    <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+    <ng-template ngFor let-child let-i="index" [ngForOf]="item.children">
       <li
         app-menuitem
         [item]="child"

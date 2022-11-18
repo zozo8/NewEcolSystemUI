@@ -3,9 +3,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MegaMenuItem, TreeNode } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
 import { Tab } from 'src/app/models/tab.model';
-import { UsersComponent } from 'src/app/modules/admin/pages/users/users.component';
-import { ProductTradeNameComponent } from 'src/app/modules/dictionaries/pages/product-trade-name/product-trade-name.component';
 import { DashboardPageComponent } from '../dashboard-page.component';
+import { MenuService } from '../menu/menu.service';
 
 @Component({
   selector: 'app-topbar',
@@ -163,7 +162,8 @@ export class TopbarComponent implements OnInit {
 
   constructor(
     public app: AppComponent,
-    public dashboard: DashboardPageComponent
+    public dashboard: DashboardPageComponent,
+    private menuService: MenuService
   ) {}
 
   ngOnInit(): void {}
@@ -189,18 +189,8 @@ export class TopbarComponent implements OnInit {
   }
 
   search(ev: any): void {
-    const data = [
-      {
-        label: 'Użytkownicy',
-        component: UsersComponent,
-      },
-      {
-        label: 'Grupy produktów',
-        component: ProductTradeNameComponent,
-      },
-    ];
-
-    //to ma isc z jednego zródła
-    this.pages = data.filter((x) => x.label.toLowerCase().includes(ev.query));
+    this.pages = this.menuService
+      .getItemsWithComponent()
+      .filter((x) => x.label?.toLowerCase().includes(ev.query.toLowerCase()));
   }
 }

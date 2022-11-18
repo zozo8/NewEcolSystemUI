@@ -54,6 +54,7 @@
               ><em class="pi pi-search"></em
             ></span>
             <p-autoComplete
+              [inputStyle]="{ width: '200px' }"
               #searchInput
               pInputText
               [placeholder]="'common.search' | translate"
@@ -64,14 +65,7 @@
               (onSelect)="select($event)"
               (click)="dashboard.searchClick = true"
             ></p-autoComplete>
-            <!-- <input
-              #searchInput
-              type="text"
-              pInputText
-              placeholder="Search"
-              (click)="dashboard.searchClick = true"
-              (keydown)="dashboard.onSearchKeydown($event)"
-            /> -->
+
             <span class="p-inputgroup-addon">
               <button
                 pButton
