@@ -61,6 +61,7 @@ import { AuthconfigInterceptor } from './modules/login/auth/authconfig.intercept
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { Summary1Component } from './pages/summary1/summary1.component';
 import { Summary2Component } from './pages/summary2/summary2.component';
+import { TreeComponent } from './pages/tree/tree.component';
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -84,6 +85,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MenuitemComponent,
     Summary1Component,
     Summary2Component,
+    TreeComponent,
   ],
   imports: [
     BrowserModule,
