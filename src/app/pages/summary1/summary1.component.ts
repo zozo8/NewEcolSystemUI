@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
 import { BreadcrumbService } from 'src/app/components/pages/dashboard-page/breadcrumb/breadcrumb.service';
 import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/dashboard-page.component';
@@ -26,16 +27,14 @@ export class Summary1Component implements OnInit {
   chatMessages: any[];
   chatEmojis: any[];
 
-  static header = 'Wykresy i podsumowania 1';
   static icon = 'pi pi-fw pi-home';
-  static tooltip =
-    'Aktualne informacje zobrazowane w formie wykresów i tabel podsumowujących.';
 
   @ViewChild('chatcontainer') chatContainerViewChild: ElementRef;
   constructor(
     public app: AppComponent,
     public appMain: DashboardPageComponent,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {

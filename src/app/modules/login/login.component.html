@@ -23,13 +23,13 @@
     <form (ngSubmit)="login()">
       <div class="pages-panel card flex flex-column">
         <div class="pages-header px-3 py-1">
-          <h2>{{ "pages.login_page.title" | translate }}</h2>
+          <h2>{{ "common.short_title_page" | translate }}</h2>
         </div>
 
         <h4>{{ "common.title_page" | translate }}</h4>
 
         <div class="pages-detail mb-6 px-6">
-          Please use the form to sign-in Ultima network
+          {{ "pages.login.title" | translate }}
         </div>
 
         <div class="input-panel flex flex-column px-3">
@@ -46,7 +46,7 @@
                 [(ngModel)]="loginObj.userName"
               />
               <label for="userName">{{
-                "pages.login_page.username" | translate
+                "pages.login.username" | translate
               }}</label>
             </span>
           </div>
@@ -64,7 +64,7 @@
                 [(ngModel)]="loginObj.password"
               />
               <label for="password">{{
-                "pages.login_page.password" | translate
+                "pages.login.password" | translate
               }}</label>
             </span>
           </div>
@@ -72,7 +72,7 @@
 
         <p-button
           type="submit"
-          [label]="'pages.login_page.login' | translate"
+          [label]="'pages.login.login' | translate"
           class="login-button mb-6 px-3"
           [disabled]="!loginObj.userName || !loginObj.password"
         ></p-button>

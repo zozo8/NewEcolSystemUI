@@ -13,6 +13,7 @@ import { Observable, timer } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { Tab } from 'src/app/models/tab.model';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
+import { setLanguage } from 'src/app/modules/login/state/login.actions';
 import { LoginState } from 'src/app/modules/login/state/loginState.model';
 import { environment } from 'src/environments/environment';
 import { MenuService } from './menu.service';
@@ -261,13 +262,18 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     ev.preventDefault();
   }
 
-  onRippleChange(ev: any) {
-    this.app.ripple = ev.checked;
-    this.primengConfig.ripple = ev.checked;
-  }
+  // onRippleChange(ev: any) {
+  //   this.app.ripple = ev.checked;
+  //   this.primengConfig.ripple = ev.checked;
+  // }
 
-  onRTLChange(event: any) {
-    this.app.isRTL = event.checked;
+  // onRTLChange(event: any) {
+  //   this.app.isRTL = event.checked;
+  // }
+
+  setLanguage(ln: string): void {
+    this.store.dispatch(setLanguage({ language: ln }));
+    this.translateService.use(ln);
   }
 
   onInlineMenuClick(event: Event, key: any) {

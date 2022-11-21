@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   printErrorMessage() {
     this.loading = false;
     this.hideAdvs = false;
-    this.errorText = this.translateService.instant('pages.login_page.error');
+    this.errorText = this.translateService.instant('pages.login.error');
   }
 
   setLanguage(ln: string): void {

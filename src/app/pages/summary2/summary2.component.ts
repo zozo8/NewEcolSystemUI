@@ -51,10 +51,7 @@ export class Summary2Component implements OnInit {
   @ViewChild('storeD') storeDViewChild: UIChart;
   @ViewChild('pie') pieViewChild: UIChart;
 
-  static header = 'Wykresy i podsumowania 2';
   static icon = 'pi pi-fw pi-home';
-  static tooltip =
-    'Aktualne informacje zobrazowane w formie wykresów i tabel podsumowujących.';
 
   constructor(
     public app: AppComponent,

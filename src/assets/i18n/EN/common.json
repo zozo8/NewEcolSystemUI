@@ -1,5 +1,6 @@
 {
   "title_page":"NES 2.0 - Computerized Maintenance Management System",
+  "short_title_page":"NES 2.0",
   "notifications":"Notifications",
   "language":"Language",
   "minimal_menu":"Minimize menu",
@@ -18,6 +19,8 @@
   "select_template":"Select layout",
   "selected_entity":"Selected object",
   "remove_record":"Remove record",
+  "have":"You have",
+  "new_notification":"new notifications",
   "search_menu": {
     "window":"Window",
     "tree_element":"Tree element"

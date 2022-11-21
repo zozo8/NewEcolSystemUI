@@ -1,33 +1,4 @@
 {
-	"app_menu": {
-		"mainpage": "Main page",
-		"equipment_tree": "Equipment tree",
-		"orders_header": "Orders",
-		"orders": {
-			"orders": "Orders",
-			"order_cards": "Order Cards"
-		},
-		"browsers_header": "Browsers",
-		"browsers": {
-			"tree_elements_header": "Tree elements",
-			"tree_elements": {
-				"objects": "Objects",
-				"nodes": "Nodes",
-				"equipments": "Equipments",
-				"lubricant_points": "Lubricant points"
-			}
-		},
-		"dictionaries_header": "Dictionaries",
-		"dictionaries": {
-			"task_types": "Task types",
-			"task_groups": "Task groups",
-			"product_groups": "Product groups"
-		},
-		"admin_header": "Administrations",
-		"admin": {
-			"users": "Users"
-		}
-	},
 	"btn": {
 		"save": "Save",
 		"cancel": "Cancel",
@@ -41,6 +12,7 @@
 	},
 	"common": {
 		"title_page": "NES 2.0 - Computerized Maintenance Management System",
+		"short_title_page": "NES 2.0",
 		"notifications": "Notifications",
 		"language": "Language",
 		"minimal_menu": "Minimize menu",
@@ -59,6 +31,8 @@
 		"select_template": "Select layout",
 		"selected_entity": "Selected object",
 		"remove_record": "Remove record",
+		"have": "You have",
+		"new_notification": "new notifications",
 		"search_menu": {
 			"window": "Window",
 			"tree_element": "Tree element"
@@ -79,13 +53,38 @@
 			"user_department": "User department dictionarie"
 		}
 	},
+	"layout": {
+		"theme_customization": "theme_customanization",
+		"theme_customization_info": "NES 2.0 allow change theme, background menu, top menu, scale application etc.",
+		"scale": "Layout/Theme Scale",
+		"layout_mode": "Layout mode",
+		"layouts": {
+			"light": "Light",
+			"dark": "Dark"
+		},
+		"menu_mode": "Menu themes",
+		"menus": {
+			"static": "static",
+			"overlay": "overlay",
+			"horizontal": "horizontal",
+			"slim": "slim"
+		},
+		"popular_mode": "Popular pages mode",
+		"popular": {
+			"top": "top",
+			"bootom": "bottom"
+		},
+		"topbar_mode": "Topbar themes",
+		"component_mode": "Component themes",
+		"language_mode": "Select langauge"
+	},
 	"main-page": {
 		"template1": "Structure of modules",
 		"template2": "Charts and notifications",
 		"template3": "Warnings"
 	},
 	"pages": {
-		"login_page": {
+		"login": {
 			"username": "User name",
 			"password": "Password",
 			"title": "Login",
@@ -96,7 +95,22 @@
 			"wrong_authenticate": "Wrong authenticate!"
 		},
 		"users": {
-			"title": "Users list"
+			"title": "Users list",
+			"params": "Params",
+			"departments": "Departments",
+			"groups": "Groups"
+		},
+		"product_trade_name": {
+			"title": "Product groups dictionary"
+		},
+		"summary1": {
+			"title": "Charts and summary 1"
+		},
+		"summary2": {
+			"title": "Charts and summary 2"
+		},
+		"tree": {
+			"title": "Equipment tree"
 		}
 	},
 	"primeng": {
@@ -189,12 +203,21 @@
 		"firstDayOfWeek": 0,
 		"today": "Today",
 		"weekHeader": "Wk",
-		"weak": "Weak",
+		"weak": "Week",
 		"medium": "Medium",
 		"strong": "Strong",
 		"passwordPrompt": "Enter a password",
 		"emptyMessage": "No results found",
 		"emptyFilterMessage": "No results found"
+	},
+	"sidebar": {
+		"mainpage": "Main Page",
+		"service": "Lubricant Service",
+		"equipments": "Ecol Equipments",
+		"laboratory": "Ecol Laboratory",
+		"browsers": "Browsers",
+		"dictionaries": "Dictionaries",
+		"administraction": "Administraction"
 	},
 	"table-detail": {
 		"header": "Preview/edit selected record",
@@ -221,10 +244,5 @@
 			"select_columns": "Select columns...",
 			"save_grid": "Save grid"
 		}
-	},
-	"users-page": {
-		"params": "Params",
-		"departments": "Departments",
-		"groups": "Groups"
 	}
 }

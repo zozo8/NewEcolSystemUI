@@ -24,13 +24,12 @@ export class TabsComponent implements OnInit {
     }
   }
 
-  constructor(private translateService: TranslateService) {}
+  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.refreshTabs({
-      header: Summary1Component.header,
+      header: this.translate.instant('pages.summary1.title'),
       component: Summary1Component,
-      tooltip: Summary1Component.tooltip,
       icon: Summary1Component.icon,
     });
   }

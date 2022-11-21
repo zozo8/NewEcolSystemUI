@@ -1,5 +1,5 @@
 {
-  "login_page":{
+  "login":{
     "username":"User name",
     "password": "Password",
     "title":"Login",
@@ -10,6 +10,21 @@
     "wrong_authenticate":"Wrong authenticate!"
   },
   "users": {
-    "title":"Users list"
+    "title":"Users list",
+    "params":"Params",
+    "departments":"Departments",
+    "groups":"Groups"
+  },
+  "product_trade_name":{
+    "title":"Product groups dictionary"
+  },
+  "summary1":{
+    "title":"Charts and summary 1"
+  },
+  "summary2":{
+    "title":"Charts and summary 2"
+  },
+  "tree":{
+    "title":"Equipment tree"
   }
 }

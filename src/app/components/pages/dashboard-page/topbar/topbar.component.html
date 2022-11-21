@@ -97,7 +97,8 @@
           >
             <li class="mb-3">
               <span class="px-3 fs-small"
-                >You have <b>4</b> new notifications</span
+                >{{ "common.have" | translate }} <strong>4</strong>
+                {{ "common.new_notification" | translate }}</span
               >
             </li>
             <li class="layout-topbar-action-item">
@@ -284,16 +285,7 @@
                   class="pi pi-cog"
                   [ngClass]="{ 'mr-2': !app.isRTL, 'ml-2': app.isRTL }"
                 ></em>
-                <span>Settings</span>
-              </a>
-            </li>
-            <li class="layout-topbar-action-item">
-              <a class="flex flex-row align-items-center" pRipple>
-                <em
-                  class="pi pi-file-o"
-                  [ngClass]="{ 'mr-2': !app.isRTL, 'ml-2': app.isRTL }"
-                ></em>
-                <span>Terms of Usage</span>
+                <span>{{ "common.user_menu.settings" | translate }}</span>
               </a>
             </li>
             <li class="layout-topbar-action-item">
@@ -302,20 +294,20 @@
                   class="pi pi-compass"
                   [ngClass]="{ 'mr-2': !app.isRTL, 'ml-2': app.isRTL }"
                 ></em>
-                <span>Support</span>
+                <span>{{ "common.user_menu.user_profile" | translate }}</span>
               </a>
             </li>
             <li class="layout-topbar-action-item">
               <a
                 class="flex flex-row align-items-center"
-                (click)="(dashboard)"
+                (click)="dashboard.logout()"
                 pRipple
               >
                 <em
                   class="pi pi-power-off"
                   [ngClass]="{ 'mr-2': !app.isRTL, 'ml-2': app.isRTL }"
                 ></em>
-                <span>Logout</span>
+                <span>{{ "common.user_menu.logout" | translate }}</span>
               </a>
             </li>
           </ul>

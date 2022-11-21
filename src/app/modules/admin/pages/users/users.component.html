@@ -33,20 +33,20 @@
           >
           </app-user-form>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.groups' | translate" #userGroup>
+        <p-tabPanel [header]="'pages.users.groups' | translate" #userGroup>
           <app-user-group
             *ngIf="userGroup.selected"
             [masterId]="selectedId"
           ></app-user-group>
         </p-tabPanel>
-        <p-tabPanel [header]="'users-page.params' | translate" #userParam>
+        <p-tabPanel [header]="'pages.users.params' | translate" #userParam>
           <app-user-param
             *ngIf="userParam.selected"
             [masterId]="selectedId"
           ></app-user-param>
         </p-tabPanel>
         <p-tabPanel
-          [header]="'users-page.departments' | translate"
+          [header]="'pages.users.departments' | translate"
           #userDepartment
         >
           <app-user-department

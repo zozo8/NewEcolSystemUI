@@ -53,9 +53,7 @@ export class UsersComponent
   private putSubscription: Subscription;
   deleteSubscription: Subscription;
 
-  static icon = 'pi pi-user';
-  static header = 'Użytkownicy';
-  static tooltip = 'Słwonik użytkowników wraz z podsłownikami.';
+  static icon = 'pi pi-fw pi-user';
 
   constructor(
     private tableService: TableService,

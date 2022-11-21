@@ -1,33 +1,4 @@
 {
-	"app_menu": {
-		"mainpage": "Strona główna",
-		"equipment_tree": "Drzewo urządzeń",
-		"orders_header": "Zlecenia",
-		"orders": {
-			"orders": "Zlecenia",
-			"order_cards": "Karty zleceń"
-		},
-		"browsers_header": "Przeglądarki",
-		"browsers": {
-			"tree_elements_header": "Elementy drzewa",
-			"tree_elements": {
-				"objects": "Obiekty",
-				"nodes": "Węzły",
-				"equipments": "Urządzenia",
-				"lubricant_points": "Punkty serwisowe"
-			}
-		},
-		"dictionaries_header": "Słowniki",
-		"dictionaries": {
-			"task_types": "Typy zadań",
-			"task_groups": "Grupy zadań",
-			"product_groups": "Grupy produktów"
-		},
-		"admin_header": "Administracja",
-		"admin": {
-			"users": "Użytkownicy"
-		}
-	},
 	"btn": {
 		"save": "Zapisz",
 		"cancel": "Anuluj",
@@ -41,6 +12,7 @@
 	},
 	"common": {
 		"title_page": "NES 2.0 - System Utrzymania Ruchu",
+		"short_title_page": "NES 2.0",
 		"notifications": "Powiadomienia",
 		"language": "Język",
 		"minimal_menu": "Zwiń menu",
@@ -59,6 +31,8 @@
 		"select_template": "Wybierz zestaw danych",
 		"selected_entity": "Wybrany obiekt",
 		"remove_record": "Usuwanie rekordu",
+		"have": "Masz",
+		"new_notification": "nowe powiadomienia",
 		"search_menu": {
 			"window": "Okno",
 			"tree_element": "El. drzewa"
@@ -79,13 +53,38 @@
 			"user_department": "Słownik zakładów"
 		}
 	},
+	"layout": {
+		"theme_customization": "Ustawienia wyglądu aplikacji",
+		"theme_customization_info": "NES 2.0 umożliwia zmianę wyglądu aplikacji, takich elementów jak kolor układu, kolor menu, wielkość liter itp",
+		"scale": "Wielkość",
+		"layout_mode": "Typ układu",
+		"layouts": {
+			"light": "Jasny",
+			"dark": "Ciemny"
+		},
+		"menu_mode": "kolor menu",
+		"menus": {
+			"static": "statyczne",
+			"overlay": "wyjeżdżające",
+			"horizontal": "poziome",
+			"slim": "wąskie"
+		},
+		"popular_mode": "Miejsce okien ulubionych",
+		"popular": {
+			"top": "góra",
+			"bootom": "dół"
+		},
+		"topbar_mode": "kolor górznej belki",
+		"component_mode": "kolor komponentów",
+		"language_mode": "Wybór języka"
+	},
 	"main-page": {
 		"template1": "Struktura modułów",
 		"template2": "Wykresy i podsumowania",
 		"template3": "Komunikaty"
 	},
 	"pages": {
-		"login_page": {
+		"login": {
 			"username": "Nazwa użytkownika",
 			"password": "Hasło",
 			"title": "Logowanie",
@@ -96,7 +95,22 @@
 			"wrong_authenticate": "Błąd autentykacji!"
 		},
 		"users": {
-			"title": "Lista użytkowników"
+			"title": "Lista użytkowników",
+			"params": "Parametry",
+			"departments": "Zakłady",
+			"groups": "Grupy"
+		},
+		"product_trade_name": {
+			"title": "Słownik grup produktów"
+		},
+		"summary1": {
+			"title": "Wykresy i podsumowania 1"
+		},
+		"summary2": {
+			"title": "Wykresy i podsumowania 2"
+		},
+		"tree": {
+			"title": "Drzewo urządzeń"
 		}
 	},
 	"primeng": {
@@ -196,6 +210,15 @@
 		"emptyMessage": "Brak wyników",
 		"emptyFilterMessage": "Nie znaleziono wyników"
 	},
+	"sidebar": {
+		"mainpage": "Strona Główna",
+		"service": "Serwis Smarowniczy",
+		"equipments": "Ecol Majątek",
+		"laboratory": "Ecol Laboratorium",
+		"browsers": "Przeglądarki",
+		"dictionaries": "Słowniki",
+		"administraction": "Administracja"
+	},
 	"table-detail": {
 		"header": "Podgląd/edycja wybranego rekordu",
 		"record": "Rekord",
@@ -221,10 +244,5 @@
 			"select_columns": "Dostosuj kolumny...",
 			"save_grid": "Zapisz siatkę"
 		}
-	},
-	"users-page": {
-		"params": "Parametry",
-		"departments": "Zakłady",
-		"groups": "Grupy"
 	}
 }

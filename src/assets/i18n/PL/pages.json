@@ -1,5 +1,5 @@
 {
-  "login_page":{
+  "login":{
     "username":"Nazwa użytkownika",
     "password": "Hasło",
     "title":"Logowanie",
@@ -10,6 +10,21 @@
     "wrong_authenticate":"Błąd autentykacji!"
   },
   "users": {
-    "title":"Lista użytkowników"
+    "title":"Lista użytkowników",
+    "params":"Parametry",
+    "departments":"Zakłady",
+    "groups":"Grupy"
+  },
+  "product_trade_name":{
+    "title":"Słownik grup produktów"
+  },
+  "summary1":{
+    "title":"Wykresy i podsumowania 1"
+  },
+  "summary2":{
+    "title":"Wykresy i podsumowania 2"
+  },
+  "tree":{
+    "title":"Drzewo urządzeń"
   }
 }

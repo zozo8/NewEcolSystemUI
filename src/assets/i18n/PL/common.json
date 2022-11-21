@@ -1,5 +1,6 @@
 {
   "title_page":"NES 2.0 - System Utrzymania Ruchu",
+  "short_title_page":"NES 2.0",
   "notifications":"Powiadomienia",
   "language":"Język",
   "minimal_menu":"Zwiń menu",
@@ -18,10 +19,13 @@
   "select_template":"Wybierz zestaw danych",
   "selected_entity":"Wybrany obiekt",
   "remove_record":"Usuwanie rekordu",
+  "have":"Masz",
+  "new_notification":"nowe powiadomienia",
   "search_menu": {
     "window":"Okno",
     "tree_element":"El. drzewa"
   },
+
   "user_menu":
   {
     "settings":"Ustawienia",
