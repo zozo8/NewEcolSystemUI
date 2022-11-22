@@ -1,0 +1,27 @@
+{
+  "theme_customization":"Ustawienia wyglądu aplikacji",
+  "theme_customization_info":"NES 2.0 umożliwia zmianę wyglądu aplikacji, takich elementów jak kolor układu, kolor menu, wielkość liter itp",
+  "scale":"Wielkość",
+  "layout_mode": "Typ układu",
+  "layouts":
+  {
+    "light":"Jasny",
+    "dark":"Ciemny"
+  },
+  "menu_mode":"Typ menu",
+  "menus":{
+    "static":"statyczne",
+    "overlay":"wyjeżdżające",
+    "horizontal":"poziome",
+    "slim":"wąskie"
+  },
+  "popular_mode":"Miejsce okien ulubionych",
+  "popular":{
+    "top":"góra",
+    "bootom":"dół"
+  },
+  "menu_color":"kolor menu",
+  "topbar_mode":"kolor górnego menu",
+  "component_mode":"kolor komponentów",
+  "language_mode":"Wybór języka"
+}

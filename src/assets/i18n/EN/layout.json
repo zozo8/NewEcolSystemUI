@@ -1,0 +1,27 @@
+{
+  "theme_customization":"theme_customanization",
+  "theme_customization_info":"NES 2.0 allow change theme, background menu, top menu, scale application etc.",
+  "scale":"Layout/Theme Scale",
+  "layout_mode": "Layout mode",
+  "layouts":
+  {
+    "light":"Light",
+    "dark":"Dark"
+  },
+  "menu_mode":"Menu mode",
+  "menus":{
+    "static":"static",
+    "overlay":"overlay",
+    "horizontal":"horizontal",
+    "slim":"slim"
+  },
+  "popular_mode":"Popular pages mode",
+  "popular":{
+    "top":"top",
+    "bootom":"bottom"
+  },
+  "menu_mode":"Menu themes",
+  "topbar_mode":"Topbar themes",
+  "component_mode":"Component themes",
+  "language_mode":"Select langauge"
+}
