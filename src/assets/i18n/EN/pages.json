@@ -25,6 +25,7 @@
     "title":"Charts and summary 2"
   },
   "tree":{
-    "title":"Equipment tree"
+    "title":"Equipment tree",
+    "dynamic_tab":"Other dynamic tabs"
   }
 }

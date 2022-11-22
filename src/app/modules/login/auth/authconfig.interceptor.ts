@@ -50,6 +50,8 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     const token = this.commonService.getValueFromObservable(
       this.store.select(getToken)
     );
+
+    // const token = localStorage.getItem('token');
     this.authService.isExpired();
 
     if (tokenUR === '') {

@@ -33,6 +33,8 @@
 		"remove_record": "Usuwanie rekordu",
 		"have": "Masz",
 		"new_notification": "nowe powiadomienia",
+		"popular": "Ulubione okna",
+		"basic_data": "Dane podstawowe",
 		"search_menu": {
 			"window": "Okno",
 			"tree_element": "El. drzewa"
@@ -62,7 +64,7 @@
 			"light": "Jasny",
 			"dark": "Ciemny"
 		},
-		"menu_mode": "kolor menu",
+		"menu_mode": "Typ menu",
 		"menus": {
 			"static": "statyczne",
 			"overlay": "wyjeżdżające",
@@ -74,7 +76,8 @@
 			"top": "góra",
 			"bootom": "dół"
 		},
-		"topbar_mode": "kolor górznej belki",
+		"menu_color": "kolor menu",
+		"topbar_mode": "kolor górnego menu",
 		"component_mode": "kolor komponentów",
 		"language_mode": "Wybór języka"
 	},
@@ -110,7 +113,8 @@
 			"title": "Wykresy i podsumowania 2"
 		},
 		"tree": {
-			"title": "Drzewo urządzeń"
+			"title": "Drzewo urządzeń",
+			"dynamic_tab": "Pozostałe dynamiczne zakładki"
 		}
 	},
 	"primeng": {

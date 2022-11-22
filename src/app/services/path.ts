@@ -22,3 +22,7 @@ export const columnListPath = (id: number): string =>
 export const loginToURPath = () => prefix + 'auth/login/';
 export const authenticatePath = () => prefix + 'Home/Authenticate';
 export const refreshTokenPath = () => prefix + 'Home/RefreshToken';
+
+export const getInitTreeElementListPath = () =>
+  prefix + 'BaseTreeFilteredsInit';
+export const getTreeElementListPath = () => prefix + 'BaseTreeFiltereds';

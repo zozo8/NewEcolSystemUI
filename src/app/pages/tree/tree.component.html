@@ -1,1 +1,24 @@
-<p>tree works!</p>
+<p-splitter [panelSizes]="[40, 60]">
+  <ng-template pTemplate>
+    <div class="grid">
+      <div class="col-12">
+        <div class="card">
+          <h5>{{ "pages.tree.title" | translate }}</h5>
+          <p-tree
+            [value]="values"
+            [loading]="loading"
+            selectionMode="checkbox"
+            (onNodeExpand)="loadChildren($event)"
+            scrollHeight="700px"
+          ></p-tree>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate>
+    <p-tabView [ngStyle]="{ width: '100%' }">
+      <p-tabPanel [header]="'common.basic_data' | translate"> </p-tabPanel>
+      <p-tabPanel [header]="'pages.tree.dynamic_tab' | translate"> </p-tabPanel>
+    </p-tabView>
+  </ng-template>
+</p-splitter>

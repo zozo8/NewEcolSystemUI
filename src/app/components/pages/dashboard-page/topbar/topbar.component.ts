@@ -33,120 +33,69 @@ export class TopbarComponent implements OnInit {
       items: [
         [
           {
-            label: 'UI KIT 1',
+            label: 'Zlecenia',
             items: [
               {
-                label: 'Form Layout',
+                label: 'Raport',
                 icon: 'pi pi-fw pi-id-card',
-                routerLink: ['/uikit/formlayout'],
               },
               {
-                label: 'Input',
-                icon: 'pi pi-fw pi-check-square',
-                routerLink: ['/uikit/input'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'Float Label',
-                icon: 'pi pi-fw pi-bookmark',
-                routerLink: ['/uikit/floatlabel'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'Button',
-                icon: 'pi pi-fw pi-mobile',
-                routerLink: ['/uikit/button'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'File',
-                icon: 'pi pi-fw pi-file',
-                routerLink: ['/uikit/file'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
             ],
           },
         ],
         [
           {
-            label: 'UI KIT 2',
+            label: 'Urządzenia',
             items: [
               {
-                label: 'Table',
-                icon: 'pi pi-fw pi-table',
-                routerLink: ['/uikit/table'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'List',
-                icon: 'pi pi-fw pi-list',
-                routerLink: ['/uikit/list'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'Tree',
-                icon: 'pi pi-fw pi-share-alt',
-                routerLink: ['/uikit/tree'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'Panel',
-                icon: 'pi pi-fw pi-tablet',
-                routerLink: ['/uikit/panel'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'Chart',
-                icon: 'pi pi-fw pi-chart-bar',
-                routerLink: ['/uikit/charts'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
             ],
           },
         ],
         [
           {
-            label: 'UI KIT 3',
+            label: 'Magazyn',
             items: [
               {
-                label: 'Overlay',
-                icon: 'pi pi-fw pi-clone',
-                routerLink: ['/uikit/overlay'],
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
               {
-                label: 'Media',
-                icon: 'pi pi-fw pi-image',
-                routerLink: ['/uikit/media'],
-              },
-              {
-                label: 'Menu',
-                icon: 'pi pi-fw pi-bars',
-                routerLink: ['/uikit/menu'],
-              },
-              {
-                label: 'Message',
-                icon: 'pi pi-fw pi-comment',
-                routerLink: ['/uikit/message'],
-              },
-              {
-                label: 'Misc',
-                icon: 'pi pi-fw pi-circle-off',
-                routerLink: ['/uikit/misc'],
-              },
-            ],
-          },
-        ],
-      ],
-    },
-    {
-      label: 'ULUBIONE OKNA',
-      icon: 'pi pi-fw pi-heart',
-      items: [
-        [
-          {
-            label: 'UTILITIES 1',
-            items: [
-              {
-                label: 'Icons',
-                icon: 'pi pi-fw pi-prime',
-                routerLink: ['utilities/icons'],
-              },
-              {
-                label: 'PrimeFlex',
-                icon: 'pi pi-fw pi-desktop',
-                url: 'https://www.primefaces.org/primeflex/',
-                target: '_blank',
+                label: 'Raport',
+                icon: 'pi pi-fw pi-id-card',
               },
             ],
           },

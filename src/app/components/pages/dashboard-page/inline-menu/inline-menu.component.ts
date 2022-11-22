@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
 import { DashboardPageComponent } from '../dashboard-page.component';
 
@@ -68,7 +69,8 @@ export class InlineMenuComponent {
 
   constructor(
     public app: AppComponent,
-    public dashboard: DashboardPageComponent
+    public dashboard: DashboardPageComponent,
+    private translate: TranslateService
   ) {}
 
   onClick(ev: Event) {

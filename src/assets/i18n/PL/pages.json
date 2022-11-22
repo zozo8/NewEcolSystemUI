@@ -25,6 +25,7 @@
     "title":"Wykresy i podsumowania 2"
   },
   "tree":{
-    "title":"Drzewo urządzeń"
+    "title":"Drzewo urządzeń",
+    "dynamic_tab":"Pozostałe dynamiczne zakładki"
   }
 }

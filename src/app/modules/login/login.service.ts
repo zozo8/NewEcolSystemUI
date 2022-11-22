@@ -13,7 +13,7 @@ import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import {
   saveLoginObject,
   saveTokenExp,
-  saveTokenUr,
+  saveTokenUr
 } from './state/login.actions';
 import { LoginState } from './state/loginState.model';
 
@@ -64,6 +64,7 @@ export class LoginService {
 
   setLoginStateStore(res: LoginState) {
     this.loginStore.dispatch(saveLoginObject({ obj: res }));
+    localStorage.setItem("token",res.token);
     this.decodateToken(res);
   }
 

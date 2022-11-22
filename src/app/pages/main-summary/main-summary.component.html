@@ -1,0 +1,98 @@
+<div class="grid dashboard">
+  <!-- <div class="col-12 lg:col-6">
+    <div class="card height-100">
+      <div class="card-header">
+        <h5>Ilość zleceń wykonanych</h5>
+        <button
+          pRipple
+          pButton
+          type="button"
+          label="Vertical/Stacked Data"
+          class="p-button-text"
+          [ngClass]="{ 'ml-auto': !app.isRTL, 'mr-auto': app.isRTL }"
+          (click)="changeMonthlyDataView()"
+        ></button>
+      </div>
+
+      <p-chart
+        #bar
+        type="bar"
+        [data]="chartMonthlyData"
+        [options]="chartMonthlyOptions"
+        [responsive]="true"
+        height="400px"
+      ></p-chart>
+    </div>
+
+  </div> -->
+
+  <div class="col-12 lg:col-6">
+    <div class="card height-100">
+      <div class="card-header">
+        <h5>Dane procentowe</h5>
+      </div>
+      <ul class="widget-activity">
+        <li>
+          <div class="activity-item flex flex-column">
+            <div class="activity-title mb-1">Zatwierdzone karty smarowania</div>
+            <div class="activity-subtext mb-2">
+              Stosunek ilości aktywnych urządzeń z zatwierdzoną kartą smarowania
+              do ilości wszystkich aktywnych urządzeń
+            </div>
+            <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
+          </div>
+        </li>
+        <li>
+          <div class="activity-item flex flex-column">
+            <div class="activity-title mb-1">Zlecenia wykonane w Smart</div>
+            <div class="activity-subtext mb-2">
+              Stosunek ilości Zleceń ze statusem Smart ‘Rozliczono w Smart’, z
+              Datą Zlecenia z bieżącego miesiąca ( od 1. dnia miesiąca do dziś)
+              do ilości wszystkich Zleceń z Datą Zlecenia z bieżącego miesiąca (
+              od 1. dnia miesiąca do dziś)
+            </div>
+            <p-progressBar [value]="15" [showValue]="false"></p-progressBar>
+          </div>
+        </li>
+        <li>
+          <div class="activity-item flex flex-column">
+            <div class="activity-title mb-1">Zlecenia w realizacji</div>
+            <div class="activity-subtext mb-2">
+              Stosunek ilości Zleceń w Statusie Zgłoszono lub Realizacja z Datą
+              Zlecenia z bieżącego miesiąca ( od 1. dnia miesiąca do dziś) do
+              ilości wszystkich zleceń z Datą Zlecenia z bieżącego miesiąca ( od
+              1. dnia miesiąca do dziś)
+            </div>
+            <p-progressBar [value]="78" [showValue]="false"></p-progressBar>
+          </div>
+        </li>
+        <li>
+          <div class="activity-item flex flex-column">
+            <div class="activity-title mb-1">Urządzenia z Tagiem</div>
+            <div class="activity-subtext mb-2">
+              Stosunek ilości Urządzeń Aktywnych z przypisanym tagiem (TagNumber
+              is not null) do ilości Urządzeń Aktywnych
+            </div>
+            <p-progressBar [value]="66" [showValue]="false"></p-progressBar>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-6">
+    <div class="card height-100 widget-timeline">
+      <div class="card-header">
+        <h5>tabelka 1</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 lg:col-6">
+    <div class="card height-100 widget-timeline">
+      <div class="card-header">
+        <h5>tabelka 1</h5>
+      </div>
+    </div>
+  </div>
+</div>

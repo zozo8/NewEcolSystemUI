@@ -62,6 +62,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { Summary1Component } from './pages/summary1/summary1.component';
 import { Summary2Component } from './pages/summary2/summary2.component';
 import { TreeComponent } from './pages/tree/tree.component';
+import { MainSummaryComponent } from './pages/main-summary/main-summary.component';
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -86,6 +87,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     Summary1Component,
     Summary2Component,
     TreeComponent,
+    MainSummaryComponent,
   ],
   imports: [
     BrowserModule,

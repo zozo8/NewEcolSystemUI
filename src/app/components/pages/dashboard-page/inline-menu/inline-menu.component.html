@@ -14,17 +14,14 @@
     pTooltip="Amy Elsner"
     [tooltipDisabled]="isTooltipDisabled"
   >
-    <img
-      src="assets/demo/images/avatar/amyelsner.png"
-      alt="avatar"
-      style="width: 32px; height: 32px"
-    />
     <span
       class="flex flex-column"
       [ngClass]="{ 'ml-2': !app.isRTL, 'mr-2': app.isRTL }"
     >
-      <span class="font-bold">Amy Elsner</span>
-      <small>Webmaster</small>
+      <span class="font-bold"
+        ><i class="pi pi-heart-fill"></i
+        ><strong> {{ "common.popular" | translate }}</strong></span
+      >
     </span>
     <em
       class="layout-inline-menu-icon pi pi-angle-down"
@@ -52,36 +49,6 @@
       <a class="flex flex-row align-items-center" [attr.tabindex]="tabIndex">
         <em class="pi pi-cog pi-fw"></em>
         <span>Settings</span>
-      </a>
-    </li>
-    <li
-      class="layout-inline-menu-action-item"
-      pTooltip="Terms of Usage"
-      [tooltipDisabled]="isTooltipDisabled"
-    >
-      <a class="flex flex-row align-items-center" [attr.tabindex]="tabIndex">
-        <em class="pi pi-file-o pi-fw"></em>
-        <span>Terms of Usage</span>
-      </a>
-    </li>
-    <li
-      class="layout-inline-menu-action-item"
-      pTooltip="Support"
-      [tooltipDisabled]="isTooltipDisabled"
-    >
-      <a class="flex flex-row align-items-center" [attr.tabindex]="tabIndex">
-        <em class="pi pi-compass pi-fw"></em>
-        <span>Support</span>
-      </a>
-    </li>
-    <li
-      class="layout-inline-menu-action-item"
-      pTooltip="Logout"
-      [tooltipDisabled]="isTooltipDisabled"
-    >
-      <a class="flex flex-row align-items-center" [attr.tabindex]="tabIndex">
-        <em class="pi pi-power-off pi-fw"></em>
-        <span>Logout</span>
       </a>
     </li>
   </ul>

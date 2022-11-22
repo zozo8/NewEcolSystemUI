@@ -33,6 +33,8 @@
 		"remove_record": "Remove record",
 		"have": "You have",
 		"new_notification": "new notifications",
+		"popular": "Popular pages",
+		"basic_data": "Basic data",
 		"search_menu": {
 			"window": "Window",
 			"tree_element": "Tree element"
@@ -110,7 +112,8 @@
 			"title": "Charts and summary 2"
 		},
 		"tree": {
-			"title": "Equipment tree"
+			"title": "Equipment tree",
+			"dynamic_tab": "Other dynamic tabs"
 		}
 	},
 	"primeng": {

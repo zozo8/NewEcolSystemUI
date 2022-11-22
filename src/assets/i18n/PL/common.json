@@ -21,6 +21,8 @@
   "remove_record":"Usuwanie rekordu",
   "have":"Masz",
   "new_notification":"nowe powiadomienia",
+  "popular":"Ulubione okna",
+  "basic_data":"Dane podstawowe",
   "search_menu": {
     "window":"Okno",
     "tree_element":"El. drzewa"

@@ -182,40 +182,7 @@ import { DashboardPageComponent } from '../dashboard-page.component';
             </div>
           </div>
 
-          <div class="flex">
-            <div class="flex align-items-center">
-              <p-radioButton
-                name="inputStyle"
-                value="outlined"
-                [(ngModel)]="app.inputStyle"
-                inputId="inputStyle1"
-                (onClick)="onInputStyleClick()"
-              ></p-radioButton>
-              <label
-                for="inputStyle1"
-                [ngClass]="{ 'ml-2': !app.isRTL, 'mr-2': app.isRTL }"
-                >Outlined</label
-              >
-            </div>
-            <div
-              class="flex align-items-center"
-              [ngClass]="{ 'ml-4': !app.isRTL, 'mr-4': app.isRTL }"
-            >
-              <p-radioButton
-                name="inputStyle"
-                value="filled"
-                [(ngModel)]="app.inputStyle"
-                inputId="inputStyle2"
-                (onClick)="onInputStyleClick()"
-              ></p-radioButton>
-              <label
-                for="inputStyle2"
-                [ngClass]="{ 'ml-2': !app.isRTL, 'mr-2': app.isRTL }"
-                >Filled</label
-              >
-            </div>
-          </div>
-          <h6>{{ 'layout.menu_mode' | translate }}</h6>
+          <h6>{{ 'layout.menu_color' | translate }}</h6>
           <div *ngIf="app.layoutMode !== 'dark'" class="grid">
             <div *ngFor="let t of menuThemes" class="col col-fixed">
               <a
