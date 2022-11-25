@@ -4,13 +4,24 @@
       <div class="col-12">
         <div class="card">
           <h5>{{ "pages.tree.title" | translate }}</h5>
+          <p-megaMenu [model]="treeActions"></p-megaMenu>
           <p-tree
+            [contextMenu]="treeMenuContext"
+            [filter]="true"
             [value]="values"
             [loading]="loading"
-            selectionMode="checkbox"
+            [selectionMode]="selectionMode"
             (onNodeExpand)="loadChildren($event)"
+            [draggableNodes]="true"
+            [droppableNodes]="true"
+            draggableScope="self"
+            droppableScope="self"
             scrollHeight="700px"
           ></p-tree>
+          <p-contextMenu
+            #treeMenuContext
+            [model]="treeContextActions"
+          ></p-contextMenu>
         </div>
       </div>
     </div>

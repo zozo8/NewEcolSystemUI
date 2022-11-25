@@ -21,6 +21,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
@@ -28,6 +30,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MessagesModule } from 'primeng/messages';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PanelModule } from 'primeng/panel';
@@ -46,6 +49,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreadcrumbComponent } from './components/pages/dashboard-page/breadcrumb/breadcrumb.component';
+import { SelectDepartmentComponent } from './components/pages/dashboard-page/breadcrumb/select-department/select-department.component';
 import { ConfigComponent } from './components/pages/dashboard-page/config/config.component';
 import { DashboardPageComponent } from './components/pages/dashboard-page/dashboard-page.component';
 import { FooterComponent } from './components/pages/dashboard-page/footer/footer.component';
@@ -58,11 +62,11 @@ import { SearchPageComponent } from './components/pages/dashboard-page/search-pa
 import { TopbarComponent } from './components/pages/dashboard-page/topbar/topbar.component';
 import { TabsComponent } from './components/pages/dashboard/tabs/tabs.component';
 import { AuthconfigInterceptor } from './modules/login/auth/authconfig.interceptor';
+import { MainSummaryComponent } from './pages/main-summary/main-summary.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { Summary1Component } from './pages/summary1/summary1.component';
 import { Summary2Component } from './pages/summary2/summary2.component';
 import { TreeComponent } from './pages/tree/tree.component';
-import { MainSummaryComponent } from './pages/main-summary/main-summary.component';
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -88,6 +92,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     Summary2Component,
     TreeComponent,
     MainSummaryComponent,
+    SelectDepartmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,6 +142,9 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TimelineModule,
     CardModule,
     OverlayPanelModule,
+    ContextMenuModule,
+    MultiSelectModule,
+    DialogModule,
   ],
   providers: [
     {

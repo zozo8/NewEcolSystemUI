@@ -1,53 +1,100 @@
-<app-form  #form [title]="'table-detail.header' | translate"
-                [icon]="icon"
-                [obj]="obj"
-                [cols]="cols"
-                [postPath]="postPath"
-                (refreshTable)="getRefreshTable()">
-  <div class="row" form="header" *ngIf="obj.objectDto">
-    <div class="col-md-6">
-        <p>{{form.getFieldName('name')}}</p>
-        <p>{{form.getFieldName('description')}}</p>
+<app-form
+  #form
+  [title]="'table-detail.header' | translate"
+  [icon]="icon"
+  [obj]="obj"
+  [cols]="cols"
+  [postPath]="postPath"
+  (refreshTable)="getRefreshTable()"
+>
+  <div class="grid" form="header" *ngIf="obj.objectDto">
+    <div class="col-12 md:col-6">
+      <div class="p-fluid">
+        <div class="field">
+          <label for="h_name">{{ form.getFieldName("name") }}</label>
+          <input
+            pInputText
+            type="text"
+            name="h_name"
+            [(ngModel)]="obj.objectDto.name"
+            class="p-inputtext-sm form-control"
+            [readOnly]="true"
+          />
+        </div>
+      </div>
     </div>
-    <div class="col-md-6">
-      <p><b>{{obj.objectDto.name}}</b></p>
-      <p><b>{{obj.objectDto.description}}</b></p>
+    <div class="col-12 md:col-6">
+      <div class="p-fluid">
+        <div class="field">
+          <label for="h_description">{{
+            form.getFieldName("description")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            name="h_description"
+            [(ngModel)]="obj.objectDto.description"
+            class="p-inputtext-sm form-control"
+            [readOnly]="true"
+          />
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row" form="body" *ngIf="obj.objectEditDto">
-    <div class="row">
-      <div class="col-md">
-        <div class="form-group">
-          <label for="name" class="required-field">{{form.getFieldName('name')}}</label>
-          <input pInputText type="text" [disabled]="!obj.editState" id="name" name="name" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.name" />
-        </div>
-        <div class="form-group">
-          <label for="description" class="required-field">{{form.getFieldName('description')}}</label>
-          <input pInputText type="text" [disabled]="!obj.editState" id="description" name="description" class="p-inputtext-sm form-control" [(ngModel)]="obj.objectEditDto.description" />
-        </div>
+  <div class="grid" form="body" *ngIf="obj.objectEditDto">
+    <div class="col-12 p-fluid">
+      <div class="field">
+        <label for="name" class="required-field">{{
+          form.getFieldName("name")
+        }}</label>
+        <input
+          pInputText
+          type="text"
+          [readOnly]="!obj.editState"
+          id="name"
+          name="name"
+          class="p-inputtext-sm form-control"
+          [(ngModel)]="obj.objectEditDto.name"
+        />
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <p-button label="Typ kosztorysu" styleClass="p-button-link required-field"></p-button>
-          <p-dropdown
-           placeholder="Wybierz.."
-           [disabled]="!obj.editState"
-           [style]="{'width':'100%'}"></p-dropdown>
-        </div>
+      <div class="field">
+        <label for="description" class="required-field">{{
+          form.getFieldName("description")
+        }}</label>
+        <input
+          pInputText
+          type="text"
+          [readOnly]="!obj.editState"
+          id="description"
+          name="description"
+          class="p-inputtext-sm form-control"
+          [(ngModel)]="obj.objectEditDto.description"
+        />
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <p-button label="Typ odpadu" styleClass="p-button-link required-field"></p-button>
-          <p-dropdown
+
+      <div class="field">
+        <p-button
+          label="Typ kosztorysu"
+          styleClass="p-button-link required-field"
+        ></p-button>
+        <p-dropdown
           placeholder="Wybierz.."
-          [disabled]="!obj.editState"
-          [style]="{'width':'100%'}"></p-dropdown>
-        </div>
+          [readonly]="!obj.editState"
+          [style]="{ width: '100%' }"
+        ></p-dropdown>
+      </div>
+
+      <div class="field">
+        <p-button
+          label="Typ odpadu"
+          styleClass="p-button-link required-field"
+        ></p-button>
+        <p-dropdown
+          placeholder="Wybierz.."
+          [readonly]="!obj.editState"
+          [style]="{ width: '100%' }"
+        ></p-dropdown>
       </div>
     </div>
   </div>
 </app-form>
-
-

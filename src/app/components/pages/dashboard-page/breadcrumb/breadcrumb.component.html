@@ -11,15 +11,11 @@
       pButton
       pRipple
       type="button"
-      icon="pi pi-cloud-upload"
-      class="p-button-rounded p-button-text p-button-plain mr-1"
-    ></button>
-    <button
-      pButton
-      pRipple
-      type="button"
-      icon="pi pi-bookmark"
-      class="p-button-rounded p-button-text p-button-plain mr-1"
+      icon="pi pi-tags"
+      label="{{ 'common.select_department' | translate }}"
+      style="width: 150px"
+      class="p-button-raised p-button-secondary p-button-text"
+      (click)="selectDepartment()"
     ></button>
     <button
       pButton

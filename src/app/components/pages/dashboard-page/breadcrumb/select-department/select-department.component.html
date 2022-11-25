@@ -1,0 +1,51 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="p-fluid">
+      <div class="field">
+        <label>{{ "common.select_department" | translate }}</label>
+        <p-multiSelect
+          [options]="departments"
+          [(ngModel)]="selectedDepartments"
+          [showClear]="true"
+          [group]="true"
+          optionGroupLabel="group"
+          optionLabel="label"
+          optionValue="value"
+          defaultLabel="{{ 'common.select_department' | translate }}"
+          selectedItemsLabel="{0} wybranych zakładów"
+          appendTo="body"
+        >
+          <ng-template let-group pTemplate="group">
+            <div class="flex align-items-center">
+              <span
+                ><strong>{{ group.group }}</strong></span
+              >
+            </div>
+          </ng-template>
+          <ng-template let-item pTemplate="item">
+            <div class="flex align-items-center">
+              <span>{{ item.value }}</span>
+            </div>
+          </ng-template>
+        </p-multiSelect>
+      </div>
+    </div>
+    <div class="grid formgrid">
+      <div class="col-6">
+        <button
+          pButton
+          (click)="submit()"
+          [label]="'btn.select' | translate"
+        ></button>
+      </div>
+      <div class="col-6" style="float: right">
+        <button
+          pButton
+          (click)="close()"
+          [label]="'btn.cancel' | translate"
+          class="p-button-outlined"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

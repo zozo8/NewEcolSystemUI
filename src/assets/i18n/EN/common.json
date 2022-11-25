@@ -23,6 +23,7 @@
   "new_notification":"new notifications",
   "popular":"Popular pages",
   "basic_data":"Basic data",
+  "select_department":"Select department",
   "search_menu": {
     "window":"Window",
     "tree_element":"Tree element"

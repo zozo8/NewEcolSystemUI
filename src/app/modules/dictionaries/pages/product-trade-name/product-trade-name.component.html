@@ -1,33 +1,35 @@
-<p-splitter [panelSizes]="[70,30]">
-    <ng-template pTemplate>
-      <div style="width: 100%;">
-        <app-table-button
-              [buttonList]="buttons"
-              [icon]="'pi-bookmark-fill'"
-              [gridId]="gridId">
-          </app-table-button>
-          <div class="row">
-            <app-table
-            [dataTable]="responseObj"
-            [columns]="columns"
-            [tableDisabled]="obj.editState"
-            (newRequestParam)="getLazyLoadEvent($event)"
-            (selectedObj)="getSelected($event)">
-          </app-table>
-          </div>
-        </div>
-    </ng-template>
-    <ng-template pTemplate >
-      <p-tabView [ngStyle]="{'width':'100%'}" >
-         <app-product-trade-name-form
-         [icon]="'pi-bookmark-fill'"
-            [cols]="columns"
-            [obj]="obj"
-            [postPath]="postPath"
-            [putPath]="putPath"
-            (refreshTable)="refreshTable()">
-         </app-product-trade-name-form>
-      </p-tabView>
-    </ng-template>
-  </p-splitter>
-
+<p-splitter [panelSizes]="[50, 50]">
+  <ng-template pTemplate>
+    <div style="width: 100%">
+      <app-table-button
+        [buttonList]="buttons"
+        [icon]="'pi-bookmark-fill'"
+        [gridId]="gridId"
+      >
+      </app-table-button>
+      <div class="row">
+        <app-table
+          [dataTable]="responseObj"
+          [columns]="columns"
+          [tableDisabled]="obj.editState"
+          (newRequestParam)="getLazyLoadEvent($event)"
+          (selectedObj)="getSelected($event)"
+        >
+        </app-table>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate>
+    <p-tabView [ngStyle]="{ width: '100%' }">
+      <app-product-trade-name-form
+        [icon]="'pi-bookmark-fill'"
+        [cols]="columns"
+        [obj]="obj"
+        [postPath]="postPath"
+        [putPath]="putPath"
+        (refreshTable)="refreshTable()"
+      >
+      </app-product-trade-name-form>
+    </p-tabView>
+  </ng-template>
+</p-splitter>

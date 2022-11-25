@@ -1,42 +1,54 @@
-    <div class="row">
+<div class="grid">
+  <div class="col-12">
+    <div class="p-fluid">
+      <div class="field">
+        <label for="parameter" class="required-field">{{
+          "dict.position" | translate
+        }}</label>
+        <p-dropdown
+          [options]="options"
+          [(ngModel)]="selectedOption.id"
+          [filter]="true"
+          [placeholder]="'dict.select_value' | translate"
+          id="parameter"
+          appendTo="body"
+          optionLabel="label"
+          optionValue="id"
+        ></p-dropdown>
+      </div>
+      <div class="field" *ngIf="showValue">
+        <label for="value" class="required-field">{{
+          "dict.value" | translate
+        }}</label>
+        <input
+          [disabled]="selectedOption.id === undefined"
+          pInputText
+          type="text"
+          id="value"
+          [(ngModel)]="selectedOption.label"
+          class="p-inputtext-sm form-control"
+        />
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 30px">
       <div class="col-md">
-        <div class="form-group">
-          <label for="parameter" class="required-field">{{'dict.position' | translate}}</label>
-          <p-dropdown
-            [options]="options"
-            [(ngModel)]="selectedOption.id"
-            [filter]="true"
-            [placeholder]="'dict.select_value' | translate"
-            id="parameter"
-            appendTo="body"
-            optionLabel="label"
-            optionValue="id"
-            [style]="{'width':'100%'}"
-            ></p-dropdown>
-        </div>
+        <button pButton class="p-button-outlined" (click)="cancel()">
+          {{ "btn.cancel" | translate }}
+        </button>
       </div>
-      <div class="col-md" *ngIf="showValue">
-        <div class="form-group">
-          <label for="value" class="required-field">{{'dict.value'| translate }}</label>
-          <input
-              [disabled]="selectedOption.id === undefined"
-              pInputText
-              type="text"
-              id="value"
-              [(ngModel)]="selectedOption.label"
-              [style]="{'width':'100%'}"
-              >
-        </div>
+      <div class="col-md text-end">
+        <button
+          [disabled]="
+            selectedOption.id === undefined ||
+            (selectedOption.label === undefined && showValue)
+          "
+          pButton
+          (click)="submit()"
+        >
+          {{ "btn.save" | translate }}
+        </button>
       </div>
-    </div>
-  <div class="row" style="padding-top: 30px;">
-    <div class="col-md">
-      <button pButton class="p-button-outlined" (click)="cancel()">{{"btn.cancel" | translate}}</button>
-    </div>
-    <div class="col-md text-end">
-      <button [disabled]="selectedOption.id === undefined || (selectedOption.label === undefined && showValue)" pButton (click)="submit()" >{{"btn.save" | translate}}</button>
     </div>
   </div>
-
-
-
+</div>

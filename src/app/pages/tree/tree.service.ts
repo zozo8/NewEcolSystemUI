@@ -59,33 +59,15 @@ export class TreeService {
 
   getTreeNodes(data: BaseTreeFilteredDto[]): TreeNode[] {
     const treeElements: TreeNode[] = [];
-    const level0: TreeNode[] = [];
-    const level1: TreeNode[] = [];
-    const level2: TreeNode[] = [];
 
-    data.forEach((d) => {
-      switch (d.level) {
-        case 0:
-          level0.push(this.getTreeNode(d));
-          break;
-        case 1:
-          level1.push(this.getTreeNode(d));
-          break;
-        case 2:
-          level2.push(this.getTreeNode(d));
-          break;
-        default:
-          break;
+    data.forEach((value) => {
+      const obj = this.getTreeNode(value);
+      const parentObj = treeElements.find((x) => x.id === obj.parentId);
+      if (!parentObj) {
+        treeElements.push(obj);
+      } else {
+        parentObj.children?.push(obj);
       }
-    });
-
-    level1.forEach((element) => {
-      element.children = level2.filter((x) => x.parentId === element.id);
-    });
-
-    level0.forEach((element) => {
-      element.children = level1.filter((x) => x.parentId === element.id);
-      treeElements.push(element);
     });
 
     return treeElements;
@@ -124,6 +106,7 @@ export class TreeService {
       parentId: obj.parentId,
       icon: icon,
       leaf: obj.objectType === 'Task' ? true : false,
+      children: [],
     };
 
     return treeNode;
@@ -132,7 +115,7 @@ export class TreeService {
   getDefaultFilters(): LazyLoadEvent {
     const res: LazyLoadEvent = {
       first: 1,
-      rows: 1000,
+      rows: 10000,
     };
 
     return res;
