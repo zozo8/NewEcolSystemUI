@@ -26,6 +26,9 @@
   },
   "tree":{
     "title":"Equipment tree",
-    "dynamic_tab":"Other dynamic tabs"
+    "dynamic_tab":"Other dynamic tabs",
+    "drag_confirm":"Are you sure, you want move element to the indicated place? ",
+    "drop_validate":"The element cannot be moved to the indicated place!",
+    "drop_success":"The element was move successfull to the indicated place"
   }
 }

@@ -106,6 +106,8 @@ export class TreeService {
       parentId: obj.parentId,
       icon: icon,
       leaf: obj.objectType === 'Task' ? true : false,
+      level: obj.level,
+      departmentId: obj.departmentId,
       children: [],
     };
 

@@ -14,6 +14,8 @@
             (onNodeExpand)="loadChildren($event)"
             [draggableNodes]="true"
             [droppableNodes]="true"
+            [validateDrop]="true"
+            (onNodeDrop)="onDrop($event)"
             draggableScope="self"
             droppableScope="self"
             scrollHeight="700px"

@@ -26,6 +26,9 @@
   },
   "tree":{
     "title":"Drzewo urządzeń",
-    "dynamic_tab":"Pozostałe dynamiczne zakładki"
+    "dynamic_tab":"Pozostałe dynamiczne zakładki",
+    "drag_confirm":"Czy napewno chcesz przenieść element we wskazane miejsce?",
+    "drop_validate":"Nie można przenieść elementu we wskazane miejsce!",
+    "drop_success":"Poprawnie przeniesiono element we wskazane miejsce!"
   }
 }

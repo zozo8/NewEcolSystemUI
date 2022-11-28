@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
+  ConfirmationService,
   MegaMenuItem,
   MenuItem,
   MessageService,
@@ -24,7 +25,7 @@ import { TreeService } from './tree.service';
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
-  providers: [TreeDragDropService, MessageService],
+  providers: [TreeDragDropService],
 })
 export class TreeComponent implements OnInit, OnDestroy {
   static icon = PrimeIcons.LIST;
@@ -39,7 +40,9 @@ export class TreeComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private apiService: ApiService,
     private commonService: CommonService,
-    private treeService: TreeService
+    private treeService: TreeService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +79,7 @@ export class TreeComponent implements OnInit, OnDestroy {
 
   loadChildren(ev: any) {
     if (ev.node.children === undefined || ev.node.children.length === 0) {
-      this.loading = true;
+      //this.loading = true;
       const filter = this.commonService.getFilter4request(
         'ParentId',
         ev.node.id.toString(),
@@ -94,10 +97,10 @@ export class TreeComponent implements OnInit, OnDestroy {
               ev.node.children = this.treeService.getChildrenByParentId(
                 res.value.data
               );
-              this.loading = false;
-            },
-            error: () => (this.loading = false),
-            complete: () => (this.loading = false),
+              //this.loading = false;
+            }, //,
+            // error: () => (this.loading = false),
+            // complete: () => (this.loading = false),
           })
       );
     }
@@ -299,6 +302,29 @@ export class TreeComponent implements OnInit, OnDestroy {
         ],
       },
     ];
+  }
+
+  onDrop(ev: any): void {
+    this.confirmationService.confirm({
+      message: this.translate.instant('pages.tree.drag_confirm'),
+      accept: () => {
+        if (
+          ev.dragNode.level > ev.dropNode.level &&
+          ev.dragNode.departmentId === ev.dropNode.departmentId
+        ) {
+          ev.accept();
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('pages.tree.drop_success'),
+          });
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translate.instant('pages.tree.drop_validate'),
+          });
+        }
+      },
+    });
   }
 
   ngOnDestroy(): void {
