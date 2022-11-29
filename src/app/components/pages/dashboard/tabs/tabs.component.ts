@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Tab } from 'src/app/models/tab.model';
+import { MainSummaryComponent } from 'src/app/pages/main-summary/main-summary.component';
 import { Summary1Component } from 'src/app/pages/summary1/summary1.component';
 
 @Component({
@@ -29,7 +30,7 @@ export class TabsComponent implements OnInit {
   ngOnInit(): void {
     this.refreshTabs({
       header: this.translate.instant('pages.summary1.title'),
-      component: Summary1Component,
+      component: MainSummaryComponent,
       icon: Summary1Component.icon,
     });
   }

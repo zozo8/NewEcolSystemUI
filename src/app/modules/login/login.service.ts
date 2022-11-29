@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
 import { Observable, Subject } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service';
 import { authenticatePath, loginToURPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/auth.service';
@@ -13,9 +14,10 @@ import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import {
   saveLoginObject,
   saveTokenExp,
-  saveTokenUr
+  saveTokenUr,
 } from './state/login.actions';
-import { LoginState } from './state/loginState.model';
+import { getLanguage } from './state/login.selector';
+import { LoginState } from './state/loginState';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,8 @@ export class LoginService {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private loginStore: Store<LoginState>
+    private store: Store<LoginState>,
+    private commonService: CommonService
   ) {}
 
   loginToUR(obj: Login): Observable<ResponseLoginUR> {
@@ -41,8 +44,7 @@ export class LoginService {
   authenticate(obj: ResponseLoginUR): Observable<boolean> {
     const resBs = new Subject<boolean>();
 
-    // localStorage.setItem('tokenUR', obj.accessToken.value);
-    this.loginStore.dispatch(saveTokenUr({ token: obj.accessToken.value }));
+    this.store.dispatch(saveTokenUr({ token: obj.accessToken.value }));
     this.http
       .get<LoginState>(environment.endpointApiPath + authenticatePath())
       .subscribe({
@@ -54,7 +56,7 @@ export class LoginService {
         },
         complete: () => {
           this.authService.setLastActivity();
-          this.router.navigate(['/dashboard/summary1']);
+          this.router.navigate(['/dashboard']);
           resBs.next(true);
         },
       });
@@ -62,9 +64,8 @@ export class LoginService {
     return resBs;
   }
 
-  setLoginStateStore(res: LoginState) {
-    this.loginStore.dispatch(saveLoginObject({ obj: res }));
-    localStorage.setItem("token",res.token);
+  setLoginStateStore(res: LoginState): void {
+    this.store.dispatch(saveLoginObject({ obj: res }));
     this.decodateToken(res);
   }
 
@@ -82,7 +83,7 @@ export class LoginService {
 
   decodateToken(res: LoginState): void {
     const decodate = JSON.parse(window.atob(res.token.split('.')[1]));
-    this.loginStore.dispatch(saveTokenExp({ exp: decodate.exp }));
+    this.store.dispatch(saveTokenExp({ exp: decodate.exp }));
     const rights: string[] =
       decodate['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     // const admin = rights.filter((x) => x.includes('Administrator')); // do zmiany
@@ -97,7 +98,10 @@ export class LoginService {
 
   getCultureInfo(): string {
     let ret: string;
-    let ln = localStorage.getItem('actualLanguage');
+    const ln = this.commonService.getValueFromObservable(
+      this.store.select(getLanguage)
+    );
+
     switch (ln) {
       case 'pl':
         ret = 'pl-PL';

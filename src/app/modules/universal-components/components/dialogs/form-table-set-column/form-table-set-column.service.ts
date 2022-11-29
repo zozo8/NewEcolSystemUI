@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { ColumnSetting } from 'src/app/models/requests/columnSetting.model';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { getUserId } from 'src/app/modules/login/state/login.selector';
-import { LoginState } from 'src/app/modules/login/state/loginState.model';
+import { LoginState } from 'src/app/modules/login/state/loginState';
+import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { CommonService } from 'src/app/services/common.service';
 import { postModelPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
@@ -26,7 +26,7 @@ export class FormTableSetColumnService {
     columns: RequestGridDataColumnValue[]
   ): Observable<boolean> {
     const bs = new Subject<boolean>();
-    // var userId = Number.parseInt(localStorage.getItem("userId")??"");
+
     const userId = this.commonService.getValueFromObservable(
       this.store.select(getUserId)
     );

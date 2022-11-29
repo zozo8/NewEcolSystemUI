@@ -14,7 +14,7 @@ import { AppComponent } from 'src/app/app.component';
 import { Tab } from 'src/app/models/tab.model';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
 import { setLanguage } from 'src/app/modules/login/state/login.actions';
-import { LoginState } from 'src/app/modules/login/state/loginState.model';
+import { LoginState } from 'src/app/modules/login/state/loginState';
 import { environment } from 'src/environments/environment';
 import { MenuService } from './menu.service';
 

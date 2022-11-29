@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { Department } from 'src/app/modules/admin/models/department';
@@ -25,7 +25,8 @@ export class BreadcrumbComponent implements OnDestroy {
     public breadcrumbService: BreadcrumbService,
     public dashboard: DashboardPageComponent,
     private translateService: TranslateService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private messageService: MessageService
   ) {
     this.compsiteSubs.add(
       breadcrumbService.itemsHandler.subscribe((response) => {
@@ -44,8 +45,16 @@ export class BreadcrumbComponent implements OnDestroy {
 
     this.compsiteSubs.add(
       ref.onClose.subscribe({
-        next: () =>
-          console.log('Wybranio zaklady, zamkniecie wszystkich tabów.'),
+        next: (res: boolean) => {
+          if (res) {
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translateService.instant(
+                'pages.select_department.set_department_success'
+              ),
+            });
+          }
+        },
       })
     );
   }

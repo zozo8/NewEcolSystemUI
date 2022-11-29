@@ -1,0 +1,17 @@
+<div class="card height-100">
+  <div class="card-header">
+    <h5>Dane procentowe</h5>
+  </div>
+
+  <ul class="widget-activity">
+    <li *ngFor="let item of list">
+      <div class="activity-item flex flex-column">
+        <div class="activity-title mb-1">{{ item.title }}</div>
+        <div class="activity-subtext mb-2">
+          {{ item.subtitle }}
+        </div>
+        <p-progressBar [value]="item.value" [showValue]="false"></p-progressBar>
+      </div>
+    </li>
+  </ul>
+</div>

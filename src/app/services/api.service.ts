@@ -41,4 +41,12 @@ export class ApiService {
   getObjById(path: string): Observable<ResponseBodyById> {
     return this.http.get<ResponseBodyById>(environment.endpointApiPath + path);
   }
+
+  //get typical tesponse by any post obj
+  getResponseByPost(path: string, postObj: any): Observable<ResponseBodyById> {
+    return this.http.post<ResponseBodyById>(
+      environment.endpointApiPath + path,
+      postObj
+    );
+  }
 }

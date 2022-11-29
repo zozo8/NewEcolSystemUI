@@ -1,22 +1,12 @@
+import { Action } from '@fullcalendar/angular';
 import { createReducer, on } from '@ngrx/store';
-import { environment } from 'src/environments/environment';
 import * as loginActions from './login.actions';
-import { LoginState } from './loginState.model';
+import { initialLoginState, LoginState } from './loginState';
 
-export const initialState: LoginState = {
-  email: '',
-  id: 0,
-  refreshToken: '',
-  token: '',
-  userName: '',
-  tokenExp: 0,
-  tokenUr: '',
-  language: environment.languages[0],
-  tabs: [],
-};
+export const LOGIN_KEY = 'login';
 
 export const loginReducer = createReducer(
-  initialState,
+  initialLoginState,
   on(loginActions.saveLoginObject, (state, { obj }) => ({
     ...state,
     id: obj.id,
@@ -33,25 +23,31 @@ export const loginReducer = createReducer(
     ...state,
     tokenUr: token,
   })),
-  on(loginActions.changeDepartment, (state, { departments }) => ({
-    ...state,
-    departmentsId: departments,
-  })),
   on(loginActions.clearTokens, (state) => ({
     ...state,
     token: '',
     tokenUr: '',
+    refreshToken: '',
+    tokenExp: 0,
   })),
   on(loginActions.setLanguage, (state, { language }) => ({
     ...state,
     language: language,
   })),
-  on(loginActions.addTab, (state, { tab }) => ({
+  on(loginActions.setLastActivity, (state, { val }) => ({
     ...state,
-    tabs: [...state.tabs, tab],
+    lastActivity: val,
   })),
-  on(loginActions.removeTab, (state, { tab }) => ({
+  on(loginActions.setDepartments, (state, { val }) => ({
     ...state,
-    tabs: [...state.tabs.splice(0, tab.component), ...state.tabs.splice(1)],
+    departments: val,
+  })),
+  on(loginActions.changeLayout, (state, { val }) => ({
+    ...state,
+    layout: val,
   }))
 );
+
+export function reducer(state: LoginState, action: Action): LoginState {
+  return loginReducer(state, action);
+}

@@ -1,15 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { Tab } from 'src/app/models/tab.model';
-import { LoginState } from './loginState.model';
+import { LoginState } from './loginState';
 
 export const saveLoginObject = createAction(
   '[Login Service] saveLoginObject',
   props<{ obj: LoginState }>()
 );
 
-export const changeDepartment = createAction(
-  '[Login Service] changeDepartment',
-  props<{ departments: number[] }>()
+export const setDepartments = createAction(
+  '[SelectDepartment Component] setDepartments',
+  props<{ val: number[] }>()
 );
 
 export const saveTokenExp = createAction(
@@ -29,12 +28,12 @@ export const setLanguage = createAction(
   props<{ language: string }>()
 );
 
-export const addTab = createAction(
-  '[Menuitem component] add tab',
-  props<{ tab: Tab }>()
+export const setLastActivity = createAction(
+  '[Auth Service] setLastActivity',
+  props<{ val: number }>()
 );
 
-export const removeTab = createAction(
-  '[Menuitem component] remove tab',
-  props<{ tab: Tab }>()
+export const changeLayout = createAction(
+  '[Config Component]  changeLayout',
+  props<{ val: string }>()
 );

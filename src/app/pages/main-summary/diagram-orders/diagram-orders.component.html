@@ -1,0 +1,23 @@
+<div class="card height-100">
+  <div class="card-header">
+    <h5>Ilość zleceń wykonanych</h5>
+    <button
+      pRipple
+      pButton
+      type="button"
+      label="Vertical/Stacked Data"
+      class="p-button-text"
+      [ngClass]="{ 'ml-auto': !app.isRTL, 'mr-auto': app.isRTL }"
+      (click)="changeMonthlyDataView()"
+    ></button>
+  </div>
+
+  <p-chart
+    #bar
+    type="bar"
+    [data]="chartMonthlyData"
+    [options]="chartMonthlyOptions"
+    [responsive]="true"
+    height="400px"
+  ></p-chart>
+</div>

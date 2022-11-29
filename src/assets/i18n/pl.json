@@ -120,6 +120,9 @@
 			"drag_confirm": "Czy napewno chcesz przenieść element we wskazane miejsce?",
 			"drop_validate": "Nie można przenieść elementu we wskazane miejsce!",
 			"drop_success": "Poprawnie przeniesiono element we wskazane miejsce!"
+		},
+		"select_department": {
+			"set_department_success": "Poprawnie zmieniono zakłady!"
 		}
 	},
 	"primeng": {

@@ -23,7 +23,7 @@ import { refreshTokenPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
 import { LoginService } from '../login.service';
 import { getRefreshToken, getToken, getTokenUr } from '../state/login.selector';
-import { LoginState } from '../state/loginState.model';
+import { LoginState } from '../state/loginState';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -43,7 +43,6 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // const tokenUR = localStorage.getItem('tokenUR');
     const tokenUR = this.commonService.getValueFromObservable(
       this.store.select(getTokenUr)
     );
@@ -51,7 +50,6 @@ export class AuthconfigInterceptor implements HttpInterceptor {
       this.store.select(getToken)
     );
 
-    // const token = localStorage.getItem('token');
     this.authService.isExpired();
 
     if (tokenUR === '') {

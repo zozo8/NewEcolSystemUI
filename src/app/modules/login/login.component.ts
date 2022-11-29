@@ -13,7 +13,7 @@ import Login from './interfaces/login.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import { LoginService } from './login.service';
 import { setLanguage } from './state/login.actions';
-import { LoginState } from './state/loginState.model';
+import { LoginState } from './state/loginState';
 
 @Component({
   selector: 'app-login',
@@ -141,7 +141,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   setLanguage(ln: string): void {
     this.store.dispatch(setLanguage({ language: ln }));
     this.translateService.use(ln);
-    //localStorage.setItem('actualLanguage', ln);
   }
 
   ngOnDestroy(): void {

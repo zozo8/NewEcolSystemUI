@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -62,15 +62,26 @@ import { SearchPageComponent } from './components/pages/dashboard-page/search-pa
 import { TopbarComponent } from './components/pages/dashboard-page/topbar/topbar.component';
 import { TabsComponent } from './components/pages/dashboard/tabs/tabs.component';
 import { AuthconfigInterceptor } from './modules/login/auth/authconfig.interceptor';
+import { loginReducer, LOGIN_KEY } from './modules/login/state/login.reducer';
+import { hydrationMetaReducer } from './modules/login/state/rehydrate_reducer';
+import { RootState } from './modules/login/state/root-state';
 import { MainSummaryComponent } from './pages/main-summary/main-summary.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { Summary1Component } from './pages/summary1/summary1.component';
 import { Summary2Component } from './pages/summary2/summary2.component';
 import { TreeComponent } from './pages/tree/tree.component';
+import { DiagramOrdersComponent } from './pages/main-summary/diagram-orders/diagram-orders.component';
+import { DiagramPercentageComponent } from './pages/main-summary/diagram-percentage/diagram-percentage.component';
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
+
+export const reducers: ActionReducerMap<RootState> = {
+  [LOGIN_KEY]: loginReducer,
+};
+
+export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
 
 @NgModule({
   declarations: [
@@ -93,6 +104,8 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TreeComponent,
     MainSummaryComponent,
     SelectDepartmentComponent,
+    DiagramOrdersComponent,
+    DiagramPercentageComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +142,7 @@ function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TabViewModule,
     BreadcrumbModule,
     AutoCompleteModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 15,

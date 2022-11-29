@@ -10,7 +10,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
 import { Tab } from 'src/app/models/tab.model';
-import { LoginState } from 'src/app/modules/login/state/loginState.model';
+import { LoginState } from 'src/app/modules/login/state/loginState';
 import { DashboardPageComponent } from '../dashboard-page.component';
 import { MenuService } from '../menu.service';
 

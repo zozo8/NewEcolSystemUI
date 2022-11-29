@@ -30,5 +30,8 @@
     "drag_confirm":"Are you sure, you want move element to the indicated place? ",
     "drop_validate":"The element cannot be moved to the indicated place!",
     "drop_success":"The element was move successfull to the indicated place"
+  },
+  "select_department":{
+    "set_department_success":"Department selected successfull!"
   }
 }

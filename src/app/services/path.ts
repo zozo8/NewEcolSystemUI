@@ -1,5 +1,6 @@
 const prefix: string = '/api/';
 
+// crud
 export const deleteModelPath = (model: string, id: number): string =>
   prefix + model + 's?id=' + id;
 
@@ -19,10 +20,12 @@ export const getModelListPath = (model: string): string => prefix + model + 's';
 export const columnListPath = (id: number): string =>
   prefix + 'GridData?gridsDict=' + id;
 
+// login
 export const loginToURPath = () => prefix + 'auth/login/';
 export const authenticatePath = () => prefix + 'Home/Authenticate';
 export const refreshTokenPath = () => prefix + 'Home/RefreshToken';
 
+// tree
 export const getInitTreeElementListPath = () =>
   prefix + 'BaseTreeFilteredsInit';
 export const getTreeElementListPath = () => prefix + 'BaseTreeFiltereds';
