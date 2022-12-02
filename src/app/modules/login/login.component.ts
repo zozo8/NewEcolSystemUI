@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, timer } from 'rxjs';
@@ -83,7 +84,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private loginService: LoginService,
     private translateService: TranslateService,
-    private store: Store<LoginState>
+    private store: Store<LoginState>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -107,14 +109,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.hideAdvs = true;
     this.loading = true;
     this.errorText = '';
-    timer(2000).subscribe(() => {
+    timer(1000).subscribe(() => {
       this.compsiteSubs.add(
         this.loginService.loginToUR(this.loginObj).subscribe({
           next: (res: ResponseLoginUR) => {
             this.compsiteSubs.add(
               this.loginService.authenticate(res).subscribe({
                 next: (resAuth: boolean) => {
-                  if (resAuth === false) {
+                  if (resAuth === true) {
+                    this.router.navigate(['/dashboard']);
+                  } else {
                     this.printErrorMessage();
                   }
                 },

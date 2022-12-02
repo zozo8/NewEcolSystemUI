@@ -35,6 +35,14 @@
     </div>
     <div class="layout-topbar-actions-right">
       <ul class="layout-topbar-items">
+        <li class="layout-topbar-item app">
+          <p-chip
+            *ngFor="let item of departmentsState"
+            label="{{ item.name }}"
+            [removable]="true"
+            (onRemove)="removeDepartment(item.id)"
+          ></p-chip>
+        </li>
         <li class="layout-topbar-item layout-search-item">
           <a
             class="layout-topbar-action rounded-circle"
@@ -78,7 +86,6 @@
             </span>
           </div>
         </li>
-        <li class="layout-topbar-item notifications"></li>
         <li class="layout-topbar-item notifications">
           <a
             class="layout-topbar-action rounded-circle"

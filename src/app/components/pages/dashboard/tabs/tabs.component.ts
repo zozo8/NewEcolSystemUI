@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Tab } from 'src/app/models/tab.model';
+import { LoginState } from 'src/app/modules/login/state/loginState';
 import { MainSummaryComponent } from 'src/app/pages/main-summary/main-summary.component';
-import { Summary1Component } from 'src/app/pages/summary1/summary1.component';
 
 @Component({
   selector: 'app-tabs',
@@ -25,14 +26,13 @@ export class TabsComponent implements OnInit {
     }
   }
 
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private translate: TranslateService,
+    private store: Store<LoginState>
+  ) {}
 
   ngOnInit(): void {
-    this.refreshTabs({
-      header: this.translate.instant('pages.summary1.title'),
-      component: MainSummaryComponent,
-      icon: Summary1Component.icon,
-    });
+    this.addStartTab();
   }
 
   public refreshTabs(tab: Tab): void {
@@ -47,27 +47,25 @@ export class TabsComponent implements OnInit {
     }
   }
 
-  // private setParents(tab:Tab):void {
-  //   this.parents = [];
-
-  //   if(tab.parent){
-  //     this.parents.push({
-  //       label: this.translateService.instant(tab.parent?.label??""),
-  //       icon:tab.parent?.icon,
-  //       tooltip:tab.parent?.data
-  //     }
-  //     );
-  //   };
-
-  //   this.parents.push(
-  //   {
-  //     label:tab.header,
-  //     icon:tab.icon,
-  //     tooltip:tab.tooltip
-  //   });
-  // }
-
   closeTab(ev: any): void {
     this.tabs.splice(ev.index, 1);
+  }
+
+  closeTabs(): void {
+    this.tabs = [];
+  }
+
+  addStartTab(): void {
+    // this.store.select(getDepartments).subscribe({
+    //   next: (res: number[]) => {
+    //     if (res.length > 0) {
+    this.refreshTabs({
+      header: this.translate.instant('pages.main_summary.title'),
+      component: MainSummaryComponent,
+      icon: MainSummaryComponent.icon,
+    });
+    // }
+    //   },
+    // });
   }
 }

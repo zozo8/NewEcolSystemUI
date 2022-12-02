@@ -42,6 +42,10 @@ export class TableButtonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getMenu();
+  }
+
+  getMenu(): void {
     this.setting = [
       {
         label: this.translateService.instant('table-menu.setting.select_grid'),

@@ -1,11 +1,11 @@
 <div class="card height-100">
   <div class="card-header">
-    <h5>Ilość zleceń wykonanych</h5>
+    <h5>{{ "pages.main_summary.diagram_orders" | translate }}</h5>
     <button
       pRipple
       pButton
       type="button"
-      label="Vertical/Stacked Data"
+      [label]="'pages.main_summary.diagram_orders_change_view' | translate"
       class="p-button-text"
       [ngClass]="{ 'ml-auto': !app.isRTL, 'mr-auto': app.isRTL }"
       (click)="changeMonthlyDataView()"

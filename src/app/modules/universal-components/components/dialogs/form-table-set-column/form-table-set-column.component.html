@@ -46,19 +46,24 @@
         [showPageLinks]="true"
         [resizableColumns]="true"
         [scrollable]="true"
+        [reorderableColumns]="true"
         selectionMode="single"
         styleClass="p-datatable-sm"
         responsiveLayout="scroll"
       >
         <ng-template pTemplate="header">
           <tr>
+            <th style="width: 3rem"></th>
             <th>
               <strong>{{ "table-menu.selected_columns" | translate }}</strong>
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-column>
-          <tr>
+        <ng-template pTemplate="body" let-column let-index="rowIndex">
+          <tr [pReorderableRow]="index">
+            <td>
+              <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+            </td>
             <td
               [dndDraggable]="true"
               (dndStart)="onDragStartSelectedColumns($event, column)"

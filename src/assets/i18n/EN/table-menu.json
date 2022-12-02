@@ -17,6 +17,14 @@
     "select_grid":"Select grid",
     "select_columns":"Select columns...",
     "save_grid":"Save grid"
+  },
+  "export":{
+    "title":"Export",
+    "csv":"Export to CSV",
+    "doc":"Export to DOC",
+    "xls":"Export to XLS",
+    "pdf":"Export to PDF",
+    "data":"Data"
   }
 
 }

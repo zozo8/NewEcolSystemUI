@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
+import { changeLayout } from 'src/app/modules/login/state/login.actions';
+import { LoginState } from 'src/app/modules/login/state/loginState';
 import { DashboardPageComponent } from '../dashboard-page.component';
 
 @Component({
@@ -207,11 +210,6 @@ import { DashboardPageComponent } from '../dashboard-page.component';
               </a>
             </div>
           </div>
-          <p *ngIf="app.layoutMode === 'dark'">
-            Menu themes are only available in light mode by design as large
-            surfaces can emit too much brightness in dark mode.
-          </p>
-
           <h6>{{ 'layout.topbar_mode' | translate }}</h6>
           <div class="grid">
             <div *ngFor="let t of topbarThemes" class="col col-fixed">
@@ -319,7 +317,8 @@ export class ConfigComponent implements OnInit {
   constructor(
     public app: AppComponent,
     public dashboard: DashboardPageComponent,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private store: Store<LoginState>
   ) {}
 
   ngOnInit(): void {
@@ -415,6 +414,7 @@ export class ConfigComponent implements OnInit {
       'app-logo'
     ) as HTMLImageElement;
     this.app.layoutMode = mode;
+    this.store.dispatch(changeLayout({ val: mode }));
 
     if (!this.isInputBackgroundChanged) {
       this.app.inputStyle = mode === 'dark' ? 'filled' : 'outlined';

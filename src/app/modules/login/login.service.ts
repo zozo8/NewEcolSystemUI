@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
 import { Observable, Subject } from 'rxjs';
+import { GridEnum } from 'src/app/models/gridEnum';
 import { CommonService } from 'src/app/services/common.service';
-import { authenticatePath, loginToURPath } from 'src/app/services/path';
+import {
+  authenticatePath,
+  columnListPath,
+  getModelListPath,
+  loginToURPath,
+} from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
+import { Department } from '../admin/models/department';
 import { AuthService } from './auth/auth.service';
 import Login from './interfaces/login.model';
 import { LoginCredentialMD } from './interfaces/UR/loginCredentialMD.model';
@@ -15,8 +21,9 @@ import {
   saveLoginObject,
   saveTokenExp,
   saveTokenUr,
+  setDepartments,
 } from './state/login.actions';
-import { getLanguage } from './state/login.selector';
+import { getDepartments, getLanguage } from './state/login.selector';
 import { LoginState } from './state/loginState';
 
 @Injectable({
@@ -25,15 +32,12 @@ import { LoginState } from './state/loginState';
 export class LoginService {
   constructor(
     private http: HttpClient,
-    private router: Router,
     private authService: AuthService,
     private store: Store<LoginState>,
     private commonService: CommonService
   ) {}
 
   loginToUR(obj: Login): Observable<ResponseLoginUR> {
-    // this.loginStore.dispatch(clearTokens());
-
     const loginObjUR: LoginCredentialMD = this.getLoginObjUR(obj);
     return this.http.post<ResponseLoginUR>(
       environment.endpointLoginUR + loginToURPath(),
@@ -56,7 +60,6 @@ export class LoginService {
         },
         complete: () => {
           this.authService.setLastActivity();
-          this.router.navigate(['/dashboard']);
           resBs.next(true);
         },
       });
@@ -66,7 +69,30 @@ export class LoginService {
 
   setLoginStateStore(res: LoginState): void {
     this.store.dispatch(saveLoginObject({ obj: res }));
+    this.setStartDepartment();
     this.decodateToken(res);
+  }
+
+  //set start one department when store is empty
+  setStartDepartment(): void {
+    const depts: number[] = this.commonService.getValueFromObservable(
+      this.store.select(getDepartments)
+    );
+    if (depts.length === 0) {
+      this.commonService
+        .getObservableList4path(
+          getModelListPath('Department'),
+          columnListPath(GridEnum.Departments)
+        )
+        .subscribe({
+          next: (res: Department[]) => {
+            const depId = res[0].id;
+            if (depId) {
+              this.store.dispatch(setDepartments({ val: [depId] }));
+            }
+          },
+        });
+    }
   }
 
   private getLoginObjUR(obj: Login): LoginCredentialMD {

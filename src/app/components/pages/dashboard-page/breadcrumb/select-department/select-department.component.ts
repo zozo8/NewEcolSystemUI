@@ -31,7 +31,6 @@ export interface ISelectDepartemntValue {
 })
 export class SelectDepartmentComponent implements OnInit, OnDestroy {
   departments: ISelectDepartemnt[] = [];
-  //departments: Department[];
   selectedDepartments: number[] = [];
   compsiteSubs = new Subscription();
   constructor(

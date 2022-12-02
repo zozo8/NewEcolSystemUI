@@ -17,6 +17,14 @@
     "select_grid":"Wybierz siatkę",
     "select_columns":"Dostosuj kolumny...",
     "save_grid":"Zapisz siatkę"
+  },
+  "export":{
+    "title":"Eksport",
+    "csv":"Eksport do CSV",
+    "doc":"Eksport do DOC",
+    "xls":"Eksport do XLS",
+    "pdf":"Eksport do PDF",
+    "data":"Dane"
   }
 
 }

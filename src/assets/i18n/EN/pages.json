@@ -19,10 +19,10 @@
     "title":"Product groups dictionary"
   },
   "summary1":{
-    "title":"Charts and summary 1"
+    "title":"Summary 1 example"
   },
   "summary2":{
-    "title":"Charts and summary 2"
+    "title":"Summary 2 example"
   },
   "tree":{
     "title":"Equipment tree",
@@ -33,5 +33,13 @@
   },
   "select_department":{
     "set_department_success":"Department selected successfull!"
+  },
+  "main_summary":{
+    "title":"Real summary data",
+    "diagram_orders":"Made order counts, summary by years and month",
+    "diagram_orders_change_view":"Change view",
+    "diagram_percentage":"Percatnge data",
+    "orders_today":"Ordes today",
+    "product_under_state":"Products under minimal warehouse state"
   }
 }

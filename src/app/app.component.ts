@@ -17,7 +17,7 @@ import { CommonService } from './services/common.service';
 export class AppComponent implements OnInit {
   topbarTheme = 'blue';
   menuTheme = 'light';
-  layoutMode = 'light';
+  layoutMode = 'dark';
   menuMode = 'static';
   inlineMenuPosition = 'bottom';
   inputStyle = 'filled';

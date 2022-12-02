@@ -1,67 +1,75 @@
-<div style="width: 100%">
-  <p-table
-    #dt1
-    [value]="dataValues"
-    [totalRecords]="totalRecords"
-    [paginator]="true"
-    [rows]="pageSize"
-    [showCurrentPageReport]="true"
-    [lazy]="true"
-    [columns]="columns"
-    [rowsPerPageOptions]="[10, 25, 50, 100, 500, totalItems]"
-    [loading]="dataLoading"
-    [showPageLinks]="true"
-    [globalFilterFields]="columnFilter"
-    [resizableColumns]="true"
-    [scrollable]="true"
-    (onLazyLoad)="loadData($event)"
-    (onRowSelect)="selectObj(dt1.selection)"
-    selectionMode="single"
-    currentPageReportTemplate="{first} - {last} / {{ totalRecords }}"
-    styleClass="p-datatable-sm p-datatable-gridlines ui-datatable-scrollable-body "
-    responsiveLayout="scroll"
-  >
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" pSortableColumn="{{ col.columnName }}">
-          <strong>{{ col.displayName }}</strong>
-          <p-sortIcon field="{{ col.columnName }}"></p-sortIcon>
-          <p-columnFilter
-            type="{{ col.dataType }}"
-            field="{{ col.columnName }}"
-            display="menu"
-          ></p-columnFilter>
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pSelectableRow]="rowData" [pSelectableRowDisabled]="tableDisabled">
-        <td *ngFor="let row of columns">
-          <div [ngSwitch]="row.dataType">
-            <span *ngSwitchCase="'date'">{{
-              rowData[row.columnName] | date: "yyyy/MM/dd"
-            }}</span>
-            <span *ngSwitchCase="'DateTime'">{{
-              rowData[row.columnName] | date: "yyyy/MM/dd"
-            }}</span>
-            <span *ngSwitchCase="'boolean'">
-              <i
-                class="pi"
-                [ngClass]="{
-                  'true-icon pi-check-circle': rowData[row.columnName],
-                  'false-icon pi-times-circle': !rowData[row.columnName]
-                }"
-              ></i>
-            </span>
-            <span *ngSwitchDefault>{{ rowData[row.columnName] }}</span>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="6">{{ "common.empty_data" | translate }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+<!-- [tableStyle]="{ height: '100rem' }" -->
+<p-table
+  #dt1
+  [value]="dataValues"
+  [totalRecords]="totalRecords"
+  [paginator]="true"
+  [rows]="pageSize"
+  [showCurrentPageReport]="true"
+  [lazy]="true"
+  [columns]="columns"
+  [rowsPerPageOptions]="[10, 25, 50, 100, 500, totalItems]"
+  [loading]="dataLoading"
+  [showPageLinks]="true"
+  [globalFilterFields]="columnFilter"
+  [resizableColumns]="true"
+  [scrollable]="true"
+  (onLazyLoad)="loadData($event)"
+  (onRowSelect)="selectObj(dt1.selection)"
+  selectionMode="single"
+  currentPageReportTemplate="{first} - {last} / {{ totalRecords }}"
+  styleClass="p-datatable-sm p-datatable-gridlines ui-datatable-scrollable-body "
+  responsiveLayout="scroll"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-splitButton
+        icon="pi pi-file-excel"
+        [model]="exportOptions"
+        styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"
+      ></p-splitButton>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" pSortableColumn="{{ col.columnName }}">
+        <strong>{{ col.displayName }}</strong>
+        <p-sortIcon field="{{ col.columnName }}"></p-sortIcon>
+        <p-columnFilter
+          type="{{ col.dataType }}"
+          field="{{ col.columnName }}"
+          display="menu"
+        ></p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData" [pSelectableRowDisabled]="tableDisabled">
+      <td *ngFor="let row of columns">
+        <div [ngSwitch]="row.dataType">
+          <span *ngSwitchCase="'date'">{{
+            rowData[row.columnName] | date: "yyyy/MM/dd"
+          }}</span>
+          <span *ngSwitchCase="'DateTime'">{{
+            rowData[row.columnName] | date: "yyyy/MM/dd"
+          }}</span>
+          <span *ngSwitchCase="'boolean'">
+            <i
+              class="pi"
+              [ngClass]="{
+                'true-icon pi-check-circle': rowData[row.columnName],
+                'false-icon pi-times-circle': !rowData[row.columnName]
+              }"
+            ></i>
+          </span>
+          <span *ngSwitchDefault>{{ rowData[row.columnName] }}</span>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6">{{ "common.empty_data" | translate }}</td>
+    </tr>
+  </ng-template>
+</p-table>

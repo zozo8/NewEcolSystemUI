@@ -1,6 +1,5 @@
-import { DefaultProperties } from 'src/app/models/defaultProperties.model';
-
-export class Department extends DefaultProperties {
+export class Department {
+  id?: number;
   departmentName?: string;
   clientId?: number;
   clientName?: string;

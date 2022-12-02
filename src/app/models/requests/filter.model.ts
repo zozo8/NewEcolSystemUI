@@ -1,5 +1,6 @@
 export class Filter {
-  field?:string;
-  value?:string;
-  comparision?:string;
+  field?: string;
+  value?: string;
+  comparision?: string;
+  joinType?: string;
 }

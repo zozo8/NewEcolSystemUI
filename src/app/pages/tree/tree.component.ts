@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ConfirmationService,
@@ -13,6 +14,8 @@ import { Subscription } from 'rxjs';
 import { Filter } from 'src/app/models/requests/filter.model';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
+import { getDepartments } from 'src/app/modules/login/state/login.selector';
+import { LoginState } from 'src/app/modules/login/state/loginState';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import {
@@ -42,7 +45,8 @@ export class TreeComponent implements OnInit, OnDestroy {
     private commonService: CommonService,
     private treeService: TreeService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private store: Store<LoginState>
   ) {}
 
   ngOnInit(): void {
@@ -51,20 +55,46 @@ export class TreeComponent implements OnInit, OnDestroy {
     this.treeContextActions = this.getTreeContextActions();
   }
 
-  loadData() {
+  loadData(): void {
     this.loading = true;
     this.compositeSubscription.add(
-      this.apiService
-        .getResponseObj(getInitTreeElementListPath(), this.getRequestObj())
-        .subscribe({
-          next: (res: ResponseBodyGetList) => {
-            this.values = this.treeService.getTreeNodes(res.value.data);
-          },
-          complete: () => {
-            this.loading = false;
-          },
-        })
+      this.store.select(getDepartments).subscribe({
+        next: (depts: number[]) => {
+          const filters: Filter[] = this.getFilters4Departments(depts);
+          this.compositeSubscription.add(
+            this.apiService
+              .getResponseObj(
+                getInitTreeElementListPath(),
+                this.getRequestObj(filters)
+              )
+              .subscribe({
+                next: (res: ResponseBodyGetList) => {
+                  this.values = this.treeService.getTreeNodes(res.value.data);
+                },
+                complete: () => {
+                  this.loading = false;
+                },
+              })
+          );
+        },
+      })
     );
+  }
+
+  getFilters4Departments(depts: number[]): Filter[] {
+    const filters: Filter[] = [];
+    depts.forEach((element) => {
+      filters.push(
+        this.commonService.getFilter4request(
+          'DepartmentId',
+          element.toString(),
+          'equals',
+          'OR'
+        )
+      );
+    });
+
+    return filters;
   }
 
   getRequestObj(filters?: Filter[]): RequestBodyGetList {

@@ -58,11 +58,16 @@ export class CommonService {
   ): RequestGridDataColumnValue[] {
     var res: RequestGridDataColumnValue[] = [];
     columns.forEach((val) => {
-      // dla słownikaów
-      let filterObj = filters?.find((x) => x.field === val.columnName);
-      let filterCols: Filter[] = [];
-      if (filterObj) {
-        filterCols.push(filterObj);
+      // standard filters, not from table component
+      var flrs = filters?.filter(
+        (x) => x.field?.toLowerCase() === val.columnName.toLocaleLowerCase()
+      );
+      const filterCols: Filter[] = [];
+
+      if (flrs) {
+        flrs.forEach((f) => {
+          filterCols.push(f);
+        });
       }
 
       // z tabelki
@@ -125,7 +130,8 @@ export class CommonService {
   getObservableList4path(
     path: string,
     columnPath: string,
-    filters?: Filter[]
+    filters?: Filter[],
+    ev?: LazyLoadEvent
   ): Observable<any[]> {
     var requestBS = new BehaviorSubject<RequestBodyGetList>({
       pageNumber: 100000,
@@ -138,7 +144,7 @@ export class CommonService {
         columns = res.value;
       },
       complete: () => {
-        let requestObj = this.getRequestObj(columns, undefined, filters);
+        let requestObj = this.getRequestObj(columns, ev, filters);
         requestBS.next(requestObj);
       },
     });
@@ -184,11 +190,17 @@ export class CommonService {
     return retBS.asObservable();
   }
 
-  getFilter4request(prop: string, value: string, comparision: string): Filter {
+  getFilter4request(
+    prop: string,
+    value: string,
+    comparision: string,
+    joinType?: string
+  ): Filter {
     let obj: Filter = {
       field: prop,
       value: value,
       comparision: comparision,
+      joinType: joinType,
     };
 
     return obj;

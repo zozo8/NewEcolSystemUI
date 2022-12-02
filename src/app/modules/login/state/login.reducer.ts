@@ -29,6 +29,7 @@ export const loginReducer = createReducer(
     tokenUr: '',
     refreshToken: '',
     tokenExp: 0,
+    lastActivity: 0,
   })),
   on(loginActions.setLanguage, (state, { language }) => ({
     ...state,
@@ -41,6 +42,10 @@ export const loginReducer = createReducer(
   on(loginActions.setDepartments, (state, { val }) => ({
     ...state,
     departments: val,
+  })),
+  on(loginActions.removeDepartment, (state, { val }) => ({
+    ...state,
+    departments: state.departments.filter((x) => x !== val),
   })),
   on(loginActions.changeLayout, (state, { val }) => ({
     ...state,

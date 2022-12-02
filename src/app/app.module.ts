@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DndModule } from 'ngx-drag-drop';
+import { FileSaverService } from 'ngx-filesaver';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BadgeModule } from 'primeng/badge';
@@ -20,6 +21,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
+import { ChipModule } from 'primeng/chip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
@@ -65,13 +67,14 @@ import { AuthconfigInterceptor } from './modules/login/auth/authconfig.intercept
 import { loginReducer, LOGIN_KEY } from './modules/login/state/login.reducer';
 import { hydrationMetaReducer } from './modules/login/state/rehydrate_reducer';
 import { RootState } from './modules/login/state/root-state';
+import { UniversalComponentsModule } from './modules/universal-components/universal-components.module';
+import { DiagramOrdersComponent } from './pages/main-summary/diagram-orders/diagram-orders.component';
+import { DiagramPercentageComponent } from './pages/main-summary/diagram-percentage/diagram-percentage.component';
 import { MainSummaryComponent } from './pages/main-summary/main-summary.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { Summary1Component } from './pages/summary1/summary1.component';
 import { Summary2Component } from './pages/summary2/summary2.component';
 import { TreeComponent } from './pages/tree/tree.component';
-import { DiagramOrdersComponent } from './pages/main-summary/diagram-orders/diagram-orders.component';
-import { DiagramPercentageComponent } from './pages/main-summary/diagram-percentage/diagram-percentage.component';
 
 function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -158,6 +161,8 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     ContextMenuModule,
     MultiSelectModule,
     DialogModule,
+    UniversalComponentsModule,
+    ChipModule,
   ],
   providers: [
     {
@@ -167,6 +172,7 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     },
     ConfirmationService,
     MessageService,
+    FileSaverService,
   ],
   exports: [],
   bootstrap: [AppComponent],

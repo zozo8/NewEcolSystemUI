@@ -1,32 +1,32 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { ButtonModule } from "primeng/button";
-import { TableModule } from "primeng/table";
-import { ToastModule } from "primeng/toast";
-import { ToolbarModule } from "primeng/toolbar";
-import { SplitterModule } from "primeng/splitter";
-import { SplitButtonModule } from "primeng/splitbutton";
-import { InputTextModule } from "primeng/inputtext";
-import { PanelModule } from "primeng/panel";
-import { CheckboxModule } from "primeng/checkbox";
-import { MenubarModule } from "primeng/menubar";
-import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { MessagesModule } from "primeng/messages";
-import { TabViewModule } from "primeng/tabview";
-import { DynamicDialogModule } from "primeng/dynamicdialog";
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { MenubarModule } from 'primeng/menubar';
+import { MessagesModule } from 'primeng/messages';
+import { PanelModule } from 'primeng/panel';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SplitterModule } from 'primeng/splitter';
+import { TableModule } from 'primeng/table';
+import { TabViewModule } from 'primeng/tabview';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 
-import { AdminRoutingModule } from "./admin-routing.module";
-import { UsersComponent } from "./pages/users/users.component";
-import { HttpClientModule } from "@angular/common/http";
-import { TranslateModule} from "@ngx-translate/core";
-import { FormsModule } from "@angular/forms";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { UserParamComponent } from "./pages/users/user-param/user-param.component";
-import { UniversalComponentsModule } from "../universal-components/universal-components.module";
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { UniversalComponentsModule } from '../universal-components/universal-components.module';
+import { AdminRoutingModule } from './admin-routing.module';
+import { UserFormComponent } from './pages/users/user-form/user-form.component';
+import { UserParamComponent } from './pages/users/user-param/user-param.component';
+import { UsersComponent } from './pages/users/users.component';
 
-import { UserGroupComponent } from "./pages/users/user-group/user-group.component";
-import { UserDepartmentComponent } from "./pages/users/user-department/user-department.component";
+import { UserDepartmentComponent } from './pages/users/user-department/user-department.component';
+import { UserGroupComponent } from './pages/users/user-group/user-group.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,7 @@ import { UserDepartmentComponent } from "./pages/users/user-department/user-depa
     UserFormComponent,
     UserParamComponent,
     UserGroupComponent,
-    UserDepartmentComponent
-
+    UserDepartmentComponent,
   ],
   imports: [
     CommonModule,
@@ -57,10 +56,7 @@ import { UserDepartmentComponent } from "./pages/users/user-department/user-depa
     MessagesModule,
     TabViewModule,
     DynamicDialogModule,
-    UniversalComponentsModule
-  ]//,
-  // entryComponents:[
-  //   FormDictionaryValueDialogComponent
-  // ]
+    UniversalComponentsModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

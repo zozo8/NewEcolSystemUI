@@ -109,10 +109,10 @@
 			"title": "Słownik grup produktów"
 		},
 		"summary1": {
-			"title": "Wykresy i podsumowania 1"
+			"title": "Podsumowanie 1 przykład"
 		},
 		"summary2": {
-			"title": "Wykresy i podsumowania 2"
+			"title": "Podsumowanie 2 przykład"
 		},
 		"tree": {
 			"title": "Drzewo urządzeń",
@@ -123,6 +123,14 @@
 		},
 		"select_department": {
 			"set_department_success": "Poprawnie zmieniono zakłady!"
+		},
+		"main_summary": {
+			"title": "Realne podsumowanie",
+			"diagram_orders": "Ilość zleceń w statusie wykonano bądź rozliczono, sumarycznie w podziale na lata i miesiące.",
+			"diagram_orders_change_view": "Zmiana wyglądu",
+			"diagram_percentage": "Dane procentowe",
+			"orders_today": "Zlecenia na dzisiaj",
+			"product_under_state": "Produkty poniżej stanu minimalnego"
 		}
 	},
 	"primeng": {
@@ -255,6 +263,14 @@
 			"select_grid": "Wybierz siatkę",
 			"select_columns": "Dostosuj kolumny...",
 			"save_grid": "Zapisz siatkę"
+		},
+		"export": {
+			"title": "Eksport",
+			"csv": "Eksport do CSV",
+			"doc": "Eksport do DOC",
+			"xls": "Eksport do XLS",
+			"pdf": "Eksport do PDF",
+			"data": "Dane"
 		}
 	}
 }

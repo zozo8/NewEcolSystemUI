@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { UIChart } from 'primeng/chart';
+import { Subscription } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { getDepartments } from 'src/app/modules/login/state/login.selector';
@@ -23,17 +25,19 @@ interface IDataset {
   templateUrl: './diagram-orders.component.html',
   styleUrls: ['./diagram-orders.component.scss'],
 })
-export class DiagramOrdersComponent implements OnInit {
+export class DiagramOrdersComponent implements OnInit, OnDestroy {
   @ViewChild('bar') chartViewChild: UIChart;
   chartMonthlyData: any;
   chartMonthlyOptions: any;
+  compsiteSub = new Subscription();
 
   constructor(
     public app: AppComponent,
     private layoutService: LayoutService,
     private apiService: ApiService,
     private commonService: CommonService,
-    private store: Store<LoginState>
+    private store: Store<LoginState>,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -54,9 +58,9 @@ export class DiagramOrdersComponent implements OnInit {
   }
 
   getChartData() {
-    const labels: string[] = [];
-    const years: number[] = [];
-    const datasets: IDataset[] = [];
+    var labels: string[] = [];
+    var years: number[] = [];
+    var datasets: IDataset[] = [];
     const colorList = this.layoutService.getColors();
     const colors: string[] = [
       colorList.amberColor,
@@ -66,51 +70,60 @@ export class DiagramOrdersComponent implements OnInit {
       colorList.deeporangeColor,
     ];
 
-    const depts: number[] = this.commonService.getValueFromObservable(
-      this.store.select(getDepartments)
-    );
-    this.apiService
-      .getResponseByPost('/api/MainPageDiagramOrders', depts)
-      .subscribe({
-        next: (res: ResponseBodyById) => {
-          res.value.forEach((element: any) => {
-            if (!labels.find((x) => x === element.m)) {
-              labels.push(element.m);
-            }
-            if (!years.find((x) => x === element.y)) {
-              years.push(element.y);
-            }
-          });
+    this.compsiteSub.add(
+      this.store.select(getDepartments).subscribe({
+        next: (depts: number[]) => {
+          labels = [];
+          years = [];
+          datasets = [];
 
-          if (labels.length > 0 && years.length > 0) {
-            var n = 1;
-            years.forEach((year) => {
-              n = n + 1;
-              const values: any[] = res.value.filter((x: any) => x.y === year);
-              const orders: number[] = [];
-              for (let index = 1; index < 13; index++) {
-                const val: any = values.find((x) => x.m === index);
-                orders.push(val?.orderCount ?? 0);
-              }
+          this.apiService
+            .getResponseByPost('/api/MainPageDiagramOrders', depts)
+            .subscribe({
+              next: (res: ResponseBodyById) => {
+                res.value.forEach((element: any) => {
+                  if (!labels.find((x) => x === element.m)) {
+                    labels.push(element.m);
+                  }
+                  if (!years.find((x) => x === element.y)) {
+                    years.push(element.y);
+                  }
+                });
 
-              datasets.push({
-                label: year.toString(),
-                data: orders,
-                borderColor: colors[n],
-                backgroundColor: colors[n],
-                borderWidth: 2,
-                fill: true,
-              });
+                if (labels.length > 0 && years.length > 0) {
+                  var n = 0;
+                  years.forEach((year) => {
+                    n = n + 1;
+                    const values: any[] = res.value.filter(
+                      (x: any) => x.y === year
+                    );
+                    const orders: number[] = [];
+                    for (let index = 1; index < 13; index++) {
+                      const val: any = values.find((x) => x.m === index);
+                      orders.push(val?.orderCount ?? 0);
+                    }
+
+                    datasets.push({
+                      label: year.toString(),
+                      data: orders,
+                      borderColor: colors[n],
+                      backgroundColor: colors[n],
+                      borderWidth: 2,
+                      fill: true,
+                    });
+                  });
+                }
+              },
+              complete: () => {
+                this.chartMonthlyData = {
+                  labels: labels,
+                  datasets: datasets,
+                };
+              },
             });
-          }
         },
-        complete: () => {
-          this.chartMonthlyData = {
-            labels: labels,
-            datasets: datasets,
-          };
-        },
-      });
+      })
+    );
   }
 
   getChartOptions() {
@@ -162,5 +175,9 @@ export class DiagramOrdersComponent implements OnInit {
         },
       },
     };
+  }
+
+  ngOnDestroy(): void {
+    this.compsiteSub.unsubscribe();
   }
 }

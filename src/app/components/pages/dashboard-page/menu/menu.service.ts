@@ -21,8 +21,8 @@ export class MenuService {
         icon: 'pi pi-fw pi-home',
         children: [
           {
-            label: 'test',
-            icon: Summary1Component.icon,
+            label: this.translate.instant('pages.main_summary.title'),
+            icon: MainSummaryComponent.icon,
             component: MainSummaryComponent,
           },
           {

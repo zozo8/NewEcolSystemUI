@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { getDepartments } from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
@@ -18,8 +19,9 @@ interface IDataset {
   templateUrl: './diagram-percentage.component.html',
   styleUrls: ['./diagram-percentage.component.scss'],
 })
-export class DiagramPercentageComponent implements OnInit {
-  list: IDataset[] = [];
+export class DiagramPercentageComponent implements OnInit, OnDestroy {
+  list: IDataset[];
+  compsiteSub = new Subscription();
 
   constructor(
     private translate: TranslateService,
@@ -37,18 +39,29 @@ export class DiagramPercentageComponent implements OnInit {
       this.store.select(getDepartments)
     );
 
-    this.apiService
-      .getResponseByPost('/api/MainPageDiagramPercentages', depts)
-      .subscribe({
-        next: (res: ResponseBodyById) => {
-          res.value.forEach((el: any) => {
-            this.list.push({
-              title: el.label,
-              subtitle: el.label2,
-              value: el.percentage * 100,
+    this.compsiteSub.add(
+      this.store.select(getDepartments).subscribe({
+        next: (depts: number[]) => {
+          this.list = [];
+          this.apiService
+            .getResponseByPost('/api/MainPageDiagramPercentages', depts)
+            .subscribe({
+              next: (res: ResponseBodyById) => {
+                res.value.forEach((el: any) => {
+                  this.list.push({
+                    title: el.label,
+                    subtitle: el.label2,
+                    value: el.percentage,
+                  });
+                });
+              },
             });
-          });
         },
-      });
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.compsiteSub.unsubscribe();
   }
 }

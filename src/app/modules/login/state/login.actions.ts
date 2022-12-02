@@ -11,6 +11,11 @@ export const setDepartments = createAction(
   props<{ val: number[] }>()
 );
 
+export const removeDepartment = createAction(
+  '[TopBar Component] removeDepartment',
+  props<{ val: number }>()
+);
+
 export const saveTokenExp = createAction(
   '[Login Service] saveTokenExp',
   props<{ exp: number }>()
