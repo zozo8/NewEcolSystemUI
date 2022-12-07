@@ -43,7 +43,6 @@ export class FormTableSetColumnComponent implements OnInit {
   }
 
   getColumns(gridId: number): void {
-    // pobrac ustawienia dla usera i grida, pokazadc jakie kolumny sa ustawione a jakie są do wyboru
     var path = columnListPath(gridId);
     this.getColumnsSubscription = this.apiService.getColumns(path).subscribe({
       next: (res: RequestGridDataColumn) => {

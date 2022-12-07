@@ -12,7 +12,7 @@ import { ApiService } from './api.service';
   providedIn: 'root',
 })
 export class CommonService {
-  returnList: any[];
+  returnList: ResponseBodyGetList;
   listMenuItem: MenuItem[] = [];
   valueSub: Subscription;
 
@@ -126,17 +126,17 @@ export class CommonService {
     }
   }
 
-  // get list entity, get column and create request obj
+  // get ResponseBodyGetList by model, column, filter and event - universal function
   getObservableList4path(
     path: string,
     columnPath: string,
     filters?: Filter[],
     ev?: LazyLoadEvent
-  ): Observable<any[]> {
+  ): Observable<ResponseBodyGetList> {
     var requestBS = new BehaviorSubject<RequestBodyGetList>({
       pageNumber: 100000,
     });
-    var resBS = new Subject<any[]>();
+    var resBS = new Subject<ResponseBodyGetList>();
     var columns: RequestGridDataColumnValue[];
 
     this.apiService.getColumns(columnPath).subscribe({
@@ -153,7 +153,7 @@ export class CommonService {
       if (req.pageNumber !== 100000) {
         this.apiService.getResponseObj(path, req).subscribe({
           next: (res: ResponseBodyGetList) => {
-            this.returnList = res.value.data;
+            this.returnList = res;
           },
           complete: () => {
             resBS.next(this.returnList);
@@ -176,8 +176,8 @@ export class CommonService {
     let retBS = new Subject<MenuItem[]>();
 
     this.getObservableList4path(listPath, columnPath, filters).subscribe({
-      next: (res: any[]) => {
-        res.forEach((element) => {
+      next: (res: ResponseBodyGetList) => {
+        res.value.data.forEach((element) => {
           list.push({
             id: element[id],
             label: element[label],
@@ -214,5 +214,22 @@ export class CommonService {
       complete: () => this.valueSub.unsubscribe(),
     });
     return value;
+  }
+
+  //generate filters, departments list
+  getFilters4Departments(depts: number[]): Filter[] {
+    const filters: Filter[] = [];
+    depts.forEach((element) => {
+      filters.push(
+        this.getFilter4request(
+          'DepartmentId',
+          element.toString(),
+          'equals',
+          'OR'
+        )
+      );
+    });
+
+    return filters;
   }
 }

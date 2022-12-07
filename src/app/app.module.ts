@@ -67,10 +67,13 @@ import { AuthconfigInterceptor } from './modules/login/auth/authconfig.intercept
 import { loginReducer, LOGIN_KEY } from './modules/login/state/login.reducer';
 import { hydrationMetaReducer } from './modules/login/state/rehydrate_reducer';
 import { RootState } from './modules/login/state/root-state';
+import { ExportDataComponent } from './modules/universal-components/components/table/export-data/export-data.component';
 import { UniversalComponentsModule } from './modules/universal-components/universal-components.module';
 import { DiagramOrdersComponent } from './pages/main-summary/diagram-orders/diagram-orders.component';
 import { DiagramPercentageComponent } from './pages/main-summary/diagram-percentage/diagram-percentage.component';
 import { MainSummaryComponent } from './pages/main-summary/main-summary.component';
+import { ProductsUnderMinimalStateComponent } from './pages/main-summary/products-under-minimal-state/products-under-minimal-state.component';
+import { TodayOrdersComponent } from './pages/main-summary/today-orders/today-orders.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { Summary1Component } from './pages/summary1/summary1.component';
 import { Summary2Component } from './pages/summary2/summary2.component';
@@ -109,6 +112,9 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     SelectDepartmentComponent,
     DiagramOrdersComponent,
     DiagramPercentageComponent,
+    TodayOrdersComponent,
+    ProductsUnderMinimalStateComponent,
+    ExportDataComponent,
   ],
   imports: [
     BrowserModule,

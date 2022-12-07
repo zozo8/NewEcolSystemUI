@@ -51,7 +51,6 @@ export class SelectDepartmentComponent implements OnInit, OnDestroy {
   }
 
   getDepartments() {
-    //taka mniej wiecej funckaj do apiservice i zrobic ją uniwersalną
     this.compsiteSubs.add(
       this.apiService
         .getColumns(columnListPath(GridEnum.Departments))

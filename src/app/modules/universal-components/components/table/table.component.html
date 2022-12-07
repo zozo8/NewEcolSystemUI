@@ -1,4 +1,4 @@
-<!-- [tableStyle]="{ height: '100rem' }" -->
+<p-contextMenu #cm [model]="tableOptions"></p-contextMenu>
 <p-table
   #dt1
   [value]="dataValues"
@@ -14,25 +14,46 @@
   [globalFilterFields]="columnFilter"
   [resizableColumns]="true"
   [scrollable]="true"
+  [scrollHeight]="'50vh'"
   (onLazyLoad)="loadData($event)"
   (onRowSelect)="selectObj(dt1.selection)"
-  selectionMode="single"
+  (onRowUnselect)="unselectObj()"
+  [selectionMode]="multiselectRows === false ? 'single' : 'multiple'"
+  [breakpoint]="'960px'"
+  [(selection)]="selectedRows"
+  dataKey="id"
   currentPageReportTemplate="{first} - {last} / {{ totalRecords }}"
   styleClass="p-datatable-sm p-datatable-gridlines ui-datatable-scrollable-body "
-  responsiveLayout="scroll"
+  responsiveLayout="stack"
 >
   <ng-template pTemplate="caption">
     <div class="flex">
-      <p-splitButton
-        icon="pi pi-file-excel"
-        [model]="exportOptions"
-        styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"
-      ></p-splitButton>
+      <div class="col-12 lg:col-6">
+        <p-splitButton
+          icon="pi pi-file-excel"
+          [model]="tableOptions"
+          styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"
+        ></p-splitButton>
+      </div>
+      <div class="col-12 lg:col-6 text-right">
+        <p-splitButton
+          icon="pi pi-microsoft"
+          [model]="columnOptions"
+          styleClass="p-button-raised p-button-secondary p-button-text mr-2 mb-2"
+        ></p-splitButton>
+      </div>
     </div>
   </ng-template>
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngFor="let col of columns" pSortableColumn="{{ col.columnName }}">
+      <th *ngIf="multiselectRows" style="width: 1px">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th
+        *ngFor="let col of columns"
+        pSortableColumn="{{ col.columnName }}"
+        id="th-{{ col.columnName }}"
+      >
         <strong>{{ col.displayName }}</strong>
         <p-sortIcon field="{{ col.columnName }}"></p-sortIcon>
         <p-columnFilter
@@ -45,6 +66,12 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr [pSelectableRow]="rowData" [pSelectableRowDisabled]="tableDisabled">
+      <td *ngIf="multiselectRows">
+        <p-tableCheckbox
+          [value]="rowData"
+          [disabled]="!multiselectRows"
+        ></p-tableCheckbox>
+      </td>
       <td *ngFor="let row of columns">
         <div [ngSwitch]="row.dataType">
           <span *ngSwitchCase="'date'">{{
@@ -66,6 +93,26 @@
         </div>
       </td>
     </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-columns>
+    <p *ngIf="selectedRows.length > 0">
+      Ilość wybranych rekordów {{ selectedRows.length }}
+    </p>
+    <table *ngIf="summary">
+      <tr>
+        <td
+          *ngIf="multiselectRows"
+          style="width: 200px; border: 1px solid #cccccc"
+        ></td>
+        <td
+          *ngFor="let sum of summaryValues"
+          class=".p-datatable.p-datatable-sm .p-datatable-tbody"
+          style="width: 200px; border: 1px solid #cccccc"
+        >
+          <span>{{ sum }}</span>
+        </td>
+      </tr>
+    </table>
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>

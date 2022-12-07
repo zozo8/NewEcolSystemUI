@@ -1,15 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FileSaverService } from 'ngx-filesaver';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { DialogService } from 'primeng/dynamicdialog';
+import { Observable, Subscription } from 'rxjs';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { FormTableSetColumnComponent } from '../dialogs/form-table-set-column/form-table-set-column.component';
+import { ExportDataComponent } from './export-data/export-data.component';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
+  providers: [DialogService],
 })
 export class TableComponent implements OnInit {
   dataLoading: boolean;
@@ -19,31 +22,39 @@ export class TableComponent implements OnInit {
   tableSettingItems: MenuItem[];
 
   dataValues: any[];
+  selectedRows: any[] = [];
+  summaryValues: any[] = [];
   totalPages: number;
   pageSize: number = 0;
   totalRecords: number = 0;
   ev: LazyLoadEvent;
-
   totalItems: number;
-  exportOptions: MenuItem[] = [];
+
+  multiselectRows: boolean = false;
+  multiselectCols: boolean = false;
+  summary: boolean = false;
+
+  tableOptions: MenuItem[] = [];
+  columnOptions: MenuItem[] = [];
+
+  private columnSub: Subscription;
+  private dataSubs: Subscription;
 
   @Input()
   set dataTable(v: Observable<ResponseBodyGetList>) {
     if (v !== undefined) {
-      this.dataLoading = true;
-
-      v.subscribe({
+      this.dataSubs = v.subscribe({
         next: (res: ResponseBodyGetList) => {
-          this.dataSource = res;
-        },
-        complete: () => {
-          this.dataValues = this.dataSource.value.data;
-          this.totalRecords = this.dataSource.value.totalItems ?? 0;
-          this.totalPages = this.dataSource.value.totalPages;
-          this.pageSize = this.dataSource.value.pageSize;
+          this.dataLoading = true;
+          this.dataValues = res.value.data;
+          this.totalRecords = res.value.totalItems ?? 0;
+          this.totalPages = res.value.totalPages;
+          this.pageSize = res.value.pageSize;
+          this.totalItems = res.value.totalItems ?? 0;
+          this.rebuildSummary();
           this.dataLoading = false;
-          this.totalItems = this.dataSource.value.totalItems ?? 0;
         },
+        complete: () => this.dataSubs.unsubscribe(),
         error: (err: Error) => {
           this.dataLoading = false;
         },
@@ -70,6 +81,12 @@ export class TableComponent implements OnInit {
   @Input()
   tableDisabled: boolean;
 
+  @Input()
+  gridId: number;
+
+  @Input()
+  canMultiselect: boolean;
+
   @Output()
   newRequestParam = new EventEmitter<LazyLoadEvent>();
 
@@ -78,11 +95,12 @@ export class TableComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private fileSaverService: FileSaverService
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
-    this.getExportOptions();
+    this.getTableOptions();
+    this.getColumnOptions();
   }
 
   loadData(event: LazyLoadEvent): void {
@@ -97,84 +115,136 @@ export class TableComponent implements OnInit {
   }
 
   selectObj(obj: any): void {
-    this.selectedObj.emit(obj);
+    if (!Array.isArray(obj)) {
+      this.selectedObj.emit(obj);
+    }
+    this.rebuildSummary();
   }
 
-  getExportOptions(): void {
-    this.exportOptions = [
+  unselectObj(): void {
+    this.rebuildSummary();
+  }
+
+  getTableOptions(): void {
+    this.tableOptions = [
+      {
+        icon: PrimeIcons.CHECK_SQUARE,
+        label: this.translateService.instant(
+          'table-menu.options.multiselect_records'
+        ),
+        command: () => this.setMultiselect(),
+        visible: this.canMultiselect ?? false,
+      },
+      {
+        icon: PrimeIcons.TAGS,
+        label: this.translateService.instant('table-menu.options.summary'),
+        command: () => this.setSummary(),
+      },
+      {
+        icon: PrimeIcons.CHECK_CIRCLE,
+        label: this.translateService.instant(
+          'table-menu.options.multiselect_columns'
+        ),
+        command: () => (this.multiselectCols = !this.multiselectCols),
+        visible: false,
+      },
       {
         icon: PrimeIcons.FILE,
-        label: this.translateService.instant('table-menu.export.doc'),
-        command: () => this.exportToDoc(),
+        label: this.translateService.instant('table-menu.export.title'),
+        command: () => this.exportData(),
+      },
+    ];
+  }
+
+  setSummary(): void {
+    this.summary = !this.summary;
+    this.rebuildSummary();
+  }
+
+  rebuildSummary(): void {
+    if (this.summary) {
+      this.summaryValues = [];
+      this.summaryValues.push(this.dataValues[0]);
+      let values: number[] = [];
+      this.columns.forEach((el, index) => {
+        if (el.dataType === 'numeric') {
+          if (this.selectedRows.length > 0) {
+            values = this.selectedRows.map((x) => x[el.columnName]);
+          } else {
+            values = this.dataValues.map((x) => x[el.columnName]);
+          }
+
+          const sumValues = values.reduce((x, y) => {
+            return x + y;
+          }, 0);
+
+          this.summaryValues[index] = sumValues;
+        } else {
+          this.summaryValues[index] = 0;
+        }
+      });
+    }
+  }
+
+  setMultiselect(): void {
+    this.selectedRows = [];
+    this.multiselectRows = !this.multiselectRows;
+  }
+
+  exportData(): void {
+    let exportData = this.multiselectRows
+      ? this.selectedRows ?? this.dataValues
+      : this.dataValues;
+
+    const ref = this.dialogService.open(ExportDataComponent, {
+      contentStyle: { width: '40rem' },
+      header: this.translateService.instant('table_menu.export.title'),
+      closeOnEscape: true,
+      data: [exportData],
+    });
+
+    this.columnSub = ref.onClose.subscribe({
+      next: () => {
+        exportData = [];
+        this.columnSub.unsubscribe();
+      },
+    });
+  }
+
+  getColumnOptions(): void {
+    this.columnOptions = [
+      {
+        label: this.translateService.instant('table-menu.setting.select_grid'),
         disabled: true,
       },
       {
-        icon: PrimeIcons.FILE_EXCEL,
-        label: this.translateService.instant('table-menu.export.xls'),
-        command: () => this.exportToExcel(),
+        label: this.translateService.instant(
+          'table-menu.setting.select_columns'
+        ),
+        command: () => this.selectColumns(),
       },
       {
-        icon: PrimeIcons.FILE_PDF,
-        label: this.translateService.instant('table-menu.export.pdf'),
-        command: () => this.exportToPdf(),
+        label: this.translateService.instant('table-menu.setting.save_grid'),
         disabled: true,
       },
     ];
   }
 
-  exportToPdf(): void {
-    throw new Error('Method not implemented.');
-  }
-  exportToExcel(): void {
-    var data = this.dataValues;
-    import('xlsx').then((x) => {
-      const worksheet = x.utils.json_to_sheet(data);
-      const workbook = {
-        Sheets: {
-          data: worksheet,
-        },
-        SheetNames: [this.translateService.instant('table-menu.export.data')],
-      };
-      const excelBuffer: any = x.write(workbook, {
-        bookType: 'xlsx',
-        type: 'array',
-      });
-
-      //this.saveAsExcelFile(excelBuffer, 'Dane w excel');
-      this.fileSaver(excelBuffer, 'Dane w excel - zmiana nazwy bedzie');
-    });
-  }
-  exportToDoc(): void {
-    throw new Error('Method not implemented.');
-  }
-
-  fileSaver(buffer: any, fileName: string): void {
-    let EXCEL_TYPE =
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    let EXCEL_EXTENSION = '.xlsx';
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE,
+  selectColumns(): void {
+    const ref = this.dialogService.open(FormTableSetColumnComponent, {
+      contentStyle: { width: '800px' },
+      closeOnEscape: true,
+      header: this.translateService.instant(
+        'table-menu.setting.select_columns'
+      ),
+      data: [this.gridId],
     });
 
-    this.fileSaverService.save(
-      data,
-      fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION
-    );
-  }
-
-  saveAsExcelFile(buffer: any, fileName: string): void {
-    import('file-saver').then((FileSaver) => {
-      let EXCEL_TYPE =
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-      let EXCEL_EXTENSION = '.xlsx';
-      const data: Blob = new Blob([buffer], {
-        type: EXCEL_TYPE,
-      });
-
-      FileSaver.saveAs(
-        data,
-        fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION
-      );
+    this.columnSub = ref.onClose.subscribe({
+      next: (res: RequestGridDataColumnValue[]) => {
+        // this.selectedColumnList.emit();
+        this.columnSub.unsubscribe();
+      },
     });
   }
 }

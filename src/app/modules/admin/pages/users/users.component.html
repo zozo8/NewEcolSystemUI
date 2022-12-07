@@ -5,14 +5,15 @@
         <app-table-button
           [buttonList]="buttons"
           [icon]="'pi-users'"
-          [gridId]="gridId"
           (selectedColumnList)="getSelectedColumns()"
         ></app-table-button>
         <div class="row">
           <app-table
             [dataTable]="responseObj"
             [columns]="columns"
+            [gridId]="gridId"
             [tableDisabled]="obj.editState"
+            [canMultiselect]="true"
             (newRequestParam)="getLazyLoadEvent($event)"
             (selectedObj)="getSelected($event)"
           >

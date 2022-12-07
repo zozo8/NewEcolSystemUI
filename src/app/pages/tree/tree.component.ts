@@ -60,7 +60,8 @@ export class TreeComponent implements OnInit, OnDestroy {
     this.compositeSubscription.add(
       this.store.select(getDepartments).subscribe({
         next: (depts: number[]) => {
-          const filters: Filter[] = this.getFilters4Departments(depts);
+          const filters: Filter[] =
+            this.commonService.getFilters4Departments(depts);
           this.compositeSubscription.add(
             this.apiService
               .getResponseObj(
@@ -79,22 +80,6 @@ export class TreeComponent implements OnInit, OnDestroy {
         },
       })
     );
-  }
-
-  getFilters4Departments(depts: number[]): Filter[] {
-    const filters: Filter[] = [];
-    depts.forEach((element) => {
-      filters.push(
-        this.commonService.getFilter4request(
-          'DepartmentId',
-          element.toString(),
-          'equals',
-          'OR'
-        )
-      );
-    });
-
-    return filters;
   }
 
   getRequestObj(filters?: Filter[]): RequestBodyGetList {

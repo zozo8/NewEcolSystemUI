@@ -17,6 +17,7 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { GridEnum } from 'src/app/models/gridEnum';
+import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { Tab } from 'src/app/models/tab.model';
 import { Department } from 'src/app/modules/admin/models/department';
 import { IDepartmentState } from 'src/app/modules/login/state/IDepartmentState';
@@ -153,8 +154,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
           this.departmentsId.push(...deps);
           if (this.departmentsId) {
             this.getDepartments().subscribe({
-              next: (res: Department[]) => {
-                this.departments.push(...res);
+              next: (res: ResponseBodyGetList) => {
+                this.departments.push(...res.value.data);
                 this.departmentsState = [];
                 deps.forEach((dep) => {
                   const depObj = this.departments.find((x) => x.id === dep);
@@ -173,7 +174,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
     );
   }
 
-  getDepartments(): Observable<Department[]> {
+  getDepartments(): Observable<ResponseBodyGetList> {
     return this.commonService.getObservableList4path(
       getModelListPath('Department'),
       columnListPath(GridEnum.Departments),
@@ -190,11 +191,6 @@ export class TopbarComponent implements OnInit, OnDestroy {
       message: 'Czy napewno nie chcesz już pracować w obrębie tego zakładu?',
       accept: () => {
         this.store.dispatch(removeDepartment({ val: depId }));
-        // var deps: number[] = [];
-        // deps.push(...this.departmentsId);
-        // const index = deps.findIndex((x) => x === dep.id);
-        // deps.splice(index, 1);
-        // this.store.dispatch(setDepartments({ val: deps }));
         this.messageService.add({
           severity: 'success',
           summary: 'Poprawnie usunięto zakład',

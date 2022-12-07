@@ -18,8 +18,15 @@
     "select_columns":"Dostosuj kolumny...",
     "save_grid":"Zapisz siatkę"
   },
+  "options": {
+    "multiselect_records":"Wielokrotny wybór rekordów",
+    "multiselect_columns":"Wielokrotny wybór kolumn",
+    "summary":"Podsumowanie danych liczbowych"
+  },
   "export":{
-    "title":"Eksport",
+    "title":"Eksport danych...",
+    "type":"Typ pliku wyjściowego",
+    "field_name":"Wyjściowa nazawa pliku",
     "csv":"Eksport do CSV",
     "doc":"Eksport do DOC",
     "xls":"Eksport do XLS",

@@ -1,0 +1,45 @@
+<div class="grid">
+  <div class="col-12 p-fluid">
+    <div class="field">
+      <label htmlFor="type">{{ "table-menu.export.type" | translate }}</label>
+      <p-dropdown
+        [options]="typeOptions"
+        [(ngModel)]="obj.type"
+        optionLabel="label"
+        optionValue="id"
+        appendTo="body"
+        id="type"
+      >
+        <ng-template let-item pTemplate="item">
+          <div class="flex align-items-center">
+            <span><i class="{{ item.icon }}"></i> {{ item.label }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="field">
+      <label htmlFor="title">{{
+        "table-menu.export.field_name" | translate
+      }}</label>
+      <input pInputText type="text" id="title" [(ngModel)]="obj.title" />
+    </div>
+  </div>
+  <div class="p-formgrid grid">
+    <div class="col-6">
+      <button
+        pButton
+        (click)="submit()"
+        [label]="'btn.select' | translate"
+        [disabled]="!obj.type"
+      ></button>
+    </div>
+    <div class="col-6 text-right">
+      <button
+        pButton
+        (click)="close()"
+        [label]="'btn.cancel' | translate"
+        class="p-button-outlined"
+      ></button>
+    </div>
+  </div>
+</div>

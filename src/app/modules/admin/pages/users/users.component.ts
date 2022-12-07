@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, MenuItem } from 'primeng/api';
+import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
@@ -53,7 +53,7 @@ export class UsersComponent
   private putSubscription: Subscription;
   deleteSubscription: Subscription;
 
-  static icon = 'pi pi-fw pi-user';
+  static icon = PrimeIcons.USERS;
 
   constructor(
     private tableService: TableService,

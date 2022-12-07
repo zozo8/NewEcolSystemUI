@@ -7,4 +7,6 @@ export enum GridEnum {
   Params = 50,
   Departments = 17,
   ProductTradeName = 24,
+  Orders = 83,
+  Products = 58,
 }

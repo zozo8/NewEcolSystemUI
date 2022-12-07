@@ -1,0 +1,9 @@
+<div class="card-header">
+  <h5>{{ "pages.main_summary.product_under_state" | translate }}</h5>
+</div>
+<app-table
+  [dataTable]="data"
+  [columns]="columns"
+  [gridId]="gridId"
+  (newRequestParam)="getLazyLoadEvent($event)"
+></app-table>

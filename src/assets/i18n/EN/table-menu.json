@@ -18,8 +18,15 @@
     "select_columns":"Select columns...",
     "save_grid":"Save grid"
   },
+  "options": {
+    "multiselect_records":"Multiselect records",
+    "multiselect_columns":"Multiselect columns",
+    "summary":"Summary value numbers"
+  },
   "export":{
-    "title":"Export",
+    "title":"Export data...",
+    "type":"Output type",
+    "field_name":"File name",
     "csv":"Export to CSV",
     "doc":"Export to DOC",
     "xls":"Export to XLS",

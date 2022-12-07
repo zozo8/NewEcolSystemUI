@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
 import { Observable, Subject } from 'rxjs';
 import { GridEnum } from 'src/app/models/gridEnum';
+import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { CommonService } from 'src/app/services/common.service';
 import {
   authenticatePath,
@@ -12,7 +13,6 @@ import {
   loginToURPath,
 } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
-import { Department } from '../admin/models/department';
 import { AuthService } from './auth/auth.service';
 import Login from './interfaces/login.model';
 import { LoginCredentialMD } from './interfaces/UR/loginCredentialMD.model';
@@ -85,8 +85,8 @@ export class LoginService {
           columnListPath(GridEnum.Departments)
         )
         .subscribe({
-          next: (res: Department[]) => {
-            const depId = res[0].id;
+          next: (res: ResponseBodyGetList) => {
+            const depId = res.value.data[0].id;
             if (depId) {
               this.store.dispatch(setDepartments({ val: [depId] }));
             }

@@ -1,17 +1,15 @@
 <p-splitter [panelSizes]="[50, 50]">
   <ng-template pTemplate>
     <div style="width: 100%">
-      <app-table-button
-        [buttonList]="buttons"
-        [icon]="'pi-bookmark-fill'"
-        [gridId]="gridId"
-      >
+      <app-table-button [buttonList]="buttons" [icon]="'pi-bookmark-fill'">
       </app-table-button>
       <div class="row">
         <app-table
           [dataTable]="responseObj"
           [columns]="columns"
+          [gridId]="gridId"
           [tableDisabled]="obj.editState"
+          [canMultiselect]="true"
           (newRequestParam)="getLazyLoadEvent($event)"
           (selectedObj)="getSelected($event)"
         >

@@ -10,38 +10,59 @@
   <div class="grid" form="header" *ngIf="obj.objectDto">
     <div class="col-12">
       <div class="p-fluid">
-        <div class="field">
-          <label for="h_name">{{ form.getFieldName("firstName") }}</label>
-          <input
-            pInputText
-            type="text"
-            name="h_name"
-            [(ngModel)]="obj.objectDto.firstName"
-            class="p-inputtext-sm form-control"
-            [readOnly]="true"
-          />
+        <div class="p-formgrid grid">
+          <div class="field col">
+            <label for="h_name">{{ form.getFieldName("firstName") }}</label>
+            <input
+              pInputText
+              type="text"
+              name="h_name"
+              [(ngModel)]="obj.objectDto.firstName"
+              class="p-inputtext-sm form-control"
+              [readOnly]="true"
+            />
+          </div>
+          <div class="field col">
+            <label for="h_description">{{
+              form.getFieldName("lastName")
+            }}</label>
+            <input
+              pInputText
+              type="text"
+              name="h_description"
+              [(ngModel)]="obj.objectDto.lastName"
+              class="p-inputtext-sm form-control"
+              [readOnly]="true"
+            />
+          </div>
         </div>
-        <div class="field">
-          <label for="h_description">{{ form.getFieldName("lastName") }}</label>
-          <input
-            pInputText
-            type="text"
-            name="h_description"
-            [(ngModel)]="obj.objectDto.lastName"
-            class="p-inputtext-sm form-control"
-            [readOnly]="true"
-          />
-        </div>
-        <div class="field">
-          <label for="h_description">{{ form.getFieldName("userName") }}</label>
-          <input
-            pInputText
-            type="text"
-            name="h_description"
-            [(ngModel)]="obj.objectDto.userName"
-            class="p-inputtext-sm form-control"
-            [readOnly]="true"
-          />
+        <div class="p-formgrid grid">
+          <div class="field col">
+            <label for="h_description">{{
+              form.getFieldName("userName")
+            }}</label>
+            <input
+              pInputText
+              type="text"
+              name="h_description"
+              [(ngModel)]="obj.objectDto.userName"
+              class="p-inputtext-sm form-control"
+              [readOnly]="true"
+            />
+          </div>
+          <div class="field col">
+            <label for="h_description">{{
+              form.getFieldName("phoneNumber")
+            }}</label>
+            <input
+              pInputText
+              type="text"
+              name="h_description"
+              [(ngModel)]="obj.objectDto.phoneNumber"
+              class="p-inputtext-sm form-control"
+              [readOnly]="true"
+            />
+          </div>
         </div>
         <div class="field">
           <label for="h_description">{{
@@ -56,90 +77,70 @@
             [readOnly]="true"
           />
         </div>
-        <div class="field">
-          <label for="h_description">{{
-            form.getFieldName("phoneNumber")
-          }}</label>
-          <input
-            pInputText
-            type="text"
-            name="h_description"
-            [(ngModel)]="obj.objectDto.phoneNumber"
-            class="p-inputtext-sm form-control"
-            [readOnly]="true"
-          />
-        </div>
       </div>
     </div>
   </div>
   <div class="grid" form="body" *ngIf="obj.objectEditDto">
     <div class="col-12 p-fluid">
-      <div class="field">
-        <label for="name" class="required-field">{{
-          form.getFieldName("firstName")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [readOnly]="!obj.editState"
-          id="name"
-          name="name"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.firstName"
-        />
+      <div class="p-formgrid grid">
+        <div class="field col">
+          <label for="name" class="required-field">{{
+            form.getFieldName("firstName")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            [readOnly]="!obj.editState"
+            id="name"
+            name="name"
+            class="p-inputtext-sm form-control"
+            [(ngModel)]="obj.objectEditDto.firstName"
+          />
+        </div>
+        <div class="field col">
+          <label for="name" class="required-field">{{
+            form.getFieldName("lastName")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            [readOnly]="!obj.editState"
+            id="name"
+            name="name"
+            class="p-inputtext-sm form-control"
+            [(ngModel)]="obj.objectEditDto.lastName"
+          />
+        </div>
       </div>
-      <div class="field">
-        <label for="name" class="required-field">{{
-          form.getFieldName("lastName")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [readOnly]="!obj.editState"
-          id="name"
-          name="name"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.lastName"
-        />
-      </div>
-      <div class="field">
-        <label for="name">{{ form.getFieldName("evaluationDate") }}</label>
-        <input
-          pInputText
-          type="date"
-          [readOnly]="!obj.editState"
-          id="name"
-          name="name"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.evaluationDate"
-        />
-      </div>
-      <div class="field">
-        <label for="name" class="required-field">{{
-          form.getFieldName("isAdmin")
-        }}</label>
-        <p-checkbox
-          [(ngModel)]="obj.objectEditDto.isAdmin"
-          [disabled]="!obj.editState"
-          [binary]="true"
-          name="isAdmin"
-        >
-        </p-checkbox>
-      </div>
-
-      <div class="field">
-        <label for="name" class="required-field">{{
-          form.getFieldName("userName")
-        }}</label>
-        <input
-          pInputText
-          type="text"
-          [readOnly]="!obj.editState"
-          id="name"
-          name="name"
-          class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.userName"
-        />
+      <div class="p-formgrid grid">
+        <div class="field col">
+          <label for="name" class="required-field">{{
+            form.getFieldName("userName")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            [readOnly]="!obj.editState"
+            id="name"
+            name="name"
+            class="p-inputtext-sm form-control"
+            [(ngModel)]="obj.objectEditDto.userName"
+          />
+        </div>
+        <div class="field col">
+          <label for="name" class="required-field">{{
+            form.getFieldName("phoneNumber")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            [readOnly]="!obj.editState"
+            id="name"
+            name="name"
+            class="p-inputtext-sm form-control"
+            [(ngModel)]="obj.objectEditDto.phoneNumber"
+          />
+        </div>
       </div>
       <div class="field">
         <label for="name" class="required-field">{{
@@ -155,20 +156,31 @@
           [(ngModel)]="obj.objectEditDto.userEmail"
         />
       </div>
-      <div class="field">
-        <label for="name" class="required-field">{{
-          form.getFieldName("phoneNumber")
-        }}</label>
+      <!-- <div class="field">
+        <label for="name">{{ form.getFieldName("evaluationDate") }}</label>
         <input
           pInputText
-          type="text"
+          type="date"
           [readOnly]="!obj.editState"
           id="name"
           name="name"
           class="p-inputtext-sm form-control"
-          [(ngModel)]="obj.objectEditDto.phoneNumber"
+          [(ngModel)]="obj.objectEditDto.evaluationDate"
         />
-      </div>
+      </div> -->
+      <!-- <div class="field">
+        <label for="name" class="required-field">{{
+          form.getFieldName("isAdmin")
+        }}</label>
+        <p-checkbox
+          [(ngModel)]="obj.objectEditDto.isAdmin"
+          [disabled]="!obj.editState"
+          [binary]="true"
+          name="isAdmin"
+        >
+        </p-checkbox>
+      </div> -->
+
       <!-- <ng-template
         [ngTemplateOutlet]="fieldInputText"
         [ngTemplateOutletContext]="{field:'phoneNumber', model:obj.objectEditDto, state:obj.editState}">

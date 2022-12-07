@@ -1,9 +1,8 @@
-import { RequestBodyGetListValue } from "./requestBodyGetListValue.model";
+import { ResponseBodyGetListValue } from './responseBodyGetListValue.model';
 
 export interface ResponseBodyGetList {
-  code?:number;
-  errors?:any;
-  success?:boolean;
-  value:RequestBodyGetListValue;
-
+  code?: number;
+  errors?: any;
+  success?: boolean;
+  value: ResponseBodyGetListValue;
 }
