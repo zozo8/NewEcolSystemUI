@@ -262,7 +262,7 @@ import { DashboardPageComponent } from '../dashboard-page.component';
             </div>
           </div>
 
-          <h6>{{ 'layout.language_mode' | translate }}</h6>
+          <!-- <h6>{{ 'layout.language_mode' | translate }}</h6>
           <div class="flex">
             <div class="flex align-items-center">
               <img
@@ -282,7 +282,7 @@ import { DashboardPageComponent } from '../dashboard-page.component';
                 (click)="dashboard.setLanguage('en')"
               />
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </p-sidebar>

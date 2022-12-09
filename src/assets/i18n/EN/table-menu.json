@@ -13,6 +13,7 @@
   "column_name":"Column name",
   "available_columns":"Available columns",
   "selected_columns":"Selected columns",
+  "selected_rows":"Selected rows count",
   "setting":{
     "select_grid":"Select grid",
     "select_columns":"Select columns...",

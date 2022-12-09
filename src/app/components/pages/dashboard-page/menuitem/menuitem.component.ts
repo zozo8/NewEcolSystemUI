@@ -9,7 +9,6 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
-import { Tab } from 'src/app/models/tab.model';
 import { LoginState } from 'src/app/modules/login/state/loginState';
 import { DashboardPageComponent } from '../dashboard-page.component';
 import { MenuService } from '../menu.service';
@@ -181,12 +180,13 @@ export class MenuitemComponent implements OnInit {
     this.removeActiveInk(event);
 
     if (this.item.component) {
-      const tab: Tab = {
-        component: this.item.component,
-        header: this.item.label,
-        icon: this.item.icon,
-        tooltip: this.item.label,
-      };
+      this.dashboard.openTab(this.item.component);
+      // const tab: Tab = {
+      //   component: this.item.component,
+      //   header: this.item.label,
+      //   icon: this.item.icon,
+      //   tooltip: this.item.label,
+      // };
 
       //ti jest bład przy dodawaniu tabów, nie w tabach!!!!!!
       // this.store.dispatch(
@@ -194,8 +194,6 @@ export class MenuitemComponent implements OnInit {
       //     tab: tab,
       //   })
       // );
-
-      this.dashboard.addTab(tab);
     }
   }
 

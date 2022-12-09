@@ -25,9 +25,6 @@ export class TableButtonComponent {
   @Input()
   gridId: number;
 
-  // @Output()
-  // selectedColumnList = new EventEmitter<void>();
-
   setting: MenuItem[];
   ref: DynamicDialogRef;
 

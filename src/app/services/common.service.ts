@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { FilterMetadata, LazyLoadEvent, MenuItem } from 'primeng/api';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Filter } from '../models/requests/filter.model';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from '../models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
+import { addTab } from '../modules/login/state/login.actions';
+import { getTabs } from '../modules/login/state/login.selector';
+import { LoginState } from '../modules/login/state/loginState';
 import { RequestGridDataColumnValue } from '../modules/universal-components/models/requestGridDataColumnValue.model';
 import { ApiService } from './api.service';
 
@@ -15,8 +19,12 @@ export class CommonService {
   returnList: ResponseBodyGetList;
   listMenuItem: MenuItem[] = [];
   valueSub: Subscription;
+  newTabSub: Subscription;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private store: Store<LoginState>
+  ) {}
 
   // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(
@@ -58,7 +66,7 @@ export class CommonService {
   ): RequestGridDataColumnValue[] {
     var res: RequestGridDataColumnValue[] = [];
     columns.forEach((val) => {
-      // standard filters, not from table component
+      // not from table
       var flrs = filters?.filter(
         (x) => x.field?.toLowerCase() === val.columnName.toLocaleLowerCase()
       );
@@ -70,7 +78,7 @@ export class CommonService {
         });
       }
 
-      // z tabelki
+      // from table
       if (ev?.filters !== undefined) {
         let filtersString = JSON.stringify(ev?.filters![val.columnName]);
         let filters: FilterMetadata[] = JSON.parse(filtersString);
@@ -96,7 +104,7 @@ export class CommonService {
     return res;
   }
 
-  getSepcificDataType4Api(val: string): string {
+  private getSepcificDataType4Api(val: string): string {
     switch (val) {
       case 'boolean':
         return 'boolean';
@@ -106,21 +114,6 @@ export class CommonService {
         return 'String';
       case 'date':
         return 'DateTime';
-      default:
-        return val;
-    }
-  }
-
-  getSepcificDataType4PrimeNg(val: string): string {
-    switch (val) {
-      case 'Boolean':
-        return 'boolean';
-      case 'Int32':
-        return 'numeric';
-      case 'String':
-        return 'text';
-      case 'DateTime':
-        return 'date';
       default:
         return val;
     }
@@ -190,14 +183,15 @@ export class CommonService {
     return retBS.asObservable();
   }
 
+  // generate one filter object
   getFilter4request(
-    prop: string,
+    field: string,
     value: string,
     comparision: string,
     joinType?: string
   ): Filter {
     let obj: Filter = {
-      field: prop,
+      field: field,
       value: value,
       comparision: comparision,
       joinType: joinType,
@@ -231,5 +225,16 @@ export class CommonService {
     });
 
     return filters;
+  }
+
+  addTabToStore(name: string) {
+    this.newTabSub = this.store.select(getTabs).subscribe({
+      next: (res: string[]) => {
+        if (!res?.find((x) => x === name)) {
+          this.store.dispatch(addTab({ val: name }));
+          this.newTabSub.unsubscribe();
+        }
+      },
+    });
   }
 }

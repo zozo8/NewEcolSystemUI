@@ -259,6 +259,7 @@
 		"column_name": "Nazwa kolumny",
 		"available_columns": "Dostępne kolumny",
 		"selected_columns": "Wybrane kolumny",
+		"selected_rows": "Ilość wybranych rekordów",
 		"setting": {
 			"select_grid": "Wybierz siatkę",
 			"select_columns": "Dostosuj kolumny...",
@@ -266,7 +267,8 @@
 		},
 		"options": {
 			"multiselect_records": "Wielokrotny wybór rekordów",
-			"multiselect_columns": "Wielokrotny wybór kolumn"
+			"multiselect_columns": "Wielokrotny wybór kolumn",
+			"summary": "Podsumowanie danych liczbowych"
 		},
 		"export": {
 			"title": "Eksport danych...",

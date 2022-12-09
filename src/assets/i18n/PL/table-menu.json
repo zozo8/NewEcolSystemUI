@@ -13,6 +13,7 @@
   "column_name":"Nazwa kolumny",
   "available_columns":"Dostępne kolumny",
   "selected_columns":"Wybrane kolumny",
+  "selected_rows":"Ilość wybranych rekordów",
   "setting":{
     "select_grid":"Wybierz siatkę",
     "select_columns":"Dostosuj kolumny...",

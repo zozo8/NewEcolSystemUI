@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem } from 'primeng/api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { GridEnum } from 'src/app/models/gridEnum';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
@@ -96,10 +96,12 @@ export class ProductTradeNameComponent
     let requestObj = this.commonService.getRequestObj(this.columns, ev);
     this.reqObjBS.next(requestObj);
   }
+
   getLazyLoadEvent(ev: LazyLoadEvent): void {
     this.lazyLoadObj = ev;
     this.prepareRequest(this.lazyLoadObj);
   }
+
   getSelected(ev: any): void {
     var path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;
@@ -131,16 +133,6 @@ export class ProductTradeNameComponent
         icon: 'pi pi-fw pi-refresh',
         disabled: false,
         command: () => this.refreshTable(),
-      },
-      {
-        label: 'Odśwież z podsumowaniem',
-        icon: 'pi pi-fw pi-refresh',
-        disabled: true,
-      },
-      {
-        label: 'Korekta grupowa',
-        icon: 'pi pi-fw pi-pencil',
-        disabled: true,
       },
     ];
   }

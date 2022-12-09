@@ -94,7 +94,6 @@ export class TreeComponent implements OnInit, OnDestroy {
 
   loadChildren(ev: any) {
     if (ev.node.children === undefined || ev.node.children.length === 0) {
-      //this.loading = true;
       const filter = this.commonService.getFilter4request(
         'ParentId',
         ev.node.id.toString(),

@@ -72,24 +72,38 @@
       <div class="p-formgrid grid">
         <div class="field col">
           <p-button
-            label="Typ kosztorysu"
+            (click)="dashboard.openTab('estimateTypeComponent')"
             styleClass="p-button-link required-field text-left"
-          ></p-button>
+            >{{ form.getFieldName("estimateTypeId") }}</p-button
+          >
           <p-dropdown
-            placeholder="Wybierz.."
+            [placeholder]="'dict.select_value' | translate"
+            [options]="estimateTypeDict"
             [readonly]="!obj.editState"
             [style]="{ width: '100%' }"
+            [filter]="true"
+            [(ngModel)]="obj.objectEditDto.estimateTypeId"
+            appendTo="body"
+            optionLabel="name"
+            optionValue="id"
           ></p-dropdown>
         </div>
         <div class="field col">
-          <p-button
-            label="Typ odpadu"
+          <label
+            (click)="dashboard.openTab('estimateTypeComponent')"
             styleClass="p-button-link required-field text-left"
-          ></p-button>
+            >Typ odpadu</label
+          >
           <p-dropdown
-            placeholder="Wybierz.."
+            [placeholder]="'dict.select_value' | translate"
+            [options]="wasteCodeDict"
             [readonly]="!obj.editState"
             [style]="{ width: '100%' }"
+            [filter]="true"
+            [(ngModel)]="obj.objectEditDto.wasteCodeProductTradeNameId"
+            appendTo="body"
+            optionLabel="name"
+            optionValue="id"
           ></p-dropdown>
         </div>
       </div>

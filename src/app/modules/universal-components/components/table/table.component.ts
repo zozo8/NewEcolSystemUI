@@ -200,7 +200,7 @@ export class TableComponent implements OnInit {
       contentStyle: { width: '40rem' },
       header: this.translateService.instant('table_menu.export.title'),
       closeOnEscape: true,
-      data: [exportData],
+      data: [exportData, this.columns],
     });
 
     this.columnSub = ref.onClose.subscribe({

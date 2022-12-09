@@ -31,13 +31,13 @@
       </div>
     </div>
 
-    <div class="row" style="padding-top: 30px">
-      <div class="col-md">
+    <div class="p-formgrid grid">
+      <div class="col-6 text-left">
         <button pButton class="p-button-outlined" (click)="cancel()">
           {{ "btn.cancel" | translate }}
         </button>
       </div>
-      <div class="col-md text-end">
+      <div class="col-6 text-right">
         <button
           [disabled]="
             selectedOption.id === undefined ||

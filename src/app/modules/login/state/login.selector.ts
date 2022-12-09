@@ -24,3 +24,4 @@ export const getDepartments = createSelector(
 );
 
 export const getLayout = createSelector(getState, (state) => state.layout);
+export const getTabs = createSelector(getState, (state) => state.tabs);

@@ -41,5 +41,8 @@
     "diagram_percentage":"Dane procentowe",
     "orders_today":"Zlecenia na dzisiaj",
     "product_under_state":"Produkty poniżej stanu minimalnego"
+  },
+  "estimate_type":{
+    "title":"Słownik typów kosztorysów"
   }
 }

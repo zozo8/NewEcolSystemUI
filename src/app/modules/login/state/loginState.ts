@@ -5,7 +5,7 @@ export interface LoginState {
   token: string;
   refreshToken: string;
   departments: number[];
-  // tabs: Tab[];
+  tabs: string[];
   tokenExp: number;
   tokenUr: string;
   language: string;
@@ -18,6 +18,7 @@ export const initialLoginState: LoginState = {
   id: 0,
   refreshToken: '',
   departments: [],
+  tabs: [],
   token: '',
   userName: '',
   tokenExp: 0,

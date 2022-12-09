@@ -1,6 +1,6 @@
 <div class="grid">
   <div class="col-12">
-    <div class="grid formgrid">
+    <div class="grid p-formgrid">
       <div class="col-6">
         <section dndDropzone (dndDrop)="onDropAvailableColumns($event)">
           <p-table
@@ -85,19 +85,19 @@
         </section>
       </div>
     </div>
-    <div class="grid formgrid">
-      <div class="col-6">
+    <div class="grid p-formgrid">
+      <div class="col-6 text-left">
+        <button pButton class="p-button-outlined" (click)="cancel()">
+          {{ "btn.cancel" | translate }}
+        </button>
+      </div>
+      <div class="col-6 text-right">
         <button
           [disabled]="selectedColumns.length === 0"
           pButton
           (click)="save()"
         >
           {{ "table-menu.setting.save_grid" | translate }}
-        </button>
-      </div>
-      <div class="col-6 text-right">
-        <button pButton class="p-button-outlined" (click)="cancel()">
-          {{ "btn.cancel" | translate }}
         </button>
       </div>
     </div>

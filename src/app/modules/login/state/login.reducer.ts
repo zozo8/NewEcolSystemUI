@@ -50,6 +50,14 @@ export const loginReducer = createReducer(
   on(loginActions.changeLayout, (state, { val }) => ({
     ...state,
     layout: val,
+  })),
+  on(loginActions.addTab, (state, { val }) => ({
+    ...state,
+    tabs: [...state.tabs, val],
+  })),
+  on(loginActions.removeTab, (state, { val }) => ({
+    ...state,
+    tabs: state.tabs.filter((x) => x !== val),
   }))
 );
 

@@ -24,12 +24,6 @@ export class ApiService {
     );
   }
 
-  // getColumnsByGridId(gridId:number):Observable<RequestGridDataColumn> {
-  //   //czy są zapisane dla usera, jak nie to startowe
-
-  //   return this.http.get<RequestGridDataColumn>(environment.endpointApiPath+path);
-  // }
-
   // get column list for grid
   getColumns(path: string): Observable<RequestGridDataColumn> {
     return this.http.get<RequestGridDataColumn>(

@@ -8,13 +8,14 @@ import {
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { MenuItem, PrimeNGConfig } from 'primeng/api';
-import { Observable, timer } from 'rxjs';
+import { MenuItem } from 'primeng/api';
+import { Observable, Subscription, timer } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { Tab } from 'src/app/models/tab.model';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
 import { setLanguage } from 'src/app/modules/login/state/login.actions';
 import { LoginState } from 'src/app/modules/login/state/loginState';
+import { CommonService } from 'src/app/services/common.service';
 import { environment } from 'src/environments/environment';
 import { MenuService } from './menu.service';
 
@@ -75,16 +76,16 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   userName$: Observable<string>;
   appVersion: string;
   newTab: Tab;
+  private newTabSub: Subscription;
 
   constructor(
     private authService: AuthService,
-    // private menuService: DashboardMenuService,
     private translateService: TranslateService,
     private store: Store<LoginState>,
     public app: AppComponent,
     public renderer: Renderer2,
     private menuService: MenuService,
-    private primengConfig: PrimeNGConfig
+    private commonService: CommonService
   ) {}
 
   ngAfterViewInit(): void {
@@ -275,7 +276,11 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.authService.logout();
   }
 
-  addTab(tab: Tab) {
-    this.newTab = tab;
+  // addTab(tab: Tab) {
+  //   this.newTab = tab;
+  // }
+
+  openTab(name: string) {
+    if (name) this.commonService.addTabToStore(name);
   }
 }

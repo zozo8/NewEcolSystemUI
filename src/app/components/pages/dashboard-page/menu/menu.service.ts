@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TreeNode } from 'primeng/api';
 import { UsersComponent } from 'src/app/modules/admin/pages/users/users.component';
+import { EstimateTypeComponent } from 'src/app/modules/dictionaries/pages/estimate-type/estimate-type.component';
 import { ProductTradeNameComponent } from 'src/app/modules/dictionaries/pages/product-trade-name/product-trade-name.component';
 import { MainSummaryComponent } from 'src/app/pages/main-summary/main-summary.component';
 import { Summary1Component } from 'src/app/pages/summary1/summary1.component';
@@ -23,17 +24,17 @@ export class MenuService {
           {
             label: this.translate.instant('pages.main_summary.title'),
             icon: MainSummaryComponent.icon,
-            component: MainSummaryComponent,
+            component: MainSummaryComponent.name,
           },
           {
             label: this.translate.instant('pages.summary1.title'),
             icon: Summary1Component.icon,
-            component: Summary1Component,
+            component: Summary1Component.name,
           },
           {
             label: this.translate.instant('pages.summary2.title'),
             icon: Summary2Component.icon,
-            component: Summary2Component,
+            component: Summary2Component.name,
           },
         ],
       },
@@ -44,7 +45,7 @@ export class MenuService {
           {
             label: this.translate.instant('pages.tree.title'),
             icon: TreeComponent.icon,
-            component: TreeComponent,
+            component: TreeComponent.name,
           },
           {
             label: this.translate.instant('sidebar.administraction'),
@@ -59,14 +60,19 @@ export class MenuService {
                       'pages.product_trade_name.title'
                     ),
                     icon: ProductTradeNameComponent.icon,
-                    component: ProductTradeNameComponent,
+                    component: ProductTradeNameComponent.name,
+                  },
+                  {
+                    label: EstimateTypeComponent.header,
+                    icon: EstimateTypeComponent.icon,
+                    component: EstimateTypeComponent.name,
                   },
                 ],
               },
               {
                 label: this.translate.instant('pages.users.title'),
                 icon: UsersComponent.icon,
-                component: UsersComponent,
+                component: UsersComponent.name,
               },
             ],
           },

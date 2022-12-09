@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { RequestGridDataColumnValue } from '../../../models/requestGridDataColumnValue.model';
 
 interface exportOutput {
   data?: any[];
   type?: string;
   title?: string;
+  columns?: RequestGridDataColumnValue[];
 }
 
 @Component({
@@ -33,7 +35,7 @@ export class ExportDataComponent implements OnInit {
       {
         label: this.translateService.instant('table-menu.export.xls'),
         icon: PrimeIcons.FILE_EXCEL,
-        id: 'xls',
+        id: 'xlsx',
       },
       {
         label: this.translateService.instant('table-menu.export.doc'),
@@ -52,10 +54,11 @@ export class ExportDataComponent implements OnInit {
 
   submit() {
     this.obj.data = this.config.data[0];
+    this.obj.columns = this.config.data[1];
     this.obj.title =
       this.obj.title ?? `Exported data ${new Date().toLocaleDateString()}`;
 
-    console.log('output obj:', this.obj);
+    console.log('output export  obj:', this.obj);
     this.ref.close();
   }
 

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, timer } from 'rxjs';
+import { MainSummaryComponent } from 'src/app/pages/main-summary/main-summary.component';
+import { CommonService } from 'src/app/services/common.service';
 import Login from './interfaces/login.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import { LoginService } from './login.service';
@@ -85,7 +87,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private translateService: TranslateService,
     private store: Store<LoginState>,
-    private router: Router
+    private router: Router,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +120,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.loginService.authenticate(res).subscribe({
                 next: (resAuth: boolean) => {
                   if (resAuth === true) {
+                    this.commonService.addTabToStore(MainSummaryComponent.name);
                     this.router.navigate(['/dashboard']);
                   } else {
                     this.printErrorMessage();

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { GridEnum } from 'src/app/models/gridEnum';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';

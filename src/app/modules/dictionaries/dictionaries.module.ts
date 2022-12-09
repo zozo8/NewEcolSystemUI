@@ -23,9 +23,10 @@ import { UniversalComponentsModule } from '../universal-components/universal-com
 import { DictionariesRoutingModule } from './dictionaries-routing.module';
 import { ProductTradeNameFormComponent } from './pages/product-trade-name/product-trade-name-form/product-trade-name-form.component';
 import { ProductTradeNameComponent } from './pages/product-trade-name/product-trade-name.component';
+import { EstimateTypeComponent } from './pages/estimate-type/estimate-type.component';
 
 @NgModule({
-  declarations: [ProductTradeNameComponent, ProductTradeNameFormComponent],
+  declarations: [ProductTradeNameComponent, ProductTradeNameFormComponent, EstimateTypeComponent],
   imports: [
     CommonModule,
     DictionariesRoutingModule,

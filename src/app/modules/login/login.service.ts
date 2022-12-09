@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
 import { Observable, Subject } from 'rxjs';
-import { GridEnum } from 'src/app/models/gridEnum';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { CommonService } from 'src/app/services/common.service';
 import {

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { GridEnum } from 'src/app/models/gridEnum';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { setDepartments } from 'src/app/modules/login/state/login.actions';

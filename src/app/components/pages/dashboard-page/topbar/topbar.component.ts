@@ -16,9 +16,8 @@ import {
 } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
-import { GridEnum } from 'src/app/models/gridEnum';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { Tab } from 'src/app/models/tab.model';
 import { Department } from 'src/app/modules/admin/models/department';
 import { IDepartmentState } from 'src/app/modules/login/state/IDepartmentState';
 import { removeDepartment } from 'src/app/modules/login/state/login.actions';
@@ -208,15 +207,15 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   select(item: any): void {
-    const tab: Tab = {
-      header: item.label,
-      component: item.component,
-      tooltip: item.label,
-    };
+    // const tab: Tab = {
+    //   header: item.label,
+    //   component: item.component,
+    //   tooltip: item.label,
+    // };
 
     this.selectedPage = {};
     this.dashboard.searchClick = true;
-    this.dashboard.addTab(tab);
+    this.dashboard.openTab(item.component);
   }
 
   search(ev: any): void {

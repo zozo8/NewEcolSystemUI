@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
-import { GridEnum } from 'src/app/models/gridEnum';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { getDepartments } from 'src/app/modules/login/state/login.selector';
@@ -53,12 +53,10 @@ export class ProductsUnderMinimalStateComponent implements OnInit, OnDestroy {
         if (filters.length > 0) {
           this.data = this.commonService.getObservableList4path(
             getModelListPath(this.model),
-            columnListPath(GridEnum.Orders),
+            columnListPath(GridEnum.Products),
             filters,
             ev
           );
-
-          console.log(this.data);
         }
       },
     });

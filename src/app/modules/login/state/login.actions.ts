@@ -42,3 +42,13 @@ export const changeLayout = createAction(
   '[Config Component]  changeLayout',
   props<{ val: string }>()
 );
+
+export const addTab = createAction(
+  '[Dashboard Component] addTab',
+  props<{ val: string }>()
+);
+
+export const removeTab = createAction(
+  '[Dahboard Component] removeTab',
+  props<{ val: string }>()
+);

@@ -96,7 +96,7 @@
   </ng-template>
   <ng-template pTemplate="footer" let-columns>
     <p *ngIf="selectedRows.length > 0">
-      Ilość wybranych rekordów {{ selectedRows.length }}
+      {{ "table-menu.selected_rows" | translate }} {{ selectedRows.length }}
     </p>
     <table *ngIf="summary">
       <tr>

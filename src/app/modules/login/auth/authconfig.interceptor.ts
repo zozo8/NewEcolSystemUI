@@ -103,7 +103,7 @@ export class AuthconfigInterceptor implements HttpInterceptor {
     return req.clone({
       headers: req.headers
         .set('Authorization', 'Bearer ' + token)
-        .set('CultureInfo', this.loginService.getCultureInfo()),
+        .set('Accept-Language', this.loginService.getCultureInfo()),
     });
   }
 
