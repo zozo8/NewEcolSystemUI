@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MainSummaryComponent {
   static icon = 'pi pi-fw pi-home';
+  static title = 'pages.main_summary.title';
 
   constructor(private translate: TranslateService) {}
 }

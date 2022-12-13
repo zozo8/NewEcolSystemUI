@@ -1,11 +1,18 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { Tab } from 'src/app/models/tab.model';
-import { removeTab } from 'src/app/modules/login/state/login.actions';
-import { getTabs } from 'src/app/modules/login/state/login.selector';
+import {
+  removeTab,
+  setActiveTab,
+} from 'src/app/modules/login/state/login.actions';
+import {
+  getActiveTab,
+  getTabs,
+} from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
+import { CommonService } from 'src/app/services/common.service';
 import { components4tabs } from './components4tabs';
 
 @Component({
@@ -16,82 +23,76 @@ import { components4tabs } from './components4tabs';
 export class TabsComponent implements OnInit, OnDestroy {
   tabs: Tab[] = [];
   activeTab: number;
-  compsiteSubs = new Subscription();
-
-  private _newTab: Tab;
-  public get newTab(): Tab {
-    return this._newTab;
-  }
-
-  @Input()
-  public set newTab(t: Tab) {
-    if (t !== undefined) {
-      this.refreshTabs(t);
-    }
-  }
+  private compsiteSubs = new Subscription();
 
   constructor(
     private translate: TranslateService,
-    private store: Store<LoginState>
+    private store: Store<LoginState>,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
-    //this.addStartTab();
-    this.compsiteSubs.add(
-      this.store.select(getTabs).subscribe({
-        next: (res: string[]) => {
-          if (res) {
-            res.forEach((el) => {
-              this.addTab(el);
-            });
-          }
+    this.store
+      .select(getTabs)
+      .pipe(take(1))
+      .subscribe({
+        next: (tabs: string[]) => {
+          tabs.forEach((tab, i) => {
+            this.addTab(tab, i);
+          });
         },
-      })
-    );
+        complete: () => {
+          this.activeTab = this.commonService.getValueFromObservable(
+            this.store.select(getActiveTab)
+          );
+          this.compsiteSubs.add(
+            this.store.select(getActiveTab).subscribe({
+              next: (res: number) => {
+                this.setTab(res);
+              },
+            })
+          );
+        },
+      });
   }
 
-  private addTab(name: string): void {
-    const tab = components4tabs.find(
-      (x) => x.component.name.toLowerCase() === name.toLocaleLowerCase()
-    );
-    if (tab) {
-      if (!this.tabs.find((x) => x.component.name === tab.component.name)) {
-        this.tabs.push({
-          component: tab.component,
-          header: tab.component.header ?? '',
-          active: true,
-          icon: tab.component.icon ?? '',
-          tooltip: tab.component.header ?? '',
+  setTab(i: number) {
+    const extTab = this.tabs[i];
+    if (extTab) {
+      this.activeTab = i;
+    } else {
+      this.store
+        .select(getTabs)
+        .pipe(take(1))
+        .subscribe({
+          next: (res: string[]) => {
+            this.addTab(res[i], i);
+          },
         });
-      }
     }
   }
 
-  public refreshTabs(tab: Tab): void {
-    if (tab.component) {
-      let extTab = this.tabs.findIndex((x) => x.component === tab.component);
-      if (extTab === -1) {
-        this.tabs.push(tab);
-        this.activeTab = this.activeTab === undefined ? 0 : this.activeTab + 1;
-      } else {
-        this.activeTab = extTab;
-      }
+  addTab(name: string, lastIndex: number) {
+    const tab = components4tabs.find((x) => x.component.name === name);
+
+    if (tab) {
+      this.tabs.push({
+        component: tab.component,
+        header: this.translate.instant(tab.component.title ?? ''),
+        active: true,
+        icon: tab.component.icon ?? '',
+        tooltip: tab.component.header ?? '',
+      });
+      this.activeTab = lastIndex;
     }
   }
 
   closeTab(ev: any): void {
-    const tab = this.tabs[ev.index];
-    this.store.dispatch(removeTab({ val: tab.component.name }));
+    const tabIndex = ev.index;
+    this.store.dispatch(removeTab({ val: tabIndex }));
     this.tabs.splice(ev.index, 1);
+    this.store.dispatch(setActiveTab({ val: tabIndex - 1 }));
   }
-
-  // addStartTab(): void {
-  //   this.refreshTabs({
-  //     header: this.translate.instant('pages.main_summary.title'),
-  //     component: MainSummaryComponent,
-  //     icon: MainSummaryComponent.icon,
-  //   });
-  // }
 
   ngOnDestroy(): void {
     this.compsiteSubs.unsubscribe();

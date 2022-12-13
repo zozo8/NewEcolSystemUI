@@ -36,6 +36,9 @@ export class UsersComponent
     IMasterPage,
     OnDestroy
 {
+  static icon = PrimeIcons.USERS;
+  static title = 'pages.users.title';
+
   obj: TableMenuStructure;
   lazyLoadObj: LazyLoadEvent;
   responseObj: Observable<ResponseBodyGetList>;
@@ -51,9 +54,7 @@ export class UsersComponent
   private compositeSubscription = new Subscription();
   private postSubscription: Subscription;
   private putSubscription: Subscription;
-  deleteSubscription: Subscription;
-
-  static icon = PrimeIcons.USERS;
+  private deleteSubscription: Subscription;
 
   constructor(
     private tableService: TableService,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
 import { clearTokens, setLastActivity } from '../state/login.actions';
 import { getLastActivity, getTokenExp } from '../state/login.selector';
@@ -12,7 +12,7 @@ import { LoginState } from '../state/loginState';
 })
 export class AuthService {
   loginObj: LoginState;
-  loginObjSub: Subscription;
+  compsiteSub = new Subscription();
 
   constructor(
     private router: Router,
@@ -41,20 +41,36 @@ export class AuthService {
   }
 
   checkLastActivity(): boolean {
-    // do zmiany wg review
-    const actualDate = new Date().getTime();
-    let lastAct: number = this.commonService.getValueFromObservable(
-      this.store.select(getLastActivity)
+    var ret = new BehaviorSubject<boolean>(false);
+    this.compsiteSub.add(
+      this.store.select(getLastActivity).subscribe({
+        next: (res: number) => {
+          const actualDate = new Date().getTime();
+          const lastActivity = Number.parseInt(res.toString());
+          if (actualDate > lastActivity) {
+            ret.next(false);
+          } else {
+            ret.next(true);
+          }
+        },
+      })
     );
-    if (lastAct) {
-      let lastActivity = Number.parseInt(lastAct.toString());
-      if (actualDate > lastActivity) {
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      return false;
-    }
+    return ret.getValue();
+
+    // do zmiany wg review
+    // const actualDate = new Date().getTime();
+    // let lastAct: number = this.commonService.getValueFromObservable(
+    //   this.store.select(getLastActivity)
+    // );
+    // if (lastAct) {
+    //   let lastActivity = Number.parseInt(lastAct.toString());
+    //   if (actualDate > lastActivity) {
+    //     return false;
+    //   } else {
+    //     return true;
+    //   }
+    // } else {
+    //   return false;
+    // }
   }
 }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FilterMetadata, LazyLoadEvent, MenuItem } from 'primeng/api';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
 import { Filter } from '../models/requests/filter.model';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
 import { RequestGridDataColumn } from '../models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
-import { addTab } from '../modules/login/state/login.actions';
+import { addTab, setActiveTab } from '../modules/login/state/login.actions';
 import { getTabs } from '../modules/login/state/login.selector';
 import { LoginState } from '../modules/login/state/loginState';
 import { RequestGridDataColumnValue } from '../modules/universal-components/models/requestGridDataColumnValue.model';
@@ -203,7 +203,7 @@ export class CommonService {
   // get value from any observable obj
   getValueFromObservable(obj: Observable<any>): any {
     let value: any;
-    this.valueSub = obj.subscribe({
+    this.valueSub = obj.pipe().subscribe({
       next: (v: any) => (value = v),
       complete: () => this.valueSub.unsubscribe(),
     });
@@ -228,13 +228,22 @@ export class CommonService {
   }
 
   addTabToStore(name: string) {
-    this.newTabSub = this.store.select(getTabs).subscribe({
-      next: (res: string[]) => {
-        if (!res?.find((x) => x === name)) {
-          this.store.dispatch(addTab({ val: name }));
-          this.newTabSub.unsubscribe();
-        }
-      },
-    });
+    this.store
+      .select(getTabs)
+      .pipe(take(1))
+      .subscribe({
+        next: (res: string[]) => {
+          const tabIndex = res.findIndex((x) => x === name);
+          if (tabIndex === -1) {
+            this.store.dispatch(addTab({ val: name }));
+            // const lastIndex: number = this.getValueFromObservable(
+            //   this.store.select(getActiveTab)
+            // );
+            this.store.dispatch(setActiveTab({ val: res.length }));
+          } else {
+            this.store.dispatch(setActiveTab({ val: tabIndex }));
+          }
+        },
+      });
   }
 }

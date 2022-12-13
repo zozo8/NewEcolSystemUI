@@ -32,6 +32,8 @@ import { TreeService } from './tree.service';
 })
 export class TreeComponent implements OnInit, OnDestroy {
   static icon = PrimeIcons.LIST;
+  static title = 'pages.tree.title';
+
   values: TreeNode[] = [];
   private compositeSubscription = new Subscription();
   loading = false;

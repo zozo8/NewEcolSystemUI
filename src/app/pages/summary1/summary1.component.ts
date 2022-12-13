@@ -10,6 +10,9 @@ import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/
   styleUrls: ['./summary1.component.scss'],
 })
 export class Summary1Component implements OnInit {
+  static icon = 'pi pi-fw pi-home';
+  static title = 'pages.summary1.title';
+
   cities: any[];
   products: any[];
   ordersChart: any;
@@ -26,8 +29,6 @@ export class Summary1Component implements OnInit {
   overviewChartOptions4: any;
   chatMessages: any[];
   chatEmojis: any[];
-
-  static icon = 'pi pi-fw pi-home';
 
   @ViewChild('chatcontainer') chatContainerViewChild: ElementRef;
   constructor(

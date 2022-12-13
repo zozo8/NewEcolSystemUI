@@ -63,7 +63,7 @@ export class MenuService {
                     component: ProductTradeNameComponent.name,
                   },
                   {
-                    label: EstimateTypeComponent.header,
+                    label: this.translate.instant('pages.estimate_type.title'),
                     icon: EstimateTypeComponent.icon,
                     component: EstimateTypeComponent.name,
                   },

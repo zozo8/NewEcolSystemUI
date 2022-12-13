@@ -36,6 +36,9 @@ export class ProductTradeNameComponent
     IMasterPage,
     OnDestroy
 {
+  static icon = 'pi pi-fw pi-list';
+  static title = 'pages.product_trade_name.title';
+
   buttons: MenuItem[];
   obj: TableMenuStructure;
   model = 'ProductTradeName';
@@ -52,8 +55,6 @@ export class ProductTradeNameComponent
   postSub: Subscription;
   deleteSub: Subscription;
   putSub: Subscription;
-
-  static icon = 'pi pi-fw pi-list';
 
   constructor(
     private commonService: CommonService,

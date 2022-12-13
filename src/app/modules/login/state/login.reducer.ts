@@ -57,7 +57,11 @@ export const loginReducer = createReducer(
   })),
   on(loginActions.removeTab, (state, { val }) => ({
     ...state,
-    tabs: state.tabs.filter((x) => x !== val),
+    tabs: state.tabs.filter((v, i) => i !== val),
+  })),
+  on(loginActions.setActiveTab, (state, { val }) => ({
+    ...state,
+    activeTab: val,
   }))
 );
 

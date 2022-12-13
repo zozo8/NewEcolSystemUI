@@ -10,6 +10,9 @@ import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/
   styleUrls: ['./summary2.component.scss'],
 })
 export class Summary2Component implements OnInit {
+  static icon = 'pi pi-fw pi-home';
+  static title = 'pages.summary2.title';
+
   cities: any[];
   products: any[];
   chartMonthlyData: any;
@@ -50,8 +53,6 @@ export class Summary2Component implements OnInit {
   @ViewChild('storeC') storeCViewChild: UIChart;
   @ViewChild('storeD') storeDViewChild: UIChart;
   @ViewChild('pie') pieViewChild: UIChart;
-
-  static icon = 'pi pi-fw pi-home';
 
   constructor(
     public app: AppComponent,

@@ -11,6 +11,7 @@ export interface LoginState {
   language: string;
   lastActivity: number;
   layout: string;
+  activeTab: number;
 }
 
 export const initialLoginState: LoginState = {
@@ -26,4 +27,5 @@ export const initialLoginState: LoginState = {
   language: 'pl',
   lastActivity: 0,
   layout: 'light',
+  activeTab: 0,
 };

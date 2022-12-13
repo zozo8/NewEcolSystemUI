@@ -9,7 +9,7 @@ import { PrimeIcons } from 'primeng/api';
 })
 export class EstimateTypeComponent implements OnInit {
   static icon = PrimeIcons.LIST;
-  static header: 'Słownik typów kosztorysów'; //this.translate.instant('pages.estimate_type.title');
+  static title = 'pages.estimate_type.title';
 
   constructor(private translate: TranslateService) {}
 

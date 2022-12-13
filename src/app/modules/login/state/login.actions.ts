@@ -50,5 +50,10 @@ export const addTab = createAction(
 
 export const removeTab = createAction(
   '[Dahboard Component] removeTab',
-  props<{ val: string }>()
+  props<{ val: number }>()
+);
+
+export const setActiveTab = createAction(
+  '[Dahboard Component] setActiveTab',
+  props<{ val: number }>()
 );
