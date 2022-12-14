@@ -47,10 +47,6 @@ export const loginReducer = createReducer(
     ...state,
     departments: state.departments.filter((x) => x !== val),
   })),
-  on(loginActions.changeLayout, (state, { val }) => ({
-    ...state,
-    layout: val,
-  })),
   on(loginActions.addTab, (state, { val }) => ({
     ...state,
     tabs: [...state.tabs, val],
@@ -62,6 +58,34 @@ export const loginReducer = createReducer(
   on(loginActions.setActiveTab, (state, { val }) => ({
     ...state,
     activeTab: val,
+  })),
+  on(loginActions.setConfigLayout, (state, { val }) => ({
+    ...state,
+    configLayout: val,
+  })),
+  on(loginActions.setConfigComponentMode, (state, { val }) => ({
+    ...state,
+    configComponentMode: val,
+  })),
+  on(loginActions.setConfigMenuColor, (state, { val }) => ({
+    ...state,
+    configMenuColor: val,
+  })),
+  on(loginActions.setConfigMenuMode, (state, { val }) => ({
+    ...state,
+    configMenuMode: val,
+  })),
+  on(loginActions.setConfigPopularMode, (state, { val }) => ({
+    ...state,
+    configPopularMode: val,
+  })),
+  on(loginActions.setConfigScale, (state, { val }) => ({
+    ...state,
+    configScale: val,
+  })),
+  on(loginActions.setConfigTopbarMode, (state, { val }) => ({
+    ...state,
+    configTopbarMode: val,
   }))
 );
 

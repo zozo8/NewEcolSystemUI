@@ -9,5 +9,6 @@ export enum GridEnum {
   ProductTradeName = 24,
   Orders = 83,
   Products = 58,
-  estimateType = 60,
+  EstimateType = 60,
+  Clients = 16,
 }

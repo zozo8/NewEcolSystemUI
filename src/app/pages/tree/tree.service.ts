@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { LazyLoadEvent, TreeNode } from 'primeng/api';
 import { BaseTreeFilteredDto } from 'src/app/models/baseTreeFilteredDto.model';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
-import { CommonService } from 'src/app/services/common.service';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TreeService {
-  constructor(private commonService: CommonService) {}
+  constructor() {}
 
-  getDefaultColumns(): RequestGridDataColumnValue[] {
+  getDefaultColumns(): ResponseGridDataColumnValue[] {
     return [
       {
         columnName: 'Level',

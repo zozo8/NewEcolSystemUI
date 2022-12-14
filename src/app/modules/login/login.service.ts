@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { sha512 } from 'js-sha512';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, take } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { CommonService } from 'src/app/services/common.service';
@@ -23,7 +23,7 @@ import {
   saveTokenUr,
   setDepartments,
 } from './state/login.actions';
-import { getDepartments, getLanguage } from './state/login.selector';
+import { getDepartments, getLanguage, getTabs } from './state/login.selector';
 import { LoginState } from './state/loginState';
 
 @Injectable({
@@ -141,5 +141,18 @@ export class LoginService {
     }
 
     return ret;
+  }
+
+  addStartTab() {
+    this.store
+      .select(getTabs)
+      .pipe(take(1))
+      .subscribe({
+        next: (res: string[]) => {
+          if (!res.find((x) => x === 'MainSummaryComponent')) {
+            this.commonService.addTabToStore('MainSummaryComponent');
+          }
+        },
+      });
   }
 }

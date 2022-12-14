@@ -41,5 +41,11 @@
     "diagram_percentage":"Percatnge data",
     "orders_today":"Ordes today",
     "product_under_state":"Products under minimal warehouse state"
+  },
+  "estimate_type":{
+    "title":"Estimate type dictionary"
+  },
+  "client":{
+    "title":"Client dictionary"
   }
 }

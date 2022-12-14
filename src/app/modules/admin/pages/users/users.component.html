@@ -13,7 +13,7 @@
             [columns]="columns"
             [gridId]="gridId"
             [tableDisabled]="obj.editState"
-            [canMultiselect]="true"
+            [canMultiselect]="multiselect"
             (newRequestParam)="getLazyLoadEvent($event)"
             (selectedObj)="getSelected($event)"
           >

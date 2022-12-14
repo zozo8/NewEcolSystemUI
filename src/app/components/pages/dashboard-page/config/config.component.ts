@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
-import { changeLayout } from 'src/app/modules/login/state/login.actions';
+import {
+  setConfigComponentMode,
+  setConfigLayout,
+  setConfigMenuColor,
+  setConfigScale,
+  setConfigTopbarMode,
+} from 'src/app/modules/login/state/login.actions';
 import { LoginState } from 'src/app/modules/login/state/loginState';
 import { DashboardPageComponent } from '../dashboard-page.component';
 
@@ -186,7 +192,7 @@ import { DashboardPageComponent } from '../dashboard-page.component';
           </div>
 
           <h6>{{ 'layout.menu_color' | translate }}</h6>
-          <div *ngIf="app.layoutMode !== 'dark'" class="grid">
+          <div class="grid">
             <div *ngFor="let t of menuThemes" class="col col-fixed">
               <a
                 style="cursor: pointer"
@@ -261,28 +267,6 @@ import { DashboardPageComponent } from '../dashboard-page.component';
               </a>
             </div>
           </div>
-
-          <!-- <h6>{{ 'layout.language_mode' | translate }}</h6>
-          <div class="flex">
-            <div class="flex align-items-center">
-              <img
-                class="p-1 map"
-                style="width: 35px"
-                alt="pl"
-                src="./assets/images/flags/PL.png"
-                (click)="dashboard.setLanguage('pl')"
-              />
-            </div>
-            <div class="flex align-items-center">
-              <img
-                class="p-1 map"
-                style="width: 35px"
-                alt="en"
-                src="./assets/images/flags/GB.png"
-                (click)="dashboard.setLanguage('en')"
-              />
-            </div>
-          </div> -->
         </div>
       </div>
     </p-sidebar>
@@ -402,6 +386,7 @@ export class ConfigComponent implements OnInit {
   }
 
   applyScale() {
+    this.store.dispatch(setConfigScale({ val: this.scale }));
     document.documentElement.style.fontSize = this.scale + 'px';
   }
 
@@ -414,7 +399,7 @@ export class ConfigComponent implements OnInit {
       'app-logo'
     ) as HTMLImageElement;
     this.app.layoutMode = mode;
-    this.store.dispatch(changeLayout({ val: mode }));
+    this.store.dispatch(setConfigLayout({ val: mode }));
 
     if (!this.isInputBackgroundChanged) {
       this.app.inputStyle = mode === 'dark' ? 'filled' : 'outlined';
@@ -449,7 +434,7 @@ export class ConfigComponent implements OnInit {
 
   changeTheme(theme: string) {
     this.theme = theme;
-
+    this.store.dispatch(setConfigComponentMode({ val: theme }));
     const themeLink: HTMLLinkElement = document.getElementById(
       'theme-css'
     ) as HTMLLinkElement;
@@ -461,11 +446,13 @@ export class ConfigComponent implements OnInit {
   changeMenuTheme(theme: any) {
     this.selectedMenuTheme = theme;
     this.app.menuTheme = theme.name;
+    this.store.dispatch(setConfigMenuColor({ val: theme.name }));
   }
 
   changeTopbarTheme(theme: any) {
     this.selectedTopbarTheme = theme;
     this.app.topbarTheme = theme.name;
+    this.store.dispatch(setConfigTopbarMode({ val: theme.name }));
 
     const appLogoLink: HTMLImageElement = document.getElementById(
       'app-logo'

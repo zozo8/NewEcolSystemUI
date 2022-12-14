@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
-import { RequestGridDataColumn } from '../models/requests/requestGridDataColumn.model';
-import { ResponseBodyById } from '../models/responses/responseBodyById.model';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumn } from '../models/responses/responseGridDataColumn.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   // get response with status code and data type any[]
-  getResponseObj(
+  getResponseBodyGetList(
     requestPath: string,
     requestObj: RequestBodyGetList
   ): Observable<ResponseBodyGetList> {
@@ -25,22 +24,19 @@ export class ApiService {
   }
 
   // get column list for grid
-  getColumns(path: string): Observable<RequestGridDataColumn> {
-    return this.http.get<RequestGridDataColumn>(
+  getColumns(path: string): Observable<ResponseGridDataColumn> {
+    return this.http.get<ResponseGridDataColumn>(
       environment.endpointApiPath + path
     );
   }
 
-  // get obj by id
-  getObjById(path: string): Observable<ResponseBodyById> {
-    return this.http.get<ResponseBodyById>(environment.endpointApiPath + path);
+  // get typical tesponse by any get obj
+  getResponseByGet(path: string): Observable<any> {
+    return this.http.get<any>(environment.endpointApiPath + path);
   }
 
   //get typical tesponse by any post obj
-  getResponseByPost(path: string, postObj: any): Observable<ResponseBodyById> {
-    return this.http.post<ResponseBodyById>(
-      environment.endpointApiPath + path,
-      postObj
-    );
+  getResponseByPost(path: string, postObj: any): Observable<any> {
+    return this.http.post<any>(environment.endpointApiPath + path, postObj);
   }
 }

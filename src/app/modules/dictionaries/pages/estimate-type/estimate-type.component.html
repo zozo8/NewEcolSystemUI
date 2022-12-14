@@ -1,1 +1,11 @@
-<p>estimate-type works!</p>
+<div class="card">
+  <app-table
+    [dataTable]="responseObj"
+    [columns]="columns"
+    [gridId]="gridId"
+    [tableDisabled]="obj.editState"
+    [canMultiselect]="multiselect"
+    (newRequestParam)="getLazyLoadEvent($event)"
+    (selectedObj)="getSelected($event)"
+  ></app-table>
+</div>

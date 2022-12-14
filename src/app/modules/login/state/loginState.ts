@@ -10,8 +10,14 @@ export interface LoginState {
   tokenUr: string;
   language: string;
   lastActivity: number;
-  layout: string;
   activeTab: number;
+  configLayout: string;
+  configScale: number;
+  configMenuMode: string;
+  configPopularMode: string;
+  configMenuColor: string;
+  configTopbarMode: string;
+  configComponentMode: string;
 }
 
 export const initialLoginState: LoginState = {
@@ -26,6 +32,12 @@ export const initialLoginState: LoginState = {
   tokenUr: '',
   language: 'pl',
   lastActivity: 0,
-  layout: 'light',
   activeTab: 0,
+  configLayout: 'light',
+  configScale: 14,
+  configMenuMode: 'static',
+  configPopularMode: 'bottom',
+  configMenuColor: 'light',
+  configTopbarMode: 'blue',
+  configComponentMode: 'filled',
 };

@@ -4,7 +4,7 @@ import { TableMenuStructure } from '../models/tableMenuStructure.model';
 export interface ITableButtonsComponent {
   buttons: MenuItem[];
   obj: TableMenuStructure;
-  model: string;
+
   getButtons(): void;
   post(): void;
   delete(): void;

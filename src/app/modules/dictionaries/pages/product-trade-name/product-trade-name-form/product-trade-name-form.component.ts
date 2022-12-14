@@ -10,8 +10,8 @@ import { Subscription } from 'rxjs';
 import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/dashboard-page.component';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { ITableFormComponent } from 'src/app/modules/universal-components/interfaces/ITableFormComponent';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { CommonService } from 'src/app/services/common.service';
 import { columnListPath, getModelListPath } from 'src/app/services/path';
@@ -31,7 +31,7 @@ export class ProductTradeNameFormComponent
   @Input()
   putPath: string;
   @Input()
-  cols: RequestGridDataColumnValue[];
+  cols: ResponseGridDataColumnValue[];
   @Input()
   obj: TableMenuStructure;
   @Input()
@@ -75,7 +75,7 @@ export class ProductTradeNameFormComponent
       this.commonService
         .getObservableList4path(
           getModelListPath('EstimateType'),
-          columnListPath(GridEnum.estimateType)
+          columnListPath(GridEnum.EstimateType)
         )
         .subscribe({
           next: (res: ResponseBodyGetList) => {
@@ -84,22 +84,6 @@ export class ProductTradeNameFormComponent
         })
     );
   }
-
-  // openTab(name: string) {
-  //   const comp = components4tabs.find(
-  //     (x) => x.name.toLowerCase() === name.toLowerCase()
-  //   );
-  //   if (comp) {
-  //     const tab: Tab = {
-  //       header: comp.component.header,
-  //       active: true,
-  //       component: comp.component,
-  //       icon: comp.component.icon,
-  //       tooltip: comp.component.header,
-  //     };
-  //     this.dashboard.addTab(tab);
-  //   }
-  // }
 
   getRefreshTable(): void {
     this.refreshTable.emit();

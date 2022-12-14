@@ -24,9 +24,10 @@ import { DictionariesRoutingModule } from './dictionaries-routing.module';
 import { ProductTradeNameFormComponent } from './pages/product-trade-name/product-trade-name-form/product-trade-name-form.component';
 import { ProductTradeNameComponent } from './pages/product-trade-name/product-trade-name.component';
 import { EstimateTypeComponent } from './pages/estimate-type/estimate-type.component';
+import { ClientComponent } from './pages/client/client.component';
 
 @NgModule({
-  declarations: [ProductTradeNameComponent, ProductTradeNameFormComponent, EstimateTypeComponent],
+  declarations: [ProductTradeNameComponent, ProductTradeNameFormComponent, EstimateTypeComponent, ClientComponent],
   imports: [
     CommonModule,
     DictionariesRoutingModule,

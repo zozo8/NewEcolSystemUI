@@ -180,20 +180,8 @@ export class MenuitemComponent implements OnInit {
     this.removeActiveInk(event);
 
     if (this.item.component) {
+      console.log('open tab: ' + this.item.component);
       this.dashboard.openTab(this.item.component);
-      // const tab: Tab = {
-      //   component: this.item.component,
-      //   header: this.item.label,
-      //   icon: this.item.icon,
-      //   tooltip: this.item.label,
-      // };
-
-      //ti jest bład przy dodawaniu tabów, nie w tabach!!!!!!
-      // this.store.dispatch(
-      //   addTab({
-      //     tab: tab,
-      //   })
-      // );
     }
   }
 

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { base64StringToBlob } from 'blob-util';
 import { FilterMetadata, LazyLoadEvent, MenuItem } from 'primeng/api';
 import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
 import { Filter } from '../models/requests/filter.model';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
-import { RequestGridDataColumn } from '../models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumn } from '../models/responses/responseGridDataColumn.model';
+import { ResponseGridDataColumnValue } from '../models/responses/responseGridDataColumnValue.model';
 import { addTab, setActiveTab } from '../modules/login/state/login.actions';
 import { getTabs } from '../modules/login/state/login.selector';
 import { LoginState } from '../modules/login/state/loginState';
-import { RequestGridDataColumnValue } from '../modules/universal-components/models/requestGridDataColumnValue.model';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -28,7 +29,7 @@ export class CommonService {
 
   // get request from api for default params or dynamic params from universal table component (ev)
   getRequestObj(
-    columns: RequestGridDataColumnValue[],
+    columns: ResponseGridDataColumnValue[],
     ev?: LazyLoadEvent,
     filters?: Filter[]
   ): RequestBodyGetList {
@@ -60,11 +61,11 @@ export class CommonService {
   }
 
   private prepareFilters(
-    columns: RequestGridDataColumnValue[],
+    columns: ResponseGridDataColumnValue[],
     ev?: LazyLoadEvent,
     filters?: Filter[]
-  ): RequestGridDataColumnValue[] {
-    var res: RequestGridDataColumnValue[] = [];
+  ): ResponseGridDataColumnValue[] {
+    var res: ResponseGridDataColumnValue[] = [];
     columns.forEach((val) => {
       // not from table
       var flrs = filters?.filter(
@@ -130,10 +131,10 @@ export class CommonService {
       pageNumber: 100000,
     });
     var resBS = new Subject<ResponseBodyGetList>();
-    var columns: RequestGridDataColumnValue[];
+    var columns: ResponseGridDataColumnValue[];
 
     this.apiService.getColumns(columnPath).subscribe({
-      next: (res: RequestGridDataColumn) => {
+      next: (res: ResponseGridDataColumn) => {
         columns = res.value;
       },
       complete: () => {
@@ -144,7 +145,7 @@ export class CommonService {
 
     requestBS.subscribe((req) => {
       if (req.pageNumber !== 100000) {
-        this.apiService.getResponseObj(path, req).subscribe({
+        this.apiService.getResponseBodyGetList(path, req).subscribe({
           next: (res: ResponseBodyGetList) => {
             this.returnList = res;
           },
@@ -236,14 +237,29 @@ export class CommonService {
           const tabIndex = res.findIndex((x) => x === name);
           if (tabIndex === -1) {
             this.store.dispatch(addTab({ val: name }));
-            // const lastIndex: number = this.getValueFromObservable(
-            //   this.store.select(getActiveTab)
-            // );
             this.store.dispatch(setActiveTab({ val: res.length }));
           } else {
             this.store.dispatch(setActiveTab({ val: tabIndex }));
           }
         },
       });
+  }
+
+  getBlobFromBytes(bytes: string, type: string): Blob {
+    var fileType: string = '';
+    switch (type) {
+      case 'xlsx':
+        fileType = 'application/vnd.ms-excel';
+        break;
+      case 'pdf':
+        fileType = 'application/pdf';
+        break;
+      case 'docx':
+        fileType = 'application/vnd.ms-word';
+        break;
+    }
+
+    const file = base64StringToBlob(bytes, fileType);
+    return file;
   }
 }

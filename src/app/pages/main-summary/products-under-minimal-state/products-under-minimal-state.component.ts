@@ -3,12 +3,12 @@ import { Store } from '@ngrx/store';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { getDepartments } from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import { columnListPath, getModelListPath } from 'src/app/services/path';
@@ -23,7 +23,7 @@ export class ProductsUnderMinimalStateComponent implements OnInit, OnDestroy {
 
   model: string = 'Product';
   data: Observable<ResponseBodyGetList>;
-  columns: RequestGridDataColumnValue[];
+  columns: ResponseGridDataColumnValue[];
   gridId: number = GridEnum.Products;
 
   constructor(
@@ -36,7 +36,7 @@ export class ProductsUnderMinimalStateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.compsiteSubs.add(
       this.apiService.getColumns(columnListPath(GridEnum.Products)).subscribe({
-        next: (res: RequestGridDataColumn) => {
+        next: (res: ResponseGridDataColumn) => {
           this.columns = this.tableService.GetColumnsOutput(res.value);
         },
         complete: () => {

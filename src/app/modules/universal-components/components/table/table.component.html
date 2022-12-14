@@ -14,13 +14,14 @@
   [globalFilterFields]="columnFilter"
   [resizableColumns]="true"
   [scrollable]="true"
-  [scrollHeight]="'50vh'"
+  [scrollHeight]="'60vh'"
   (onLazyLoad)="loadData($event)"
   (onRowSelect)="selectObj(dt1.selection)"
   (onRowUnselect)="unselectObj()"
   [selectionMode]="multiselectRows === false ? 'single' : 'multiple'"
   [breakpoint]="'960px'"
   [(selection)]="selectedRows"
+  [tableStyle]="{ 'min-width': '100%' }"
   dataKey="id"
   currentPageReportTemplate="{first} - {last} / {{ totalRecords }}"
   styleClass="p-datatable-sm p-datatable-gridlines ui-datatable-scrollable-body "
@@ -74,13 +75,13 @@
       </td>
       <td *ngFor="let row of columns">
         <div [ngSwitch]="row.dataType">
-          <span *ngSwitchCase="'date'">{{
+          <span *ngSwitchCase="'date'" class="p-column-title">{{
             rowData[row.columnName] | date: "yyyy/MM/dd"
           }}</span>
-          <span *ngSwitchCase="'DateTime'">{{
+          <span *ngSwitchCase="'DateTime'" class="p-column-title">{{
             rowData[row.columnName] | date: "yyyy/MM/dd"
           }}</span>
-          <span *ngSwitchCase="'boolean'">
+          <span *ngSwitchCase="'boolean'" class="p-column-title">
             <i
               class="pi"
               [ngClass]="{
@@ -89,13 +90,15 @@
               }"
             ></i>
           </span>
-          <span *ngSwitchDefault>{{ rowData[row.columnName] }}</span>
+          <span class="p-column-title" *ngSwitchDefault>{{
+            rowData[row.columnName]
+          }}</span>
         </div>
       </td>
     </tr>
   </ng-template>
   <ng-template pTemplate="footer" let-columns>
-    <p *ngIf="selectedRows.length > 0">
+    <p *ngIf="selectedRows && selectedRows.length > 0">
       {{ "table-menu.selected_rows" | translate }} {{ selectedRows.length }}
     </p>
     <table *ngIf="summary">

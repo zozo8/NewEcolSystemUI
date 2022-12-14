@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import * as FileSaver from 'file-saver';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { RequestGridDataColumnValue } from '../../../models/requestGridDataColumnValue.model';
+import { Subscription } from 'rxjs';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
+import { ApiService } from 'src/app/services/api.service';
+import { CommonService } from 'src/app/services/common.service';
+import { getDataExport } from 'src/app/services/path';
 
 interface exportOutput {
   data?: any[];
   type?: string;
   title?: string;
-  columns?: RequestGridDataColumnValue[];
+  columns?: ResponseGridDataColumnValue[];
 }
 
 @Component({
@@ -19,11 +24,14 @@ interface exportOutput {
 export class ExportDataComponent implements OnInit {
   typeOptions: MenuItem[];
   obj: exportOutput = {};
+  dataExportSub: Subscription;
 
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private apiService: ApiService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +48,7 @@ export class ExportDataComponent implements OnInit {
       {
         label: this.translateService.instant('table-menu.export.doc'),
         icon: PrimeIcons.FILE,
-        id: 'doc',
+        id: 'docx',
         disabled: true,
       },
       {
@@ -58,8 +66,19 @@ export class ExportDataComponent implements OnInit {
     this.obj.title =
       this.obj.title ?? `Exported data ${new Date().toLocaleDateString()}`;
 
-    console.log('output export  obj:', this.obj);
-    this.ref.close();
+    this.dataExportSub = this.apiService
+      .getResponseByPost(getDataExport(), this.obj)
+      .subscribe({
+        next: (res: any) => {
+          const file = this.commonService.getBlobFromBytes(
+            res.value.bytes,
+            res.value.type
+          );
+          FileSaver.saveAs(file, res.value.fileName);
+          this.dataExportSub.unsubscribe();
+          this.ref.close();
+        },
+      });
   }
 
   close() {

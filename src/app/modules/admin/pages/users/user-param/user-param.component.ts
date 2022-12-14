@@ -5,15 +5,15 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
-import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { IDictionaryComponent } from 'src/app/modules/dictionaries/interfaces/IDictionaryComponent';
 import { FormDictionaryValueDialogComponent } from 'src/app/modules/universal-components/components/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { ITableButtonsComponent } from 'src/app/modules/universal-components/interfaces/ITableButtonsComponent';
 import { ITableComponent } from 'src/app/modules/universal-components/interfaces/ITableComponent';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
@@ -57,7 +57,7 @@ export class UserParamComponent
   model = 'UserParam';
   dictModel = 'ParamDict';
   dictGridId = GridEnum.Params;
-  columns: RequestGridDataColumnValue[];
+  columns: ResponseGridDataColumnValue[];
   reqObjBS = new BehaviorSubject<RequestBodyGetList>({ pageNumber: 10000 });
   responseObj: Observable<ResponseBodyGetList>;
   lazyLoadObj: LazyLoadEvent;
@@ -80,7 +80,7 @@ export class UserParamComponent
 
     this.reqObjBS.subscribe((request) => {
       if (request?.pageNumber !== 10000) {
-        this.responseObj = this.apiService.getResponseObj(
+        this.responseObj = this.apiService.getResponseBodyGetList(
           getModelListPath(this.model),
           request
         );
@@ -98,7 +98,7 @@ export class UserParamComponent
   getColumns(): void {
     this.compsiteSub.add(
       this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
-        next: (res: RequestGridDataColumn) => {
+        next: (res: ResponseGridDataColumn) => {
           this.columns = this.tableService.GetColumnsOutput(res.value);
         },
         complete: () => {

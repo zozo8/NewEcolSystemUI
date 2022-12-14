@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { UIChart } from 'primeng/chart';
 import { Subscription } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
-import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { getDepartments } from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
 import { ApiService } from 'src/app/services/api.service';
@@ -80,7 +79,7 @@ export class DiagramOrdersComponent implements OnInit, OnDestroy {
           this.apiService
             .getResponseByPost('/api/MainPageDiagramOrders', depts)
             .subscribe({
-              next: (res: ResponseBodyById) => {
+              next: (res: any) => {
                 res.value.forEach((element: any) => {
                   if (!labels.find((x) => x === element.m)) {
                     labels.push(element.m);

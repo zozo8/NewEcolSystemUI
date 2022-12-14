@@ -1,10 +1,10 @@
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableMenuStructure } from '../models/tableMenuStructure.model';
 
 export interface ITableFormComponent {
   postPath: string;
   putPath: string;
-  cols: RequestGridDataColumnValue[];
+  cols: ResponseGridDataColumnValue[];
   obj: TableMenuStructure;
   icon: string;
 

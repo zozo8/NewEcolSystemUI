@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -9,14 +8,14 @@ import { ApiService } from 'src/app/services/api.service';
   providedIn: 'root',
 })
 export class TableService {
-  ret: RequestGridDataColumnValue[];
+  ret: ResponseGridDataColumnValue[];
   constructor(private apiService: ApiService) {}
 
   // set specyfic format columns, require to create data, filters etc in table components
   GetColumnsOutput(
-    columns: RequestGridDataColumnValue[]
-  ): RequestGridDataColumnValue[] {
-    let columnsOutput: RequestGridDataColumnValue[] = [];
+    columns: ResponseGridDataColumnValue[]
+  ): ResponseGridDataColumnValue[] {
+    let columnsOutput: ResponseGridDataColumnValue[] = [];
     columns.forEach((res) => {
       columnsOutput.push({
         columnName: res.columnName,
@@ -52,8 +51,8 @@ export class TableService {
     obj: TableMenuStructure
   ): Observable<TableMenuStructure> {
     var retObj = new BehaviorSubject<TableMenuStructure>(obj);
-    this.apiService.getObjById(path).subscribe({
-      next: (res: ResponseBodyById) => {
+    this.apiService.getResponseByGet(path).subscribe({
+      next: (res: any) => {
         obj.objectDto = res.value;
         obj.objectEditDto = { ...res.value };
         retObj.next(obj);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getLayout } from '../modules/login/state/login.selector';
+import { getConfigLayout } from '../modules/login/state/login.selector';
 import { LoginState } from '../modules/login/state/loginState';
 import { CommonService } from './common.service';
 
@@ -16,7 +16,7 @@ export class LayoutService {
   getColors() {
     const isLight =
       this.commonService.getValueFromObservable(
-        this.store.select(getLayout)
+        this.store.select(getConfigLayout)
       ) === 'light';
     return {
       pinkColor: isLight ? '#EC407A' : '#F48FB1',

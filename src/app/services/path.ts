@@ -29,3 +29,10 @@ export const refreshTokenPath = () => prefix + 'Home/RefreshToken';
 export const getInitTreeElementListPath = () =>
   prefix + 'BaseTreeFilteredsInit';
 export const getTreeElementListPath = () => prefix + 'BaseTreeFiltereds';
+
+//excel etc
+export const getDataExport = () => prefix + 'GridDataExport';
+
+//main page
+export const getMainPageDiagramPercentages = () =>
+  prefix + 'MainPageDiagramPercentages';

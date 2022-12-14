@@ -4,8 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
+
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
 import { setDepartments } from 'src/app/modules/login/state/login.actions';
 import { getDepartments } from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
@@ -55,7 +56,7 @@ export class SelectDepartmentComponent implements OnInit, OnDestroy {
       this.apiService
         .getColumns(columnListPath(GridEnum.Departments))
         .subscribe({
-          next: (res: RequestGridDataColumn) => {
+          next: (res: ResponseGridDataColumn) => {
             const reqObj = this.commonService.getRequestObj(res.value, {
               first: 1,
               rows: 100,
@@ -65,7 +66,7 @@ export class SelectDepartmentComponent implements OnInit, OnDestroy {
 
             this.compsiteSubs.add(
               this.apiService
-                .getResponseObj(getModelListPath('Department'), reqObj)
+                .getResponseBodyGetList(getModelListPath('Department'), reqObj)
                 .subscribe({
                   next: (res: ResponseBodyGetList) => {
                     res.value.data.forEach((element) => {

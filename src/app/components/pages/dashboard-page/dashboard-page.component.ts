@@ -276,10 +276,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.authService.logout();
   }
 
-  // addTab(tab: Tab) {
-  //   this.newTab = tab;
-  // }
-
   openTab(name: string) {
     if (name) this.commonService.addTabToStore(name);
   }

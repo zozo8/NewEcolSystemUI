@@ -4,10 +4,9 @@ import { DndDropEvent } from 'ngx-drag-drop';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { RequestGridDataColumn } from 'src/app/models/requests/requestGridDataColumn.model';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { ApiService } from 'src/app/services/api.service';
-import { CommonService } from 'src/app/services/common.service';
 import { columnListPath } from 'src/app/services/path';
 import { FormTableSetColumnService } from './form-table-set-column.service';
 
@@ -17,9 +16,9 @@ import { FormTableSetColumnService } from './form-table-set-column.service';
   styleUrls: ['./form-table-set-column.component.css'],
 })
 export class FormTableSetColumnComponent implements OnInit {
-  availableColumns: RequestGridDataColumnValue[] = [];
-  selectedColumns: RequestGridDataColumnValue[] = [];
-  draggedColumn: RequestGridDataColumnValue | null;
+  availableColumns: ResponseGridDataColumnValue[] = [];
+  selectedColumns: ResponseGridDataColumnValue[] = [];
+  draggedColumn: ResponseGridDataColumnValue | null;
   title: string;
   gridId: number;
   private getColumnsSubscription: Subscription;
@@ -27,7 +26,6 @@ export class FormTableSetColumnComponent implements OnInit {
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private commonService: CommonService,
     private translateService: TranslateService,
     private formTableSetColumnService: FormTableSetColumnService,
     private messageService: MessageService,
@@ -45,7 +43,7 @@ export class FormTableSetColumnComponent implements OnInit {
   getColumns(gridId: number): void {
     var path = columnListPath(gridId);
     this.getColumnsSubscription = this.apiService.getColumns(path).subscribe({
-      next: (res: RequestGridDataColumn) => {
+      next: (res: ResponseGridDataColumn) => {
         this.availableColumns = res.value.filter((x) => x.isVisible === false);
         this.selectedColumns = res.value.filter((x) => x.isVisible === true);
       },
@@ -55,7 +53,7 @@ export class FormTableSetColumnComponent implements OnInit {
 
   onDragStartAvailableColumns(
     ev: DragEvent,
-    col: RequestGridDataColumnValue
+    col: ResponseGridDataColumnValue
   ): void {
     this.draggedColumn = col;
   }
@@ -80,7 +78,7 @@ export class FormTableSetColumnComponent implements OnInit {
 
   onDragStartSelectedColumns(
     ev: DragEvent,
-    col: RequestGridDataColumnValue
+    col: ResponseGridDataColumnValue
   ): void {
     this.draggedColumn = col;
   }

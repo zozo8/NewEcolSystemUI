@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { ITableFormComponent } from 'src/app/modules/universal-components/interfaces/ITableFormComponent';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserFormComponent implements ITableFormComponent {
   putPath: string;
 
   @Input()
-  cols: RequestGridDataColumnValue[];
+  cols: ResponseGridDataColumnValue[];
 
   @Input()
   obj: TableMenuStructure;

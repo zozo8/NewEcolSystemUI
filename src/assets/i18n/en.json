@@ -76,7 +76,7 @@
 		"popular_mode": "Popular pages mode",
 		"popular": {
 			"top": "top",
-			"bootom": "bottom"
+			"bottom": "bottom"
 		},
 		"topbar_mode": "Topbar themes",
 		"component_mode": "Component themes",
@@ -130,6 +130,12 @@
 			"diagram_percentage": "Percatnge data",
 			"orders_today": "Ordes today",
 			"product_under_state": "Products under minimal warehouse state"
+		},
+		"estimate_type": {
+			"title": "Estimate type dictionary"
+		},
+		"client": {
+			"title": "Client dictionary"
 		}
 	},
 	"primeng": {

@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { ColumnSetting } from 'src/app/models/requests/columnSetting.model';
 import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { getUserId } from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
 import { CommonService } from 'src/app/services/common.service';
 import { postModelPath } from 'src/app/services/path';
 import { environment } from 'src/environments/environment';
@@ -23,7 +23,7 @@ export class FormTableSetColumnService {
 
   setColumnByUserIdGridId(
     gridId: number,
-    columns: RequestGridDataColumnValue[]
+    columns: ResponseGridDataColumnValue[]
   ): Observable<boolean> {
     const bs = new Subject<boolean>();
 
@@ -51,7 +51,7 @@ export class FormTableSetColumnService {
 
   private getColumnObj(
     gridId: number,
-    el: RequestGridDataColumnValue,
+    el: ResponseGridDataColumnValue,
     userId: number
   ): ColumnSetting {
     let obj: ColumnSetting = {

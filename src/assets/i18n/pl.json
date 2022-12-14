@@ -76,7 +76,7 @@
 		"popular_mode": "Miejsce okien ulubionych",
 		"popular": {
 			"top": "góra",
-			"bootom": "dół"
+			"bottom": "dół"
 		},
 		"menu_color": "kolor menu",
 		"topbar_mode": "kolor górnego menu",
@@ -134,6 +134,9 @@
 		},
 		"estimate_type": {
 			"title": "Słownik typów kosztorysów"
+		},
+		"client": {
+			"title": "Słownik klientów"
 		}
 	},
 	"primeng": {

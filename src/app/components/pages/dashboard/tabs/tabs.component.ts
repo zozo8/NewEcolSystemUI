@@ -56,7 +56,7 @@ export class TabsComponent implements OnInit, OnDestroy {
       });
   }
 
-  setTab(i: number) {
+  private setTab(i: number) {
     const extTab = this.tabs[i];
     if (extTab) {
       this.activeTab = i;
@@ -72,8 +72,8 @@ export class TabsComponent implements OnInit, OnDestroy {
     }
   }
 
-  addTab(name: string, lastIndex: number) {
-    const tab = components4tabs.find((x) => x.component.name === name);
+  private addTab(name: string, lastIndex: number) {
+    const tab = components4tabs.find((x) => x.name === name);
 
     if (tab) {
       this.tabs.push({
@@ -92,6 +92,10 @@ export class TabsComponent implements OnInit, OnDestroy {
     this.store.dispatch(removeTab({ val: tabIndex }));
     this.tabs.splice(ev.index, 1);
     this.store.dispatch(setActiveTab({ val: tabIndex - 1 }));
+  }
+
+  selectTab(ev: any) {
+    this.store.dispatch(setActiveTab({ val: ev.index }));
   }
 
   ngOnDestroy(): void {

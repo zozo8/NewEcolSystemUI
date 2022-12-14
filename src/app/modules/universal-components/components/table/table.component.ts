@@ -4,7 +4,7 @@ import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { FormTableSetColumnComponent } from '../dialogs/form-table-set-column/form-table-set-column.component';
 import { ExportDataComponent } from './export-data/export-data.component';
 
@@ -16,7 +16,7 @@ import { ExportDataComponent } from './export-data/export-data.component';
 })
 export class TableComponent implements OnInit {
   dataLoading: boolean;
-  cols: RequestGridDataColumnValue[] = [];
+  cols: ResponseGridDataColumnValue[] = [];
   dataSource: ResponseBodyGetList;
   columnFilter: string[];
   tableSettingItems: MenuItem[];
@@ -62,13 +62,13 @@ export class TableComponent implements OnInit {
     }
   }
 
-  private _columns: RequestGridDataColumnValue[];
-  public get columns(): RequestGridDataColumnValue[] {
+  private _columns: ResponseGridDataColumnValue[];
+  public get columns(): ResponseGridDataColumnValue[] {
     return this._columns;
   }
 
   @Input()
-  public set columns(v: RequestGridDataColumnValue[]) {
+  public set columns(v: ResponseGridDataColumnValue[]) {
     this._columns = v;
     if (this._columns !== undefined) {
       this.columnFilter = this.cols.map((el) => el.columnName);
@@ -198,7 +198,7 @@ export class TableComponent implements OnInit {
 
     const ref = this.dialogService.open(ExportDataComponent, {
       contentStyle: { width: '40rem' },
-      header: this.translateService.instant('table_menu.export.title'),
+      header: this.translateService.instant('table-menu.export.title'),
       closeOnEscape: true,
       data: [exportData, this.columns],
     });
@@ -241,8 +241,7 @@ export class TableComponent implements OnInit {
     });
 
     this.columnSub = ref.onClose.subscribe({
-      next: (res: RequestGridDataColumnValue[]) => {
-        // this.selectedColumnList.emit();
+      next: (res: ResponseGridDataColumnValue[]) => {
         this.columnSub.unsubscribe();
       },
     });

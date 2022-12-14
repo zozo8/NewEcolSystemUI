@@ -1,4 +1,9 @@
-<p-tabView [(activeIndex)]="activeTab" (onClose)="closeTab($event)">
+<p-tabView
+  [(activeIndex)]="activeTab"
+  (onClose)="closeTab($event)"
+  [scrollable]="true"
+  (onChange)="selectTab($event)"
+>
   <p-tabPanel
     [closable]="true"
     [tooltip]="tab.tooltip"

@@ -38,11 +38,6 @@ export const setLastActivity = createAction(
   props<{ val: number }>()
 );
 
-export const changeLayout = createAction(
-  '[Config Component]  changeLayout',
-  props<{ val: string }>()
-);
-
 export const addTab = createAction(
   '[Dashboard Component] addTab',
   props<{ val: string }>()
@@ -56,4 +51,39 @@ export const removeTab = createAction(
 export const setActiveTab = createAction(
   '[Dahboard Component] setActiveTab',
   props<{ val: number }>()
+);
+
+export const setConfigLayout = createAction(
+  '[Config Component] setConfigLayout',
+  props<{ val: string }>()
+);
+
+export const setConfigComponentMode = createAction(
+  '[Config Component] setConfigComponentMode',
+  props<{ val: string }>()
+);
+
+export const setConfigMenuColor = createAction(
+  '[Config Component] setConfigMenuColor',
+  props<{ val: string }>()
+);
+
+export const setConfigMenuMode = createAction(
+  '[Config Component] setConfigMenuMode',
+  props<{ val: string }>()
+);
+
+export const setConfigPopularMode = createAction(
+  '[Config Component] setConfigPopularMode',
+  props<{ val: string }>()
+);
+
+export const setConfigScale = createAction(
+  '[Config Component] setConfigScale',
+  props<{ val: number }>()
+);
+
+export const setConfigTopbarMode = createAction(
+  '[Config Component] setConfigTopbarMode',
+  props<{ val: string }>()
 );

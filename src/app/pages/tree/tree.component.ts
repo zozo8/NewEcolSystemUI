@@ -10,7 +10,7 @@ import {
   TreeDragDropService,
   TreeNode,
 } from 'primeng/api';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { Filter } from 'src/app/models/requests/filter.model';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
@@ -60,27 +60,31 @@ export class TreeComponent implements OnInit, OnDestroy {
   loadData(): void {
     this.loading = true;
     this.compositeSubscription.add(
-      this.store.select(getDepartments).subscribe({
-        next: (depts: number[]) => {
-          const filters: Filter[] =
-            this.commonService.getFilters4Departments(depts);
-          this.compositeSubscription.add(
-            this.apiService
-              .getResponseObj(
-                getInitTreeElementListPath(),
-                this.getRequestObj(filters)
-              )
-              .subscribe({
-                next: (res: ResponseBodyGetList) => {
-                  this.values = this.treeService.getTreeNodes(res.value.data);
-                },
-                complete: () => {
-                  this.loading = false;
-                },
-              })
-          );
-        },
-      })
+      this.store
+        .select(getDepartments)
+        .pipe(take(1))
+        .subscribe({
+          next: (depts: number[]) => {
+            const filters: Filter[] =
+              this.commonService.getFilters4Departments(depts);
+
+            this.compositeSubscription.add(
+              this.apiService
+                .getResponseBodyGetList(
+                  getInitTreeElementListPath(),
+                  this.getRequestObj(filters)
+                )
+                .subscribe({
+                  next: (res: ResponseBodyGetList) => {
+                    this.values = this.treeService.getTreeNodes(res.value.data);
+                  },
+                  complete: () => {
+                    this.loading = false;
+                  },
+                })
+            );
+          },
+        })
     );
   }
 
@@ -95,6 +99,7 @@ export class TreeComponent implements OnInit, OnDestroy {
   }
 
   loadChildren(ev: any) {
+    // this.loading = true;
     if (ev.node.children === undefined || ev.node.children.length === 0) {
       const filter = this.commonService.getFilter4request(
         'ParentId',
@@ -104,16 +109,17 @@ export class TreeComponent implements OnInit, OnDestroy {
 
       this.compositeSubscription.add(
         this.apiService
-          .getResponseObj(
+          .getResponseBodyGetList(
             getTreeElementListPath(),
             this.getRequestObj([filter])
           )
+          .pipe(take(1))
           .subscribe({
             next: (res: ResponseBodyGetList) => {
               ev.node.children = this.treeService.getChildrenByParentId(
                 res.value.data
               );
-              //this.loading = false;
+              // this.loading = false;
             }, //,
             // error: () => (this.loading = false),
             // complete: () => (this.loading = false),

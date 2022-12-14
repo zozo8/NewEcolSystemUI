@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { RequestGridDataColumnValue } from 'src/app/modules/universal-components/models/requestGridDataColumnValue.model';
+import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { TableButtonService } from '../table-button/table-button.service';
 
@@ -29,7 +29,7 @@ export class FormComponent {
   obj: TableMenuStructure;
 
   @Input()
-  cols: RequestGridDataColumnValue[];
+  cols: ResponseGridDataColumnValue[];
 
   @Input()
   postPath: string;

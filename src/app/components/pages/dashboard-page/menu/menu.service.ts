@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TreeNode } from 'primeng/api';
 import { UsersComponent } from 'src/app/modules/admin/pages/users/users.component';
+import { ClientComponent } from 'src/app/modules/dictionaries/pages/client/client.component';
 import { EstimateTypeComponent } from 'src/app/modules/dictionaries/pages/estimate-type/estimate-type.component';
 import { ProductTradeNameComponent } from 'src/app/modules/dictionaries/pages/product-trade-name/product-trade-name.component';
 import { MainSummaryComponent } from 'src/app/pages/main-summary/main-summary.component';
@@ -24,17 +25,17 @@ export class MenuService {
           {
             label: this.translate.instant('pages.main_summary.title'),
             icon: MainSummaryComponent.icon,
-            component: MainSummaryComponent.name,
+            component: 'MainSummaryComponent',
           },
           {
             label: this.translate.instant('pages.summary1.title'),
             icon: Summary1Component.icon,
-            component: Summary1Component.name,
+            component: 'Summary1Component',
           },
           {
             label: this.translate.instant('pages.summary2.title'),
             icon: Summary2Component.icon,
-            component: Summary2Component.name,
+            component: 'Summary2Component',
           },
         ],
       },
@@ -43,9 +44,9 @@ export class MenuService {
         icon: 'pi pi-fw pi-wrench',
         children: [
           {
-            label: this.translate.instant('pages.tree.title'),
+            label: this.translate.instant(TreeComponent.title),
             icon: TreeComponent.icon,
-            component: TreeComponent.name,
+            component: 'TreeComponent',
           },
           {
             label: this.translate.instant('sidebar.administraction'),
@@ -57,22 +58,27 @@ export class MenuService {
                 children: [
                   {
                     label: this.translate.instant(
-                      'pages.product_trade_name.title'
+                      ProductTradeNameComponent.title
                     ),
                     icon: ProductTradeNameComponent.icon,
-                    component: ProductTradeNameComponent.name,
+                    component: 'ProductTradeNameComponent',
                   },
                   {
-                    label: this.translate.instant('pages.estimate_type.title'),
+                    label: this.translate.instant(EstimateTypeComponent.title),
                     icon: EstimateTypeComponent.icon,
-                    component: EstimateTypeComponent.name,
+                    component: 'EstimateTypeComponent',
+                  },
+                  {
+                    label: this.translate.instant(ClientComponent.title),
+                    icon: ClientComponent.icon,
+                    component: 'ClientComponent',
                   },
                 ],
               },
               {
-                label: this.translate.instant('pages.users.title'),
+                label: this.translate.instant(UsersComponent.title),
                 icon: UsersComponent.icon,
-                component: UsersComponent.name,
+                component: 'UsersComponent',
               },
             ],
           },
