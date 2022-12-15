@@ -34,7 +34,7 @@ export const getInitTreeElementListPath = () =>
 export const getTreeElementListPath = () => prefix + 'BaseTreeFiltereds';
 
 //excel etc
-export const getDataExport = () => prefix + 'GridDataExport';
+export const getDataExport = () => prefix + 'GridExcelExport';
 
 //main page
 export const getMainPageDiagramPercentages = () =>
