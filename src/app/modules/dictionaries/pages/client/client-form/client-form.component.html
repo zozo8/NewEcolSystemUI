@@ -1,0 +1,76 @@
+<app-form
+  #form
+  [title]="'table-detail.header' | translate"
+  [icon]="icon"
+  [obj]="obj"
+  [cols]="cols"
+  [postPath]="postPath"
+  (refreshTable)="getRefreshTable()"
+>
+  <div class="grid" form="header" *ngIf="obj.objectDto">
+    <div class="col-12 p-fluid">
+      <div class="p-formgrid grid">
+        <div class="field col">
+          <label for="h_clientSymbol" class="required-field">{{
+            form.getFieldName("clientSymbol")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            name="h_clientSymbol"
+            [(ngModel)]="obj.objectDto.clientSymbol"
+            class="p-inputtext-sm form-control"
+            [readOnly]="true"
+          />
+        </div>
+        <div class="field col">
+          <label for="h_clientName" class="required-field">{{
+            form.getFieldName("clientName")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            name="h_clientName"
+            [(ngModel)]="obj.objectDto.clientName"
+            class="p-inputtext-sm form-control"
+            [readOnly]="true"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid" form="body" *ngIf="obj.objectEditDto">
+    <div class="col-12 p-fluid">
+      <div class="p-formgrid grid">
+        <div class="field col">
+          <label for="h_nip" class="required-field">{{
+            form.getFieldName("nip")
+          }}</label>
+          <input
+            pInputText
+            type="text"
+            [readOnly]="!obj.editState"
+            id="nip"
+            name="nip"
+            class="p-inputtext-sm form-control"
+            [(ngModel)]="obj.objectEditDto.nip"
+          />
+        </div>
+        <div class="field col">
+          <label styleClass="p-button-link required-field text-left">
+            Słownik Xprimer
+          </label>
+          <p-dropdown
+            [placeholder]="'dict.select_value' | translate"
+            [readonly]="!obj.editState"
+            [style]="{ width: '100%' }"
+            [filter]="true"
+            appendTo="body"
+            optionLabel="name"
+            optionValue="id"
+          ></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-form>

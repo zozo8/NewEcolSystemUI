@@ -60,7 +60,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
   submit(): void {
     let obj = this.prepareObj(this.selectedOption, this.config.data[2]);
     this.saveSubscription = this.tableButtonService
-      .save(this.config.data[2], obj.id, this.config.data[1])
+      .save(this.config.data[1], this.config.data[2], obj.id)
       .subscribe({
         next: (res: boolean) => {
           if (res) {

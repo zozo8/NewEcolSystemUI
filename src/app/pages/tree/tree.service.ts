@@ -60,8 +60,20 @@ export class TreeService {
     const treeElements: TreeNode[] = [];
 
     data.forEach((value) => {
+      const extObj = treeElements.find(
+        (x) => x.recordId === value.recordId && x.level === value.level
+      );
+      if (extObj) return;
+
       const obj = this.getTreeNode(value);
-      const parentObj = treeElements.find((x) => x.id === obj.parentId);
+      var parentObj = treeElements.find((x) => x.id === obj.parentId);
+      if (!parentObj) {
+        const name = data.find((x) => x.id === obj.parentId)?.nodeName;
+        if (name) {
+          parentObj = treeElements.find((x) => x.label === name);
+        }
+      }
+
       if (!parentObj) {
         treeElements.push(obj);
       } else {
@@ -108,6 +120,7 @@ export class TreeService {
       level: obj.level,
       departmentId: obj.departmentId,
       children: [],
+      recordId: obj.recordId,
     };
 
     return treeNode;

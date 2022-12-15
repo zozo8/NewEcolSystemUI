@@ -20,6 +20,9 @@ export const getModelListPath = (model: string): string => prefix + model + 's';
 export const columnListPath = (id: number): string =>
   prefix + 'GridData?gridsDict=' + id;
 
+export const columnListPathByName = (name: string): string =>
+  prefix + 'GridData?gridsDict=' + name;
+
 // login
 export const loginToURPath = () => prefix + 'auth/login/';
 export const authenticatePath = () => prefix + 'Home/Authenticate';
@@ -36,3 +39,5 @@ export const getDataExport = () => prefix + 'GridDataExport';
 //main page
 export const getMainPageDiagramPercentages = () =>
   prefix + 'MainPageDiagramPercentages';
+
+export const getProductsUnderMinimum = () => prefix + 'ProductsUnderMinimum';

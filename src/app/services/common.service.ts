@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { base64StringToBlob } from 'blob-util';
-import { FilterMetadata, LazyLoadEvent, MenuItem } from 'primeng/api';
+import {
+  FilterMetadata,
+  LazyLoadEvent,
+  MenuItem,
+  MessageService,
+} from 'primeng/api';
 import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
 import { Filter } from '../models/requests/filter.model';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
@@ -24,7 +30,9 @@ export class CommonService {
 
   constructor(
     private apiService: ApiService,
-    private store: Store<LoginState>
+    private store: Store<LoginState>,
+    private messageService: MessageService,
+    private translateService: TranslateService
   ) {}
 
   // get request from api for default params or dynamic params from universal table component (ev)
@@ -261,5 +269,32 @@ export class CommonService {
 
     const file = base64StringToBlob(bytes, fileType);
     return file;
+  }
+
+  getMessageToastBySeverity(severity: string, detailText: string): void {
+    var errorLn: string;
+    switch (severity) {
+      case 'error':
+        errorLn = 'table-menu.error';
+        break;
+      case 'success':
+        errorLn = 'table-menu.success';
+        break;
+      case 'info':
+        errorLn = 'table-menu.info';
+        break;
+      case 'warn':
+        errorLn = 'table-menu.warning';
+        break;
+      default:
+        errorLn = 'table-menu.warning';
+        break;
+    }
+
+    this.messageService.add({
+      severity: severity,
+      summary: this.translateService.instant(errorLn),
+      detail: detailText,
+    });
   }
 }

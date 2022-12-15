@@ -43,7 +43,7 @@ export class FormComponent {
 
   save(): void {
     this.saveSubscription = this.tableButtonService
-      .save(this.obj.objectEditDto, this.obj.objectEditDto.id, this.postPath)
+      .save(this.postPath, this.obj.objectEditDto, this.obj.objectEditDto.id)
       .subscribe({
         next: (res: boolean) => {
           if (res) {

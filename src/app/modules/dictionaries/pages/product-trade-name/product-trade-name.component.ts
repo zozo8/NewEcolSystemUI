@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, MenuItem } from 'primeng/api';
+import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
@@ -36,7 +36,7 @@ export class ProductTradeNameComponent
     IMasterPage,
     OnDestroy
 {
-  static icon = 'pi pi-fw pi-list';
+  static icon = PrimeIcons.LIST;
   static title = 'pages.product_trade_name.title';
 
   buttons: MenuItem[];

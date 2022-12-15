@@ -8,6 +8,7 @@ import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDat
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
+import { IMasterPage } from 'src/app/modules/universal-components/interfaces/IMasterPage';
 import { ITableButtonsComponent } from 'src/app/modules/universal-components/interfaces/ITableButtonsComponent';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -17,6 +18,7 @@ import {
   deleteModelPath,
   getModelListPath,
   getModelPath,
+  postModelPath,
 } from 'src/app/services/path';
 
 @Component({
@@ -25,7 +27,7 @@ import {
   styleUrls: ['./client.component.scss'],
 })
 export class ClientComponent
-  implements OnInit, OnDestroy, ITableButtonsComponent
+  implements OnInit, OnDestroy, ITableButtonsComponent, IMasterPage
 {
   static icon = PrimeIcons.LIST;
   static title = 'pages.client.title';
@@ -39,10 +41,14 @@ export class ClientComponent
   model = 'Client';
   compositeSubscription = new Subscription();
 
+  postPath = postModelPath(this.model);
+  putPath: string;
+
   buttons: MenuItem[];
   postSub: Subscription;
   deleteSub: Subscription;
   putSub: Subscription;
+  columnsSub: Subscription;
 
   constructor(
     private translateService: TranslateService,
@@ -57,17 +63,19 @@ export class ClientComponent
     this.getButtons();
   }
 
+  // table
   getColumns(): void {
-    this.compositeSubscription.add(
-      this.apiService.getColumns(columnListPath(GridEnum.Clients)).subscribe({
+    this.columnsSub = this.apiService
+      .getColumns(columnListPath(GridEnum.Clients))
+      .subscribe({
         next: (res: ResponseGridDataColumn) => {
           this.columns = this.tableService.GetColumnsOutput(res.value);
         },
         complete: () => {
+          this.columnsSub.unsubscribe();
           this.getData();
         },
-      })
-    );
+      });
   }
 
   getData(ev?: LazyLoadEvent): void {
@@ -85,9 +93,10 @@ export class ClientComponent
   getSelected(ev: any): void {
     let path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;
-
     this.tableService.getObjDto(path, this.obj);
   }
+
+  //buttons
 
   getButtons(): void {
     this.buttons = [

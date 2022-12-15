@@ -30,13 +30,23 @@ export class ApiService {
     );
   }
 
-  // get typical tesponse by any get obj
+  // common request GET
   getResponseByGet(path: string): Observable<any> {
     return this.http.get<any>(environment.endpointApiPath + path);
   }
 
-  //get typical tesponse by any post obj
+  // common request POST
   getResponseByPost(path: string, postObj: any): Observable<any> {
     return this.http.post<any>(environment.endpointApiPath + path, postObj);
+  }
+
+  // common request DELETE
+  getResponseByDelete(path: string): Observable<any> {
+    return this.http.delete(environment.endpointApiPath + path);
+  }
+
+  // common request PUT
+  getResponseByPUT(path: string, putObj: any): Observable<any> {
+    return this.http.put(environment.endpointApiPath + path, putObj);
   }
 }

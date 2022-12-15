@@ -60,31 +60,28 @@ export class TreeComponent implements OnInit, OnDestroy {
   loadData(): void {
     this.loading = true;
     this.compositeSubscription.add(
-      this.store
-        .select(getDepartments)
-        .pipe(take(1))
-        .subscribe({
-          next: (depts: number[]) => {
-            const filters: Filter[] =
-              this.commonService.getFilters4Departments(depts);
+      this.store.select(getDepartments).subscribe({
+        next: (depts: number[]) => {
+          const filters: Filter[] =
+            this.commonService.getFilters4Departments(depts);
 
-            this.compositeSubscription.add(
-              this.apiService
-                .getResponseBodyGetList(
-                  getInitTreeElementListPath(),
-                  this.getRequestObj(filters)
-                )
-                .subscribe({
-                  next: (res: ResponseBodyGetList) => {
-                    this.values = this.treeService.getTreeNodes(res.value.data);
-                  },
-                  complete: () => {
-                    this.loading = false;
-                  },
-                })
-            );
-          },
-        })
+          this.compositeSubscription.add(
+            this.apiService
+              .getResponseBodyGetList(
+                getInitTreeElementListPath(),
+                this.getRequestObj(filters)
+              )
+              .subscribe({
+                next: (res: ResponseBodyGetList) => {
+                  this.values = this.treeService.getTreeNodes(res.value.data);
+                },
+                complete: () => {
+                  this.loading = false;
+                },
+              })
+          );
+        },
+      })
     );
   }
 
@@ -335,15 +332,15 @@ export class TreeComponent implements OnInit, OnDestroy {
           ev.dragNode.departmentId === ev.dropNode.departmentId
         ) {
           ev.accept();
-          this.messageService.add({
-            severity: 'success',
-            summary: this.translate.instant('pages.tree.drop_success'),
-          });
+          this.commonService.getMessageToastBySeverity(
+            'success',
+            this.translate.instant('pages.tree.drop_success')
+          );
         } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translate.instant('pages.tree.drop_validate'),
-          });
+          this.commonService.getMessageToastBySeverity(
+            'error',
+            this.translate.instant('pages.tree.drop_validate')
+          );
         }
       },
     });

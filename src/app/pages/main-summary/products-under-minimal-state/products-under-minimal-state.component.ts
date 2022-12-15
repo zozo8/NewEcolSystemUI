@@ -11,7 +11,10 @@ import { LoginState } from 'src/app/modules/login/state/loginState';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
-import { columnListPath, getModelListPath } from 'src/app/services/path';
+import {
+  columnListPathByName,
+  getProductsUnderMinimum,
+} from 'src/app/services/path';
 
 @Component({
   selector: 'app-products-under-minimal-state',
@@ -25,6 +28,7 @@ export class ProductsUnderMinimalStateComponent implements OnInit, OnDestroy {
   data: Observable<ResponseBodyGetList>;
   columns: ResponseGridDataColumnValue[];
   gridId: number = GridEnum.Products;
+  columnsSub: Subscription;
 
   constructor(
     private store: Store<LoginState>,
@@ -34,32 +38,35 @@ export class ProductsUnderMinimalStateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.compsiteSubs.add(
-      this.apiService.getColumns(columnListPath(GridEnum.Products)).subscribe({
+    this.columnsSub = this.apiService
+      .getColumns(columnListPathByName(this.model))
+      .subscribe({
         next: (res: ResponseGridDataColumn) => {
           this.columns = this.tableService.GetColumnsOutput(res.value);
         },
         complete: () => {
           this.getData();
+          this.columnsSub.unsubscribe();
         },
-      })
-    );
+      });
   }
 
   getData(ev?: LazyLoadEvent) {
-    this.store.select(getDepartments).subscribe({
-      next: (depts: number[]) => {
-        const filters = this.commonService.getFilters4Departments(depts);
-        if (filters.length > 0) {
-          this.data = this.commonService.getObservableList4path(
-            getModelListPath(this.model),
-            columnListPath(GridEnum.Products),
-            filters,
-            ev
-          );
-        }
-      },
-    });
+    this.compsiteSubs.add(
+      this.store.select(getDepartments).subscribe({
+        next: (depts: number[]) => {
+          const filters = this.commonService.getFilters4Departments(depts);
+          if (filters.length > 0) {
+            this.data = this.commonService.getObservableList4path(
+              getProductsUnderMinimum(),
+              columnListPathByName(this.model),
+              filters,
+              ev
+            );
+          }
+        },
+      })
+    );
   }
 
   getLazyLoadEvent(ev: LazyLoadEvent): void {

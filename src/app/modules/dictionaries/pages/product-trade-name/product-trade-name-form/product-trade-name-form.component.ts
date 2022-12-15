@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DashboardPageComponent } from 'src/app/components/pages/dashboard-page/dashboard-page.component';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
@@ -24,7 +17,7 @@ import { productTradeName } from '../../../models/productTradeName.model';
   styleUrls: ['./product-trade-name-form.component.css'],
 })
 export class ProductTradeNameFormComponent
-  implements ITableFormComponent, OnInit, OnDestroy
+  implements ITableFormComponent, OnInit
 {
   @Input()
   postPath: string;
@@ -40,7 +33,8 @@ export class ProductTradeNameFormComponent
   @Output()
   refreshTable = new EventEmitter();
 
-  compsiteSubs = new Subscription();
+  wasteSub: Subscription;
+  estimateSub: Subscription;
 
   estimateTypeDict: estimateType[] = [];
   wasteCodeDict: productTradeName[] = [];
@@ -56,40 +50,34 @@ export class ProductTradeNameFormComponent
   }
 
   getWasteCodeDict() {
-    this.compsiteSubs.add(
-      this.commonService
-        .getObservableList4path(
-          getModelListPath('ProductTradeName'),
-          columnListPath(GridEnum.ProductTradeName)
-        )
-        .subscribe({
-          next: (res: ResponseBodyGetList) => {
-            this.wasteCodeDict = res.value.data;
-          },
-        })
-    );
+    this.wasteSub = this.commonService
+      .getObservableList4path(
+        getModelListPath('ProductTradeName'),
+        columnListPath(GridEnum.ProductTradeName)
+      )
+      .subscribe({
+        next: (res: ResponseBodyGetList) => {
+          this.wasteCodeDict = res.value.data;
+          this.wasteSub.unsubscribe();
+        },
+      });
   }
 
   getEstimateType() {
-    this.compsiteSubs.add(
-      this.commonService
-        .getObservableList4path(
-          getModelListPath('EstimateType'),
-          columnListPath(GridEnum.EstimateType)
-        )
-        .subscribe({
-          next: (res: ResponseBodyGetList) => {
-            this.estimateTypeDict = res.value.data;
-          },
-        })
-    );
+    this.estimateSub = this.commonService
+      .getObservableList4path(
+        getModelListPath('EstimateType'),
+        columnListPath(GridEnum.EstimateType)
+      )
+      .subscribe({
+        next: (res: ResponseBodyGetList) => {
+          this.estimateTypeDict = res.value.data;
+          this.estimateSub.unsubscribe();
+        },
+      });
   }
 
   getRefreshTable(): void {
     this.refreshTable.emit();
-  }
-
-  ngOnDestroy(): void {
-    this.compsiteSubs.unsubscribe();
   }
 }

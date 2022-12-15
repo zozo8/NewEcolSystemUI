@@ -47,7 +47,6 @@
     <app-breadcrumb></app-breadcrumb>
     <div class="layout-content">
       <app-tabs> </app-tabs>
-      <!-- <router-outlet></router-outlet> -->
     </div>
     <app-footer></app-footer>
   </div>
@@ -56,85 +55,3 @@
 
   <div *ngIf="mobileMenuActive" class="layout-mask modal-in"></div>
 </div>
-
-<!-- <p-toast position="top-right"></p-toast>
-<p-confirmDialog
-  [baseZIndex]="10000"
-  [header]="'common.remove_record' | translate"
-  icon="pi pi-question"
-></p-confirmDialog>
-
-<div
-  [@loadDashboardTrigger]="loadDashboard ? 'show' : 'hide'"
-  style="
-    min-height: 100vh;
-    background-image: url(./assets/images/dashboard_background.jpg);
-  "
-  class="d-flex flex-column dashboard"
->
-  <header>
-    <p-menubar [model]="topMenu">
-      <ng-template pTemplate="start">
-        <a [routerLink]="['/dashboard/mainpage']" style="text-decoration: none">
-          <img
-            src="./assets/images/logo.png"
-            width="55"
-            alt="brand logo"
-            [title]="'common.title_page' | translate"
-          />
-        </a>
-      </ng-template>
-      <ng-template pTemplate="end">
-        <span class="p-input-icon-left" style="padding-right: 15px">
-          <app-search-page (refreshTabs)="tabsComponent.refreshTabs($event)">
-          </app-search-page>
-        </span>
-        <em
-          class="pi pi-bell"
-          pBadge
-          value="15"
-          [title]="'common.notifications' | translate"
-        ></em>
-        <span style="padding-left: 20px; padding-right: 10px">
-          {{ "common.login" | translate
-          }}<strong> {{ userName$ | async }} </strong>
-        </span>
-        <p-treeSelect
-          [options]="clientNodes"
-          [placeholder]="'common.change_customer' | translate"
-          selectionMode="checkbox"
-          [(ngModel)]="selectedClientNode"
-        >
-        </p-treeSelect>
-        <p-splitButton
-          icon="pi pi-fw pi-cog"
-          [showTransitionOptions]="'300ms'"
-          [hideTransitionOptions]="'300ms'"
-          [model]="userMenu"
-          styleClass="p-button-raised p-button-secondary p-button-text"
-        ></p-splitButton>
-      </ng-template>
-    </p-menubar>
-  </header>
-  <main style="flex: 1 1 auto" class="container-fluid">
-    <app-tabs #tabsComponent> </app-tabs>
-  </main>
-  <footer>
-    <p-menubar>
-      <ng-template pTemplate="start">
-        <strong>{{ "common.footer_left_a" | translate }}</strong>
-        {{ "common.footer_left_b" | translate }}
-      </ng-template>
-      <ng-template pTemplate="end">
-        &copy;{{ "common.footer_right_a" | translate }}
-        <strong>{{ appVersion }}</strong>
-      </ng-template>
-    </p-menubar>
-  </footer>
-</div>
-<app-left-menu
-  [visible]="visibleMenu"
-  (changeDisplay)="changeStateDisplaySidebar()"
-  (refreshTabs)="tabsComponent.refreshTabs($event)"
->
-</app-left-menu> -->
