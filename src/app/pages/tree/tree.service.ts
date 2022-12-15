@@ -59,27 +59,54 @@ export class TreeService {
   getTreeNodes(data: BaseTreeFilteredDto[]): TreeNode[] {
     const treeElements: TreeNode[] = [];
 
-    data.forEach((value) => {
+    for (let i = data.length - 1; i >= 0; i--) {
       const extObj = treeElements.find(
-        (x) => x.recordId === value.recordId && x.level === value.level
+        (x) => x.recordId === data[i].recordId && x.level === data[i].level
       );
-      if (extObj) return;
+      if (extObj) break;
 
-      const obj = this.getTreeNode(value);
-      var parentObj = treeElements.find((x) => x.id === obj.parentId);
+      var parentObj = treeElements.find((x) => x.id === data[i].parentId);
       if (!parentObj) {
-        const name = data.find((x) => x.id === obj.parentId)?.nodeName;
+        const name = data.find((x) => x.id === data[i].parentId)?.nodeName;
         if (name) {
           parentObj = treeElements.find((x) => x.label === name);
         }
       }
 
       if (!parentObj) {
-        treeElements.push(obj);
+        const parObjTmp = data.find((x) => x.id === data[i].parentId);
+        if (parObjTmp) {
+          const parObj = this.getTreeNode(parObjTmp);
+          const childObj = this.getTreeNode(data[i]);
+          parObj.children?.push(childObj);
+          treeElements.push(parObj);
+        }
       } else {
-        parentObj.children?.push(obj);
+        parentObj.children?.push(data[i]);
       }
-    });
+    }
+
+    // data.forEach((value) => {
+    //   const extObj = treeElements.find(
+    //     (x) => x.recordId === value.recordId && x.level === value.level
+    //   );
+    //   if (extObj) return;
+
+    //   const obj = this.getTreeNode(value);
+    //   var parentObj = treeElements.find((x) => x.id === obj.parentId);
+    //   if (!parentObj) {
+    //     const name = data.find((x) => x.id === obj.parentId)?.nodeName;
+    //     if (name) {
+    //       parentObj = treeElements.find((x) => x.label === name);
+    //     }
+    //   }
+
+    //   if (!parentObj) {
+    //     treeElements.push(obj);
+    //   } else {
+    //     parentObj.children?.push(obj);
+    //   }
+    // });
 
     return treeElements;
   }
