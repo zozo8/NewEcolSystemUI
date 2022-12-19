@@ -167,7 +167,7 @@ export class TableComponent implements OnInit {
       this.summaryValues.push(this.dataValues[0]);
       let values: number[] = [];
       this.columns.forEach((el, index) => {
-        if (el.dataType === 'numeric') {
+        if (el.dataType === 'numeric' || el.dataType === 'float') {
           if (this.selectedRows.length > 0) {
             values = this.selectedRows.map((x) => x[el.columnName]);
           } else {

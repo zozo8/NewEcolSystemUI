@@ -35,8 +35,8 @@ export class TableService {
         return 'boolean';
       case 'Int32':
         return 'numeric';
-      case 'Int32':
-        return 'numeric';
+      case 'Single':
+        return 'float';
       case 'String':
         return 'text';
       case 'DateTime':

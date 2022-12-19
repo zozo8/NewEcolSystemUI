@@ -126,6 +126,8 @@ export class CommonService {
         return 'boolean';
       case 'numeric':
         return 'Int32';
+      case 'float':
+        return 'single';
       case 'text':
         return 'String';
       case 'date':

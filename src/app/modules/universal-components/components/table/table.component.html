@@ -22,6 +22,7 @@
   [breakpoint]="'960px'"
   [(selection)]="selectedRows"
   [tableStyle]="{ 'min-width': '100%' }"
+  [metaKeySelection]="true"
   dataKey="id"
   currentPageReportTemplate="{first} - {last} / {{ totalRecords }}"
   styleClass="p-datatable-sm p-datatable-gridlines ui-datatable-scrollable-body "
@@ -47,13 +48,14 @@
   </ng-template>
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngIf="multiselectRows" style="width: 1px">
+      <th *ngIf="multiselectRows" style="width: 30px" pResizableColumn>
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
       <th
         *ngFor="let col of columns"
         pSortableColumn="{{ col.columnName }}"
         id="th-{{ col.columnName }}"
+        pResizableColumn
       >
         <strong>{{ col.displayName }}</strong>
         <p-sortIcon field="{{ col.columnName }}"></p-sortIcon>
@@ -65,13 +67,22 @@
       </th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData" [pSelectableRowDisabled]="tableDisabled">
-      <td *ngIf="multiselectRows">
-        <p-tableCheckbox
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-rowIndex="rowIndex"
+  >
+    <tr
+      [pSelectableRow]="rowData"
+      [pSelectableRowDisabled]="tableDisabled"
+      [pSelectableRowIndex]="rowIndex"
+    >
+      <td *ngIf="multiselectRows" style="width: 30px">
+        <!-- <p-tableCheckbox
           [value]="rowData"
           [disabled]="!multiselectRows"
-        ></p-tableCheckbox>
+        ></p-tableCheckbox> -->
       </td>
       <td *ngFor="let row of columns">
         <div [ngSwitch]="row.dataType">
