@@ -7,33 +7,21 @@
   [postPath]="postPath"
   (refreshTable)="getRefreshTable()"
 >
-  <div class="grid" form="header" *ngIf="obj.objectDto">
-    <div class="col-12 p-fluid">
-      <div class="p-formgrid grid">
-        <div class="field col">
-          <label for="h_name">{{ form.getFieldName("name") }}</label>
-          <input
-            pInputText
-            type="text"
-            name="h_name"
-            [(ngModel)]="obj.objectDto.name"
-            class="p-inputtext-sm form-control"
-            [readOnly]="true"
-          />
-        </div>
-        <div class="field col">
-          <label for="h_description">{{
-            form.getFieldName("description")
-          }}</label>
-          <input
-            pInputText
-            type="text"
-            name="h_description"
-            [(ngModel)]="obj.objectDto.description"
-            class="p-inputtext-sm form-control"
-            [readOnly]="true"
-          />
-        </div>
+  <div form="header" *ngIf="obj.objectDto">
+    <div class="p-formgrid grid">
+      <div class="field col">
+        <label for="h_name" class="required-field">{{
+          form.getFieldName("name")
+        }}</label
+        ><br />
+        <label>{{ obj.objectDto.name }}</label>
+      </div>
+      <div class="field col">
+        <label for="h_description" class="required-field">{{
+          form.getFieldName("description")
+        }}</label
+        ><br />
+        <label>{{ obj.objectDto.description }}</label>
       </div>
     </div>
   </div>
@@ -47,7 +35,7 @@
           <input
             pInputText
             type="text"
-            [readOnly]="!obj.editState"
+            [disabled]="!obj.editState"
             id="name"
             name="name"
             class="p-inputtext-sm form-control"
@@ -61,7 +49,7 @@
           <input
             pInputText
             type="text"
-            [readOnly]="!obj.editState"
+            [disabled]="!obj.editState"
             id="description"
             name="description"
             class="p-inputtext-sm form-control"
@@ -79,7 +67,7 @@
           <p-dropdown
             [placeholder]="'dict.select_value' | translate"
             [options]="estimateTypeDict"
-            [readonly]="!obj.editState"
+            [disabled]="!obj.editState"
             [style]="{ width: '100%' }"
             [filter]="true"
             [(ngModel)]="obj.objectEditDto.estimateTypeId"
@@ -95,7 +83,7 @@
           <p-dropdown
             [placeholder]="'dict.select_value' | translate"
             [options]="wasteCodeDict"
-            [readonly]="!obj.editState"
+            [disabled]="!obj.editState"
             [style]="{ width: '100%' }"
             [filter]="true"
             [(ngModel)]="obj.objectEditDto.wasteCodeProductTradeNameId"

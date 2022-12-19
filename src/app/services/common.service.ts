@@ -42,11 +42,15 @@ export class CommonService {
     filters?: Filter[]
   ): RequestBodyGetList {
     if (ev === undefined) {
+      // ev = {
+      //   first: 1,
+      //   rows: 10,
+      //   sortField: 'id',
+      //   sortOrder: -1,
+      // };
       ev = {
         first: 1,
         rows: 10,
-        sortField: 'id',
-        sortOrder: -1,
       };
     } else {
       let first = ev.first ?? 0;
@@ -57,14 +61,17 @@ export class CommonService {
     let obj: RequestBodyGetList = {
       pageNumber: ev.first,
       pageSize: ev?.rows,
-      order: {
-        columnName: ev?.sortField ?? 'id',
-        isAscending: ev?.sortOrder === 1 ? false : true,
-      },
       filter: {
         filters: this.prepareFilters(columns, ev, filters),
       },
     };
+
+    if (ev.sortField) {
+      obj.order = {
+        columnName: ev?.sortField,
+        isAscending: ev?.sortOrder === 1 ? false : true,
+      };
+    }
     return obj;
   }
 

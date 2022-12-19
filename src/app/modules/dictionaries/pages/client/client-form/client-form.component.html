@@ -7,40 +7,65 @@
   [postPath]="postPath"
   (refreshTable)="getRefreshTable()"
 >
-  <div class="grid" form="header" *ngIf="obj.objectDto">
+  <div class="p-formgrid grid" form="header" *ngIf="obj.objectDto">
+    <div class="field col-4">
+      <label for="h_clientSymbol" class="required-field">{{
+        form.getFieldName("clientSymbol")
+      }}</label
+      ><br />
+      <label>
+        {{ obj.objectDto.clientSymbol }}
+      </label>
+    </div>
+    <div class="field col-4">
+      <label for="h_clientName" class="required-field">{{
+        form.getFieldName("clientName")
+      }}</label
+      ><br />
+      <label>
+        {{ obj.objectDto.clientName }}
+      </label>
+    </div>
+    <div class="field col-4">
+      <label for="h_nip" class="required-field">{{
+        form.getFieldName("nip")
+      }}</label
+      ><br />
+      <label>
+        {{ obj.objectDto.nip }}
+      </label>
+    </div>
+  </div>
+  <div class="grid" form="body" *ngIf="obj.objectEditDto">
     <div class="col-12 p-fluid">
       <div class="p-formgrid grid">
         <div class="field col">
-          <label for="h_clientSymbol" class="required-field">{{
+          <label for="clientSymbol" class="required-field">{{
             form.getFieldName("clientSymbol")
           }}</label>
           <input
             pInputText
             type="text"
-            name="h_clientSymbol"
-            [(ngModel)]="obj.objectDto.clientSymbol"
+            name="clientSymbol"
+            [(ngModel)]="obj.objectEditDto.clientSymbol"
             class="p-inputtext-sm form-control"
-            [readOnly]="true"
+            [disabled]="!obj.editState"
           />
         </div>
         <div class="field col">
-          <label for="h_clientName" class="required-field">{{
+          <label for="clientName" class="required-field">{{
             form.getFieldName("clientName")
           }}</label>
           <input
             pInputText
             type="text"
-            name="h_clientName"
-            [(ngModel)]="obj.objectDto.clientName"
+            name="clientName"
+            [(ngModel)]="obj.objectEditDto.clientName"
             class="p-inputtext-sm form-control"
-            [readOnly]="true"
+            [disabled]="!obj.editState"
           />
         </div>
       </div>
-    </div>
-  </div>
-  <div class="grid" form="body" *ngIf="obj.objectEditDto">
-    <div class="col-12 p-fluid">
       <div class="p-formgrid grid">
         <div class="field col">
           <label for="h_nip" class="required-field">{{
@@ -49,7 +74,7 @@
           <input
             pInputText
             type="text"
-            [readOnly]="!obj.editState"
+            [disabled]="!obj.editState"
             id="nip"
             name="nip"
             class="p-inputtext-sm form-control"
@@ -57,14 +82,15 @@
           />
         </div>
         <div class="field col">
-          <label styleClass="p-button-link required-field text-left">
-            Słownik Xprimer
-          </label>
+          <label styleClass="p-button-link text-left"> Słownik Xprimer </label>
           <p-dropdown
             [placeholder]="'dict.select_value' | translate"
-            [readonly]="!obj.editState"
+            [disabled]="!obj.editState"
             [style]="{ width: '100%' }"
             [filter]="true"
+            [options]="xprimerClientDict"
+            [(ngModel)]="obj.objectEditDto.xprimerId"
+            (onChange)="selectXprimerClient()"
             appendTo="body"
             optionLabel="name"
             optionValue="id"

@@ -39,5 +39,8 @@ export const getDataExport = () => prefix + 'GridExcelExport';
 //main page
 export const getMainPageDiagramPercentages = () =>
   prefix + 'MainPageDiagramPercentages';
-
 export const getProductsUnderMinimum = () => prefix + 'ProductsUnderMinimum';
+
+//xprimer
+export const getXprimerDicPath = (model: string) =>
+  prefix + 'Xprimer' + model + 's';

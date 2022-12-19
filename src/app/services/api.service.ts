@@ -36,7 +36,7 @@ export class ApiService {
   }
 
   // common request POST
-  getResponseByPost(path: string, postObj: any): Observable<any> {
+  getResponseByPost(path: string, postObj?: any): Observable<any> {
     return this.http.post<any>(environment.endpointApiPath + path, postObj);
   }
 

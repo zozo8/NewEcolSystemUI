@@ -1,37 +1,56 @@
-
 <form (ngSubmit)="save()">
-  <p-panel header="{{title}}"  >
+  <p-panel header="{{ title }}">
     <ng-template pTemplate="icons">
-      <i class="pi {{icon}}"></i>
+      <i class="pi {{ icon }}"></i>
     </ng-template>
     <ng-template pTemplate="content">
-      <p-messages severity="success" *ngIf="obj.objectDto">
-        <ng-template pTemplate>
+      <div
+        class="grid"
+        *ngIf="obj.objectDto"
+        style="background-color: #ecf0ee; padding: 5px; margin-bottom: 10px"
+      >
+        <div class="col-12 p-fluid">
           <ng-content select="[form=header]"></ng-content>
-        </ng-template>
-      </p-messages>
+        </div>
+      </div>
+
       <div *ngIf="obj.objectEditDto">
         <ng-content select="[form=body]"></ng-content>
       </div>
       <div *ngIf="!obj.objectEditDto">
         <p-messages severity="info">
           <ng-template pTemplate>
-            <p><i class="pi pi-info"></i> {{'table-detail.select_record' | translate }}</p>
+            <p>
+              <i class="pi pi-info"></i>
+              {{ "table-detail.select_record" | translate }}
+            </p>
           </ng-template>
         </p-messages>
       </div>
     </ng-template>
     <ng-template pTemplate="footer" *ngIf="obj">
-      <button pButton type="submit" *ngIf="obj.editState">{{obj.submitValue}}</button>
-        &nbsp;
-        <button pButton *ngIf="obj.editState" class="p-button-outlined" (click)="cancel()" [pTooltip]="'btn.cancel' | translate">{{"btn.cancel" | translate}}</button>
-        <button pButton *ngIf="!obj.editState" class="p-button-outlined" (click)="edit()"  [pTooltip]="'btn.edit' | translate">{{"btn.edit" | translate}}</button>
+      <button pButton type="submit" *ngIf="obj.editState">
+        {{ obj.submitValue }}
+      </button>
+      &nbsp;
+      <button
+        pButton
+        *ngIf="obj.editState"
+        class="p-button-outlined"
+        (click)="cancel()"
+        [pTooltip]="'btn.cancel' | translate"
+      >
+        {{ "btn.cancel" | translate }}
+      </button>
+      <button
+        pButton
+        *ngIf="!obj.editState"
+        class="p-button-outlined"
+        (click)="edit()"
+        [pTooltip]="'btn.edit' | translate"
+      >
+        {{ "btn.edit" | translate }}
+      </button>
     </ng-template>
   </p-panel>
-
-  </form>
-
-
-
-
-
+</form>

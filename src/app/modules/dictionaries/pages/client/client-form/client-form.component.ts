@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { ITableFormComponent } from 'src/app/modules/universal-components/interfaces/ITableFormComponent';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
+import { ApiService } from 'src/app/services/api.service';
+import { CommonService } from 'src/app/services/common.service';
+import { getXprimerDicPath } from 'src/app/services/path';
+import { XprimerClient } from '../../../models/xprimer/xprimerClient.model';
 
 @Component({
   selector: 'app-client-form',
@@ -9,27 +15,50 @@ import { TableMenuStructure } from 'src/app/modules/universal-components/models/
   styleUrls: ['./client-form.component.scss'],
 })
 export class ClientFormComponent implements OnInit, ITableFormComponent {
-  @Input()
-  postPath: string;
+  @Input() postPath: string;
+  @Input() putPath: string;
+  @Input() cols: ResponseGridDataColumnValue[];
+  @Input() obj: TableMenuStructure;
+  @Input() icon: string;
+  @Output() refreshTable = new EventEmitter();
 
-  @Input()
-  putPath: string;
+  xprimerClientDict: XprimerClient[] = [];
+  xprimerClientSub: Subscription;
 
-  @Input()
-  cols: ResponseGridDataColumnValue[];
+  constructor(
+    private commonService: CommonService,
+    private apiService: ApiService
+  ) {}
 
-  @Input()
-  obj: TableMenuStructure;
+  ngOnInit(): void {
+    this.getXprimerClientDict();
+  }
 
-  @Input()
-  icon: string;
+  getXprimerClientDict() {
+    this.xprimerClientSub = this.apiService
+      .getResponseByPost(getXprimerDicPath('Client'))
+      .subscribe({
+        next: (res: ResponseBodyById) => {
+          this.xprimerClientDict = res.value;
+          this.xprimerClientSub.unsubscribe();
+        },
+      });
+  }
 
-  @Output()
-  refreshTable = new EventEmitter();
+  selectXprimerClient() {
+    if (this.obj.objectEditDto.xprimerId) {
+      const obj = this.xprimerClientDict.find(
+        (x) => x.id === this.obj.objectEditDto.xprimerId
+      );
 
-  constructor() {}
-
-  ngOnInit(): void {}
+      if (obj) {
+        this.obj.objectEditDto.clientSymbol = obj.symbol;
+        this.obj.objectEditDto.clientName = obj.name;
+        this.obj.objectEditDto.nip = obj.nip;
+        this.obj.objectEditDto.xprimerId = obj.id;
+      }
+    }
+  }
 
   getRefreshTable(): void {
     this.refreshTable.emit();

@@ -105,10 +105,10 @@ export class TableComponent implements OnInit {
 
   loadData(event: LazyLoadEvent): void {
     if (event.first !== 0 || event.rows !== 0) {
-      if (event.sortField === undefined) {
-        event.sortField = 'id';
-        event.sortOrder = -1;
-      }
+      // if (event.sortField === undefined) {
+      //   event.sortField = 'id';
+      //   event.sortOrder = -1;
+      // }
 
       this.newRequestParam.emit(event);
     }

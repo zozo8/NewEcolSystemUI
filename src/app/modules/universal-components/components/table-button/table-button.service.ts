@@ -63,7 +63,7 @@ export class TableButtonService {
           error: (er: HttpErrorResponse) => {
             this.commonService.getMessageToastBySeverity(
               'error',
-              er.error?.errors[0]?.message
+              er.error?.Errors[0]?.Message
             );
           },
         });
