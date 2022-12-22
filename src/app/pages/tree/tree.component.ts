@@ -5,7 +5,6 @@ import {
   ConfirmationService,
   MegaMenuItem,
   MenuItem,
-  MessageService,
   PrimeIcons,
   TreeDragDropService,
   TreeNode,
@@ -47,7 +46,6 @@ export class TreeComponent implements OnInit, OnDestroy {
     private commonService: CommonService,
     private treeService: TreeService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService,
     private store: Store<LoginState>
   ) {}
 
