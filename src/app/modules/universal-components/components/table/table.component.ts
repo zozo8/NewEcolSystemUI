@@ -93,6 +93,9 @@ export class TableComponent implements OnInit {
   @Output()
   selectedObj = new EventEmitter<any>();
 
+  @Output()
+  selectedColumns = new EventEmitter<boolean>();
+
   constructor(
     private translateService: TranslateService,
     private dialogService: DialogService
@@ -105,11 +108,6 @@ export class TableComponent implements OnInit {
 
   loadData(event: LazyLoadEvent): void {
     if (event.first !== 0 || event.rows !== 0) {
-      // if (event.sortField === undefined) {
-      //   event.sortField = 'id';
-      //   event.sortOrder = -1;
-      // }
-
       this.newRequestParam.emit(event);
     }
   }
@@ -237,11 +235,14 @@ export class TableComponent implements OnInit {
       header: this.translateService.instant(
         'table-menu.setting.select_columns'
       ),
-      data: [this.gridId],
+      data: [this.gridId, this.columns],
     });
 
     this.columnSub = ref.onClose.subscribe({
-      next: (res: ResponseGridDataColumnValue[]) => {
+      next: (res: boolean) => {
+        if (res) {
+          this.selectedColumns.emit(res);
+        }
         this.columnSub.unsubscribe();
       },
     });

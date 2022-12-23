@@ -12,6 +12,7 @@
           [canMultiselect]="multiselect"
           (newRequestParam)="getLazyLoadEvent($event)"
           (selectedObj)="getSelected($event)"
+          (selectedColumns)="getColumns()"
         >
         </app-table>
       </div>

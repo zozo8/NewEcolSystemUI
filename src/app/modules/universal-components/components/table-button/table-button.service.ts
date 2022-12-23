@@ -97,7 +97,7 @@ export class TableButtonService {
         });
       } else {
         this.apiService
-          .getResponseByPUT(path + '?id=' + id, objectDto)
+          .getResponseByPut(path + '?id=' + id, objectDto)
           .subscribe({
             complete: () => {
               this.commonService.getMessageToastBySeverity(

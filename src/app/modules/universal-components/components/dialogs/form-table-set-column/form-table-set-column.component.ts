@@ -4,10 +4,8 @@ import { DndDropEvent } from 'ngx-drag-drop';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { ApiService } from 'src/app/services/api.service';
-import { columnListPath } from 'src/app/services/path';
 import { FormTableSetColumnService } from './form-table-set-column.service';
 
 @Component({
@@ -35,20 +33,9 @@ export class FormTableSetColumnComponent implements OnInit {
   ngOnInit(): void {
     this.gridId = this.config.data[0];
     this.config.data.closeOnEscape = true;
-    if (this.gridId) {
-      this.getColumns(this.gridId);
-    }
-  }
-
-  getColumns(gridId: number): void {
-    var path = columnListPath(gridId);
-    this.getColumnsSubscription = this.apiService.getColumns(path).subscribe({
-      next: (res: ResponseGridDataColumn) => {
-        this.availableColumns = res.value.filter((x) => x.isVisible === false);
-        this.selectedColumns = res.value.filter((x) => x.isVisible === true);
-      },
-      complete: () => this.getColumnsSubscription.unsubscribe(),
-    });
+    const cols: ResponseGridDataColumnValue[] = this.config.data[1];
+    this.availableColumns = cols.filter((x) => x.isVisible === false);
+    this.selectedColumns = cols.filter((x) => x.isVisible === true);
   }
 
   onDragStartAvailableColumns(
@@ -112,11 +99,19 @@ export class FormTableSetColumnComponent implements OnInit {
               severity: 'error',
               summary: this.translateService.instant('table-menu.error'),
               detail: this.translateService.instant(
-                'table-menu.remove_record_error'
+                'table-menu.set_column_error'
               ),
             });
+            this.ref.close(false);
           } else {
-            this.ref.close();
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translateService.instant('table-menu.success'),
+              detail: this.translateService.instant(
+                'table-menu.set_column_success'
+              ),
+            });
+            this.ref.close(true);
           }
         },
       });

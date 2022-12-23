@@ -16,6 +16,8 @@
   "available_columns":"Dostępne kolumny",
   "selected_columns":"Wybrane kolumny",
   "selected_rows":"Ilość wybranych rekordów",
+  "set_columns_error":"Błąd podczas ustawiania column",
+  "set_columns_success":"Poprawnie ustawiono kolumny",
   "setting":{
     "select_grid":"Wybierz siatkę",
     "select_columns":"Dostosuj kolumny...",

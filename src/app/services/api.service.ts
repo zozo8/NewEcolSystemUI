@@ -46,7 +46,7 @@ export class ApiService {
   }
 
   // common request PUT
-  getResponseByPUT(path: string, putObj: any): Observable<any> {
+  getResponseByPut(path: string, putObj: any): Observable<any> {
     return this.http.put(environment.endpointApiPath + path, putObj);
   }
 }

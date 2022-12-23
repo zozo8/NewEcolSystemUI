@@ -1,61 +1,62 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ColumnSetting } from 'src/app/models/requests/columnSetting.model';
-import { ResponseBodyById } from 'src/app/models/responses/responseBodyById.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { getUserId } from 'src/app/modules/login/state/login.selector';
 import { LoginState } from 'src/app/modules/login/state/loginState';
+import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
-import { postModelPath } from 'src/app/services/path';
-import { environment } from 'src/environments/environment';
+import { putModelPath } from 'src/app/services/path';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FormTableSetColumnService {
+export class FormTableSetColumnService implements OnDestroy {
+  subs: Subscription = new Subscription();
+
   constructor(
     private http: HttpClient,
     private store: Store<LoginState>,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private apiService: ApiService
   ) {}
 
   setColumnByUserIdGridId(
     gridId: number,
     columns: ResponseGridDataColumnValue[]
   ): Observable<boolean> {
-    const bs = new Subject<boolean>();
+    const bs = new BehaviorSubject<boolean>(false);
 
     const userId = this.commonService.getValueFromObservable(
       this.store.select(getUserId)
     );
-    var requestPath = postModelPath('ColumnSetting');
+    // jako drugi parametr przekazac id pobranych wczesniej ustawien
+    var requestPath = putModelPath('ColumnSetting', userId);
     if (userId > 0 && gridId) {
-      columns.forEach((el) => {
-        var columnObj = this.getColumnObj(gridId, el, userId);
-        this.http
-          .post<ResponseBodyById>(
-            environment.endpointApiPath + requestPath,
-            columnObj
-          )
-          .subscribe();
+      columns.forEach((el, i) => {
+        var columnObj = this.getColumnObj(gridId, el, userId, i);
+        this.subs.add(
+          this.apiService.getResponseByPut(requestPath, columnObj).subscribe()
+        );
       });
       bs.next(true);
     } else {
       bs.next(false);
     }
 
-    return bs.asObservable();
+    return bs;
   }
 
   private getColumnObj(
     gridId: number,
     el: ResponseGridDataColumnValue,
-    userId: number
+    userId: number,
+    index: number
   ): ColumnSetting {
     let obj: ColumnSetting = {
-      id: 0, //tu wjedzie konkretny id jak kolumny beda wczytywane juz z zapisanego filtra
+      id: 0, //tu bedzie konkretny id jak kolumny beda wczytywane juz z zapisanego filtra
       gridId: gridId,
       userId: userId,
       columnName: el.columnName,
@@ -66,7 +67,7 @@ export class FormTableSetColumnService {
       isVisible: el.isVisible,
       isDefaultSetting: false,
       customWidth: 0,
-      tagOrder: 1, //do zmiany
+      tagOrder: index,
       enableSum: false,
       enableAvg: false,
       enableMax: false,
@@ -74,5 +75,9 @@ export class FormTableSetColumnService {
     };
 
     return obj;
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

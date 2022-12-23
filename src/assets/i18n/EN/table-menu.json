@@ -16,6 +16,8 @@
   "available_columns":"Available columns",
   "selected_columns":"Selected columns",
   "selected_rows":"Selected rows count",
+  "set_columns_error":"Setting columns error!",
+  "set_columns_success":"Setting columns success!",
   "setting":{
     "select_grid":"Select grid",
     "select_columns":"Select columns...",

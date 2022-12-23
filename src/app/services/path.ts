@@ -12,6 +12,9 @@ export const deleteModelWithParamsPath = (
 export const postModelPath = (model: string): string =>
   prefix + model + 's/Manage';
 
+export const putModelPath = (model: string, id: number): string =>
+  prefix + model + 's/Manage?id=' + id;
+
 export const getModelPath = (model: string, id: number): string =>
   prefix + model + 's?id=' + id;
 
