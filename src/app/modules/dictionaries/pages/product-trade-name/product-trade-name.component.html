@@ -5,14 +5,10 @@
       </app-table-button>
       <div class="row">
         <app-table
-          [dataTable]="responseObj"
-          [columns]="columns"
           [gridId]="gridId"
           [tableDisabled]="obj.editState"
           [canMultiselect]="multiselect"
-          (newRequestParam)="getLazyLoadEvent($event)"
           (selectedObj)="getSelected($event)"
-          (selectedColumns)="getColumns()"
         >
         </app-table>
       </div>

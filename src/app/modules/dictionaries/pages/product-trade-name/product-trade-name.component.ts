@@ -5,20 +5,12 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
-import { IMasterPage } from 'src/app/modules/universal-components/interfaces/IMasterPage';
-import { ITableButtonsComponent } from 'src/app/modules/universal-components/interfaces/ITableButtonsComponent';
-import { ITableComponent } from 'src/app/modules/universal-components/interfaces/ITableComponent';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
-import { ApiService } from 'src/app/services/api.service';
-import { CommonService } from 'src/app/services/common.service';
 import {
-  columnListPath,
   deleteModelPath,
-  getModelListPath,
   getModelPath,
   postModelPath,
 } from 'src/app/services/path';
@@ -28,14 +20,7 @@ import {
   templateUrl: './product-trade-name.component.html',
   styleUrls: ['./product-trade-name.component.css'],
 })
-export class ProductTradeNameComponent
-  implements
-    OnInit,
-    ITableComponent,
-    ITableButtonsComponent,
-    IMasterPage,
-    OnDestroy
-{
+export class ProductTradeNameComponent implements OnInit, OnDestroy {
   static icon = PrimeIcons.LIST;
   static title = 'pages.product_trade_name.title';
 
@@ -58,51 +43,49 @@ export class ProductTradeNameComponent
   multiselect = true;
 
   constructor(
-    private commonService: CommonService,
     private tableService: TableService,
     private translateService: TranslateService,
-    private tableButtonService: TableButtonService,
-    private apiService: ApiService
+    private tableButtonService: TableButtonService
   ) {
     this.postPath = postModelPath(this.model);
     this.obj = new TableMenuStructure();
   }
 
   ngOnInit(): void {
-    this.getColumns();
+    // this.getColumns();
     this.getButtons();
 
-    this.reqObjBS.subscribe((request) => {
-      if (request?.pageNumber !== 10000) {
-        this.responseObj = this.apiService.getResponseBodyGetList(
-          getModelListPath(this.model),
-          request
-        );
-      }
-    });
+    // this.reqObjBS.subscribe((request) => {
+    //   if (request?.pageNumber !== 10000) {
+    //     this.responseObj = this.apiService.getResponseBodyGetList(
+    //       getModelListPath(this.model),
+    //       request
+    //     );
+    //   }
+    // });
   }
 
-  getColumns(): void {
-    this.compsiteSub.add(
-      this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
-        next: (res: ResponseGridDataColumn) => {
-          this.columns = this.tableService.GetColumnsOutput(res.value);
-        },
-        complete: () => {
-          this.prepareRequest();
-        },
-      })
-    );
-  }
-  prepareRequest(ev?: LazyLoadEvent | undefined): void {
-    let requestObj = this.commonService.getRequestObj(this.columns, ev);
-    this.reqObjBS.next(requestObj);
-  }
+  // getColumns(): void {
+  //   this.compsiteSub.add(
+  //     this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
+  //       next: (res: ResponseGridDataColumn) => {
+  //         this.columns = this.tableService.GetColumnsOutput(res.value);
+  //       },
+  //       complete: () => {
+  //         this.prepareRequest();
+  //       },
+  //     })
+  //   );
+  // }
+  // prepareRequest(ev?: LazyLoadEvent | undefined): void {
+  //   let requestObj = this.commonService.getRequestObj(this.columns, ev);
+  //   this.reqObjBS.next(requestObj);
+  // }
 
-  getLazyLoadEvent(ev: LazyLoadEvent): void {
-    this.lazyLoadObj = ev;
-    this.prepareRequest(this.lazyLoadObj);
-  }
+  // getLazyLoadEvent(ev: LazyLoadEvent): void {
+  //   this.lazyLoadObj = ev;
+  //   this.prepareRequest(this.lazyLoadObj);
+  // }
 
   getSelected(ev: any): void {
     var path = getModelPath(this.model, ev.id);
@@ -171,7 +154,7 @@ export class ProductTradeNameComponent
   }
 
   refreshTable(): void {
-    this.prepareRequest(this.lazyLoadObj);
+    //this.prepareRequest(this.lazyLoadObj);
     this.obj.editState = false;
   }
 

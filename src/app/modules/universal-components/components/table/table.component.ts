@@ -1,12 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
+import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
+import { ApiService } from 'src/app/services/api.service';
+import { CommonService } from 'src/app/services/common.service';
+import { columnListPath, getModelListPath } from 'src/app/services/path';
 import { FormTableSetColumnComponent } from '../dialogs/form-table-set-column/form-table-set-column.component';
 import { ExportDataComponent } from './export-data/export-data.component';
+import { TableService } from './table.service';
 
 @Component({
   selector: 'app-table',
@@ -14,7 +26,7 @@ import { ExportDataComponent } from './export-data/export-data.component';
   styleUrls: ['./table.component.css'],
   providers: [DialogService],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
   dataLoading: boolean;
   cols: ResponseGridDataColumnValue[] = [];
   dataSource: ResponseBodyGetList;
@@ -39,6 +51,8 @@ export class TableComponent implements OnInit {
 
   private columnSub: Subscription;
   private dataSubs: Subscription;
+
+  private compsiteSub = new Subscription();
 
   @Input()
   set dataTable(v: Observable<ResponseBodyGetList>) {
@@ -81,8 +95,26 @@ export class TableComponent implements OnInit {
   @Input()
   tableDisabled: boolean;
 
+  private _gridId: number;
+  public get gridId(): number {
+    return this._gridId;
+  }
+
   @Input()
-  gridId: number;
+  public set gridId(id: number) {
+    this._gridId = id;
+
+    this.compsiteSub.add(
+      this.apiService.getColumns(columnListPath(id)).subscribe({
+        next: (res: ResponseGridDataColumn) => {
+          this.columns = this.tableService.GetColumnsOutput(res.value);
+        },
+        complete: () => {
+          this.prepareRequest();
+        },
+      })
+    );
+  }
 
   @Input()
   canMultiselect: boolean;
@@ -98,7 +130,10 @@ export class TableComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private apiService: ApiService,
+    private tableService: TableService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -106,9 +141,32 @@ export class TableComponent implements OnInit {
     this.getColumnOptions();
   }
 
+  prepareRequest(ev?: LazyLoadEvent | undefined): void {
+    let requestObj = this.commonService.getRequestObj(this.columns, ev);
+    this.apiService
+      .getResponseBodyGetList(getModelListPath('ProductTradeName'), requestObj)
+      .subscribe({
+        next: (res: ResponseBodyGetList) => {
+          this.dataLoading = true;
+          this.dataValues = res.value.data;
+          this.totalRecords = res.value.totalItems ?? 0;
+          this.totalPages = res.value.totalPages;
+          this.pageSize = res.value.pageSize;
+          this.totalItems = res.value.totalItems ?? 0;
+          this.rebuildSummary();
+          this.dataLoading = false;
+        },
+        complete: () => this.dataSubs.unsubscribe(),
+        error: (err: Error) => {
+          this.dataLoading = false;
+        },
+      });
+  }
+
   loadData(event: LazyLoadEvent): void {
     if (event.first !== 0 || event.rows !== 0) {
-      this.newRequestParam.emit(event);
+      //this.newRequestParam.emit(event);
+      this.prepareRequest(event);
     }
   }
 
@@ -121,37 +179,6 @@ export class TableComponent implements OnInit {
 
   unselectObj(): void {
     this.rebuildSummary();
-  }
-
-  getTableOptions(): void {
-    this.tableOptions = [
-      {
-        icon: PrimeIcons.CHECK_SQUARE,
-        label: this.translateService.instant(
-          'table-menu.options.multiselect_records'
-        ),
-        command: () => this.setMultiselect(),
-        visible: this.canMultiselect ?? false,
-      },
-      {
-        icon: PrimeIcons.TAGS,
-        label: this.translateService.instant('table-menu.options.summary'),
-        command: () => this.setSummary(),
-      },
-      {
-        icon: PrimeIcons.CHECK_CIRCLE,
-        label: this.translateService.instant(
-          'table-menu.options.multiselect_columns'
-        ),
-        command: () => (this.multiselectCols = !this.multiselectCols),
-        visible: false,
-      },
-      {
-        icon: PrimeIcons.FILE,
-        label: this.translateService.instant('table-menu.export.title'),
-        command: () => this.exportData(),
-      },
-    ];
   }
 
   setSummary(): void {
@@ -209,6 +236,37 @@ export class TableComponent implements OnInit {
     });
   }
 
+  getTableOptions(): void {
+    this.tableOptions = [
+      {
+        icon: PrimeIcons.CHECK_SQUARE,
+        label: this.translateService.instant(
+          'table-menu.options.multiselect_records'
+        ),
+        command: () => this.setMultiselect(),
+        visible: this.canMultiselect ?? false,
+      },
+      {
+        icon: PrimeIcons.TAGS,
+        label: this.translateService.instant('table-menu.options.summary'),
+        command: () => this.setSummary(),
+      },
+      {
+        icon: PrimeIcons.CHECK_CIRCLE,
+        label: this.translateService.instant(
+          'table-menu.options.multiselect_columns'
+        ),
+        command: () => (this.multiselectCols = !this.multiselectCols),
+        visible: false,
+      },
+      {
+        icon: PrimeIcons.FILE,
+        label: this.translateService.instant('table-menu.export.title'),
+        command: () => this.exportData(),
+      },
+    ];
+  }
+
   getColumnOptions(): void {
     this.columnOptions = [
       {
@@ -246,5 +304,9 @@ export class TableComponent implements OnInit {
         this.columnSub.unsubscribe();
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.compsiteSub.unsubscribe();
   }
 }

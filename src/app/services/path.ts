@@ -20,11 +20,17 @@ export const getModelPath = (model: string, id: number): string =>
 
 export const getModelListPath = (model: string): string => prefix + model + 's';
 
+//columns
+//from getGridData - get structure columns
 export const columnListPath = (id: number): string =>
   prefix + 'GridData?gridsDict=' + id;
 
 export const columnListPathByName = (name: string): string =>
   prefix + 'GridData?gridsDict=' + name;
+
+// by user and gridId
+export const getColumnSettingsPath = (id: number): string =>
+  prefix + 'ColumnSettings?gridId=' + id;
 
 // login
 export const loginToURPath = () => prefix + 'auth/login/';
