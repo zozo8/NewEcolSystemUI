@@ -29,6 +29,8 @@ export class ProductTradeNameFormComponent
   obj: TableMenuStructure;
   @Input()
   icon: string;
+  @Input()
+  gridId: number;
 
   @Output()
   refreshTable = new EventEmitter();

@@ -7,7 +7,12 @@ import {
   Output,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
+import {
+  LazyLoadEvent,
+  MenuItem,
+  MessageService,
+  PrimeIcons,
+} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
@@ -50,14 +55,15 @@ export class TableComponent implements OnInit, OnDestroy {
   columnOptions: MenuItem[] = [];
 
   private columnSub: Subscription;
-  private dataSubs: Subscription;
+  private dataSub: Subscription;
 
   private compsiteSub = new Subscription();
 
+  //do zaorania
   @Input()
   set dataTable(v: Observable<ResponseBodyGetList>) {
     if (v !== undefined) {
-      this.dataSubs = v.subscribe({
+      this.dataSub = v.subscribe({
         next: (res: ResponseBodyGetList) => {
           this.dataLoading = true;
           this.dataValues = res.value.data;
@@ -68,7 +74,7 @@ export class TableComponent implements OnInit, OnDestroy {
           this.rebuildSummary();
           this.dataLoading = false;
         },
-        complete: () => this.dataSubs.unsubscribe(),
+        complete: () => this.dataSub.unsubscribe(),
         error: (err: Error) => {
           this.dataLoading = false;
         },
@@ -104,17 +110,11 @@ export class TableComponent implements OnInit, OnDestroy {
   public set gridId(id: number) {
     this._gridId = id;
 
-    this.compsiteSub.add(
-      this.apiService.getColumns(columnListPath(id)).subscribe({
-        next: (res: ResponseGridDataColumn) => {
-          this.columns = this.tableService.GetColumnsOutput(res.value);
-        },
-        complete: () => {
-          this.prepareRequest();
-        },
-      })
-    );
+    this.getColumns(id);
   }
+
+  @Input()
+  model: string;
 
   @Input()
   canMultiselect: boolean;
@@ -133,7 +133,8 @@ export class TableComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private apiService: ApiService,
     private tableService: TableService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -141,24 +142,40 @@ export class TableComponent implements OnInit, OnDestroy {
     this.getColumnOptions();
   }
 
+  getColumns(id: number) {
+    this.compsiteSub.add(
+      this.apiService.getColumns(columnListPath(id)).subscribe({
+        next: (res: ResponseGridDataColumn) => {
+          this.columns = this.tableService.GetColumnsOutput(res.value);
+        },
+        complete: () => {
+          this.prepareRequest();
+        },
+      })
+    );
+  }
+
   prepareRequest(ev?: LazyLoadEvent | undefined): void {
+    this.dataLoading = true;
     let requestObj = this.commonService.getRequestObj(this.columns, ev);
-    this.apiService
-      .getResponseBodyGetList(getModelListPath('ProductTradeName'), requestObj)
+    this.dataSub = this.apiService
+      .getResponseBodyGetList(getModelListPath(this.model), requestObj)
       .subscribe({
         next: (res: ResponseBodyGetList) => {
-          this.dataLoading = true;
           this.dataValues = res.value.data;
           this.totalRecords = res.value.totalItems ?? 0;
           this.totalPages = res.value.totalPages;
           this.pageSize = res.value.pageSize;
           this.totalItems = res.value.totalItems ?? 0;
           this.rebuildSummary();
-          this.dataLoading = false;
         },
-        complete: () => this.dataSubs.unsubscribe(),
+        complete: () => {
+          this.dataLoading = false;
+          this.dataSub.unsubscribe();
+        },
         error: (err: Error) => {
           this.dataLoading = false;
+          this.dataSub.unsubscribe();
         },
       });
   }

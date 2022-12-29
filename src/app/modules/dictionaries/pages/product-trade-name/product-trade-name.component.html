@@ -8,6 +8,7 @@
           [gridId]="gridId"
           [tableDisabled]="obj.editState"
           [canMultiselect]="multiselect"
+          [model]="model"
           (selectedObj)="getSelected($event)"
         >
         </app-table>
@@ -18,10 +19,10 @@
     <p-tabView [ngStyle]="{ width: '100%' }">
       <app-product-trade-name-form
         [icon]="'pi-bookmark-fill'"
-        [cols]="columns"
         [obj]="obj"
         [postPath]="postPath"
         [putPath]="putPath"
+        [gridId]="gridId"
         (refreshTable)="refreshTable()"
       >
       </app-product-trade-name-form>

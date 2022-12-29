@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.m
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
+import { TableComponent } from 'src/app/modules/universal-components/components/table/table.component';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import {
@@ -21,6 +22,8 @@ import {
   styleUrls: ['./product-trade-name.component.css'],
 })
 export class ProductTradeNameComponent implements OnInit, OnDestroy {
+  @ViewChild(TableComponent) tableComponent: TableComponent;
+
   static icon = PrimeIcons.LIST;
   static title = 'pages.product_trade_name.title';
 
@@ -52,40 +55,8 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.getColumns();
     this.getButtons();
-
-    // this.reqObjBS.subscribe((request) => {
-    //   if (request?.pageNumber !== 10000) {
-    //     this.responseObj = this.apiService.getResponseBodyGetList(
-    //       getModelListPath(this.model),
-    //       request
-    //     );
-    //   }
-    // });
   }
-
-  // getColumns(): void {
-  //   this.compsiteSub.add(
-  //     this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
-  //       next: (res: ResponseGridDataColumn) => {
-  //         this.columns = this.tableService.GetColumnsOutput(res.value);
-  //       },
-  //       complete: () => {
-  //         this.prepareRequest();
-  //       },
-  //     })
-  //   );
-  // }
-  // prepareRequest(ev?: LazyLoadEvent | undefined): void {
-  //   let requestObj = this.commonService.getRequestObj(this.columns, ev);
-  //   this.reqObjBS.next(requestObj);
-  // }
-
-  // getLazyLoadEvent(ev: LazyLoadEvent): void {
-  //   this.lazyLoadObj = ev;
-  //   this.prepareRequest(this.lazyLoadObj);
-  // }
 
   getSelected(ev: any): void {
     var path = getModelPath(this.model, ev.id);
@@ -126,7 +97,16 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
     this.postSub = this.tableButtonService.post(this.obj).subscribe({
       next: (res: TableMenuStructure) => {
         this.obj = res;
-        this.postSub.unsubscribe();
+        this.postSub?.unsubscribe();
+      },
+    });
+  }
+
+  put(): void {
+    this.putSub = this.tableButtonService.put(this.obj).subscribe({
+      next: (res: TableMenuStructure) => {
+        this.obj = res;
+        this.putSub?.unsubscribe();
       },
     });
   }
@@ -138,23 +118,15 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
         next: (res: boolean) => {
           if (res) {
             this.refreshTable();
-            this.deleteSub.unsubscribe();
+            this.deleteSub?.unsubscribe();
           }
         },
       });
   }
 
-  put(): void {
-    this.putSub = this.tableButtonService.put(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.putSub.unsubscribe();
-      },
-    });
-  }
-
   refreshTable(): void {
     //this.prepareRequest(this.lazyLoadObj);
+    this.tableComponent.prepareRequest();
     this.obj.editState = false;
   }
 

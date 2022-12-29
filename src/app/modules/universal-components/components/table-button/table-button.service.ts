@@ -33,7 +33,7 @@ export class TableButtonService {
 
     if (obj.objectEditDto?.id !== null) {
       obj.editState = true;
-      obj.submitValue = this.translateService.instant('btn.edit');
+      obj.submitValue = this.translateService.instant('btn.save');
     } else {
       this.commonService.getMessageToastBySeverity(
         'warn',
@@ -89,10 +89,11 @@ export class TableButtonService {
             returnSubject.next(true);
           },
           error: (er: HttpErrorResponse) => {
-            this.commonService.getMessageToastBySeverity(
-              'error',
-              er.error?.errors[0]?.message
-            );
+            const errorText =
+              er?.error?.Errors === undefined
+                ? er?.error?.errors[0]?.message
+                : er?.error?.Errors[0]?.Message;
+            this.commonService.getMessageToastBySeverity('error', errorText);
           },
         });
       } else {
