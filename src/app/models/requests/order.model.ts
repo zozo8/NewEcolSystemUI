@@ -1,4 +1,4 @@
-export interface Order {
-  columnName?:string;
-  isAscending?:boolean;
+export class Order {
+  columnName?: string;
+  isAscending?: boolean;
 }

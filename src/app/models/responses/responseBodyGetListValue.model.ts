@@ -1,4 +1,4 @@
-export interface ResponseBodyGetListValue {
+export class ResponseBodyGetListValue {
   currentPage?: number;
   data: any[];
   endIndex?: number;

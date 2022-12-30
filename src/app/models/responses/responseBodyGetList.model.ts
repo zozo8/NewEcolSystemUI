@@ -1,8 +1,9 @@
 import { ResponseBodyGetListValue } from './responseBodyGetListValue.model';
+import { ResponseError } from './responseError';
 
-export interface ResponseBodyGetList {
+export class ResponseBodyGetList {
   code?: number;
-  errors?: any;
+  errors?: ResponseError;
   success?: boolean;
   value: ResponseBodyGetListValue;
 }

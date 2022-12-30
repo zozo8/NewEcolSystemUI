@@ -12,6 +12,7 @@ export class TableService {
   constructor(private apiService: ApiService) {}
 
   // set specyfic format columns, require to create data, filters etc in table components
+  // rename to GetColumnsStructureOutput
   GetColumnsOutput(
     columns: ResponseGridDataColumnValue[]
   ): ResponseGridDataColumnValue[] {

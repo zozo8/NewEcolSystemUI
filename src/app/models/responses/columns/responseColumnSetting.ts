@@ -1,8 +1,9 @@
+import { ResponseError } from '../responseError';
 import { ResponseColumnSettingValue } from './responseColumnSettingValue';
 
 export class ResponseColumnSetting {
   value: ResponseColumnSettingValue;
   success: boolean;
-  errors: string;
-  code: number;
+  errors: ResponseError;
+  code: string;
 }

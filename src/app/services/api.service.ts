@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
+import { ResponseColumnSetting } from '../models/responses/columns/responseColumnSetting';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
 import { ResponseGridDataColumn } from '../models/responses/responseGridDataColumn.model';
 
@@ -11,24 +12,6 @@ import { ResponseGridDataColumn } from '../models/responses/responseGridDataColu
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-
-  // get response with status code and data type any[]
-  getResponseBodyGetList(
-    requestPath: string,
-    requestObj: RequestBodyGetList
-  ): Observable<ResponseBodyGetList> {
-    return this.http.post<ResponseBodyGetList>(
-      environment.endpointApiPath + requestPath,
-      requestObj
-    );
-  }
-
-  // get column list for grid
-  getColumns(path: string): Observable<ResponseGridDataColumn> {
-    return this.http.get<ResponseGridDataColumn>(
-      environment.endpointApiPath + path
-    );
-  }
 
   // common request GET
   getResponseByGet(path: string): Observable<any> {
@@ -48,5 +31,36 @@ export class ApiService {
   // common request PUT
   getResponseByPut(path: string, putObj: any): Observable<any> {
     return this.http.put(environment.endpointApiPath + path, putObj);
+  }
+
+  // -------------------------------------------------------
+
+  // get response with status code and data type any[]
+  getResponseBodyGetList(
+    requestPath: string,
+    requestObj: RequestBodyGetList
+  ): Observable<ResponseBodyGetList> {
+    return this.http.post<ResponseBodyGetList>(
+      environment.endpointApiPath + requestPath,
+      requestObj
+    );
+  }
+
+  // get column list for build request obj
+  getColumns(path: string): Observable<ResponseGridDataColumn> {
+    return this.http.get<ResponseGridDataColumn>(
+      environment.endpointApiPath + path
+    );
+  }
+
+  // get column list for table columns
+  getColumns4Table(
+    path: string,
+    requestObj: RequestBodyGetList
+  ): Observable<ResponseColumnSetting> {
+    return this.http.post<ResponseColumnSetting>(
+      environment.endpointApiPath + path,
+      requestObj
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { Filter } from '../requests/filter.model';
 
-export interface ResponseGridDataColumnValue {
+export class ResponseGridDataColumnValue {
   filters?: Filter[];
   columnName: string;
   dataType: string;

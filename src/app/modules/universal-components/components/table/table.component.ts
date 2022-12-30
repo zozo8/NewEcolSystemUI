@@ -15,12 +15,18 @@ import {
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
+import { GridEnum } from 'src/app/models/enums/gridEnum';
+import { ResponseColumnSetting } from 'src/app/models/responses/columns/responseColumnSetting';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
-import { columnListPath, getModelListPath } from 'src/app/services/path';
+import {
+  columnListPath,
+  getColumnSettingsPath,
+  getModelListPath,
+} from 'src/app/services/path';
 import { FormTableSetColumnComponent } from '../dialogs/form-table-set-column/form-table-set-column.component';
 import { ExportDataComponent } from './export-data/export-data.component';
 import { TableService } from './table.service';
@@ -37,6 +43,7 @@ export class TableComponent implements OnInit, OnDestroy {
   dataSource: ResponseBodyGetList;
   columnFilter: string[];
   tableSettingItems: MenuItem[];
+  columns4Table: ResponseColumnSetting;
 
   dataValues: any[];
   selectedRows: any[] = [];
@@ -56,8 +63,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   private columnSub: Subscription;
   private dataSub: Subscription;
-
+  private column4TableSub: Subscription;
   private compsiteSub = new Subscription();
+  columnSettingSub: Subscription;
 
   //do zaorania
   @Input()
@@ -82,6 +90,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
+  // do zaorania
   private _columns: ResponseGridDataColumnValue[];
   public get columns(): ResponseGridDataColumnValue[] {
     return this._columns;
@@ -142,21 +151,61 @@ export class TableComponent implements OnInit, OnDestroy {
     this.getColumnOptions();
   }
 
-  getColumns(id: number) {
-    this.compsiteSub.add(
-      this.apiService.getColumns(columnListPath(id)).subscribe({
+  // get columns for prepare request next get columns for table column
+  getColumns(gridId: number) {
+    var columnSettingCols: ResponseGridDataColumnValue[];
+    this.columnSettingSub = this.apiService
+      .getColumns(columnListPath(GridEnum.ColumnSetting))
+      .subscribe({
         next: (res: ResponseGridDataColumn) => {
-          this.columns = this.tableService.GetColumnsOutput(res.value);
+          columnSettingCols = this.tableService.GetColumnsOutput(res.value);
         },
         complete: () => {
-          this.prepareRequest();
-        },
-      })
-    );
-  }
+          this.columnSettingSub.unsubscribe();
+          let requestColumnSetting =
+            this.commonService.getRequestObj(columnSettingCols);
 
-  prepareRequest(ev?: LazyLoadEvent | undefined): void {
+          this.column4TableSub = this.apiService
+            .getColumns4Table(
+              getColumnSettingsPath(gridId),
+              requestColumnSetting
+            )
+            .subscribe({
+              next: (res: ResponseColumnSetting) => (this.columns4Table = res),
+              complete: () => {
+                this.column4TableSub.unsubscribe();
+                this.refreshData();
+                // tu to dokonczyc aby działało jak działało ale na nowych kolumnach, do siego roku
+              },
+            });
+        },
+      });
+  }
+  // getColumns2(id: number) {
+  //   this.columnSub = this.apiService.getColumns(columnListPath(id)).subscribe({
+  //     next: (res: ResponseGridDataColumn) => {
+  //       this.columns = this.tableService.GetColumnsOutput(res.value);
+  //     },
+  //     complete: () => {
+  //       this.columnSub.unsubscribe();
+  //       let requestObj = this.commonService.getRequestObj(this.columns);
+  //       this.column4TableSub = this.apiService
+  //         .getColumns4Table(getColumnSettingsPath(id), requestObj)
+  //         .subscribe({
+  //           next: (res: ResponseColumnSetting) => (this.columns4Table = res),
+  //           complete: () => {
+  //             this.column4TableSub.unsubscribe();
+  //             // this.refreshData();
+  //           },
+  //         });
+  //     },
+  //   });
+  // }
+
+  // get data and prepare table
+  refreshData(ev?: LazyLoadEvent | undefined): void {
     this.dataLoading = true;
+
     let requestObj = this.commonService.getRequestObj(this.columns, ev);
     this.dataSub = this.apiService
       .getResponseBodyGetList(getModelListPath(this.model), requestObj)
@@ -180,10 +229,10 @@ export class TableComponent implements OnInit, OnDestroy {
       });
   }
 
+  // get event from table
   loadData(event: LazyLoadEvent): void {
     if (event.first !== 0 || event.rows !== 0) {
-      //this.newRequestParam.emit(event);
-      this.prepareRequest(event);
+      this.refreshData(event);
     }
   }
 

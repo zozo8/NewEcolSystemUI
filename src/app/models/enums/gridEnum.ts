@@ -11,4 +11,5 @@ export enum GridEnum {
   Products = 58,
   EstimateType = 60,
   Clients = 16,
+  ColumnSetting = 38,
 }

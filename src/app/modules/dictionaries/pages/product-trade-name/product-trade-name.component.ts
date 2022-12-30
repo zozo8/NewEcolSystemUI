@@ -125,8 +125,7 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
   }
 
   refreshTable(): void {
-    //this.prepareRequest(this.lazyLoadObj);
-    this.tableComponent.prepareRequest();
+    this.tableComponent.refreshData();
     this.obj.editState = false;
   }
 

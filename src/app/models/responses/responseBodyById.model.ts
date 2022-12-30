@@ -1,8 +1,8 @@
+import { ResponseError } from './responseError';
 
-
-export interface ResponseBodyById {
-  code?:number;
-  errors?:any;
-  success?:boolean;
-  value:any;
+export class ResponseBodyById {
+  code?: number;
+  errors?: ResponseError;
+  success?: boolean;
+  value: any;
 }

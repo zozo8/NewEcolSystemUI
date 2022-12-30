@@ -1,4 +1,4 @@
-export interface FilterMetaData {
+export class FilterMetaData {
   value?: any;
   matchMode?: string;
   operator?: string;

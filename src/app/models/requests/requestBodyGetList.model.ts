@@ -1,10 +1,9 @@
-import { LazyLoadEvent } from "primeng/api";
-import { FilterRequest } from "./filterRequest.model";
-import { Order } from "./order.model";
+import { FilterRequest } from './filterRequest.model';
+import { Order } from './order.model';
 
-export interface RequestBodyGetList {
-  pageNumber?:number;
-  pageSize?:number;
-  order?:Order;
-  filter?:FilterRequest;
+export class RequestBodyGetList {
+  pageNumber?: number;
+  pageSize?: number;
+  order?: Order;
+  filter?: FilterRequest;
 }

@@ -1,5 +1,5 @@
-import { FilterColumnName } from "./filterColumnName.model";
+import { FilterColumnName } from './filterColumnName.model';
 
-export interface FilterRequest {
-  filters?:FilterColumnName[];
+export class FilterRequest {
+  filters?: FilterColumnName[];
 }
