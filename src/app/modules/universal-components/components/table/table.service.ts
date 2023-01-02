@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
+import { getSepcificDataToTable } from 'src/app/services/util';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class TableService {
     columns.forEach((res) => {
       columnsOutput.push({
         columnName: res.columnName,
-        dataType: this.getSepcificDataType4PrimeNg(res.dataType),
+        dataType: getSepcificDataToTable(res.dataType),
         displayName: res.displayName,
         filters: res.filters,
         isVisible: res.isVisible,
@@ -28,23 +29,6 @@ export class TableService {
     });
 
     return columnsOutput;
-  }
-
-  private getSepcificDataType4PrimeNg(val: string): string {
-    switch (val) {
-      case 'Boolean':
-        return 'boolean';
-      case 'Int32':
-        return 'numeric';
-      case 'Single':
-        return 'float';
-      case 'String':
-        return 'text';
-      case 'DateTime':
-        return 'date';
-      default:
-        return val;
-    }
   }
 
   getObjDto(

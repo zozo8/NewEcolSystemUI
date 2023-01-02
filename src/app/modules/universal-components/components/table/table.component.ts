@@ -7,16 +7,12 @@ import {
   Output,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import {
-  LazyLoadEvent,
-  MenuItem,
-  MessageService,
-  PrimeIcons,
-} from 'primeng/api';
+import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { ResponseColumnSetting } from 'src/app/models/responses/columns/responseColumnSetting';
+import { ResponseColumnSettingValueData } from 'src/app/models/responses/columns/responseColumnSettingValueData';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
 import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
@@ -27,6 +23,10 @@ import {
   getColumnSettingsPath,
   getModelListPath,
 } from 'src/app/services/path';
+import {
+  firstToLowerCase,
+  getSepcificDataToTable,
+} from 'src/app/services/util';
 import { FormTableSetColumnComponent } from '../dialogs/form-table-set-column/form-table-set-column.component';
 import { ExportDataComponent } from './export-data/export-data.component';
 import { TableService } from './table.service';
@@ -43,7 +43,7 @@ export class TableComponent implements OnInit, OnDestroy {
   dataSource: ResponseBodyGetList;
   columnFilter: string[];
   tableSettingItems: MenuItem[];
-  columns4Table: ResponseColumnSetting;
+  columnSetting4GridId: ResponseColumnSettingValueData[] = [];
 
   dataValues: any[];
   selectedRows: any[] = [];
@@ -66,6 +66,7 @@ export class TableComponent implements OnInit, OnDestroy {
   private column4TableSub: Subscription;
   private compsiteSub = new Subscription();
   columnSettingSub: Subscription;
+  columns4requestColumnSettingSub: Subscription;
 
   //do zaorania
   @Input()
@@ -142,8 +143,7 @@ export class TableComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private apiService: ApiService,
     private tableService: TableService,
-    private commonService: CommonService,
-    private messageService: MessageService
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -152,18 +152,26 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   // get columns for prepare request next get columns for table column
+  // 1 - get static column setting, 2 - get columns setting for gridId, 3 - get data
   getColumns(gridId: number) {
-    var columnSettingCols: ResponseGridDataColumnValue[];
-    this.columnSettingSub = this.apiService
+    var columns4requestColumnSetting: ResponseGridDataColumnValue[];
+
+    this.columns4requestColumnSettingSub = this.apiService
       .getColumns(columnListPath(GridEnum.ColumnSetting))
       .subscribe({
         next: (res: ResponseGridDataColumn) => {
-          columnSettingCols = this.tableService.GetColumnsOutput(res.value);
+          // 1
+          columns4requestColumnSetting = this.tableService.GetColumnsOutput(
+            res.value
+          );
         },
         complete: () => {
-          this.columnSettingSub.unsubscribe();
-          let requestColumnSetting =
-            this.commonService.getRequestObj(columnSettingCols);
+          this.columns4requestColumnSettingSub.unsubscribe();
+
+          // 2
+          let requestColumnSetting = this.commonService.getRequestObj(
+            columns4requestColumnSetting
+          );
 
           this.column4TableSub = this.apiService
             .getColumns4Table(
@@ -171,36 +179,38 @@ export class TableComponent implements OnInit, OnDestroy {
               requestColumnSetting
             )
             .subscribe({
-              next: (res: ResponseColumnSetting) => (this.columns4Table = res),
+              next: (res: ResponseColumnSetting) => {
+                // columns for grid with isvisible = true
+                // columns for setting page D&D
+                this.columnSetting4GridId = res.value.data;
+                this.setColumnsFromColumnSetting(res.value.data);
+              },
               complete: () => {
                 this.column4TableSub.unsubscribe();
+
+                // 3
                 this.refreshData();
-                // tu to dokonczyc aby działało jak działało ale na nowych kolumnach, do siego roku
               },
             });
         },
       });
   }
-  // getColumns2(id: number) {
-  //   this.columnSub = this.apiService.getColumns(columnListPath(id)).subscribe({
-  //     next: (res: ResponseGridDataColumn) => {
-  //       this.columns = this.tableService.GetColumnsOutput(res.value);
-  //     },
-  //     complete: () => {
-  //       this.columnSub.unsubscribe();
-  //       let requestObj = this.commonService.getRequestObj(this.columns);
-  //       this.column4TableSub = this.apiService
-  //         .getColumns4Table(getColumnSettingsPath(id), requestObj)
-  //         .subscribe({
-  //           next: (res: ResponseColumnSetting) => (this.columns4Table = res),
-  //           complete: () => {
-  //             this.column4TableSub.unsubscribe();
-  //             // this.refreshData();
-  //           },
-  //         });
-  //     },
-  //   });
-  // }
+
+  setColumnsFromColumnSetting(data: [ResponseColumnSettingValueData]): void {
+    this.columns = [];
+    data
+      .filter((x) => x.isVisible)
+      .forEach((el) => {
+        this.columns.push({
+          columnName: firstToLowerCase(el.columnName),
+          dataType: getSepcificDataToTable(el.columnType),
+          displayName: el.displayName,
+          isVisible: el.isVisible,
+          filters: [],
+        });
+      });
+    this.columnFilter = this.columns.map((el) => el.columnName);
+  }
 
   // get data and prepare table
   refreshData(ev?: LazyLoadEvent | undefined): void {
@@ -359,13 +369,13 @@ export class TableComponent implements OnInit, OnDestroy {
       header: this.translateService.instant(
         'table-menu.setting.select_columns'
       ),
-      data: [this.gridId, this.columns],
+      data: [this.gridId, this.columnSetting4GridId],
     });
 
     this.columnSub = ref.onClose.subscribe({
       next: (res: boolean) => {
         if (res) {
-          this.selectedColumns.emit(res);
+          this.getColumns(this.gridId);
         }
         this.columnSub.unsubscribe();
       },

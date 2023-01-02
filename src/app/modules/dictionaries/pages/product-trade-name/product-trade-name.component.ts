@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
-import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
 import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
 import { TableComponent } from 'src/app/modules/universal-components/components/table/table.component';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
@@ -26,33 +23,27 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
 
   static icon = PrimeIcons.LIST;
   static title = 'pages.product_trade_name.title';
-
-  buttons: MenuItem[];
-  obj: TableMenuStructure;
+  gridId = GridEnum.ProductTradeName;
+  multiselect = true;
   model = 'ProductTradeName';
 
-  columns: ResponseGridDataColumnValue[];
-  reqObjBS = new BehaviorSubject<RequestBodyGetList>({ pageNumber: 10000 });
-  responseObj: Observable<ResponseBodyGetList>;
-  lazyLoadObj: LazyLoadEvent;
+  buttons: MenuItem[];
+  obj: TableMenuStructure = new TableMenuStructure();
   selectedId: number;
-  gridId = GridEnum.ProductTradeName;
-  postPath: string;
+
+  postPath: string = postModelPath(this.model);
   putPath: string;
-  private compsiteSub = new Subscription();
+
+  compsiteSub = new Subscription();
   postSub: Subscription;
   deleteSub: Subscription;
   putSub: Subscription;
-  multiselect = true;
 
   constructor(
     private tableService: TableService,
     private translateService: TranslateService,
     private tableButtonService: TableButtonService
-  ) {
-    this.postPath = postModelPath(this.model);
-    this.obj = new TableMenuStructure();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getButtons();

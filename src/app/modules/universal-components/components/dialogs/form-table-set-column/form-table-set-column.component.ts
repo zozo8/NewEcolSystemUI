@@ -4,8 +4,7 @@ import { DndDropEvent } from 'ngx-drag-drop';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
-import { ApiService } from 'src/app/services/api.service';
+import { ResponseColumnSettingValueData } from 'src/app/models/responses/columns/responseColumnSettingValueData';
 import { FormTableSetColumnService } from './form-table-set-column.service';
 
 @Component({
@@ -14,33 +13,33 @@ import { FormTableSetColumnService } from './form-table-set-column.service';
   styleUrls: ['./form-table-set-column.component.css'],
 })
 export class FormTableSetColumnComponent implements OnInit {
-  availableColumns: ResponseGridDataColumnValue[] = [];
-  selectedColumns: ResponseGridDataColumnValue[] = [];
-  draggedColumn: ResponseGridDataColumnValue | null;
+  availableColumns: ResponseColumnSettingValueData[] = [];
+  selectedColumns: ResponseColumnSettingValueData[] = [];
+  draggedColumn: ResponseColumnSettingValueData | null;
+
   title: string;
   gridId: number;
-  private getColumnsSubscription: Subscription;
+  saveColumnSub: Subscription;
 
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private translateService: TranslateService,
     private formTableSetColumnService: FormTableSetColumnService,
-    private messageService: MessageService,
-    private apiService: ApiService
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.gridId = this.config.data[0];
     this.config.data.closeOnEscape = true;
-    const cols: ResponseGridDataColumnValue[] = this.config.data[1];
+    const cols: ResponseColumnSettingValueData[] = this.config.data[1];
     this.availableColumns = cols.filter((x) => x.isVisible === false);
     this.selectedColumns = cols.filter((x) => x.isVisible === true);
   }
 
   onDragStartAvailableColumns(
     ev: DragEvent,
-    col: ResponseGridDataColumnValue
+    col: ResponseColumnSettingValueData
   ): void {
     this.draggedColumn = col;
   }
@@ -65,7 +64,7 @@ export class FormTableSetColumnComponent implements OnInit {
 
   onDragStartSelectedColumns(
     ev: DragEvent,
-    col: ResponseGridDataColumnValue
+    col: ResponseColumnSettingValueData
   ): void {
     this.draggedColumn = col;
   }
@@ -90,7 +89,8 @@ export class FormTableSetColumnComponent implements OnInit {
 
   save(): void {
     var allColumns = this.availableColumns.concat(this.selectedColumns);
-    this.formTableSetColumnService
+
+    this.saveColumnSub = this.formTableSetColumnService
       .setColumnByUserIdGridId(this.gridId, allColumns)
       .subscribe({
         next: (res: boolean) => {
@@ -114,6 +114,7 @@ export class FormTableSetColumnComponent implements OnInit {
             this.ref.close(true);
           }
         },
+        complete: () => this.saveColumnSub.unsubscribe(),
       });
   }
 
