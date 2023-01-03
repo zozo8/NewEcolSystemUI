@@ -8,6 +8,7 @@
   "remove_record_question":"Czy napewno chcesz usunąc rekord?",
   "remove_record_success":"Poprawnie usunięto rekord!",
   "remove_record_error":"Błąd podczas usuwania rekordu!",
+  "remove_without_id":"Wybierz rekord do usunięcia!",
   "add_record_success":"Poprawnie dodano rekord!",
   "add_record_error":"Błąd podczas dodawania rekordu!",
   "edit_record_success":"Poprawnie edytowano rekord!",

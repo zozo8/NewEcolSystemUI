@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from 'primeng/api';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
@@ -11,6 +11,8 @@ import { CommonService } from 'src/app/services/common.service';
   providedIn: 'root',
 })
 export class TableButtonService {
+  postSub: Subscription;
+
   constructor(
     private translateService: TranslateService,
     private confirmationService: ConfirmationService,
@@ -18,6 +20,7 @@ export class TableButtonService {
     private commonService: CommonService
   ) {}
 
+  // deprecated
   post(obj: TableMenuStructure): Observable<TableMenuStructure> {
     let ret = new BehaviorSubject<TableMenuStructure>(obj);
     obj.editState = true;
@@ -28,6 +31,7 @@ export class TableButtonService {
     return ret.asObservable();
   }
 
+  // deprecated
   put(obj: TableMenuStructure): Observable<TableMenuStructure> {
     let ret = new BehaviorSubject<TableMenuStructure>(obj);
 
@@ -44,6 +48,7 @@ export class TableButtonService {
     return ret.asObservable();
   }
 
+  //deprecated
   delete(path: string): Observable<boolean> {
     let returnSubject = new BehaviorSubject<boolean>(false);
 

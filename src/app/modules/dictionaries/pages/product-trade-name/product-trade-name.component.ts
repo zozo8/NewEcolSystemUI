@@ -3,15 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
+import { TableButtonComponent } from 'src/app/modules/universal-components/components/table-button/table-button.component';
 import { TableComponent } from 'src/app/modules/universal-components/components/table/table.component';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
-import {
-  deleteModelPath,
-  getModelPath,
-  postModelPath,
-} from 'src/app/services/path';
+import { getModelPath, postModelPath } from 'src/app/services/path';
 
 @Component({
   selector: 'app-product-trade-name',
@@ -20,8 +16,10 @@ import {
 })
 export class ProductTradeNameComponent implements OnInit, OnDestroy {
   @ViewChild(TableComponent) tableComponent: TableComponent;
+  @ViewChild(TableButtonComponent) tableButtonComponent: TableButtonComponent;
 
-  static icon = PrimeIcons.LIST;
+  static icon = PrimeIcons.BOOKMARK_FILL;
+  icon = PrimeIcons.BOOKMARK_FILL;
   static title = 'pages.product_trade_name.title';
   gridId = GridEnum.ProductTradeName;
   multiselect = true;
@@ -35,14 +33,11 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
   putPath: string;
 
   compsiteSub = new Subscription();
-  postSub: Subscription;
   deleteSub: Subscription;
-  putSub: Subscription;
 
   constructor(
     private tableService: TableService,
-    private translateService: TranslateService,
-    private tableButtonService: TableButtonService
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -61,62 +56,32 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
         label: this.translateService.instant('btn.add'),
         icon: 'pi pi-fw pi-plus',
         disabled: false,
-        command: () => this.post(),
+        command: () => (this.obj = this.tableButtonComponent.post(this.obj)),
       },
       {
         label: this.translateService.instant('btn.remove'),
         icon: 'pi pi-fw pi-minus',
         disabled: false,
-        command: () => this.delete(),
+        command: () =>
+          this.tableButtonComponent.delete(this.model, this.obj.objectDto.id),
       },
       {
         label: this.translateService.instant('btn.edit'),
         icon: 'pi pi-fw pi-pencil',
         disabled: false,
-        command: () => this.put(),
+        command: () => this.tableButtonComponent.put(this.obj),
       },
       {
         label: this.translateService.instant('btn.refresh'),
         icon: 'pi pi-fw pi-refresh',
         disabled: false,
-        command: () => this.refreshTable(),
+        command: () => this.tableButtonComponent.refreshTable.emit(),
       },
     ];
   }
 
-  post(): void {
-    this.postSub = this.tableButtonService.post(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.postSub?.unsubscribe();
-      },
-    });
-  }
-
-  put(): void {
-    this.putSub = this.tableButtonService.put(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.putSub?.unsubscribe();
-      },
-    });
-  }
-
-  delete(): void {
-    this.deleteSub = this.tableButtonService
-      .delete(deleteModelPath(this.model, this.obj.objectDto.id))
-      .subscribe({
-        next: (res: boolean) => {
-          if (res) {
-            this.refreshTable();
-            this.deleteSub?.unsubscribe();
-          }
-        },
-      });
-  }
-
   refreshTable(): void {
-    this.tableComponent.refreshData();
+    this.tableComponent.getColumns(this.gridId);
     this.obj.editState = false;
   }
 

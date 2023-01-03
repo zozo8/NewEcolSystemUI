@@ -9,7 +9,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { ResponseColumnSetting } from 'src/app/models/responses/columns/responseColumnSetting';
 import { ResponseColumnSettingValueData } from 'src/app/models/responses/columns/responseColumnSettingValueData';
@@ -175,6 +175,7 @@ export class TableComponent implements OnInit, OnDestroy {
               getColumnSettingsPath(gridId),
               requestColumnSetting
             )
+            .pipe(tap((arr) => arr.value.data.sort((x) => x.tagOrder)))
             .subscribe({
               next: (res: ResponseColumnSetting) => {
                 this.columnSetting4GridId = res.value.data;

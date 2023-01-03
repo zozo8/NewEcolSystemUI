@@ -1,11 +1,12 @@
-<div class="card">
-  <app-table
-    [dataTable]="responseObj"
-    [columns]="columns"
-    [gridId]="gridId"
-    [tableDisabled]="obj.editState"
-    [canMultiselect]="multiselect"
-    (newRequestParam)="getLazyLoadEvent($event)"
-    (selectedObj)="getSelected($event)"
-  ></app-table>
-</div>
+<app-table-button
+  [buttonList]="buttons"
+  [icon]="icon"
+  (refreshTable)="refreshTable()"
+></app-table-button>
+<app-table
+  [gridId]="gridId"
+  [tableDisabled]="obj.editState"
+  [canMultiselect]="multiselect"
+  [model]="model"
+  (selectedObj)="getSelected($event)"
+></app-table>

@@ -8,6 +8,7 @@
   "remove_record_question":"Are you sure? Do you want remove this record?",
   "remove_record_success":"Remove record successfully",
   "remove_record_error":"Error during remove record!",
+  "remove_without_id":"Please select record!",
   "add_record_success":"Add record successfully",
   "add_record_error":"Error during add record!",
   "edit_record_success":"Edit record successfully",

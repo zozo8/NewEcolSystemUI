@@ -1,27 +1,30 @@
 <p-splitter [panelSizes]="[70, 30]">
   <ng-template pTemplate>
     <div style="width: 100%">
-      <app-table-button [buttonList]="buttons" [icon]="'pi-bookmark-fill'">
+      <app-table-button
+        [buttonList]="buttons"
+        [icon]="icon"
+        (refreshTable)="refreshTable()"
+      >
       </app-table-button>
       <app-table
-        [dataTable]="responseObj"
-        [columns]="columns"
         [gridId]="gridId"
         [tableDisabled]="obj.editState"
-        [canMultiselect]="true"
-        (newRequestParam)="getLazyLoadEvent($event)"
+        [canMultiselect]="multiselect"
+        [model]="model"
         (selectedObj)="getSelected($event)"
-      ></app-table>
+      >
+      </app-table>
     </div>
   </ng-template>
   <ng-template pTemplate>
     <p-tabView [ngStyle]="{ width: '100%' }">
       <app-client-form
-        [icon]="'pi-bookmark-fill'"
-        [cols]="columns"
+        [icon]="icon"
         [obj]="obj"
         [postPath]="postPath"
         [putPath]="putPath"
+        [gridId]="gridId"
         (refreshTable)="refreshTable()"
       >
       </app-client-form>

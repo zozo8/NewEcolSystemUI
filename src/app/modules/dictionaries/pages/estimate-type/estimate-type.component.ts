@@ -1,20 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, PrimeIcons } from 'primeng/api';
-import { Observable, Subscription } from 'rxjs';
+import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
-import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
+import { TableButtonComponent } from 'src/app/modules/universal-components/components/table-button/table-button.component';
+import { TableComponent } from 'src/app/modules/universal-components/components/table/table.component';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
-import { ApiService } from 'src/app/services/api.service';
-import { CommonService } from 'src/app/services/common.service';
-import {
-  columnListPath,
-  getModelListPath,
-  getModelPath,
-} from 'src/app/services/path';
+import { getModelPath, postModelPath } from 'src/app/services/path';
 
 @Component({
   selector: 'app-estimate-type',
@@ -22,66 +15,79 @@ import {
   styleUrls: ['./estimate-type.component.scss'],
 })
 export class EstimateTypeComponent implements OnInit, OnDestroy {
-  static icon = PrimeIcons.LIST;
-  static title = 'pages.estimate_type.title';
+  @ViewChild(TableComponent) tableComponent: TableComponent;
+  @ViewChild(TableButtonComponent) tableButtonComponent: TableButtonComponent;
 
-  columns: ResponseGridDataColumnValue[];
-  responseObj: Observable<ResponseBodyGetList>;
-  lazyLoadObj: LazyLoadEvent;
-  selectedId: number;
+  static icon = PrimeIcons.LIST;
+  icon = PrimeIcons.LIST;
+  static title = 'pages.estimate_type.title';
   gridId = GridEnum.EstimateType;
   multiselect = true;
-  obj: TableMenuStructure = new TableMenuStructure();
   model = 'EstimateType';
-  compositeSubscription = new Subscription();
+
+  buttons: MenuItem[];
+  obj: TableMenuStructure = new TableMenuStructure();
+  selectedId: number;
+
+  postPath: string = postModelPath(this.model);
+  putPath: string;
+
+  compsiteSub = new Subscription();
+  postSub: Subscription;
+  deleteSub: Subscription;
+  putSub: Subscription;
 
   constructor(
-    private translate: TranslateService,
-    private apiService: ApiService,
     private tableService: TableService,
-    private commonService: CommonService
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
-    this.getColumns();
-  }
-
-  getColumns(): void {
-    this.compositeSubscription.add(
-      this.apiService
-        .getColumns(columnListPath(GridEnum.EstimateType))
-        .subscribe({
-          next: (res: ResponseGridDataColumn) => {
-            this.columns = this.tableService.GetColumnsOutput(res.value);
-          },
-          complete: () => {
-            this.getData();
-          },
-        })
-    );
-  }
-
-  getData(ev?: LazyLoadEvent): void {
-    this.responseObj = this.commonService.getObservableList4path(
-      getModelListPath(this.model),
-      columnListPath(GridEnum.EstimateType),
-      undefined,
-      ev
-    );
-  }
-
-  getLazyLoadEvent(ev: LazyLoadEvent): void {
-    this.getData(ev);
+    this.getButtons();
   }
 
   getSelected(ev: any): void {
-    let path = getModelPath(this.model, ev.id);
+    var path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;
-
     this.tableService.getObjDto(path, this.obj);
   }
 
+  getButtons(): void {
+    this.buttons = [
+      {
+        label: this.translateService.instant('btn.add'),
+        icon: 'pi pi-fw pi-plus',
+        disabled: false,
+        command: () => (this.obj = this.tableButtonComponent.post(this.obj)),
+      },
+      {
+        label: this.translateService.instant('btn.remove'),
+        icon: 'pi pi-fw pi-minus',
+        disabled: false,
+        command: () =>
+          this.tableButtonComponent.delete(this.model, this.obj.objectDto.id),
+      },
+      {
+        label: this.translateService.instant('btn.edit'),
+        icon: 'pi pi-fw pi-pencil',
+        disabled: false,
+        command: () => this.tableButtonComponent.put(this.obj),
+      },
+      {
+        label: this.translateService.instant('btn.refresh'),
+        icon: 'pi pi-fw pi-refresh',
+        disabled: false,
+        command: () => this.tableButtonComponent.refreshTable.emit(),
+      },
+    ];
+  }
+
+  refreshTable(): void {
+    this.tableComponent.getColumns(this.gridId);
+    this.obj.editState = false;
+  }
+
   ngOnDestroy(): void {
-    this.compositeSubscription.unsubscribe();
+    this.compsiteSub.unsubscribe();
   }
 }

@@ -1,102 +1,47 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
-import { Observable, Subscription } from 'rxjs';
+import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
-import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
-import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
+import { TableButtonComponent } from 'src/app/modules/universal-components/components/table-button/table-button.component';
+import { TableComponent } from 'src/app/modules/universal-components/components/table/table.component';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
-import { IMasterPage } from 'src/app/modules/universal-components/interfaces/IMasterPage';
-import { ITableButtonsComponent } from 'src/app/modules/universal-components/interfaces/ITableButtonsComponent';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
-import { ApiService } from 'src/app/services/api.service';
-import { CommonService } from 'src/app/services/common.service';
-import {
-  columnListPath,
-  deleteModelPath,
-  getModelListPath,
-  getModelPath,
-  postModelPath,
-} from 'src/app/services/path';
+import { getModelPath, postModelPath } from 'src/app/services/path';
 
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
 })
-export class ClientComponent
-  implements OnInit, OnDestroy, ITableButtonsComponent, IMasterPage
-{
+export class ClientComponent implements OnInit, OnDestroy {
+  @ViewChild(TableComponent) tableComponent: TableComponent;
+  @ViewChild(TableButtonComponent) tableButtonComponent: TableButtonComponent;
+
   static icon = PrimeIcons.LIST;
+  icon = PrimeIcons.LIST;
   static title = 'pages.client.title';
-
-  columns: ResponseGridDataColumnValue[];
-  responseObj: Observable<ResponseBodyGetList>;
-  lazyLoadObj: LazyLoadEvent;
-  selectedId: number;
   gridId = GridEnum.Clients;
-  obj: TableMenuStructure = new TableMenuStructure();
+  multiselect = true;
   model = 'Client';
-  compositeSubscription = new Subscription();
-
-  postPath = postModelPath(this.model);
-  putPath: string;
 
   buttons: MenuItem[];
-  postSub: Subscription;
-  deleteSub: Subscription;
-  putSub: Subscription;
-  columnsSub: Subscription;
+  obj: TableMenuStructure = new TableMenuStructure();
+  selectedId: number;
+
+  postPath: string = postModelPath(this.model);
+  putPath: string;
+
+  compsiteSub = new Subscription();
 
   constructor(
     private translateService: TranslateService,
-    private apiService: ApiService,
-    private tableService: TableService,
-    private commonService: CommonService,
-    private tableButtonService: TableButtonService
+    private tableService: TableService
   ) {}
 
   ngOnInit(): void {
-    this.getColumns();
     this.getButtons();
   }
-
-  // table
-  getColumns(): void {
-    this.columnsSub = this.apiService
-      .getColumns(columnListPath(GridEnum.Clients))
-      .subscribe({
-        next: (res: ResponseGridDataColumn) => {
-          this.columns = this.tableService.GetColumnsOutput(res.value);
-        },
-        complete: () => {
-          this.columnsSub.unsubscribe();
-          this.getData();
-        },
-      });
-  }
-
-  getData(ev?: LazyLoadEvent): void {
-    this.responseObj = this.commonService.getObservableList4path(
-      getModelListPath(this.model),
-      columnListPath(GridEnum.Clients),
-      undefined,
-      ev
-    );
-  }
-  getLazyLoadEvent(ev: LazyLoadEvent): void {
-    this.getData(ev);
-  }
-
-  getSelected(ev: any): void {
-    let path = getModelPath(this.model, ev.id);
-    this.selectedId = ev.id;
-    this.tableService.getObjDto(path, this.obj);
-  }
-
-  //buttons
 
   getButtons(): void {
     this.buttons = [
@@ -104,63 +49,42 @@ export class ClientComponent
         label: this.translateService.instant('btn.add'),
         icon: 'pi pi-fw pi-plus',
         disabled: false,
-        command: () => this.post(),
+        command: () => (this.obj = this.tableButtonComponent.post(this.obj)),
       },
       {
         label: this.translateService.instant('btn.remove'),
         icon: 'pi pi-fw pi-minus',
         disabled: false,
-        command: () => this.delete(),
+        command: () =>
+          this.tableButtonComponent.delete(this.model, this.obj.objectDto.id),
       },
       {
         label: this.translateService.instant('btn.edit'),
         icon: 'pi pi-fw pi-pencil',
         disabled: false,
-        command: () => this.put(),
+        command: () => this.tableButtonComponent.put(this.obj),
       },
       {
         label: this.translateService.instant('btn.refresh'),
         icon: 'pi pi-fw pi-refresh',
         disabled: false,
-        command: () => this.refreshTable(),
+        command: () => this.tableButtonComponent.refreshTable.emit(),
       },
     ];
   }
-  post(): void {
-    this.postSub = this.tableButtonService.post(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.postSub.unsubscribe();
-      },
-    });
-  }
-  delete(): void {
-    this.deleteSub = this.tableButtonService
-      .delete(deleteModelPath(this.model, this.obj.objectDto.id))
-      .subscribe({
-        next: (res: boolean) => {
-          if (res) {
-            this.refreshTable();
-            this.deleteSub.unsubscribe();
-          }
-        },
-      });
-  }
-  put(): void {
-    this.putSub = this.tableButtonService.put(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.putSub.unsubscribe();
-      },
-    });
-  }
 
   refreshTable(): void {
-    this.getData(this.lazyLoadObj);
+    this.tableComponent.getColumns(this.gridId);
     this.obj.editState = false;
   }
 
+  getSelected(ev: any): void {
+    var path = getModelPath(this.model, ev.id);
+    this.selectedId = ev.id;
+    this.tableService.getObjDto(path, this.obj);
+  }
+
   ngOnDestroy(): void {
-    this.compositeSubscription.unsubscribe();
+    this.compsiteSub.unsubscribe();
   }
 }

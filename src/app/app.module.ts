@@ -6,7 +6,6 @@ import {
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducerMap, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -37,6 +36,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PanelModule } from 'primeng/panel';
 import { PanelMenuModule } from 'primeng/panelmenu';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SidebarModule } from 'primeng/sidebar';
@@ -147,7 +147,6 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
         deps: [HttpClient],
       },
     }),
-    // DndModule,
     TabViewModule,
     BreadcrumbModule,
     AutoCompleteModule,

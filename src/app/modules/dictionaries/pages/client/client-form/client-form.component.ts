@@ -5,7 +5,6 @@ import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGr
 import { ITableFormComponent } from 'src/app/modules/universal-components/interfaces/ITableFormComponent';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
 import { ApiService } from 'src/app/services/api.service';
-import { CommonService } from 'src/app/services/common.service';
 import { getXprimerDicPath } from 'src/app/services/path';
 import { XprimerClient } from '../../../models/xprimer/xprimerClient.model';
 
@@ -15,20 +14,26 @@ import { XprimerClient } from '../../../models/xprimer/xprimerClient.model';
   styleUrls: ['./client-form.component.scss'],
 })
 export class ClientFormComponent implements OnInit, ITableFormComponent {
-  @Input() postPath: string;
-  @Input() putPath: string;
-  @Input() cols: ResponseGridDataColumnValue[];
-  @Input() obj: TableMenuStructure;
-  @Input() icon: string;
-  @Output() refreshTable = new EventEmitter();
+  @Input()
+  postPath: string;
+  @Input()
+  putPath: string;
+  @Input()
+  cols: ResponseGridDataColumnValue[];
+  @Input()
+  obj: TableMenuStructure;
+  @Input()
+  icon: string;
+  @Input()
+  gridId: number;
+
+  @Output()
+  refreshTable = new EventEmitter();
 
   xprimerClientDict: XprimerClient[] = [];
   xprimerClientSub: Subscription;
 
-  constructor(
-    private commonService: CommonService,
-    private apiService: ApiService
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.getXprimerClientDict();

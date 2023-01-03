@@ -1,7 +1,11 @@
 <p-splitter [panelSizes]="[70, 30]">
   <ng-template pTemplate>
     <div style="width: 100%">
-      <app-table-button [buttonList]="buttons" [icon]="'pi-bookmark-fill'">
+      <app-table-button
+        [buttonList]="buttons"
+        [icon]="icon"
+        (refreshTable)="refreshTable()"
+      >
       </app-table-button>
       <div class="row">
         <app-table
@@ -18,7 +22,7 @@
   <ng-template pTemplate>
     <p-tabView [ngStyle]="{ width: '100%' }">
       <app-product-trade-name-form
-        [icon]="'pi-bookmark-fill'"
+        [icon]="icon"
         [obj]="obj"
         [postPath]="postPath"
         [putPath]="putPath"
