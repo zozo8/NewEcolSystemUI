@@ -15,15 +15,18 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "suppressImplicitAnyIndexErrors": true,
     "lib": [
       "es2020",
       "dom"
     ],
-    "types": ["node"],
-    "strictPropertyInitialization": false
+    "types": [
+      "node"
+    ],
+    "strictPropertyInitialization": false,
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

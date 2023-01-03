@@ -160,15 +160,12 @@ export class TableComponent implements OnInit, OnDestroy {
       .getColumns(columnListPath(GridEnum.ColumnSetting))
       .subscribe({
         next: (res: ResponseGridDataColumn) => {
-          // 1
           columns4requestColumnSetting = this.tableService.GetColumnsOutput(
             res.value
           );
         },
         complete: () => {
           this.columns4requestColumnSettingSub.unsubscribe();
-
-          // 2
           let requestColumnSetting = this.commonService.getRequestObj(
             columns4requestColumnSetting
           );
@@ -180,15 +177,11 @@ export class TableComponent implements OnInit, OnDestroy {
             )
             .subscribe({
               next: (res: ResponseColumnSetting) => {
-                // columns for grid with isvisible = true
-                // columns for setting page D&D
                 this.columnSetting4GridId = res.value.data;
                 this.setColumnsFromColumnSetting(res.value.data);
               },
               complete: () => {
                 this.column4TableSub.unsubscribe();
-
-                // 3
                 this.refreshData();
               },
             });
@@ -355,16 +348,12 @@ export class TableComponent implements OnInit, OnDestroy {
         ),
         command: () => this.selectColumns(),
       },
-      {
-        label: this.translateService.instant('table-menu.setting.save_grid'),
-        disabled: true,
-      },
     ];
   }
 
   selectColumns(): void {
     const ref = this.dialogService.open(FormTableSetColumnComponent, {
-      contentStyle: { width: '800px' },
+      contentStyle: { width: '900px' },
       closeOnEscape: true,
       header: this.translateService.instant(
         'table-menu.setting.select_columns'

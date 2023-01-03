@@ -12,7 +12,6 @@ import { ActionReducerMap, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { DndModule } from 'ngx-drag-drop';
 import { FileSaverService } from 'ngx-filesaver';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -37,6 +36,7 @@ import { OrganizationChartModule } from 'primeng/organizationchart';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PanelModule } from 'primeng/panel';
 import { PanelMenuModule } from 'primeng/panelmenu';
+
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SidebarModule } from 'primeng/sidebar';
@@ -147,7 +147,7 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
         deps: [HttpClient],
       },
     }),
-    DndModule,
+    // DndModule,
     TabViewModule,
     BreadcrumbModule,
     AutoCompleteModule,

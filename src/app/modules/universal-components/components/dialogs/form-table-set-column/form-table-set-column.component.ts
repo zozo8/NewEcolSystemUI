@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { DndDropEvent } from 'ngx-drag-drop';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
@@ -10,7 +9,7 @@ import { FormTableSetColumnService } from './form-table-set-column.service';
 @Component({
   selector: 'app-form-table-set-column',
   templateUrl: './form-table-set-column.component.html',
-  styleUrls: ['./form-table-set-column.component.css'],
+  styleUrls: ['./form-table-set-column.component.scss'],
 })
 export class FormTableSetColumnComponent implements OnInit {
   availableColumns: ResponseColumnSettingValueData[] = [];
@@ -37,57 +36,15 @@ export class FormTableSetColumnComponent implements OnInit {
     this.selectedColumns = cols.filter((x) => x.isVisible === true);
   }
 
-  onDragStartAvailableColumns(
-    ev: DragEvent,
-    col: ResponseColumnSettingValueData
-  ): void {
-    this.draggedColumn = col;
-  }
-
-  onDropSelectedColumns(ev: DndDropEvent): void {
-    if (this.draggedColumn) {
-      if (
-        !this.selectedColumns.find(
-          (x) => x.columnName === this.draggedColumn?.columnName
-        )
-      ) {
-        this.draggedColumn.isVisible = true;
-        this.selectedColumns.push(this.draggedColumn);
-        var index = this.availableColumns.findIndex(
-          (x) => x.columnName === this.draggedColumn?.columnName
-        );
-        this.availableColumns.splice(index, 1);
-        this.draggedColumn = null;
-      }
-    }
-  }
-
-  onDragStartSelectedColumns(
-    ev: DragEvent,
-    col: ResponseColumnSettingValueData
-  ): void {
-    this.draggedColumn = col;
-  }
-
-  onDropAvailableColumns(ev: DndDropEvent): void {
-    if (this.draggedColumn) {
-      if (
-        !this.availableColumns.find(
-          (x) => x.columnName === this.draggedColumn?.columnName
-        )
-      ) {
-        this.draggedColumn.isVisible = false;
-        this.availableColumns.push(this.draggedColumn);
-        var index = this.selectedColumns.findIndex(
-          (x) => x.columnName === this.draggedColumn?.columnName
-        );
-        this.selectedColumns.splice(index, 1);
-        this.draggedColumn = null;
-      }
-    }
-  }
-
   save(): void {
+    this.availableColumns.forEach((col) => {
+      col.isVisible = false;
+    });
+
+    this.selectedColumns.forEach((col) => {
+      col.isVisible = true;
+    });
+
     var allColumns = this.availableColumns.concat(this.selectedColumns);
 
     this.saveColumnSub = this.formTableSetColumnService

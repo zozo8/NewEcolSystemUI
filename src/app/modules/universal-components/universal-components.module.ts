@@ -15,6 +15,7 @@ import { UniversalComponentsComponent } from './universal-components.component';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { PickListModule } from 'primeng/picklist';
 import { FormDictionaryValueDialogComponent } from './components/dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component';
 import { FormTableSetColumnComponent } from './components/dialogs/form-table-set-column/form-table-set-column.component';
 import { FormComponent } from './components/form/form.component';
@@ -44,6 +45,7 @@ import { TableComponent } from './components/table/table.component';
     TranslateModule,
     FormsModule,
     ContextMenuModule,
+    PickListModule,
   ],
   providers: [TableButtonService],
   entryComponents: [FormDictionaryValueDialogComponent],
