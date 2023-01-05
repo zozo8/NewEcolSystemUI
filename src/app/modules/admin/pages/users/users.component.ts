@@ -1,124 +1,43 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
-import { RequestBodyGetList } from 'src/app/models/requests/requestBodyGetList.model';
-import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
-import { ResponseGridDataColumn } from 'src/app/models/responses/responseGridDataColumn.model';
-import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
-import { TableButtonService } from 'src/app/modules/universal-components/components/table-button/table-button.service';
+import { TableButtonComponent } from 'src/app/modules/universal-components/components/table-button/table-button.component';
+import { TableComponent } from 'src/app/modules/universal-components/components/table/table.component';
 import { TableService } from 'src/app/modules/universal-components/components/table/table.service';
-import { IMasterPage } from 'src/app/modules/universal-components/interfaces/IMasterPage';
-import { ITableButtonsComponent } from 'src/app/modules/universal-components/interfaces/ITableButtonsComponent';
-import { ITableComponent } from 'src/app/modules/universal-components/interfaces/ITableComponent';
 import { TableMenuStructure } from 'src/app/modules/universal-components/models/tableMenuStructure.model';
-import { ApiService } from 'src/app/services/api.service';
-import { CommonService } from 'src/app/services/common.service';
-import {
-  columnListPath,
-  deleteModelPath,
-  getModelListPath,
-  getModelPath,
-  postModelPath,
-} from 'src/app/services/path';
+import { getModelPath, postModelPath } from 'src/app/services/path';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent
-  implements
-    OnInit,
-    ITableComponent,
-    ITableButtonsComponent,
-    IMasterPage,
-    OnDestroy
-{
+export class UsersComponent implements OnInit, OnDestroy {
+  @ViewChild(TableComponent) tableComponent: TableComponent;
+  @ViewChild(TableButtonComponent) tableButtonComponent: TableButtonComponent;
+
   static icon = PrimeIcons.USERS;
+  icon = PrimeIcons.USERS;
   static title = 'pages.users.title';
-
-  obj: TableMenuStructure;
-  lazyLoadObj: LazyLoadEvent;
-  responseObj: Observable<ResponseBodyGetList>;
-  columns: ResponseGridDataColumnValue[];
-  reqObjBS = new BehaviorSubject<RequestBodyGetList>({ pageNumber: 10000 });
-  selectedId: number;
-  postPath: string;
-  putPath: string;
-  gridId: number = GridEnum.Users;
+  gridId = GridEnum.Users;
   multiselect = true;
-
   model = 'User';
   buttons: MenuItem[];
-  private compositeSubscription = new Subscription();
-  private postSubscription: Subscription;
-  private putSubscription: Subscription;
-  private deleteSubscription: Subscription;
+  obj: TableMenuStructure = new TableMenuStructure();
+  selectedId: number;
+  postPath: string = postModelPath(this.model);
+  putPath: string;
+  compsiteSub = new Subscription();
 
   constructor(
     private tableService: TableService,
-    private translateService: TranslateService,
-    private tableButtonService: TableButtonService,
-    private commonService: CommonService,
-    private apiService: ApiService
-  ) {
-    this.postPath = postModelPath(this.model);
-    this.obj = new TableMenuStructure();
-  }
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
-    this.getColumns();
     this.getButtons();
-
-    this.reqObjBS.subscribe((request) => {
-      if (request?.pageNumber !== 10000) {
-        this.responseObj = this.apiService.getResponseBodyGetList(
-          getModelListPath(this.model),
-          request
-        );
-      }
-    });
-  }
-
-  getColumns(): void {
-    this.compositeSubscription.add(
-      this.apiService.getColumns(columnListPath(this.gridId)).subscribe({
-        next: (res: ResponseGridDataColumn) => {
-          this.columns = this.tableService.GetColumnsOutput(res.value);
-        },
-        complete: () => {
-          this.prepareRequest();
-        },
-      })
-    );
-  }
-
-  prepareRequest(ev?: LazyLoadEvent): void {
-    let requestObj = this.commonService.getRequestObj(this.columns, ev);
-    this.reqObjBS.next(requestObj);
-  }
-
-  getLazyLoadEvent(ev: LazyLoadEvent): void {
-    this.lazyLoadObj = ev;
-    this.prepareRequest(this.lazyLoadObj);
-  }
-
-  getSelected(ev: any): void {
-    let path = getModelPath(this.model, ev.id);
-    this.selectedId = ev.id;
-
-    this.tableService.getObjDto(path, this.obj);
-  }
-
-  getSelectedColumns(): void {
-    this.getColumns();
-  }
-
-  refreshTable(): void {
-    this.prepareRequest(this.lazyLoadObj);
-    this.obj.editState = false;
   }
 
   getButtons(): void {
@@ -127,55 +46,42 @@ export class UsersComponent
         label: this.translateService.instant('btn.add'),
         icon: 'pi pi-fw pi-plus',
         disabled: false,
-        command: () => this.post(),
+        command: () => (this.obj = this.tableButtonComponent.post(this.obj)),
       },
       {
         label: this.translateService.instant('btn.remove'),
         icon: 'pi pi-fw pi-minus',
         disabled: false,
-        command: () => this.delete(),
+        command: () =>
+          this.tableButtonComponent.delete(this.model, this.obj.objectDto.id),
+      },
+      {
+        label: this.translateService.instant('btn.edit'),
+        icon: 'pi pi-fw pi-pencil',
+        disabled: false,
+        command: () => this.tableButtonComponent.put(this.obj),
       },
       {
         label: this.translateService.instant('btn.refresh'),
         icon: 'pi pi-fw pi-refresh',
         disabled: false,
-        command: () => this.refreshTable(),
+        command: () => this.tableButtonComponent.refreshTable.emit(),
       },
     ];
   }
 
-  post(): void {
-    this.postSubscription = this.tableButtonService.post(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.postSubscription.unsubscribe();
-      },
-    });
+  getSelected(ev: any): void {
+    var path = getModelPath(this.model, ev.id);
+    this.selectedId = ev.id;
+    this.tableService.getObjDto(path, this.obj);
   }
 
-  put(): void {
-    this.putSubscription = this.tableButtonService.put(this.obj).subscribe({
-      next: (res: TableMenuStructure) => {
-        this.obj = res;
-        this.putSubscription.unsubscribe();
-      },
-    });
-  }
-
-  delete(): void {
-    this.deleteSubscription = this.tableButtonService
-      .delete(deleteModelPath(this.model, this.obj.objectDto.id))
-      .subscribe({
-        next: (res: boolean) => {
-          if (res) {
-            this.refreshTable();
-            this.deleteSubscription.unsubscribe();
-          }
-        },
-      });
+  refreshTable(): void {
+    this.tableComponent.getData4Grid(this.gridId);
+    this.obj.editState = false;
   }
 
   ngOnDestroy(): void {
-    this.compositeSubscription.unsubscribe();
+    this.compsiteSub.unsubscribe();
   }
 }

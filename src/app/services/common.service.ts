@@ -81,6 +81,7 @@ export class CommonService {
     filters?: Filter[]
   ): ResponseGridDataColumnValue[] {
     var res: ResponseGridDataColumnValue[] = [];
+
     columns.forEach((val) => {
       // not from table
       var flrs = filters?.filter(
@@ -116,6 +117,20 @@ export class CommonService {
         isVisible: val.isVisible,
       });
     });
+
+    // additional filter when column not exist, for masterId example
+    const filtersAdditional = filters?.filter((x) => x.additional === true);
+    if (filtersAdditional) {
+      filtersAdditional.forEach((f) => {
+        res.push({
+          filters: [f],
+          columnName: f.field ?? '',
+          dataType: f.dataType ?? '',
+          displayName: f.field ?? '',
+          isVisible: false,
+        });
+      });
+    }
 
     return res;
   }
@@ -206,6 +221,7 @@ export class CommonService {
     field: string,
     value: string,
     comparision: string,
+    dataType?: string,
     joinType?: string
   ): Filter {
     let obj: Filter = {
@@ -213,6 +229,8 @@ export class CommonService {
       value: value,
       comparision: comparision,
       joinType: joinType,
+      additional: true,
+      dataType: dataType,
     };
 
     return obj;

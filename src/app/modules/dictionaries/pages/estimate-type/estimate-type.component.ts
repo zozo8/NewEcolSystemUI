@@ -83,7 +83,7 @@ export class EstimateTypeComponent implements OnInit, OnDestroy {
   }
 
   refreshTable(): void {
-    this.tableComponent.getColumns(this.gridId);
+    this.tableComponent.getData4Grid(this.gridId);
     this.obj.editState = false;
   }
 

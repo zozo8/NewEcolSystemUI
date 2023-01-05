@@ -3,4 +3,6 @@ export class Filter {
   value?: string;
   comparision?: string;
   joinType?: string;
+  additional?: boolean;
+  dataType?: string;
 }

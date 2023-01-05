@@ -24,6 +24,9 @@ export class UserFormComponent implements ITableFormComponent {
   @Input()
   icon: string;
 
+  @Input()
+  gridId: number;
+
   @Output()
   refreshTable = new EventEmitter();
 

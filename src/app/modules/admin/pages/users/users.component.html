@@ -4,17 +4,15 @@
       <div style="width: 100%">
         <app-table-button
           [buttonList]="buttons"
-          [icon]="'pi-users'"
-          (selectedColumnList)="getSelectedColumns()"
+          [icon]="icon"
+          (refreshTable)="refreshTable()"
         ></app-table-button>
         <div class="row">
           <app-table
-            [dataTable]="responseObj"
-            [columns]="columns"
             [gridId]="gridId"
             [tableDisabled]="obj.editState"
             [canMultiselect]="multiselect"
-            (newRequestParam)="getLazyLoadEvent($event)"
+            [model]="model"
             (selectedObj)="getSelected($event)"
           >
           </app-table>
@@ -25,11 +23,11 @@
       <p-tabView [ngStyle]="{ width: '100%' }">
         <p-tabPanel [header]="'common.selected_entity' | translate" #userForm>
           <app-user-form
-            [icon]="'pi-user'"
-            [cols]="columns"
+            [icon]="icon"
             [obj]="obj"
             [postPath]="postPath"
             [putPath]="putPath"
+            [gridId]="gridId"
             (refreshTable)="refreshTable()"
           >
           </app-user-form>

@@ -6,8 +6,14 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
-import { deleteModelPath } from 'src/app/services/path';
+import {
+  columnListPath,
+  deleteModelPath,
+  getModelListPath,
+  postModelPath,
+} from 'src/app/services/path';
 import { TableMenuStructure } from '../../models/tableMenuStructure.model';
+import { FormDictionaryValueDialogComponent } from '../dialogs/form-dictionary-value-dialog/form-dictionary-value-dialog.component';
 
 @Component({
   selector: 'app-table-button',
@@ -16,6 +22,8 @@ import { TableMenuStructure } from '../../models/tableMenuStructure.model';
   providers: [DialogService],
 })
 export class TableButtonComponent {
+  postModalSub: Subscription;
+
   private _buttonList: MenuItem[];
   private deleteSub: Subscription;
 
@@ -46,7 +54,8 @@ export class TableButtonComponent {
     private translateService: TranslateService,
     private confirmationService: ConfirmationService,
     private apiService: ApiService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private dialogService: DialogService
   ) {}
 
   post(obj: TableMenuStructure): TableMenuStructure {
@@ -101,6 +110,41 @@ export class TableButtonComponent {
             );
           },
         });
+      },
+    });
+  }
+
+  // MODAL
+
+  //dorobic wersje put
+  postModal(
+    obj: any,
+    model: string,
+    dictModel: string,
+    dictGridId: number,
+    value: string,
+    label: string,
+    objDictId: string
+  ): void {
+    this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
+      data: [
+        [getModelListPath(dictModel), columnListPath(dictGridId), value, label],
+        postModelPath(model),
+        obj,
+        [objDictId],
+        undefined,
+        false,
+      ],
+      contentStyle: { width: '600px' },
+      header: this.translateService.instant('dict.select_value'),
+    });
+
+    this.postModalSub = this.ref.onClose.subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          this.refreshTable.emit();
+          this.postModalSub.unsubscribe();
+        }
       },
     });
   }

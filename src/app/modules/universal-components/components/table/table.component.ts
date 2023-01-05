@@ -9,8 +9,9 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
+import { Filter } from 'src/app/models/requests/filter.model';
 import { ResponseColumnSetting } from 'src/app/models/responses/columns/responseColumnSetting';
 import { ResponseColumnSettingValueData } from 'src/app/models/responses/columns/responseColumnSettingValueData';
 import { ResponseBodyGetList } from 'src/app/models/responses/responseBodyGetList.model';
@@ -111,6 +112,9 @@ export class TableComponent implements OnInit, OnDestroy {
   @Input()
   tableDisabled: boolean;
 
+  @Input()
+  forMaster: boolean;
+
   private _gridId: number;
   public get gridId(): number {
     return this._gridId;
@@ -120,7 +124,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public set gridId(id: number) {
     this._gridId = id;
 
-    this.getColumns(id);
+    this.getData4Grid(id);
   }
 
   @Input()
@@ -153,7 +157,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   // get columns for prepare request next get columns for table column
   // 1 - get static column setting, 2 - get columns setting for gridId, 3 - get data
-  getColumns(gridId: number) {
+  getData4Grid(gridId: number, filters?: Filter[], ev?: LazyLoadEvent) {
     var columns4requestColumnSetting: ResponseGridDataColumnValue[];
 
     this.columns4requestColumnSettingSub = this.apiService
@@ -175,7 +179,6 @@ export class TableComponent implements OnInit, OnDestroy {
               getColumnSettingsPath(gridId),
               requestColumnSetting
             )
-            .pipe(tap((arr) => arr.value.data.sort((x) => x.tagOrder)))
             .subscribe({
               next: (res: ResponseColumnSetting) => {
                 this.columnSetting4GridId = res.value.data;
@@ -183,14 +186,25 @@ export class TableComponent implements OnInit, OnDestroy {
               },
               complete: () => {
                 this.column4TableSub.unsubscribe();
-                this.refreshData();
+
+                if (this.forMaster) {
+                  const additionalFilters = filters?.filter(
+                    (x) => x.additional === true
+                  );
+                  if (!additionalFilters) {
+                    return;
+                  }
+                }
+                this.refreshData(filters, ev);
               },
             });
         },
       });
   }
 
-  setColumnsFromColumnSetting(data: [ResponseColumnSettingValueData]): void {
+  private setColumnsFromColumnSetting(
+    data: [ResponseColumnSettingValueData]
+  ): void {
     this.columns = [];
     data
       .filter((x) => x.isVisible)
@@ -207,10 +221,19 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   // get data and prepare table
-  refreshData(ev?: LazyLoadEvent | undefined): void {
+  refreshData(filters?: Filter[], ev?: LazyLoadEvent): void {
     this.dataLoading = true;
 
-    let requestObj = this.commonService.getRequestObj(this.columns, ev);
+    let requestObj = this.commonService.getRequestObj(
+      this.columns,
+      ev,
+      filters
+    );
+
+    if (this.model === undefined) {
+      return;
+    }
+
     this.dataSub = this.apiService
       .getResponseBodyGetList(getModelListPath(this.model), requestObj)
       .subscribe({
@@ -236,7 +259,7 @@ export class TableComponent implements OnInit, OnDestroy {
   // get event from table
   loadData(event: LazyLoadEvent): void {
     if (event.first !== 0 || event.rows !== 0) {
-      this.refreshData(event);
+      this.refreshData(undefined, event);
     }
   }
 
@@ -365,7 +388,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.columnSub = ref.onClose.subscribe({
       next: (res: boolean) => {
         if (res) {
-          this.getColumns(this.gridId);
+          this.getData4Grid(this.gridId);
         }
         this.columnSub.unsubscribe();
       },

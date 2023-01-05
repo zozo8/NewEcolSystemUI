@@ -18,7 +18,7 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
   data: [
     [string, string, string, string],
     string,
-    T,
+    any,
     [string, string],
     Filter[],
     boolean
