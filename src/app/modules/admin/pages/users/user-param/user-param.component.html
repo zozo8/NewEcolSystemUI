@@ -1,12 +1,14 @@
 <app-table-button
   [buttonList]="buttons"
-  [icon]="'pi-user-plus'"
+  [icon]="icon"
+  (refreshTable)="refreshTable()"
 ></app-table-button>
 <app-table
-  [dataTable]="responseObj"
-  [columns]="columns"
   [gridId]="gridId"
-  (newRequestParam)="getLazyLoadEvent($event)"
+  [forMaster]="true"
+  [tableDisabled]="obj.editState"
+  [canMultiselect]="multiselect"
+  [model]="model"
   (selectedObj)="getSelected($event)"
 >
 </app-table>

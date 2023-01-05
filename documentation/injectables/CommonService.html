@@ -1,0 +1,1731 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>new-ecol-system-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">new-ecol-system-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >CommonService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/common.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#listMenuItem" >listMenuItem</a>
+                            </li>
+                            <li>
+                                <a href="#newTabSub" >newTabSub</a>
+                            </li>
+                            <li>
+                                <a href="#returnList" >returnList</a>
+                            </li>
+                            <li>
+                                <a href="#valueSub" >valueSub</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addTabToStore" >addTabToStore</a>
+                            </li>
+                            <li>
+                                <a href="#getBlobFromBytes" >getBlobFromBytes</a>
+                            </li>
+                            <li>
+                                <a href="#getFilter4request" >getFilter4request</a>
+                            </li>
+                            <li>
+                                <a href="#getFilters4Departments" >getFilters4Departments</a>
+                            </li>
+                            <li>
+                                <a href="#getMenuItemList" >getMenuItemList</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageToastBySeverity" >getMessageToastBySeverity</a>
+                            </li>
+                            <li>
+                                <a href="#getObservableList4path" >getObservableList4path</a>
+                            </li>
+                            <li>
+                                <a href="#getRequestObj" >getRequestObj</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getSepcificDataType4Api" >getSepcificDataType4Api</a>
+                            </li>
+                            <li>
+                                <a href="#getValueFromObservable" >getValueFromObservable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#prepareFilters" >prepareFilters</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, store: <a href="../interfaces/LoginState.html" target="_self">Store&lt;LoginState&gt;</a>, messageService: MessageService, translateService: TranslateService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/services/common.service.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>apiService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/LoginState.html" target="_self" >Store&lt;LoginState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTabToStore"></a>
+                    <span class="name">
+                        <span ><b>addTabToStore</b></span>
+                        <a href="#addTabToStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTabToStore(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/services/common.service.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBlobFromBytes"></a>
+                    <span class="name">
+                        <span ><b>getBlobFromBytes</b></span>
+                        <a href="#getBlobFromBytes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBlobFromBytes(bytes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/app/services/common.service.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bytes</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Blob</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFilter4request"></a>
+                    <span class="name">
+                        <span ><b>getFilter4request</b></span>
+                        <a href="#getFilter4request"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFilter4request(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, comparision: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, dataType?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, joinType?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/services/common.service.ts:220</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>field</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>comparision</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>dataType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>joinType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Filter.html" target="_self" >Filter</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFilters4Departments"></a>
+                    <span class="name">
+                        <span ><b>getFilters4Departments</b></span>
+                        <a href="#getFilters4Departments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFilters4Departments(depts: number[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/app/services/common.service.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>depts</td>
+                                    <td>
+                                            <code>number[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Filter.html" target="_self" >Filter[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMenuItemList"></a>
+                    <span class="name">
+                        <span ><b>getMenuItemList</b></span>
+                        <a href="#getMenuItemList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMenuItemList(listPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, columnPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, filters?: <a href="../classes/Filter.html" target="_self">Filter[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="194"
+                            class="link-to-prism">src/app/services/common.service.ts:194</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>listPath</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>columnPath</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>label</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filters</td>
+                                    <td>
+                                                <code><a href="../classes/Filter.html" target="_self" >Filter[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;MenuItem[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageToastBySeverity"></a>
+                    <span class="name">
+                        <span ><b>getMessageToastBySeverity</b></span>
+                        <a href="#getMessageToastBySeverity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageToastBySeverity(severity: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, detailText: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="301"
+                            class="link-to-prism">src/app/services/common.service.ts:301</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>severity</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>detailText</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getObservableList4path"></a>
+                    <span class="name">
+                        <span ><b>getObservableList4path</b></span>
+                        <a href="#getObservableList4path"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getObservableList4path(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, columnPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, filters?: <a href="../classes/Filter.html" target="_self">Filter[]</a>, ev?: LazyLoadEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/app/services/common.service.ts:156</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>path</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>columnPath</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filters</td>
+                                    <td>
+                                                <code><a href="../classes/Filter.html" target="_self" >Filter[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                            <code>LazyLoadEvent</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResponseBodyGetList.html" target="_self" >Observable&lt;ResponseBodyGetList&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRequestObj"></a>
+                    <span class="name">
+                        <span ><b>getRequestObj</b></span>
+                        <a href="#getRequestObj"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRequestObj(columns: ResponseGridDataColumnValue[], ev?: LazyLoadEvent, filters?: <a href="../classes/Filter.html" target="_self">Filter[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/services/common.service.ts:39</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>columns</td>
+                                    <td>
+                                            <code>ResponseGridDataColumnValue[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                            <code>LazyLoadEvent</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filters</td>
+                                    <td>
+                                                <code><a href="../classes/Filter.html" target="_self" >Filter[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/RequestBodyGetList.html" target="_self" >RequestBodyGetList</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSepcificDataType4Api"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getSepcificDataType4Api</b></span>
+                        <a href="#getSepcificDataType4Api"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSepcificDataType4Api(val: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/services/common.service.ts:138</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getValueFromObservable"></a>
+                    <span class="name">
+                        <span ><b>getValueFromObservable</b></span>
+                        <a href="#getValueFromObservable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getValueFromObservable(obj: Observable<any>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="240"
+                            class="link-to-prism">src/app/services/common.service.ts:240</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+                                    <td>
+                                            <code>Observable&lt;any&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareFilters"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>prepareFilters</b></span>
+                        <a href="#prepareFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prepareFilters(columns: ResponseGridDataColumnValue[], ev?: LazyLoadEvent, filters?: <a href="../classes/Filter.html" target="_self">Filter[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/services/common.service.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>columns</td>
+                                    <td>
+                                            <code>ResponseGridDataColumnValue[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                            <code>LazyLoadEvent</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filters</td>
+                                    <td>
+                                                <code><a href="../classes/Filter.html" target="_self" >Filter[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResponseGridDataColumnValue[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listMenuItem"></a>
+                    <span class="name">
+                        <span ><b>listMenuItem</b></span>
+                        <a href="#listMenuItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MenuItem[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/services/common.service.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newTabSub"></a>
+                    <span class="name">
+                        <span ><b>newTabSub</b></span>
+                        <a href="#newTabSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/services/common.service.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="returnList"></a>
+                    <span class="name">
+                        <span ><b>returnList</b></span>
+                        <a href="#returnList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/ResponseBodyGetList.html" target="_self" >ResponseBodyGetList</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/services/common.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valueSub"></a>
+                    <span class="name">
+                        <span ><b>valueSub</b></span>
+                        <a href="#valueSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/common.service.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { base64StringToBlob } from &#x27;blob-util&#x27;;
+import {
+  FilterMetadata,
+  LazyLoadEvent,
+  MenuItem,
+  MessageService,
+} from &#x27;primeng/api&#x27;;
+import { BehaviorSubject, Observable, Subject, Subscription, take } from &#x27;rxjs&#x27;;
+import { Filter } from &#x27;../models/requests/filter.model&#x27;;
+import { RequestBodyGetList } from &#x27;../models/requests/requestBodyGetList.model&#x27;;
+import { ResponseBodyGetList } from &#x27;../models/responses/responseBodyGetList.model&#x27;;
+import { ResponseGridDataColumn } from &#x27;../models/responses/responseGridDataColumn.model&#x27;;
+import { ResponseGridDataColumnValue } from &#x27;../models/responses/responseGridDataColumnValue.model&#x27;;
+import { addTab, setActiveTab } from &#x27;../modules/login/state/login.actions&#x27;;
+import { getTabs } from &#x27;../modules/login/state/login.selector&#x27;;
+import { LoginState } from &#x27;../modules/login/state/loginState&#x27;;
+import { ApiService } from &#x27;./api.service&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class CommonService {
+  returnList: ResponseBodyGetList;
+  listMenuItem: MenuItem[] &#x3D; [];
+  valueSub: Subscription;
+  newTabSub: Subscription;
+
+  constructor(
+    private apiService: ApiService,
+    private store: Store&lt;LoginState&gt;,
+    private messageService: MessageService,
+    private translateService: TranslateService
+  ) {}
+
+  // get request from api for default params or dynamic params from universal table component (ev)
+  getRequestObj(
+    columns: ResponseGridDataColumnValue[],
+    ev?: LazyLoadEvent,
+    filters?: Filter[]
+  ): RequestBodyGetList {
+    if (ev &#x3D;&#x3D;&#x3D; undefined) {
+      // ev &#x3D; {
+      //   first: 1,
+      //   rows: 10,
+      //   sortField: &#x27;id&#x27;,
+      //   sortOrder: -1,
+      // };
+      ev &#x3D; {
+        first: 1,
+        rows: 10,
+      };
+    } else {
+      let first &#x3D; ev.first ?? 0;
+      let rows &#x3D; ev.rows ?? 10;
+      ev.first &#x3D; Math.floor(first / rows) + 1;
+    }
+
+    let obj: RequestBodyGetList &#x3D; {
+      pageNumber: ev.first,
+      pageSize: ev?.rows,
+      filter: {
+        filters: this.prepareFilters(columns, ev, filters),
+      },
+    };
+
+    if (ev.sortField) {
+      obj.order &#x3D; {
+        columnName: ev?.sortField,
+        isAscending: ev?.sortOrder &#x3D;&#x3D;&#x3D; 1 ? false : true,
+      };
+    }
+    return obj;
+  }
+
+  private prepareFilters(
+    columns: ResponseGridDataColumnValue[],
+    ev?: LazyLoadEvent,
+    filters?: Filter[]
+  ): ResponseGridDataColumnValue[] {
+    var res: ResponseGridDataColumnValue[] &#x3D; [];
+
+    columns.forEach((val) &#x3D;&gt; {
+      // not from table
+      var flrs &#x3D; filters?.filter(
+        (x) &#x3D;&gt; x.field?.toLowerCase() &#x3D;&#x3D;&#x3D; val.columnName.toLocaleLowerCase()
+      );
+      const filterCols: Filter[] &#x3D; [];
+
+      if (flrs) {
+        flrs.forEach((f) &#x3D;&gt; {
+          filterCols.push(f);
+        });
+      }
+
+      // from table
+      if (ev?.filters !&#x3D;&#x3D; undefined) {
+        let filtersString &#x3D; JSON.stringify(ev?.filters![val.columnName]);
+        let filters: FilterMetadata[] &#x3D; JSON.parse(filtersString);
+        filters.forEach((el) &#x3D;&gt; {
+          if (el.value !&#x3D;&#x3D; null) {
+            filterCols.push({
+              comparision: el.value &#x3D;&#x3D;&#x3D; true ? &#x27;equals&#x27; : el.matchMode,
+              value: el.value &#x3D;&#x3D;&#x3D; true ? &#x27;1&#x27; : el.value.toString(),
+            });
+          }
+        });
+      }
+
+      res.push({
+        filters: filterCols,
+        columnName: val.columnName,
+        dataType: this.getSepcificDataType4Api(val.dataType),
+        displayName: val.columnName,
+        isVisible: val.isVisible,
+      });
+    });
+
+    // additional filter when column not exist, for masterId example
+    const filtersAdditional &#x3D; filters?.filter((x) &#x3D;&gt; x.additional &#x3D;&#x3D;&#x3D; true);
+    if (filtersAdditional) {
+      filtersAdditional.forEach((f) &#x3D;&gt; {
+        res.push({
+          filters: [f],
+          columnName: f.field ?? &#x27;&#x27;,
+          dataType: f.dataType ?? &#x27;&#x27;,
+          displayName: f.field ?? &#x27;&#x27;,
+          isVisible: false,
+        });
+      });
+    }
+
+    return res;
+  }
+
+  private getSepcificDataType4Api(val: string): string {
+    switch (val) {
+      case &#x27;boolean&#x27;:
+        return &#x27;boolean&#x27;;
+      case &#x27;numeric&#x27;:
+        return &#x27;Int32&#x27;;
+      case &#x27;float&#x27;:
+        return &#x27;single&#x27;;
+      case &#x27;text&#x27;:
+        return &#x27;String&#x27;;
+      case &#x27;date&#x27;:
+        return &#x27;DateTime&#x27;;
+      default:
+        return val;
+    }
+  }
+
+  // get ResponseBodyGetList by model, column, filter and event - universal function
+  getObservableList4path(
+    path: string,
+    columnPath: string,
+    filters?: Filter[],
+    ev?: LazyLoadEvent
+  ): Observable&lt;ResponseBodyGetList&gt; {
+    var requestBS &#x3D; new BehaviorSubject&lt;RequestBodyGetList&gt;({
+      pageNumber: 100000,
+    });
+    var resBS &#x3D; new Subject&lt;ResponseBodyGetList&gt;();
+    var columns: ResponseGridDataColumnValue[];
+
+    this.apiService.getColumns(columnPath).subscribe({
+      next: (res: ResponseGridDataColumn) &#x3D;&gt; {
+        columns &#x3D; res.value;
+      },
+      complete: () &#x3D;&gt; {
+        let requestObj &#x3D; this.getRequestObj(columns, ev, filters);
+        requestBS.next(requestObj);
+      },
+    });
+
+    requestBS.subscribe((req) &#x3D;&gt; {
+      if (req.pageNumber !&#x3D;&#x3D; 100000) {
+        this.apiService.getResponseBodyGetList(path, req).subscribe({
+          next: (res: ResponseBodyGetList) &#x3D;&gt; {
+            this.returnList &#x3D; res;
+          },
+          complete: () &#x3D;&gt; {
+            resBS.next(this.returnList);
+          },
+        });
+      }
+    });
+
+    return resBS.asObservable();
+  }
+
+  getMenuItemList(
+    listPath: string,
+    columnPath: string,
+    id: string,
+    label: string,
+    filters?: Filter[]
+  ): Observable&lt;MenuItem[]&gt; {
+    let list: MenuItem[] &#x3D; [];
+    let retBS &#x3D; new Subject&lt;MenuItem[]&gt;();
+
+    this.getObservableList4path(listPath, columnPath, filters).subscribe({
+      next: (res: ResponseBodyGetList) &#x3D;&gt; {
+        res.value.data.forEach((element) &#x3D;&gt; {
+          list.push({
+            id: element[id],
+            label: element[label],
+          });
+        });
+        retBS.next(list);
+      },
+    });
+
+    return retBS.asObservable();
+  }
+
+  // generate one filter object
+  getFilter4request(
+    field: string,
+    value: string,
+    comparision: string,
+    dataType?: string,
+    joinType?: string
+  ): Filter {
+    let obj: Filter &#x3D; {
+      field: field,
+      value: value,
+      comparision: comparision,
+      joinType: joinType,
+      additional: true,
+      dataType: dataType,
+    };
+
+    return obj;
+  }
+
+  // get value from any observable obj
+  getValueFromObservable(obj: Observable&lt;any&gt;): any {
+    let value: any;
+    this.valueSub &#x3D; obj.pipe().subscribe({
+      next: (v: any) &#x3D;&gt; (value &#x3D; v),
+      complete: () &#x3D;&gt; this.valueSub.unsubscribe(),
+    });
+    return value;
+  }
+
+  //generate filters, departments list
+  getFilters4Departments(depts: number[]): Filter[] {
+    const filters: Filter[] &#x3D; [];
+    depts.forEach((element) &#x3D;&gt; {
+      filters.push(
+        this.getFilter4request(
+          &#x27;DepartmentId&#x27;,
+          element.toString(),
+          &#x27;equals&#x27;,
+          &#x27;OR&#x27;
+        )
+      );
+    });
+
+    return filters;
+  }
+
+  addTabToStore(name: string) {
+    this.store
+      .select(getTabs)
+      .pipe(take(1))
+      .subscribe({
+        next: (res: string[]) &#x3D;&gt; {
+          const tabIndex &#x3D; res.findIndex((x) &#x3D;&gt; x &#x3D;&#x3D;&#x3D; name);
+          if (tabIndex &#x3D;&#x3D;&#x3D; -1) {
+            this.store.dispatch(addTab({ val: name }));
+            this.store.dispatch(setActiveTab({ val: res.length }));
+          } else {
+            this.store.dispatch(setActiveTab({ val: tabIndex }));
+          }
+        },
+      });
+  }
+
+  getBlobFromBytes(bytes: string, type: string): Blob {
+    var fileType: string &#x3D; &#x27;&#x27;;
+    switch (type) {
+      case &#x27;xlsx&#x27;:
+        fileType &#x3D; &#x27;application/vnd.ms-excel&#x27;;
+        break;
+      case &#x27;pdf&#x27;:
+        fileType &#x3D; &#x27;application/pdf&#x27;;
+        break;
+      case &#x27;docx&#x27;:
+        fileType &#x3D; &#x27;application/vnd.ms-word&#x27;;
+        break;
+    }
+
+    const file &#x3D; base64StringToBlob(bytes, fileType);
+    return file;
+  }
+
+  getMessageToastBySeverity(severity: string, detailText: string): void {
+    var errorLn: string;
+    switch (severity) {
+      case &#x27;error&#x27;:
+        errorLn &#x3D; &#x27;table-menu.error&#x27;;
+        break;
+      case &#x27;success&#x27;:
+        errorLn &#x3D; &#x27;table-menu.success&#x27;;
+        break;
+      case &#x27;info&#x27;:
+        errorLn &#x3D; &#x27;table-menu.info&#x27;;
+        break;
+      case &#x27;warn&#x27;:
+        errorLn &#x3D; &#x27;table-menu.warning&#x27;;
+        break;
+      default:
+        errorLn &#x3D; &#x27;table-menu.warning&#x27;;
+        break;
+    }
+
+    this.messageService.add({
+      severity: severity,
+      summary: this.translateService.instant(errorLn),
+      detail: detailText,
+    });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'CommonService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

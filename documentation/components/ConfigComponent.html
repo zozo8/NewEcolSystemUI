@@ -1,0 +1,2290 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>new-ecol-system-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">new-ecol-system-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ConfigComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/pages/dashboard-page/config/config.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-config</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;p-sidebar
+  #sidebar
+  [(visible)]&#x3D;&quot;configActive&quot;
+  [position]&#x3D;&quot;app.isRTL ? &#x27;left&#x27; : &#x27;right&#x27;&quot;
+  [blockScroll]&#x3D;&quot;true&quot;
+  [showCloseIcon]&#x3D;&quot;false&quot;
+  [baseZIndex]&#x3D;&quot;1000&quot;
+  styleClass&#x3D;&quot;layout-config p-sidebar-sm fs-small p-0&quot;
+&gt;
+  &lt;div class&#x3D;&quot;layout-config-panel flex flex-column&quot;&gt;
+    &lt;div class&#x3D;&quot;px-3 pt-3&quot;&gt;
+      &lt;h5&gt;{{ &#x27;layout.theme_customization&#x27; | translate }}&lt;/h5&gt;
+      &lt;span&gt;{{ &#x27;layout.theme_customization_info&#x27; | translate }}&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;hr class&#x3D;&quot;mb-0&quot; /&gt;
+
+    &lt;div class&#x3D;&quot;layout-config-options p-3&quot;&gt;
+      &lt;h6&gt;{{ &#x27;layout.scale&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+        &lt;button
+          pButton
+          pRipple
+          type&#x3D;&quot;button&quot;
+          icon&#x3D;&quot;pi pi-minus&quot;
+          (click)&#x3D;&quot;decrementScale()&quot;
+          class&#x3D;&quot;p-button-rounded p-button-text&quot;
+          [disabled]&#x3D;&quot;scale &#x3D;&#x3D;&#x3D; scales[0]&quot;
+        &gt;&lt;/button&gt;
+        &lt;i
+          class&#x3D;&quot;pi pi-circle-on m-1 scale-icon&quot;
+          *ngFor&#x3D;&quot;let s of scales&quot;
+          [ngClass]&#x3D;&quot;{ &#x27;scale-active&#x27;: s &#x3D;&#x3D;&#x3D; scale }&quot;
+        &gt;&lt;/i&gt;
+        &lt;button
+          pButton
+          pRipple
+          type&#x3D;&quot;button&quot;
+          icon&#x3D;&quot;pi pi-plus&quot;
+          (click)&#x3D;&quot;incrementScale()&quot;
+          class&#x3D;&quot;p-button-rounded p-button-text&quot;
+          [disabled]&#x3D;&quot;scale &#x3D;&#x3D;&#x3D; scales[scales.length - 1]&quot;
+        &gt;&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;h6&gt;{{ &#x27;layout.layout_mode&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;flex&quot;&gt;
+        &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+          &lt;p-radioButton
+            name&#x3D;&quot;layoutMode&quot;
+            value&#x3D;&quot;light&quot;
+            [(ngModel)]&#x3D;&quot;app.layoutMode&quot;
+            inputId&#x3D;&quot;layoutMode1&quot;
+            (onClick)&#x3D;&quot;onLayoutModeChange($event, &#x27;light&#x27;)&quot;
+          &gt;&lt;/p-radioButton&gt;
+          &lt;label
+            for&#x3D;&quot;layoutMode1&quot;
+            [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+            &gt;{{ &#x27;layout.layouts.light&#x27; | translate }}&lt;/label
+          &gt;
+        &lt;/div&gt;
+        &lt;div
+          class&#x3D;&quot;flex align-items-center&quot;
+          [ngClass]&#x3D;&quot;{ &#x27;ml-4&#x27;: !app.isRTL, &#x27;mr-4&#x27;: app.isRTL }&quot;
+        &gt;
+          &lt;p-radioButton
+            name&#x3D;&quot;layoutMode&quot;
+            value&#x3D;&quot;dark&quot;
+            [(ngModel)]&#x3D;&quot;app.layoutMode&quot;
+            inputId&#x3D;&quot;layoutMode2&quot;
+            (onClick)&#x3D;&quot;onLayoutModeChange($event, &#x27;dark&#x27;)&quot;
+          &gt;&lt;/p-radioButton&gt;
+          &lt;label
+            for&#x3D;&quot;layoutMode2&quot;
+            [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+            &gt;{{ &#x27;layout.layouts.dark&#x27; | translate }}&lt;/label
+          &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;h6&gt;{{ &#x27;layout.menu_mode&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;flex&quot;&gt;
+        &lt;div class&#x3D;&quot;flex flex-column&quot;&gt;
+          &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+            &lt;p-radioButton
+              name&#x3D;&quot;menuMode&quot;
+              value&#x3D;&quot;static&quot;
+              [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+              inputId&#x3D;&quot;menuMode1&quot;
+            &gt;&lt;/p-radioButton&gt;
+            &lt;label
+              for&#x3D;&quot;menuMode1&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+              &gt;{{ &#x27;layout.menus.static&#x27; | translate }}&lt;/label
+            &gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;flex align-items-center mt-3&quot;&gt;
+            &lt;p-radioButton
+              name&#x3D;&quot;menuMode&quot;
+              value&#x3D;&quot;horizontal&quot;
+              [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+              inputId&#x3D;&quot;menuMode2&quot;
+            &gt;&lt;/p-radioButton&gt;
+            &lt;label
+              for&#x3D;&quot;menuMode2&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+              &gt;{{ &#x27;layout.menus.horizontal&#x27; | translate }}&lt;/label
+            &gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div
+          class&#x3D;&quot;flex flex-column&quot;
+          [ngClass]&#x3D;&quot;{ &#x27;ml-4&#x27;: !app.isRTL, &#x27;mr-4&#x27;: app.isRTL }&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+            &lt;p-radioButton
+              name&#x3D;&quot;menuMode&quot;
+              value&#x3D;&quot;overlay&quot;
+              [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+              inputId&#x3D;&quot;menuMode4&quot;
+            &gt;&lt;/p-radioButton&gt;
+            &lt;label
+              for&#x3D;&quot;menuMode4&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+              &gt;{{ &#x27;layout.menus.overlay&#x27; | translate }}&lt;/label
+            &gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;flex align-items-center mt-3&quot;&gt;
+            &lt;p-radioButton
+              name&#x3D;&quot;menuMode&quot;
+              value&#x3D;&quot;slim&quot;
+              [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+              inputId&#x3D;&quot;menuMode3&quot;
+            &gt;&lt;/p-radioButton&gt;
+            &lt;label
+              for&#x3D;&quot;menuMode3&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+              &gt;{{ &#x27;layout.menus.slim&#x27; | translate }}&lt;/label
+            &gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;h6&gt;{{ &#x27;layout.popular_mode&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;flex&quot;&gt;
+        &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+          &lt;p-radioButton
+            name&#x3D;&quot;inlineMenuPosition&quot;
+            value&#x3D;&quot;top&quot;
+            [(ngModel)]&#x3D;&quot;app.inlineMenuPosition&quot;
+            inputId&#x3D;&quot;inlineMenuPosition1&quot;
+          &gt;&lt;/p-radioButton&gt;
+          &lt;label
+            for&#x3D;&quot;inlineMenuPosition1&quot;
+            [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+            &gt;{{ &#x27;layout.popular.top&#x27; | translate }}&lt;/label
+          &gt;
+        &lt;/div&gt;
+        &lt;div
+          class&#x3D;&quot;flex align-items-center&quot;
+          [ngClass]&#x3D;&quot;{ &#x27;ml-4&#x27;: !app.isRTL, &#x27;mr-4&#x27;: app.isRTL }&quot;
+        &gt;
+          &lt;p-radioButton
+            name&#x3D;&quot;inlineMenuPosition&quot;
+            value&#x3D;&quot;bottom&quot;
+            [(ngModel)]&#x3D;&quot;app.inlineMenuPosition&quot;
+            inputId&#x3D;&quot;inlineMenuPosition2&quot;
+          &gt;&lt;/p-radioButton&gt;
+          &lt;label
+            for&#x3D;&quot;inlineMenuPosition2&quot;
+            [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+            &gt;{{ &#x27;layout.popular.bottom&#x27; | translate }}&lt;/label
+          &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;h6&gt;{{ &#x27;layout.menu_color&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;grid&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let t of menuThemes&quot; class&#x3D;&quot;col col-fixed&quot;&gt;
+          &lt;a
+            style&#x3D;&quot;cursor: pointer&quot;
+            (click)&#x3D;&quot;changeMenuTheme(t)&quot;
+            class&#x3D;&quot;layout-config-color-option&quot;
+            [title]&#x3D;&quot;t.name&quot;
+          &gt;
+            &lt;span
+              class&#x3D;&quot;color&quot;
+              [ngStyle]&#x3D;&quot;{ &#x27;background-color&#x27;: t.color }&quot;
+            &gt;&lt;/span&gt;
+            &lt;span
+              class&#x3D;&quot;check flex align-items-center justify-content-center&quot;
+              *ngIf&#x3D;&quot;app.menuTheme &#x3D;&#x3D;&#x3D; t.name&quot;
+            &gt;
+              &lt;i
+                class&#x3D;&quot;pi pi-check&quot;
+                style&#x3D;&quot;color: var(--menu-text-color)&quot;
+              &gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;h6&gt;{{ &#x27;layout.topbar_mode&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;grid&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let t of topbarThemes&quot; class&#x3D;&quot;col col-fixed&quot;&gt;
+          &lt;a
+            style&#x3D;&quot;cursor: pointer&quot;
+            (click)&#x3D;&quot;changeTopbarTheme(t)&quot;
+            class&#x3D;&quot;layout-config-color-option&quot;
+            [title]&#x3D;&quot;t.name&quot;
+          &gt;
+            &lt;span
+              class&#x3D;&quot;color&quot;
+              [ngStyle]&#x3D;&quot;{ &#x27;background-color&#x27;: t.color }&quot;
+            &gt;&lt;/span&gt;
+            &lt;span
+              class&#x3D;&quot;check flex align-items-center justify-content-center&quot;
+              *ngIf&#x3D;&quot;app.topbarTheme &#x3D;&#x3D;&#x3D; t.name&quot;
+            &gt;
+              &lt;i
+                class&#x3D;&quot;pi pi-check&quot;
+                style&#x3D;&quot;color: var(--topbar-text-color)&quot;
+              &gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;h6&gt;{{ &#x27;layout.component_mode&#x27; | translate }}&lt;/h6&gt;
+      &lt;div class&#x3D;&quot;grid&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let t of themes&quot; class&#x3D;&quot;col col-fixed&quot;&gt;
+          &lt;a
+            style&#x3D;&quot;cursor: pointer&quot;
+            (click)&#x3D;&quot;changeTheme(t.name)&quot;
+            class&#x3D;&quot;layout-config-color-option&quot;
+            [title]&#x3D;&quot;t.name&quot;
+          &gt;
+            &lt;span
+              class&#x3D;&quot;color&quot;
+              [ngStyle]&#x3D;&quot;{ &#x27;background-color&#x27;: t.color }&quot;
+            &gt;&lt;/span&gt;
+            &lt;span
+              class&#x3D;&quot;check flex align-items-center justify-content-center&quot;
+              *ngIf&#x3D;&quot;theme &#x3D;&#x3D;&#x3D; t.name&quot;
+            &gt;
+              &lt;i
+                class&#x3D;&quot;pi pi-check&quot;
+                style&#x3D;&quot;color: var(--primary-color-text)&quot;
+              &gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/p-sidebar&gt;
+
+&lt;p-button
+  type&#x3D;&quot;button&quot;
+  (click)&#x3D;&quot;configActive &#x3D; true&quot;
+  icon&#x3D;&quot;pi pi-cog&quot;
+  *ngIf&#x3D;&quot;!configActive&quot;
+  styleClass&#x3D;&quot;layout-config-button&quot;
+&gt;&lt;/p-button&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#app" >app</a>
+                            </li>
+                            <li>
+                                <a href="#configActive" >configActive</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dashboard" >dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#isInputBackgroundChanged" >isInputBackgroundChanged</a>
+                            </li>
+                            <li>
+                                <a href="#matchingMenuTheme" >matchingMenuTheme</a>
+                            </li>
+                            <li>
+                                <a href="#matchingTopbarTheme" >matchingTopbarTheme</a>
+                            </li>
+                            <li>
+                                <a href="#menuTheme" >menuTheme</a>
+                            </li>
+                            <li>
+                                <a href="#menuThemes" >menuThemes</a>
+                            </li>
+                            <li>
+                                <a href="#scale" >scale</a>
+                            </li>
+                            <li>
+                                <a href="#scales" >scales</a>
+                            </li>
+                            <li>
+                                <a href="#selectedMenuTheme" >selectedMenuTheme</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTopbarTheme" >selectedTopbarTheme</a>
+                            </li>
+                            <li>
+                                <a href="#theme" >theme</a>
+                            </li>
+                            <li>
+                                <a href="#theme_customization" >theme_customization</a>
+                            </li>
+                            <li>
+                                <a href="#themes" >themes</a>
+                            </li>
+                            <li>
+                                <a href="#topbarTheme" >topbarTheme</a>
+                            </li>
+                            <li>
+                                <a href="#topbarThemes" >topbarThemes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#applyScale" >applyScale</a>
+                            </li>
+                            <li>
+                                <a href="#changeMenuTheme" >changeMenuTheme</a>
+                            </li>
+                            <li>
+                                <a href="#changeTheme" >changeTheme</a>
+                            </li>
+                            <li>
+                                <a href="#changeTopbarTheme" >changeTopbarTheme</a>
+                            </li>
+                            <li>
+                                <a href="#decrementScale" >decrementScale</a>
+                            </li>
+                            <li>
+                                <a href="#incrementScale" >incrementScale</a>
+                            </li>
+                            <li>
+                                <a href="#isIE" >isIE</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onInputStyleClick" >onInputStyleClick</a>
+                            </li>
+                            <li>
+                                <a href="#onLayoutModeChange" >onLayoutModeChange</a>
+                            </li>
+                            <li>
+                                <a href="#replaceLink" >replaceLink</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(app: <a href="../components/AppComponent.html" target="_self">AppComponent</a>, dashboard: <a href="../components/DashboardPageComponent.html" target="_self">DashboardPageComponent</a>, translate: TranslateService, store: <a href="../interfaces/LoginState.html" target="_self">Store&lt;LoginState&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:299</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>app</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/AppComponent.html" target="_self" >AppComponent</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dashboard</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/DashboardPageComponent.html" target="_self" >DashboardPageComponent</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/LoginState.html" target="_self" >Store&lt;LoginState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyScale"></a>
+                    <span class="name">
+                        <span ><b>applyScale</b></span>
+                        <a href="#applyScale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyScale()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="388"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:388</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeMenuTheme"></a>
+                    <span class="name">
+                        <span ><b>changeMenuTheme</b></span>
+                        <a href="#changeMenuTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeMenuTheme(theme: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="446"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:446</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theme</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTheme"></a>
+                    <span class="name">
+                        <span ><b>changeTheme</b></span>
+                        <a href="#changeTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTheme(theme: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="435"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:435</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theme</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTopbarTheme"></a>
+                    <span class="name">
+                        <span ><b>changeTopbarTheme</b></span>
+                        <a href="#changeTopbarTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTopbarTheme(theme: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="452"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:452</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theme</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decrementScale"></a>
+                    <span class="name">
+                        <span ><b>decrementScale</b></span>
+                        <a href="#decrementScale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>decrementScale()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="378"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:378</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="incrementScale"></a>
+                    <span class="name">
+                        <span ><b>incrementScale</b></span>
+                        <a href="#incrementScale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>incrementScale()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="383"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:383</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isIE"></a>
+                    <span class="name">
+                        <span ><b>isIE</b></span>
+                        <a href="#isIE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isIE()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="474"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:474</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="308"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:308</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onInputStyleClick"></a>
+                    <span class="name">
+                        <span ><b>onInputStyleClick</b></span>
+                        <a href="#onInputStyleClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onInputStyleClick()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="393"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:393</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLayoutModeChange"></a>
+                    <span class="name">
+                        <span ><b>onLayoutModeChange</b></span>
+                        <a href="#onLayoutModeChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLayoutModeChange(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>, mode: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="397"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:397</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>mode</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceLink"></a>
+                    <span class="name">
+                        <span ><b>replaceLink</b></span>
+                        <a href="#replaceLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>replaceLink(linkElement: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, href: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, callback?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="478"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:478</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>linkElement</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>href</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>callback</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="app"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>app</b></span>
+                        <a href="#app"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/AppComponent.html" target="_self" >AppComponent</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:302</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configActive"></a>
+                    <span class="name">
+                        <span ><b>configActive</b></span>
+                        <a href="#configActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:296</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dashboard"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dashboard</b></span>
+                        <a href="#dashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/DashboardPageComponent.html" target="_self" >DashboardPageComponent</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:303</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isInputBackgroundChanged"></a>
+                    <span class="name">
+                        <span ><b>isInputBackgroundChanged</b></span>
+                        <a href="#isInputBackgroundChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:297</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="matchingMenuTheme"></a>
+                    <span class="name">
+                        <span ><b>matchingMenuTheme</b></span>
+                        <a href="#matchingMenuTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:292</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="matchingTopbarTheme"></a>
+                    <span class="name">
+                        <span ><b>matchingTopbarTheme</b></span>
+                        <a href="#matchingTopbarTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:293</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuTheme"></a>
+                    <span class="name">
+                        <span ><b>menuTheme</b></span>
+                        <a href="#menuTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:288</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuThemes"></a>
+                    <span class="name">
+                        <span ><b>menuThemes</b></span>
+                        <a href="#menuThemes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:287</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scale"></a>
+                    <span class="name">
+                        <span ><b>scale</b></span>
+                        <a href="#scale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>14</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scales"></a>
+                    <span class="name">
+                        <span ><b>scales</b></span>
+                        <a href="#scales"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[12, 13, 14, 15, 16]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:285</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedMenuTheme"></a>
+                    <span class="name">
+                        <span ><b>selectedMenuTheme</b></span>
+                        <a href="#selectedMenuTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:294</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTopbarTheme"></a>
+                    <span class="name">
+                        <span ><b>selectedTopbarTheme</b></span>
+                        <a href="#selectedTopbarTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:295</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="theme"></a>
+                    <span class="name">
+                        <span ><b>theme</b></span>
+                        <a href="#theme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;indigo&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="theme_customization"></a>
+                    <span class="name">
+                        <span ><b>theme_customization</b></span>
+                        <a href="#theme_customization"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:299</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themes"></a>
+                    <span class="name">
+                        <span ><b>themes</b></span>
+                        <a href="#themes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:286</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="topbarTheme"></a>
+                    <span class="name">
+                        <span ><b>topbarTheme</b></span>
+                        <a href="#topbarTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;blue&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:290</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="topbarThemes"></a>
+                    <span class="name">
+                        <span ><b>topbarThemes</b></span>
+                        <a href="#topbarThemes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/components/pages/dashboard-page/config/config.component.ts:289</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { AppComponent } from &#x27;src/app/app.component&#x27;;
+import {
+  setConfigComponentMode,
+  setConfigLayout,
+  setConfigMenuColor,
+  setConfigScale,
+  setConfigTopbarMode,
+} from &#x27;src/app/modules/login/state/login.actions&#x27;;
+import { LoginState } from &#x27;src/app/modules/login/state/loginState&#x27;;
+import { DashboardPageComponent } from &#x27;../dashboard-page.component&#x27;;
+
+@Component({
+  selector: &#x27;app-config&#x27;,
+  template: &#x60;
+    &lt;p-sidebar
+      #sidebar
+      [(visible)]&#x3D;&quot;configActive&quot;
+      [position]&#x3D;&quot;app.isRTL ? &#x27;left&#x27; : &#x27;right&#x27;&quot;
+      [blockScroll]&#x3D;&quot;true&quot;
+      [showCloseIcon]&#x3D;&quot;false&quot;
+      [baseZIndex]&#x3D;&quot;1000&quot;
+      styleClass&#x3D;&quot;layout-config p-sidebar-sm fs-small p-0&quot;
+    &gt;
+      &lt;div class&#x3D;&quot;layout-config-panel flex flex-column&quot;&gt;
+        &lt;div class&#x3D;&quot;px-3 pt-3&quot;&gt;
+          &lt;h5&gt;{{ &#x27;layout.theme_customization&#x27; | translate }}&lt;/h5&gt;
+          &lt;span&gt;{{ &#x27;layout.theme_customization_info&#x27; | translate }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;hr class&#x3D;&quot;mb-0&quot; /&gt;
+
+        &lt;div class&#x3D;&quot;layout-config-options p-3&quot;&gt;
+          &lt;h6&gt;{{ &#x27;layout.scale&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+            &lt;button
+              pButton
+              pRipple
+              type&#x3D;&quot;button&quot;
+              icon&#x3D;&quot;pi pi-minus&quot;
+              (click)&#x3D;&quot;decrementScale()&quot;
+              class&#x3D;&quot;p-button-rounded p-button-text&quot;
+              [disabled]&#x3D;&quot;scale &#x3D;&#x3D;&#x3D; scales[0]&quot;
+            &gt;&lt;/button&gt;
+            &lt;i
+              class&#x3D;&quot;pi pi-circle-on m-1 scale-icon&quot;
+              *ngFor&#x3D;&quot;let s of scales&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;scale-active&#x27;: s &#x3D;&#x3D;&#x3D; scale }&quot;
+            &gt;&lt;/i&gt;
+            &lt;button
+              pButton
+              pRipple
+              type&#x3D;&quot;button&quot;
+              icon&#x3D;&quot;pi pi-plus&quot;
+              (click)&#x3D;&quot;incrementScale()&quot;
+              class&#x3D;&quot;p-button-rounded p-button-text&quot;
+              [disabled]&#x3D;&quot;scale &#x3D;&#x3D;&#x3D; scales[scales.length - 1]&quot;
+            &gt;&lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;h6&gt;{{ &#x27;layout.layout_mode&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;flex&quot;&gt;
+            &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+              &lt;p-radioButton
+                name&#x3D;&quot;layoutMode&quot;
+                value&#x3D;&quot;light&quot;
+                [(ngModel)]&#x3D;&quot;app.layoutMode&quot;
+                inputId&#x3D;&quot;layoutMode1&quot;
+                (onClick)&#x3D;&quot;onLayoutModeChange($event, &#x27;light&#x27;)&quot;
+              &gt;&lt;/p-radioButton&gt;
+              &lt;label
+                for&#x3D;&quot;layoutMode1&quot;
+                [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                &gt;{{ &#x27;layout.layouts.light&#x27; | translate }}&lt;/label
+              &gt;
+            &lt;/div&gt;
+            &lt;div
+              class&#x3D;&quot;flex align-items-center&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-4&#x27;: !app.isRTL, &#x27;mr-4&#x27;: app.isRTL }&quot;
+            &gt;
+              &lt;p-radioButton
+                name&#x3D;&quot;layoutMode&quot;
+                value&#x3D;&quot;dark&quot;
+                [(ngModel)]&#x3D;&quot;app.layoutMode&quot;
+                inputId&#x3D;&quot;layoutMode2&quot;
+                (onClick)&#x3D;&quot;onLayoutModeChange($event, &#x27;dark&#x27;)&quot;
+              &gt;&lt;/p-radioButton&gt;
+              &lt;label
+                for&#x3D;&quot;layoutMode2&quot;
+                [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                &gt;{{ &#x27;layout.layouts.dark&#x27; | translate }}&lt;/label
+              &gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;h6&gt;{{ &#x27;layout.menu_mode&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;flex&quot;&gt;
+            &lt;div class&#x3D;&quot;flex flex-column&quot;&gt;
+              &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+                &lt;p-radioButton
+                  name&#x3D;&quot;menuMode&quot;
+                  value&#x3D;&quot;static&quot;
+                  [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+                  inputId&#x3D;&quot;menuMode1&quot;
+                &gt;&lt;/p-radioButton&gt;
+                &lt;label
+                  for&#x3D;&quot;menuMode1&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                  &gt;{{ &#x27;layout.menus.static&#x27; | translate }}&lt;/label
+                &gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;flex align-items-center mt-3&quot;&gt;
+                &lt;p-radioButton
+                  name&#x3D;&quot;menuMode&quot;
+                  value&#x3D;&quot;horizontal&quot;
+                  [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+                  inputId&#x3D;&quot;menuMode2&quot;
+                &gt;&lt;/p-radioButton&gt;
+                &lt;label
+                  for&#x3D;&quot;menuMode2&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                  &gt;{{ &#x27;layout.menus.horizontal&#x27; | translate }}&lt;/label
+                &gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class&#x3D;&quot;flex flex-column&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-4&#x27;: !app.isRTL, &#x27;mr-4&#x27;: app.isRTL }&quot;
+            &gt;
+              &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+                &lt;p-radioButton
+                  name&#x3D;&quot;menuMode&quot;
+                  value&#x3D;&quot;overlay&quot;
+                  [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+                  inputId&#x3D;&quot;menuMode4&quot;
+                &gt;&lt;/p-radioButton&gt;
+                &lt;label
+                  for&#x3D;&quot;menuMode4&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                  &gt;{{ &#x27;layout.menus.overlay&#x27; | translate }}&lt;/label
+                &gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;flex align-items-center mt-3&quot;&gt;
+                &lt;p-radioButton
+                  name&#x3D;&quot;menuMode&quot;
+                  value&#x3D;&quot;slim&quot;
+                  [(ngModel)]&#x3D;&quot;app.menuMode&quot;
+                  inputId&#x3D;&quot;menuMode3&quot;
+                &gt;&lt;/p-radioButton&gt;
+                &lt;label
+                  for&#x3D;&quot;menuMode3&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                  &gt;{{ &#x27;layout.menus.slim&#x27; | translate }}&lt;/label
+                &gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;h6&gt;{{ &#x27;layout.popular_mode&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;flex&quot;&gt;
+            &lt;div class&#x3D;&quot;flex align-items-center&quot;&gt;
+              &lt;p-radioButton
+                name&#x3D;&quot;inlineMenuPosition&quot;
+                value&#x3D;&quot;top&quot;
+                [(ngModel)]&#x3D;&quot;app.inlineMenuPosition&quot;
+                inputId&#x3D;&quot;inlineMenuPosition1&quot;
+              &gt;&lt;/p-radioButton&gt;
+              &lt;label
+                for&#x3D;&quot;inlineMenuPosition1&quot;
+                [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                &gt;{{ &#x27;layout.popular.top&#x27; | translate }}&lt;/label
+              &gt;
+            &lt;/div&gt;
+            &lt;div
+              class&#x3D;&quot;flex align-items-center&quot;
+              [ngClass]&#x3D;&quot;{ &#x27;ml-4&#x27;: !app.isRTL, &#x27;mr-4&#x27;: app.isRTL }&quot;
+            &gt;
+              &lt;p-radioButton
+                name&#x3D;&quot;inlineMenuPosition&quot;
+                value&#x3D;&quot;bottom&quot;
+                [(ngModel)]&#x3D;&quot;app.inlineMenuPosition&quot;
+                inputId&#x3D;&quot;inlineMenuPosition2&quot;
+              &gt;&lt;/p-radioButton&gt;
+              &lt;label
+                for&#x3D;&quot;inlineMenuPosition2&quot;
+                [ngClass]&#x3D;&quot;{ &#x27;ml-2&#x27;: !app.isRTL, &#x27;mr-2&#x27;: app.isRTL }&quot;
+                &gt;{{ &#x27;layout.popular.bottom&#x27; | translate }}&lt;/label
+              &gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;h6&gt;{{ &#x27;layout.menu_color&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;grid&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let t of menuThemes&quot; class&#x3D;&quot;col col-fixed&quot;&gt;
+              &lt;a
+                style&#x3D;&quot;cursor: pointer&quot;
+                (click)&#x3D;&quot;changeMenuTheme(t)&quot;
+                class&#x3D;&quot;layout-config-color-option&quot;
+                [title]&#x3D;&quot;t.name&quot;
+              &gt;
+                &lt;span
+                  class&#x3D;&quot;color&quot;
+                  [ngStyle]&#x3D;&quot;{ &#x27;background-color&#x27;: t.color }&quot;
+                &gt;&lt;/span&gt;
+                &lt;span
+                  class&#x3D;&quot;check flex align-items-center justify-content-center&quot;
+                  *ngIf&#x3D;&quot;app.menuTheme &#x3D;&#x3D;&#x3D; t.name&quot;
+                &gt;
+                  &lt;i
+                    class&#x3D;&quot;pi pi-check&quot;
+                    style&#x3D;&quot;color: var(--menu-text-color)&quot;
+                  &gt;&lt;/i&gt;
+                &lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;h6&gt;{{ &#x27;layout.topbar_mode&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;grid&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let t of topbarThemes&quot; class&#x3D;&quot;col col-fixed&quot;&gt;
+              &lt;a
+                style&#x3D;&quot;cursor: pointer&quot;
+                (click)&#x3D;&quot;changeTopbarTheme(t)&quot;
+                class&#x3D;&quot;layout-config-color-option&quot;
+                [title]&#x3D;&quot;t.name&quot;
+              &gt;
+                &lt;span
+                  class&#x3D;&quot;color&quot;
+                  [ngStyle]&#x3D;&quot;{ &#x27;background-color&#x27;: t.color }&quot;
+                &gt;&lt;/span&gt;
+                &lt;span
+                  class&#x3D;&quot;check flex align-items-center justify-content-center&quot;
+                  *ngIf&#x3D;&quot;app.topbarTheme &#x3D;&#x3D;&#x3D; t.name&quot;
+                &gt;
+                  &lt;i
+                    class&#x3D;&quot;pi pi-check&quot;
+                    style&#x3D;&quot;color: var(--topbar-text-color)&quot;
+                  &gt;&lt;/i&gt;
+                &lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;h6&gt;{{ &#x27;layout.component_mode&#x27; | translate }}&lt;/h6&gt;
+          &lt;div class&#x3D;&quot;grid&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let t of themes&quot; class&#x3D;&quot;col col-fixed&quot;&gt;
+              &lt;a
+                style&#x3D;&quot;cursor: pointer&quot;
+                (click)&#x3D;&quot;changeTheme(t.name)&quot;
+                class&#x3D;&quot;layout-config-color-option&quot;
+                [title]&#x3D;&quot;t.name&quot;
+              &gt;
+                &lt;span
+                  class&#x3D;&quot;color&quot;
+                  [ngStyle]&#x3D;&quot;{ &#x27;background-color&#x27;: t.color }&quot;
+                &gt;&lt;/span&gt;
+                &lt;span
+                  class&#x3D;&quot;check flex align-items-center justify-content-center&quot;
+                  *ngIf&#x3D;&quot;theme &#x3D;&#x3D;&#x3D; t.name&quot;
+                &gt;
+                  &lt;i
+                    class&#x3D;&quot;pi pi-check&quot;
+                    style&#x3D;&quot;color: var(--primary-color-text)&quot;
+                  &gt;&lt;/i&gt;
+                &lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/p-sidebar&gt;
+
+    &lt;p-button
+      type&#x3D;&quot;button&quot;
+      (click)&#x3D;&quot;configActive &#x3D; true&quot;
+      icon&#x3D;&quot;pi pi-cog&quot;
+      *ngIf&#x3D;&quot;!configActive&quot;
+      styleClass&#x3D;&quot;layout-config-button&quot;
+    &gt;&lt;/p-button&gt;
+  &#x60;,
+})
+export class ConfigComponent implements OnInit {
+  scale &#x3D; 14;
+  scales: number[] &#x3D; [12, 13, 14, 15, 16];
+  themes: any[];
+  menuThemes: any[];
+  menuTheme &#x3D; &#x27;light&#x27;;
+  topbarThemes: any[];
+  topbarTheme &#x3D; &#x27;blue&#x27;;
+  theme &#x3D; &#x27;indigo&#x27;;
+  matchingMenuTheme &#x3D; false;
+  matchingTopbarTheme &#x3D; false;
+  selectedMenuTheme: any;
+  selectedTopbarTheme: any;
+  configActive &#x3D; false;
+  isInputBackgroundChanged &#x3D; false;
+
+  theme_customization: string;
+
+  constructor(
+    public app: AppComponent,
+    public dashboard: DashboardPageComponent,
+    private translate: TranslateService,
+    private store: Store&lt;LoginState&gt;
+  ) {}
+
+  ngOnInit(): void {
+    this.theme_customization &#x3D; this.translate.instant(
+      &#x27;layout.theme_customization&#x27;
+    );
+    this.themes &#x3D; [
+      { name: &#x27;indigo&#x27;, color: &#x27;#3F51B5&#x27; },
+      { name: &#x27;pink&#x27;, color: &#x27;#E91E63&#x27; },
+      { name: &#x27;purple&#x27;, color: &#x27;#9C27B0&#x27; },
+      { name: &#x27;deeppurple&#x27;, color: &#x27;#673AB7&#x27; },
+      { name: &#x27;blue&#x27;, color: &#x27;#2196F3&#x27; },
+      { name: &#x27;lightblue&#x27;, color: &#x27;#03A9F4&#x27; },
+      { name: &#x27;cyan&#x27;, color: &#x27;#00BCD4&#x27; },
+      { name: &#x27;teal&#x27;, color: &#x27;#009688&#x27; },
+      { name: &#x27;green&#x27;, color: &#x27;#4CAF50&#x27; },
+      { name: &#x27;lightgreen&#x27;, color: &#x27;#8BC34A&#x27; },
+      { name: &#x27;lime&#x27;, color: &#x27;#CDDC39&#x27; },
+      { name: &#x27;yellow&#x27;, color: &#x27;#FFEB3B&#x27; },
+      { name: &#x27;amber&#x27;, color: &#x27;#FFC107&#x27; },
+      { name: &#x27;orange&#x27;, color: &#x27;#FF9800&#x27; },
+      { name: &#x27;deeporange&#x27;, color: &#x27;#FF5722&#x27; },
+      { name: &#x27;brown&#x27;, color: &#x27;#795548&#x27; },
+      { name: &#x27;bluegrey&#x27;, color: &#x27;#607D8B&#x27; },
+    ];
+
+    this.menuThemes &#x3D; [
+      { name: &#x27;light&#x27;, color: &#x27;#FDFEFF&#x27; },
+      { name: &#x27;dark&#x27;, color: &#x27;#434B54&#x27; },
+      { name: &#x27;indigo&#x27;, color: &#x27;#1A237E&#x27; },
+      { name: &#x27;bluegrey&#x27;, color: &#x27;#37474F&#x27; },
+      { name: &#x27;brown&#x27;, color: &#x27;#4E342E&#x27; },
+      { name: &#x27;cyan&#x27;, color: &#x27;#006064&#x27; },
+      { name: &#x27;green&#x27;, color: &#x27;#2E7D32&#x27; },
+      { name: &#x27;deeppurple&#x27;, color: &#x27;#4527A0&#x27; },
+      { name: &#x27;deeporange&#x27;, color: &#x27;#BF360C&#x27; },
+      { name: &#x27;pink&#x27;, color: &#x27;#880E4F&#x27; },
+      { name: &#x27;purple&#x27;, color: &#x27;#6A1B9A&#x27; },
+      { name: &#x27;teal&#x27;, color: &#x27;#00695C&#x27; },
+    ];
+
+    this.topbarThemes &#x3D; [
+      { name: &#x27;lightblue&#x27;, color: &#x27;#2E88FF&#x27; },
+      { name: &#x27;dark&#x27;, color: &#x27;#363636&#x27; },
+      { name: &#x27;white&#x27;, color: &#x27;#FDFEFF&#x27; },
+      { name: &#x27;blue&#x27;, color: &#x27;#1565C0&#x27; },
+      { name: &#x27;deeppurple&#x27;, color: &#x27;#4527A0&#x27; },
+      { name: &#x27;purple&#x27;, color: &#x27;#6A1B9A&#x27; },
+      { name: &#x27;pink&#x27;, color: &#x27;#AD1457&#x27; },
+      { name: &#x27;cyan&#x27;, color: &#x27;#0097A7&#x27; },
+      { name: &#x27;teal&#x27;, color: &#x27;#00796B&#x27; },
+      { name: &#x27;green&#x27;, color: &#x27;#43A047&#x27; },
+      { name: &#x27;lightgreen&#x27;, color: &#x27;#689F38&#x27; },
+      { name: &#x27;lime&#x27;, color: &#x27;#AFB42B&#x27; },
+      { name: &#x27;yellow&#x27;, color: &#x27;#FBC02D&#x27; },
+      { name: &#x27;amber&#x27;, color: &#x27;#FFA000&#x27; },
+      { name: &#x27;orange&#x27;, color: &#x27;#FB8C00&#x27; },
+      { name: &#x27;deeporange&#x27;, color: &#x27;#D84315&#x27; },
+      { name: &#x27;brown&#x27;, color: &#x27;#5D4037&#x27; },
+      { name: &#x27;grey&#x27;, color: &#x27;#616161&#x27; },
+      { name: &#x27;bluegrey&#x27;, color: &#x27;#546E7A&#x27; },
+      { name: &#x27;indigo&#x27;, color: &#x27;#3F51B5&#x27; },
+    ];
+
+    this.selectedMenuTheme &#x3D; this.menuThemes.find(
+      (theme) &#x3D;&gt; theme.name &#x3D;&#x3D;&#x3D; this.menuTheme
+    );
+    this.selectedTopbarTheme &#x3D; this.topbarThemes.find(
+      (theme) &#x3D;&gt; theme.name &#x3D;&#x3D;&#x3D; this.topbarTheme
+    );
+  }
+
+  decrementScale() {
+    this.scale--;
+    this.applyScale();
+  }
+
+  incrementScale() {
+    this.scale++;
+    this.applyScale();
+  }
+
+  applyScale() {
+    this.store.dispatch(setConfigScale({ val: this.scale }));
+    document.documentElement.style.fontSize &#x3D; this.scale + &#x27;px&#x27;;
+  }
+
+  onInputStyleClick() {
+    this.isInputBackgroundChanged &#x3D; true;
+  }
+
+  onLayoutModeChange(ev: Event, mode: string) {
+    const appLogoLink: HTMLImageElement &#x3D; document.getElementById(
+      &#x27;app-logo&#x27;
+    ) as HTMLImageElement;
+    this.app.layoutMode &#x3D; mode;
+    this.store.dispatch(setConfigLayout({ val: mode }));
+
+    if (!this.isInputBackgroundChanged) {
+      this.app.inputStyle &#x3D; mode &#x3D;&#x3D;&#x3D; &#x27;dark&#x27; ? &#x27;filled&#x27; : &#x27;outlined&#x27;;
+    }
+
+    if (mode &#x3D;&#x3D;&#x3D; &#x27;dark&#x27;) {
+      this.app.menuTheme &#x3D; &#x27;dark&#x27;;
+      this.app.topbarTheme &#x3D; &#x27;dark&#x27;;
+      appLogoLink.src &#x3D; &#x27;assets/images/logo_b.png&#x27;;
+    } else {
+      this.app.menuTheme &#x3D; &#x27;light&#x27;;
+      this.app.topbarTheme &#x3D; &#x27;blue&#x27;;
+      appLogoLink.src &#x3D; &#x27;assets/images/logo.png&#x27;;
+    }
+
+    const layoutLink: HTMLLinkElement &#x3D; document.getElementById(
+      &#x27;layout-css&#x27;
+    ) as HTMLLinkElement;
+    const layoutHref &#x3D;
+      &#x27;assets/layout/css/layout-&#x27; + this.app.layoutMode + &#x27;.css&#x27;;
+    this.replaceLink(layoutLink, layoutHref);
+
+    const themeLink &#x3D; document.getElementById(&#x27;theme-css&#x27;);
+    const urlTokens &#x3D; themeLink?.getAttribute(&#x27;href&#x27;)?.split(&#x27;/&#x27;);
+    if (urlTokens) {
+      urlTokens[urlTokens.length - 1] &#x3D; &#x27;theme-&#x27; + this.app.layoutMode + &#x27;.css&#x27;;
+      const newURL &#x3D; urlTokens.join(&#x27;/&#x27;);
+
+      this.replaceLink(themeLink, newURL, this.dashboard[&#x27;refreshChart&#x27;]);
+    }
+  }
+
+  changeTheme(theme: string) {
+    this.theme &#x3D; theme;
+    this.store.dispatch(setConfigComponentMode({ val: theme }));
+    const themeLink: HTMLLinkElement &#x3D; document.getElementById(
+      &#x27;theme-css&#x27;
+    ) as HTMLLinkElement;
+    const themeHref &#x3D;
+      &#x27;assets/theme/&#x27; + theme + &#x27;/theme-&#x27; + this.app.layoutMode + &#x27;.css&#x27;;
+    this.replaceLink(themeLink, themeHref);
+  }
+
+  changeMenuTheme(theme: any) {
+    this.selectedMenuTheme &#x3D; theme;
+    this.app.menuTheme &#x3D; theme.name;
+    this.store.dispatch(setConfigMenuColor({ val: theme.name }));
+  }
+
+  changeTopbarTheme(theme: any) {
+    this.selectedTopbarTheme &#x3D; theme;
+    this.app.topbarTheme &#x3D; theme.name;
+    this.store.dispatch(setConfigTopbarMode({ val: theme.name }));
+
+    const appLogoLink: HTMLImageElement &#x3D; document.getElementById(
+      &#x27;app-logo&#x27;
+    ) as HTMLImageElement;
+
+    if (
+      theme.name &#x3D;&#x3D;&#x3D; &#x27;white&#x27; ||
+      theme.name &#x3D;&#x3D;&#x3D; &#x27;yellow&#x27; ||
+      theme.name &#x3D;&#x3D;&#x3D; &#x27;amber&#x27; ||
+      theme.name &#x3D;&#x3D;&#x3D; &#x27;orange&#x27; ||
+      theme.name &#x3D;&#x3D;&#x3D; &#x27;lime&#x27;
+    ) {
+      appLogoLink.src &#x3D; &#x27;assets/images/logo.png&#x27;;
+    } else {
+      appLogoLink.src &#x3D; &#x27;assets/images/logo_b.png&#x27;;
+    }
+  }
+
+  isIE() {
+    return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
+  }
+
+  replaceLink(linkElement: any, href: any, callback?: any) {
+    if (this.isIE()) {
+      linkElement.setAttribute(&#x27;href&#x27;, href);
+      if (callback) {
+        callback();
+      }
+    } else {
+      const id &#x3D; linkElement.getAttribute(&#x27;id&#x27;);
+      const cloneLinkElement &#x3D; linkElement.cloneNode(true);
+
+      cloneLinkElement.setAttribute(&#x27;href&#x27;, href);
+      cloneLinkElement.setAttribute(&#x27;id&#x27;, id + &#x27;-clone&#x27;);
+
+      linkElement.parentNode.insertBefore(
+        cloneLinkElement,
+        linkElement.nextSibling
+      );
+
+      cloneLinkElement.addEventListener(&#x27;load&#x27;, () &#x3D;&gt; {
+        linkElement.remove();
+        cloneLinkElement.setAttribute(&#x27;id&#x27;, id);
+
+        if (callback) {
+          callback();
+        }
+      });
+    }
+  }
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-sidebar  #sidebar  [(visible)]="configActive"  [position]="app.isRTL ? \'left\' : \'right\'"  [blockScroll]="true"  [showCloseIcon]="false"  [baseZIndex]="1000"  styleClass="layout-config p-sidebar-sm fs-small p-0">  <div class="layout-config-panel flex flex-column">    <div class="px-3 pt-3">      <h5>{{ \'layout.theme_customization\' | translate }}</h5>      <span>{{ \'layout.theme_customization_info\' | translate }}</span>    </div>    <hr class="mb-0" />    <div class="layout-config-options p-3">      <h6>{{ \'layout.scale\' | translate }}</h6>      <div class="flex align-items-center">        <button          pButton          pRipple          type="button"          icon="pi pi-minus"          (click)="decrementScale()"          class="p-button-rounded p-button-text"          [disabled]="scale === scales[0]"        ></button>        <i          class="pi pi-circle-on m-1 scale-icon"          *ngFor="let s of scales"          [ngClass]="{ \'scale-active\': s === scale }"        ></i>        <button          pButton          pRipple          type="button"          icon="pi pi-plus"          (click)="incrementScale()"          class="p-button-rounded p-button-text"          [disabled]="scale === scales[scales.length - 1]"        ></button>      </div>      <h6>{{ \'layout.layout_mode\' | translate }}</h6>      <div class="flex">        <div class="flex align-items-center">          <p-radioButton            name="layoutMode"            value="light"            [(ngModel)]="app.layoutMode"            inputId="layoutMode1"            (onClick)="onLayoutModeChange($event, \'light\')"          ></p-radioButton>          <label            for="layoutMode1"            [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"            >{{ \'layout.layouts.light\' | translate }}</label          >        </div>        <div          class="flex align-items-center"          [ngClass]="{ \'ml-4\': !app.isRTL, \'mr-4\': app.isRTL }"        >          <p-radioButton            name="layoutMode"            value="dark"            [(ngModel)]="app.layoutMode"            inputId="layoutMode2"            (onClick)="onLayoutModeChange($event, \'dark\')"          ></p-radioButton>          <label            for="layoutMode2"            [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"            >{{ \'layout.layouts.dark\' | translate }}</label          >        </div>      </div>      <h6>{{ \'layout.menu_mode\' | translate }}</h6>      <div class="flex">        <div class="flex flex-column">          <div class="flex align-items-center">            <p-radioButton              name="menuMode"              value="static"              [(ngModel)]="app.menuMode"              inputId="menuMode1"            ></p-radioButton>            <label              for="menuMode1"              [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"              >{{ \'layout.menus.static\' | translate }}</label            >          </div>          <div class="flex align-items-center mt-3">            <p-radioButton              name="menuMode"              value="horizontal"              [(ngModel)]="app.menuMode"              inputId="menuMode2"            ></p-radioButton>            <label              for="menuMode2"              [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"              >{{ \'layout.menus.horizontal\' | translate }}</label            >          </div>        </div>        <div          class="flex flex-column"          [ngClass]="{ \'ml-4\': !app.isRTL, \'mr-4\': app.isRTL }"        >          <div class="flex align-items-center">            <p-radioButton              name="menuMode"              value="overlay"              [(ngModel)]="app.menuMode"              inputId="menuMode4"            ></p-radioButton>            <label              for="menuMode4"              [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"              >{{ \'layout.menus.overlay\' | translate }}</label            >          </div>          <div class="flex align-items-center mt-3">            <p-radioButton              name="menuMode"              value="slim"              [(ngModel)]="app.menuMode"              inputId="menuMode3"            ></p-radioButton>            <label              for="menuMode3"              [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"              >{{ \'layout.menus.slim\' | translate }}</label            >          </div>        </div>      </div>      <h6>{{ \'layout.popular_mode\' | translate }}</h6>      <div class="flex">        <div class="flex align-items-center">          <p-radioButton            name="inlineMenuPosition"            value="top"            [(ngModel)]="app.inlineMenuPosition"            inputId="inlineMenuPosition1"          ></p-radioButton>          <label            for="inlineMenuPosition1"            [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"            >{{ \'layout.popular.top\' | translate }}</label          >        </div>        <div          class="flex align-items-center"          [ngClass]="{ \'ml-4\': !app.isRTL, \'mr-4\': app.isRTL }"        >          <p-radioButton            name="inlineMenuPosition"            value="bottom"            [(ngModel)]="app.inlineMenuPosition"            inputId="inlineMenuPosition2"          ></p-radioButton>          <label            for="inlineMenuPosition2"            [ngClass]="{ \'ml-2\': !app.isRTL, \'mr-2\': app.isRTL }"            >{{ \'layout.popular.bottom\' | translate }}</label          >        </div>      </div>      <h6>{{ \'layout.menu_color\' | translate }}</h6>      <div class="grid">        <div *ngFor="let t of menuThemes" class="col col-fixed">          <a            style="cursor: pointer"            (click)="changeMenuTheme(t)"            class="layout-config-color-option"            [title]="t.name"          >            <span              class="color"              [ngStyle]="{ \'background-color\': t.color }"            ></span>            <span              class="check flex align-items-center justify-content-center"              *ngIf="app.menuTheme === t.name"            >              <i                class="pi pi-check"                style="color: var(--menu-text-color)"              ></i>            </span>          </a>        </div>      </div>      <h6>{{ \'layout.topbar_mode\' | translate }}</h6>      <div class="grid">        <div *ngFor="let t of topbarThemes" class="col col-fixed">          <a            style="cursor: pointer"            (click)="changeTopbarTheme(t)"            class="layout-config-color-option"            [title]="t.name"          >            <span              class="color"              [ngStyle]="{ \'background-color\': t.color }"            ></span>            <span              class="check flex align-items-center justify-content-center"              *ngIf="app.topbarTheme === t.name"            >              <i                class="pi pi-check"                style="color: var(--topbar-text-color)"              ></i>            </span>          </a>        </div>      </div>      <h6>{{ \'layout.component_mode\' | translate }}</h6>      <div class="grid">        <div *ngFor="let t of themes" class="col col-fixed">          <a            style="cursor: pointer"            (click)="changeTheme(t.name)"            class="layout-config-color-option"            [title]="t.name"          >            <span              class="color"              [ngStyle]="{ \'background-color\': t.color }"            ></span>            <span              class="check flex align-items-center justify-content-center"              *ngIf="theme === t.name"            >              <i                class="pi pi-check"                style="color: var(--primary-color-text)"              ></i>            </span>          </a>        </div>      </div>    </div>  </div></p-sidebar><p-button  type="button"  (click)="configActive = true"  icon="pi pi-cog"  *ngIf="!configActive"  styleClass="layout-config-button"></p-button></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbComponent', 'selector': 'app-breadcrumb'},{'name': 'ClientComponent', 'selector': 'app-client'},{'name': 'ClientFormComponent', 'selector': 'app-client-form'},{'name': 'ConfigComponent', 'selector': 'app-config'},{'name': 'DashboardPageComponent', 'selector': 'app-dashboard-page'},{'name': 'DiagramOrdersComponent', 'selector': 'app-diagram-orders'},{'name': 'DiagramPercentageComponent', 'selector': 'app-diagram-percentage'},{'name': 'DictionariesComponent', 'selector': 'app-dictionaries'},{'name': 'EstimateTypeComponent', 'selector': 'app-estimate-type'},{'name': 'ExportDataComponent', 'selector': 'app-export-data'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormComponent', 'selector': 'app-form'},{'name': 'FormDictionaryValueDialogComponent', 'selector': 'app-form-dictionary-value-dialog'},{'name': 'FormTableSetColumnComponent', 'selector': 'app-form-table-set-column'},{'name': 'InlineMenuComponent', 'selector': 'app-inline-menu'},{'name': 'LeftMenuComponent', 'selector': 'app-left-menu'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainSummaryComponent', 'selector': 'app-main-summary'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuitemComponent', 'selector': '[app-menuitem]'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'ProductsUnderMinimalStateComponent', 'selector': 'app-products-under-minimal-state'},{'name': 'ProductTradeNameComponent', 'selector': 'app-product-trade-name'},{'name': 'ProductTradeNameFormComponent', 'selector': 'app-product-trade-name-form'},{'name': 'RightmenuComponent', 'selector': 'app-rightmenu'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectDepartmentComponent', 'selector': 'app-select-department'},{'name': 'Summary1Component', 'selector': 'app-summary1'},{'name': 'Summary2Component', 'selector': 'app-summary2'},{'name': 'TableButtonComponent', 'selector': 'app-table-button'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TabsComponent', 'selector': 'app-tabs'},{'name': 'TodayOrdersComponent', 'selector': 'app-today-orders'},{'name': 'TopbarComponent', 'selector': 'app-topbar'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UniversalComponentsComponent', 'selector': 'app-universal-components'},{'name': 'UserDepartmentComponent', 'selector': 'app-user-department'},{'name': 'UserFormComponent', 'selector': 'app-user-form'},{'name': 'UserGroupComponent', 'selector': 'app-user-group'},{'name': 'UserParamComponent', 'selector': 'app-user-param'},{'name': 'UsersComponent', 'selector': 'app-users'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ConfigComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConfigComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1842 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>new-ecol-system-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">new-ecol-system-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TopbarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/pages/dashboard-page/topbar/topbar.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-topbar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./topbar.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./topbar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeItem" >activeItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#app" >app</a>
+                            </li>
+                            <li>
+                                <a href="#compsiteSubs" >compsiteSubs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dashboard" >dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#departments" >departments</a>
+                            </li>
+                            <li>
+                                <a href="#departmentsId" >departmentsId</a>
+                            </li>
+                            <li>
+                                <a href="#departmentsState" >departmentsState</a>
+                            </li>
+                            <li>
+                                <a href="#model" >model</a>
+                            </li>
+                            <li>
+                                <a href="#pages" >pages</a>
+                            </li>
+                            <li>
+                                <a href="#searchInputViewChild" >searchInputViewChild</a>
+                            </li>
+                            <li>
+                                <a href="#selectedPage" >selectedPage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getDepartments" >getDepartments</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSearchAnimationEnd" >onSearchAnimationEnd</a>
+                            </li>
+                            <li>
+                                <a href="#removeDepartment" >removeDepartment</a>
+                            </li>
+                            <li>
+                                <a href="#search" >search</a>
+                            </li>
+                            <li>
+                                <a href="#select" >select</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(app: <a href="../components/AppComponent.html" target="_self">AppComponent</a>, dashboard: <a href="../components/DashboardPageComponent.html" target="_self">DashboardPageComponent</a>, menuService: <a href="../injectables/MenuService.html" target="_self">MenuService</a>, translate: TranslateService, store: <a href="../interfaces/LoginState.html" target="_self">Store&lt;LoginState&gt;</a>, commonService: <a href="../injectables/CommonService.html" target="_self">CommonService</a>, confirmService: ConfirmationService, messageService: MessageService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>app</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/AppComponent.html" target="_self" >AppComponent</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dashboard</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/DashboardPageComponent.html" target="_self" >DashboardPageComponent</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>menuService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MenuService.html" target="_self" >MenuService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/LoginState.html" target="_self" >Store&lt;LoginState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>commonService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommonService.html" target="_self" >CommonService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>confirmService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfirmationService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDepartments"></a>
+                    <span class="name">
+                        <span ><b>getDepartments</b></span>
+                        <a href="#getDepartments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDepartments()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:176</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResponseBodyGetList.html" target="_self" >Observable&lt;ResponseBodyGetList&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="227"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:227</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:149</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSearchAnimationEnd"></a>
+                    <span class="name">
+                        <span ><b>onSearchAnimationEnd</b></span>
+                        <a href="#onSearchAnimationEnd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSearchAnimationEnd(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:201</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeDepartment"></a>
+                    <span class="name">
+                        <span ><b>removeDepartment</b></span>
+                        <a href="#removeDepartment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeDepartment(depId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:188</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>depId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="search"></a>
+                    <span class="name">
+                        <span ><b>search</b></span>
+                        <a href="#search"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>search(ev: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="select"></a>
+                    <span class="name">
+                        <span ><b>select</b></span>
+                        <a href="#select"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>select(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:209</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>item</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeItem"></a>
+                    <span class="name">
+                        <span ><b>activeItem</b></span>
+                        <a href="#activeItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="app"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>app</b></span>
+                        <a href="#app"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/AppComponent.html" target="_self" >AppComponent</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compsiteSubs"></a>
+                    <span class="name">
+                        <span ><b>compsiteSubs</b></span>
+                        <a href="#compsiteSubs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dashboard"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dashboard</b></span>
+                        <a href="#dashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/DashboardPageComponent.html" target="_self" >DashboardPageComponent</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departments"></a>
+                    <span class="name">
+                        <span ><b>departments</b></span>
+                        <a href="#departments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Department.html" target="_self" >Department[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departmentsId"></a>
+                    <span class="name">
+                        <span ><b>departmentsId</b></span>
+                        <a href="#departmentsId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departmentsState"></a>
+                    <span class="name">
+                        <span ><b>departmentsState</b></span>
+                        <a href="#departmentsState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IDepartmentState.html" target="_self" >IDepartmentState[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="model"></a>
+                    <span class="name">
+                        <span ><b>model</b></span>
+                        <a href="#model"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MegaMenuItem[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      label: &#x27;RAPORTY&#x27;,
+      icon: &#x27;pi pi-fw pi-print&#x27;,
+      items: [
+        [
+          {
+            label: &#x27;Zlecenia&#x27;,
+            items: [
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+            ],
+          },
+        ],
+        [
+          {
+            label: &#x27;Urządzenia&#x27;,
+            items: [
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+            ],
+          },
+        ],
+        [
+          {
+            label: &#x27;Magazyn&#x27;,
+            items: [
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+            ],
+          },
+        ],
+      ],
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pages"></a>
+                    <span class="name">
+                        <span ><b>pages</b></span>
+                        <a href="#pages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TreeNode[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchInputViewChild"></a>
+                    <span class="name">
+                        <span ><b>searchInputViewChild</b></span>
+                        <a href="#searchInputViewChild"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;searchInput&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedPage"></a>
+                    <span class="name">
+                        <span ><b>selectedPage</b></span>
+                        <a href="#selectedPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TreeNode</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/components/pages/dashboard-page/topbar/topbar.component.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { animate, style, transition, trigger } from &#x27;@angular/animations&#x27;;
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import {
+  ConfirmationService,
+  MegaMenuItem,
+  MessageService,
+  TreeNode,
+} from &#x27;primeng/api&#x27;;
+import { Observable, Subscription } from &#x27;rxjs&#x27;;
+import { AppComponent } from &#x27;src/app/app.component&#x27;;
+import { GridEnum } from &#x27;src/app/models/enums/gridEnum&#x27;;
+import { ResponseBodyGetList } from &#x27;src/app/models/responses/responseBodyGetList.model&#x27;;
+import { Department } from &#x27;src/app/modules/admin/models/department&#x27;;
+import { IDepartmentState } from &#x27;src/app/modules/login/state/IDepartmentState&#x27;;
+import { removeDepartment } from &#x27;src/app/modules/login/state/login.actions&#x27;;
+import { getDepartments } from &#x27;src/app/modules/login/state/login.selector&#x27;;
+import { LoginState } from &#x27;src/app/modules/login/state/loginState&#x27;;
+import { CommonService } from &#x27;src/app/services/common.service&#x27;;
+import { columnListPath, getModelListPath } from &#x27;src/app/services/path&#x27;;
+import { DashboardPageComponent } from &#x27;../dashboard-page.component&#x27;;
+import { MenuService } from &#x27;../menu/menu.service&#x27;;
+
+@Component({
+  selector: &#x27;app-topbar&#x27;,
+  templateUrl: &#x27;./topbar.component.html&#x27;,
+  styleUrls: [&#x27;./topbar.component.scss&#x27;],
+  animations: [
+    trigger(&#x27;topbarActionPanelAnimation&#x27;, [
+      transition(&#x27;:enter&#x27;, [
+        style({ opacity: 0, transform: &#x27;scaleY(0.8)&#x27; }),
+        animate(
+          &#x27;.12s cubic-bezier(0, 0, 0.2, 1)&#x27;,
+          style({ opacity: 1, transform: &#x27;*&#x27; })
+        ),
+      ]),
+      transition(&#x27;:leave&#x27;, [animate(&#x27;.1s linear&#x27;, style({ opacity: 0 }))]),
+    ]),
+  ],
+})
+export class TopbarComponent implements OnInit, OnDestroy {
+  activeItem: number;
+  departmentsState: IDepartmentState[] &#x3D; [];
+  departments: Department[] &#x3D; [];
+  departmentsId: number[] &#x3D; [];
+  compsiteSubs &#x3D; new Subscription();
+
+  model: MegaMenuItem[] &#x3D; [
+    {
+      label: &#x27;RAPORTY&#x27;,
+      icon: &#x27;pi pi-fw pi-print&#x27;,
+      items: [
+        [
+          {
+            label: &#x27;Zlecenia&#x27;,
+            items: [
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+            ],
+          },
+        ],
+        [
+          {
+            label: &#x27;Urządzenia&#x27;,
+            items: [
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+            ],
+          },
+        ],
+        [
+          {
+            label: &#x27;Magazyn&#x27;,
+            items: [
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+              {
+                label: &#x27;Raport&#x27;,
+                icon: &#x27;pi pi-fw pi-id-card&#x27;,
+              },
+            ],
+          },
+        ],
+      ],
+    },
+  ];
+
+  @ViewChild(&#x27;searchInput&#x27;) searchInputViewChild: ElementRef;
+
+  pages: TreeNode[];
+  selectedPage: TreeNode;
+
+  constructor(
+    public app: AppComponent,
+    public dashboard: DashboardPageComponent,
+    private menuService: MenuService,
+    private translate: TranslateService,
+    private store: Store&lt;LoginState&gt;,
+    private commonService: CommonService,
+    private confirmService: ConfirmationService,
+    private messageService: MessageService
+  ) {}
+
+  ngOnInit(): void {
+    this.compsiteSubs.add(
+      this.store.select(getDepartments).subscribe({
+        next: (deps: number[]) &#x3D;&gt; {
+          this.departmentsId.push(...deps);
+          if (this.departmentsId) {
+            this.getDepartments().subscribe({
+              next: (res: ResponseBodyGetList) &#x3D;&gt; {
+                this.departments.push(...res.value.data);
+                this.departmentsState &#x3D; [];
+                deps.forEach((dep) &#x3D;&gt; {
+                  const depObj &#x3D; this.departments.find((x) &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; dep);
+                  if (depObj) {
+                    this.departmentsState.push({
+                      id: dep,
+                      name: depObj?.departmentName,
+                    });
+                  }
+                });
+              },
+            });
+          }
+        },
+      })
+    );
+  }
+
+  getDepartments(): Observable&lt;ResponseBodyGetList&gt; {
+    return this.commonService.getObservableList4path(
+      getModelListPath(&#x27;Department&#x27;),
+      columnListPath(GridEnum.Departments),
+      undefined,
+      {
+        first: 1,
+        rows: 1000,
+      }
+    );
+  }
+
+  removeDepartment(depId: number) {
+    this.confirmService.confirm({
+      message: &#x27;Czy napewno nie chcesz już pracować w obrębie tego zakładu?&#x27;,
+      accept: () &#x3D;&gt; {
+        this.store.dispatch(removeDepartment({ val: depId }));
+        this.messageService.add({
+          severity: &#x27;success&#x27;,
+          summary: &#x27;Poprawnie usunięto zakład&#x27;,
+        });
+      },
+    });
+  }
+
+  onSearchAnimationEnd(event: any) {
+    switch (event.toState) {
+      case &#x27;visible&#x27;:
+        this.searchInputViewChild.nativeElement.focus();
+        break;
+    }
+  }
+
+  select(item: any): void {
+    // const tab: Tab &#x3D; {
+    //   header: item.label,
+    //   component: item.component,
+    //   tooltip: item.label,
+    // };
+
+    this.selectedPage &#x3D; {};
+    this.dashboard.searchClick &#x3D; true;
+    this.dashboard.openTab(item.component);
+  }
+
+  search(ev: any): void {
+    this.pages &#x3D; this.menuService
+      .getItemsWithComponent()
+      .filter((x) &#x3D;&gt; x.label?.toLowerCase().includes(ev.query.toLowerCase()));
+  }
+
+  ngOnDestroy(): void {
+    this.compsiteSubs.unsubscribe();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;layout-topbar shadow-4&quot;&gt;
+  &lt;div class&#x3D;&quot;layout-topbar-left&quot;&gt;
+    &lt;a class&#x3D;&quot;layout-topbar-logo&quot; routerLink&#x3D;&quot;/&quot;&gt;
+      &lt;img
+        id&#x3D;&quot;app-logo&quot;
+        src&#x3D;&quot;assets/images/logo_b.png&quot;
+        alt&#x3D;&quot;Ecol Sp. z o.o.&quot;
+        style&#x3D;&quot;height: 2.25rem&quot;
+      /&gt;
+    &lt;/a&gt;
+
+    &lt;a
+      class&#x3D;&quot;layout-menu-button shadow-6&quot;
+      (click)&#x3D;&quot;dashboard.onMenuButtonClick($event)&quot;
+      pRipple
+    &gt;
+      &lt;em class&#x3D;&quot;pi pi-chevron-right&quot;&gt;&lt;/em&gt;
+    &lt;/a&gt;
+
+    &lt;a
+      class&#x3D;&quot;layout-topbar-mobile-button&quot;
+      (click)&#x3D;&quot;dashboard.onTopbarMobileButtonClick($event)&quot;
+      pRipple
+    &gt;
+      &lt;em class&#x3D;&quot;pi pi-ellipsis-v fs-large&quot;&gt;&lt;/em&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div
+    class&#x3D;&quot;layout-topbar-right&quot;
+    [ngClass]&#x3D;&quot;{ &#x27;layout-topbar-mobile-active&#x27;: dashboard.mobileTopbarActive }&quot;
+  &gt;
+    &lt;div class&#x3D;&quot;layout-topbar-actions-left&quot;&gt;
+      &lt;p-megaMenu [model]&#x3D;&quot;model&quot; styleClass&#x3D;&quot;layout-megamenu&quot;&gt;&lt;/p-megaMenu&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;layout-topbar-actions-right&quot;&gt;
+      &lt;ul class&#x3D;&quot;layout-topbar-items&quot;&gt;
+        &lt;li class&#x3D;&quot;layout-topbar-item app&quot;&gt;
+          &lt;p-chip
+            styleClass&#x3D;&quot;p-chip-image&quot;
+            *ngFor&#x3D;&quot;let item of departmentsState&quot;
+            label&#x3D;&quot;{{ item.name }}&quot;
+            [removable]&#x3D;&quot;true&quot;
+            (onRemove)&#x3D;&quot;removeDepartment(item.id)&quot;
+          &gt;&lt;/p-chip&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;layout-topbar-item layout-search-item&quot;&gt;
+          &lt;a
+            class&#x3D;&quot;layout-topbar-action rounded-circle&quot;
+            (click)&#x3D;&quot;dashboard.onTopbarItemClick($event, &#x27;search&#x27;)&quot;
+            pRipple
+          &gt;
+            &lt;em class&#x3D;&quot;pi pi-search fs-large&quot;&gt;&lt;/em&gt;
+          &lt;/a&gt;
+
+          &lt;div
+            class&#x3D;&quot;layout-search-panel p-inputgroup&quot;
+            [@topbarActionPanelAnimation]&#x3D;&quot;&#x27;visible&#x27;&quot;
+            *ngIf&#x3D;&quot;dashboard.search&quot;
+            (@topbarActionPanelAnimation.done)&#x3D;&quot;onSearchAnimationEnd($event)&quot;
+          &gt;
+            &lt;span class&#x3D;&quot;p-inputgroup-addon&quot;
+              &gt;&lt;em class&#x3D;&quot;pi pi-search&quot;&gt;&lt;/em
+            &gt;&lt;/span&gt;
+            &lt;p-autoComplete
+              [inputStyle]&#x3D;&quot;{ width: &#x27;200px&#x27; }&quot;
+              #searchInput
+              pInputText
+              [placeholder]&#x3D;&quot;&#x27;common.search&#x27; | translate&quot;
+              [(ngModel)]&#x3D;&quot;selectedPage&quot;
+              [suggestions]&#x3D;&quot;pages&quot;
+              [field]&#x3D;&quot;&#x27;label&#x27;&quot;
+              (completeMethod)&#x3D;&quot;search($event)&quot;
+              (onSelect)&#x3D;&quot;select($event)&quot;
+              (click)&#x3D;&quot;dashboard.searchClick &#x3D; true&quot;
+            &gt;&lt;/p-autoComplete&gt;
+
+            &lt;span class&#x3D;&quot;p-inputgroup-addon&quot;&gt;
+              &lt;button
+                pButton
+                pRipple
+                type&#x3D;&quot;button&quot;
+                icon&#x3D;&quot;pi pi-times&quot;
+                class&#x3D;&quot;p-button-rounded p-button-text p-button-plain&quot;
+                (click)&#x3D;&quot;dashboard.searchClick &#x3D; false&quot;
+              &gt;&lt;/button&gt;
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;layout-topbar-item notifications&quot;&gt;
+          &lt;a
+            class&#x3D;&quot;layout-topbar-action rounded-circle&quot;
+            (click)&#x3D;&quot;dashboard.onTopbarItemClick($event, &#x27;notifications&#x27;)&quot;
+            pRipple
+          &gt;
+            &lt;span class&#x3D;&quot;p-overlay-badge&quot;&gt;
+              &lt;em class&#x3D;&quot;pi pi-bell fs-large&quot;&gt;&lt;/em&gt;
+              &lt;span class&#x3D;&quot;p-badge p-badge-warning p-badge-dot&quot;&gt;&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/a&gt;
+
+          &lt;ul
+            class&#x3D;&quot;layout-topbar-action-panel shadow-6&quot;
+            [@topbarActionPanelAnimation]&#x3D;&quot;&#x27;visible&#x27;&quot;
+            *ngIf&#x3D;&quot;dashboard.activeTopbarItem &#x3D;&#x3D;&#x3D; &#x27;notifications&#x27;&quot;
+          &gt;
+            &lt;li class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;span class&#x3D;&quot;px-3 fs-small&quot;
+                &gt;{{ &quot;common.have&quot; | translate }} &lt;strong&gt;4&lt;/strong&gt;
+                {{ &quot;common.new_notification&quot; | translate }}&lt;/span
+              &gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;div class&#x3D;&quot;flex flex-row align-items-center&quot;&gt;
+                &lt;img src&#x3D;&quot;assets/demo/images/avatar/avatar-1.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                &lt;div
+                  class&#x3D;&quot;flex flex-column&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-3&#x27;: !app.isRTL, &#x27;mr-3&#x27;: app.isRTL }&quot;
+                  style&#x3D;&quot;flex-grow: 1&quot;
+                &gt;
+                  &lt;div
+                    class&#x3D;&quot;flex align-items-center justify-content-between mb-1&quot;
+                  &gt;
+                    &lt;span class&#x3D;&quot;fs-small font-bold&quot;&gt;Jerome Bell&lt;/span&gt;
+                    &lt;small&gt;42 mins ago&lt;/small&gt;
+                  &lt;/div&gt;
+                  &lt;span class&#x3D;&quot;fs-small&quot;
+                    &gt;How to write content about your photographs?&lt;/span
+                  &gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;div class&#x3D;&quot;flex flex-row align-items-center&quot;&gt;
+                &lt;img src&#x3D;&quot;assets/demo/images/avatar/avatar-2.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                &lt;div
+                  class&#x3D;&quot;flex flex-column&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-3&#x27;: !app.isRTL, &#x27;mr-3&#x27;: app.isRTL }&quot;
+                  style&#x3D;&quot;flex-grow: 1&quot;
+                &gt;
+                  &lt;div
+                    class&#x3D;&quot;flex align-items-center justify-content-between mb-1&quot;
+                  &gt;
+                    &lt;span class&#x3D;&quot;fs-small font-bold&quot;&gt;Cameron Williamson&lt;/span&gt;
+                    &lt;small&gt;48 mins ago&lt;/small&gt;
+                  &lt;/div&gt;
+                  &lt;span class&#x3D;&quot;fs-small&quot;
+                    &gt;Start a blog to reach your creative peak.&lt;/span
+                  &gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;div class&#x3D;&quot;flex flex-row align-items-center&quot;&gt;
+                &lt;img src&#x3D;&quot;assets/demo/images/avatar/avatar-3.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                &lt;div
+                  class&#x3D;&quot;flex flex-column&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-3&#x27;: !app.isRTL, &#x27;mr-3&#x27;: app.isRTL }&quot;
+                  style&#x3D;&quot;flex-grow: 1&quot;
+                &gt;
+                  &lt;div
+                    class&#x3D;&quot;flex align-items-center justify-content-between mb-1&quot;
+                  &gt;
+                    &lt;span class&#x3D;&quot;fs-small font-bold&quot;&gt;Anna Miles&lt;/span&gt;
+                    &lt;small&gt;1 day ago&lt;/small&gt;
+                  &lt;/div&gt;
+                  &lt;span class&#x3D;&quot;fs-small&quot;&gt;Caring is the new marketing&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;div class&#x3D;&quot;flex flex-row align-items-center&quot;&gt;
+                &lt;img src&#x3D;&quot;assets/demo/images/avatar/avatar-4.png&quot; alt&#x3D;&quot;&quot; /&gt;
+                &lt;div
+                  class&#x3D;&quot;flex flex-column&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;ml-3&#x27;: !app.isRTL, &#x27;mr-3&#x27;: app.isRTL }&quot;
+                  style&#x3D;&quot;flex-grow: 1&quot;
+                &gt;
+                  &lt;div
+                    class&#x3D;&quot;flex align-items-center justify-content-between mb-1&quot;
+                  &gt;
+                    &lt;span class&#x3D;&quot;fs-small font-bold&quot;&gt;Arlene Mccoy&lt;/span&gt;
+                    &lt;small&gt;4 day ago&lt;/small&gt;
+                  &lt;/div&gt;
+                  &lt;span class&#x3D;&quot;fs-small&quot;
+                    &gt;Starting your traveling blog with Vasco.&lt;/span
+                  &gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;layout-topbar-item app&quot;&gt;
+          &lt;a
+            class&#x3D;&quot;layout-topbar-action rounded-circle&quot;
+            (click)&#x3D;&quot;dashboard.onTopbarItemClick($event, &#x27;apps&#x27;)&quot;
+            pRipple
+          &gt;
+            &lt;em class&#x3D;&quot;pi pi-table fs-large&quot;&gt;&lt;/em&gt;
+          &lt;/a&gt;
+
+          &lt;div
+            class&#x3D;&quot;layout-topbar-action-panel shadow-6&quot;
+            [@topbarActionPanelAnimation]&#x3D;&quot;&#x27;visible&#x27;&quot;
+            *ngIf&#x3D;&quot;dashboard.activeTopbarItem &#x3D;&#x3D;&#x3D; &#x27;apps&#x27;&quot;
+          &gt;
+            &lt;div class&#x3D;&quot;grid grid-nogutter&quot;&gt;
+              &lt;div class&#x3D;&quot;layout-topbar-action-item col-4&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;flex align-items-center flex-column text-color&quot;
+                  pRipple
+                &gt;
+                  &lt;em
+                    class&#x3D;&quot;pi pi-image action indigo-bgcolor white-color&quot;
+                  &gt;&lt;/em&gt;
+                  &lt;span&gt;Products&lt;/span&gt;
+                &lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;layout-topbar-action-item col-4&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;flex align-items-center flex-column text-color&quot;
+                  pRipple
+                &gt;
+                  &lt;em
+                    class&#x3D;&quot;pi pi-file-pdf action orange-bgcolor white-color&quot;
+                  &gt;&lt;/em&gt;
+                  &lt;span&gt;Reports&lt;/span&gt;
+                &lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;layout-topbar-action-item col-4&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;flex align-items-center flex-column text-color&quot;
+                  pRipple
+                &gt;
+                  &lt;em class&#x3D;&quot;pi pi-dollar action teal-bgcolor white-color&quot;&gt;&lt;/em&gt;
+                  &lt;span&gt;Balance&lt;/span&gt;
+                &lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;layout-topbar-action-item col-4&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;flex align-items-center flex-column text-color&quot;
+                  pRipple
+                &gt;
+                  &lt;em class&#x3D;&quot;pi pi-cog action pink-bgcolor white-color&quot;&gt;&lt;/em&gt;
+                  &lt;span&gt;Settings&lt;/span&gt;
+                &lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;layout-topbar-action-item col-4&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;flex align-items-center flex-column text-color&quot;
+                  pRipple
+                &gt;
+                  &lt;em
+                    class&#x3D;&quot;pi pi-key action bluegrey-bgcolor white-color&quot;
+                  &gt;&lt;/em&gt;
+                  &lt;span&gt;Credentials&lt;/span&gt;
+                &lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;layout-topbar-action-item col-4&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;flex align-items-center justify-content-center flex-column text-color&quot;
+                  pRipple
+                &gt;
+                  &lt;em
+                    class&#x3D;&quot;pi pi-sitemap action cyan-bgcolor white-color&quot;
+                  &gt;&lt;/em&gt;
+                  &lt;span&gt;Sitemap&lt;/span&gt;
+                &lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;layout-topbar-item&quot;&gt;
+          &lt;a
+            class&#x3D;&quot;layout-topbar-action flex flex-row justify-content-center align-items-center px-2 rounded-circle&quot;
+            (click)&#x3D;&quot;dashboard.onTopbarItemClick($event, &#x27;profile&#x27;)&quot;
+            pRipple
+          &gt;
+            &lt;img
+              src&#x3D;&quot;assets/demo/images/avatar/amyelsner.png&quot;
+              alt&#x3D;&quot;avatar&quot;
+              style&#x3D;&quot;width: 32px; height: 32px&quot;
+            /&gt;
+          &lt;/a&gt;
+
+          &lt;ul
+            class&#x3D;&quot;layout-topbar-action-panel shadow-6&quot;
+            [@topbarActionPanelAnimation]&#x3D;&quot;&#x27;visible&#x27;&quot;
+            *ngIf&#x3D;&quot;dashboard.activeTopbarItem &#x3D;&#x3D;&#x3D; &#x27;profile&#x27;&quot;
+          &gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;a class&#x3D;&quot;flex flex-row align-items-center&quot; pRipple&gt;
+                &lt;em
+                  class&#x3D;&quot;pi pi-cog&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;mr-2&#x27;: !app.isRTL, &#x27;ml-2&#x27;: app.isRTL }&quot;
+                &gt;&lt;/em&gt;
+                &lt;span&gt;{{ &quot;common.user_menu.settings&quot; | translate }}&lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;a class&#x3D;&quot;flex flex-row align-items-center&quot; pRipple&gt;
+                &lt;em
+                  class&#x3D;&quot;pi pi-compass&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;mr-2&#x27;: !app.isRTL, &#x27;ml-2&#x27;: app.isRTL }&quot;
+                &gt;&lt;/em&gt;
+                &lt;span&gt;{{ &quot;common.user_menu.user_profile&quot; | translate }}&lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class&#x3D;&quot;layout-topbar-action-item&quot;&gt;
+              &lt;a
+                class&#x3D;&quot;flex flex-row align-items-center&quot;
+                (click)&#x3D;&quot;dashboard.logout()&quot;
+                pRipple
+              &gt;
+                &lt;em
+                  class&#x3D;&quot;pi pi-power-off&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;mr-2&#x27;: !app.isRTL, &#x27;ml-2&#x27;: app.isRTL }&quot;
+                &gt;&lt;/em&gt;
+                &lt;span&gt;{{ &quot;common.user_menu.logout&quot; | translate }}&lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li class&#x3D;&quot;layout-topbar-item&quot;&gt;
+          &lt;a
+            class&#x3D;&quot;layout-topbar-action rounded-circle&quot;
+            (click)&#x3D;&quot;dashboard.onRightMenuButtonClick($event)&quot;
+            pRipple
+          &gt;
+            &lt;em
+              class&#x3D;&quot;pi fs-large&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;pi-arrow-left&#x27;: !app.isRTL,
+                &#x27;pi-arrow-right&#x27;: app.isRTL
+              }&quot;
+            &gt;&lt;/em&gt;
+          &lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./topbar.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="layout-topbar shadow-4">  <div class="layout-topbar-left">    <a class="layout-topbar-logo" routerLink="/">      <img        id="app-logo"        src="assets/images/logo_b.png"        alt="Ecol Sp. z o.o."        style="height: 2.25rem"      />    </a>    <a      class="layout-menu-button shadow-6"      (click)="dashboard.onMenuButtonClick($event)"      pRipple    >      <em class="pi pi-chevron-right"></em>    </a>    <a      class="layout-topbar-mobile-button"      (click)="dashboard.onTopbarMobileButtonClick($event)"      pRipple    >      <em class="pi pi-ellipsis-v fs-large"></em>    </a>  </div>  <div    class="layout-topbar-right"    [ngClass]="{ \'layout-topbar-mobile-active\': dashboard.mobileTopbarActive }"  >    <div class="layout-topbar-actions-left">      <p-megaMenu [model]="model" styleClass="layout-megamenu"></p-megaMenu>    </div>    <div class="layout-topbar-actions-right">      <ul class="layout-topbar-items">        <li class="layout-topbar-item app">          <p-chip            styleClass="p-chip-image"            *ngFor="let item of departmentsState"            label="{{ item.name }}"            [removable]="true"            (onRemove)="removeDepartment(item.id)"          ></p-chip>        </li>        <li class="layout-topbar-item layout-search-item">          <a            class="layout-topbar-action rounded-circle"            (click)="dashboard.onTopbarItemClick($event, \'search\')"            pRipple          >            <em class="pi pi-search fs-large"></em>          </a>          <div            class="layout-search-panel p-inputgroup"            [@topbarActionPanelAnimation]="\'visible\'"            *ngIf="dashboard.search"            (@topbarActionPanelAnimation.done)="onSearchAnimationEnd($event)"          >            <span class="p-inputgroup-addon"              ><em class="pi pi-search"></em            ></span>            <p-autoComplete              [inputStyle]="{ width: \'200px\' }"              #searchInput              pInputText              [placeholder]="\'common.search\' | translate"              [(ngModel)]="selectedPage"              [suggestions]="pages"              [field]="\'label\'"              (completeMethod)="search($event)"              (onSelect)="select($event)"              (click)="dashboard.searchClick = true"            ></p-autoComplete>            <span class="p-inputgroup-addon">              <button                pButton                pRipple                type="button"                icon="pi pi-times"                class="p-button-rounded p-button-text p-button-plain"                (click)="dashboard.searchClick = false"              ></button>            </span>          </div>        </li>        <li class="layout-topbar-item notifications">          <a            class="layout-topbar-action rounded-circle"            (click)="dashboard.onTopbarItemClick($event, \'notifications\')"            pRipple          >            <span class="p-overlay-badge">              <em class="pi pi-bell fs-large"></em>              <span class="p-badge p-badge-warning p-badge-dot"></span>            </span>          </a>          <ul            class="layout-topbar-action-panel shadow-6"            [@topbarActionPanelAnimation]="\'visible\'"            *ngIf="dashboard.activeTopbarItem === \'notifications\'"          >            <li class="mb-3">              <span class="px-3 fs-small"                >{{ "common.have" | translate }} <strong>4</strong>                {{ "common.new_notification" | translate }}</span              >            </li>            <li class="layout-topbar-action-item">              <div class="flex flex-row align-items-center">                <img src="assets/demo/images/avatar/avatar-1.png" alt="" />                <div                  class="flex flex-column"                  [ngClass]="{ \'ml-3\': !app.isRTL, \'mr-3\': app.isRTL }"                  style="flex-grow: 1"                >                  <div                    class="flex align-items-center justify-content-between mb-1"                  >                    <span class="fs-small font-bold">Jerome Bell</span>                    <small>42 mins ago</small>                  </div>                  <span class="fs-small"                    >How to write content about your photographs?</span                  >                </div>              </div>            </li>            <li class="layout-topbar-action-item">              <div class="flex flex-row align-items-center">                <img src="assets/demo/images/avatar/avatar-2.png" alt="" />                <div                  class="flex flex-column"                  [ngClass]="{ \'ml-3\': !app.isRTL, \'mr-3\': app.isRTL }"                  style="flex-grow: 1"                >                  <div                    class="flex align-items-center justify-content-between mb-1"                  >                    <span class="fs-small font-bold">Cameron Williamson</span>                    <small>48 mins ago</small>                  </div>                  <span class="fs-small"                    >Start a blog to reach your creative peak.</span                  >                </div>              </div>            </li>            <li class="layout-topbar-action-item">              <div class="flex flex-row align-items-center">                <img src="assets/demo/images/avatar/avatar-3.png" alt="" />                <div                  class="flex flex-column"                  [ngClass]="{ \'ml-3\': !app.isRTL, \'mr-3\': app.isRTL }"                  style="flex-grow: 1"                >                  <div                    class="flex align-items-center justify-content-between mb-1"                  >                    <span class="fs-small font-bold">Anna Miles</span>                    <small>1 day ago</small>                  </div>                  <span class="fs-small">Caring is the new marketing</span>                </div>              </div>            </li>            <li class="layout-topbar-action-item">              <div class="flex flex-row align-items-center">                <img src="assets/demo/images/avatar/avatar-4.png" alt="" />                <div                  class="flex flex-column"                  [ngClass]="{ \'ml-3\': !app.isRTL, \'mr-3\': app.isRTL }"                  style="flex-grow: 1"                >                  <div                    class="flex align-items-center justify-content-between mb-1"                  >                    <span class="fs-small font-bold">Arlene Mccoy</span>                    <small>4 day ago</small>                  </div>                  <span class="fs-small"                    >Starting your traveling blog with Vasco.</span                  >                </div>              </div>            </li>          </ul>        </li>        <li class="layout-topbar-item app">          <a            class="layout-topbar-action rounded-circle"            (click)="dashboard.onTopbarItemClick($event, \'apps\')"            pRipple          >            <em class="pi pi-table fs-large"></em>          </a>          <div            class="layout-topbar-action-panel shadow-6"            [@topbarActionPanelAnimation]="\'visible\'"            *ngIf="dashboard.activeTopbarItem === \'apps\'"          >            <div class="grid grid-nogutter">              <div class="layout-topbar-action-item col-4">                <a                  class="flex align-items-center flex-column text-color"                  pRipple                >                  <em                    class="pi pi-image action indigo-bgcolor white-color"                  ></em>                  <span>Products</span>                </a>              </div>              <div class="layout-topbar-action-item col-4">                <a                  class="flex align-items-center flex-column text-color"                  pRipple                >                  <em                    class="pi pi-file-pdf action orange-bgcolor white-color"                  ></em>                  <span>Reports</span>                </a>              </div>              <div class="layout-topbar-action-item col-4">                <a                  class="flex align-items-center flex-column text-color"                  pRipple                >                  <em class="pi pi-dollar action teal-bgcolor white-color"></em>                  <span>Balance</span>                </a>              </div>              <div class="layout-topbar-action-item col-4">                <a                  class="flex align-items-center flex-column text-color"                  pRipple                >                  <em class="pi pi-cog action pink-bgcolor white-color"></em>                  <span>Settings</span>                </a>              </div>              <div class="layout-topbar-action-item col-4">                <a                  class="flex align-items-center flex-column text-color"                  pRipple                >                  <em                    class="pi pi-key action bluegrey-bgcolor white-color"                  ></em>                  <span>Credentials</span>                </a>              </div>              <div class="layout-topbar-action-item col-4">                <a                  class="flex align-items-center justify-content-center flex-column text-color"                  pRipple                >                  <em                    class="pi pi-sitemap action cyan-bgcolor white-color"                  ></em>                  <span>Sitemap</span>                </a>              </div>            </div>          </div>        </li>        <li class="layout-topbar-item">          <a            class="layout-topbar-action flex flex-row justify-content-center align-items-center px-2 rounded-circle"            (click)="dashboard.onTopbarItemClick($event, \'profile\')"            pRipple          >            <img              src="assets/demo/images/avatar/amyelsner.png"              alt="avatar"              style="width: 32px; height: 32px"            />          </a>          <ul            class="layout-topbar-action-panel shadow-6"            [@topbarActionPanelAnimation]="\'visible\'"            *ngIf="dashboard.activeTopbarItem === \'profile\'"          >            <li class="layout-topbar-action-item">              <a class="flex flex-row align-items-center" pRipple>                <em                  class="pi pi-cog"                  [ngClass]="{ \'mr-2\': !app.isRTL, \'ml-2\': app.isRTL }"                ></em>                <span>{{ "common.user_menu.settings" | translate }}</span>              </a>            </li>            <li class="layout-topbar-action-item">              <a class="flex flex-row align-items-center" pRipple>                <em                  class="pi pi-compass"                  [ngClass]="{ \'mr-2\': !app.isRTL, \'ml-2\': app.isRTL }"                ></em>                <span>{{ "common.user_menu.user_profile" | translate }}</span>              </a>            </li>            <li class="layout-topbar-action-item">              <a                class="flex flex-row align-items-center"                (click)="dashboard.logout()"                pRipple              >                <em                  class="pi pi-power-off"                  [ngClass]="{ \'mr-2\': !app.isRTL, \'ml-2\': app.isRTL }"                ></em>                <span>{{ "common.user_menu.logout" | translate }}</span>              </a>            </li>          </ul>        </li>        <li class="layout-topbar-item">          <a            class="layout-topbar-action rounded-circle"            (click)="dashboard.onRightMenuButtonClick($event)"            pRipple          >            <em              class="pi fs-large"              [ngClass]="{                \'pi-arrow-left\': !app.isRTL,                \'pi-arrow-right\': app.isRTL              }"            ></em>          </a>        </li>      </ul>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbComponent', 'selector': 'app-breadcrumb'},{'name': 'ClientComponent', 'selector': 'app-client'},{'name': 'ClientFormComponent', 'selector': 'app-client-form'},{'name': 'ConfigComponent', 'selector': 'app-config'},{'name': 'DashboardPageComponent', 'selector': 'app-dashboard-page'},{'name': 'DiagramOrdersComponent', 'selector': 'app-diagram-orders'},{'name': 'DiagramPercentageComponent', 'selector': 'app-diagram-percentage'},{'name': 'DictionariesComponent', 'selector': 'app-dictionaries'},{'name': 'EstimateTypeComponent', 'selector': 'app-estimate-type'},{'name': 'ExportDataComponent', 'selector': 'app-export-data'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormComponent', 'selector': 'app-form'},{'name': 'FormDictionaryValueDialogComponent', 'selector': 'app-form-dictionary-value-dialog'},{'name': 'FormTableSetColumnComponent', 'selector': 'app-form-table-set-column'},{'name': 'InlineMenuComponent', 'selector': 'app-inline-menu'},{'name': 'LeftMenuComponent', 'selector': 'app-left-menu'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainSummaryComponent', 'selector': 'app-main-summary'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuitemComponent', 'selector': '[app-menuitem]'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'ProductsUnderMinimalStateComponent', 'selector': 'app-products-under-minimal-state'},{'name': 'ProductTradeNameComponent', 'selector': 'app-product-trade-name'},{'name': 'ProductTradeNameFormComponent', 'selector': 'app-product-trade-name-form'},{'name': 'RightmenuComponent', 'selector': 'app-rightmenu'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectDepartmentComponent', 'selector': 'app-select-department'},{'name': 'Summary1Component', 'selector': 'app-summary1'},{'name': 'Summary2Component', 'selector': 'app-summary2'},{'name': 'TableButtonComponent', 'selector': 'app-table-button'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TabsComponent', 'selector': 'app-tabs'},{'name': 'TodayOrdersComponent', 'selector': 'app-today-orders'},{'name': 'TopbarComponent', 'selector': 'app-topbar'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UniversalComponentsComponent', 'selector': 'app-universal-components'},{'name': 'UserDepartmentComponent', 'selector': 'app-user-department'},{'name': 'UserFormComponent', 'selector': 'app-user-form'},{'name': 'UserGroupComponent', 'selector': 'app-user-group'},{'name': 'UserParamComponent', 'selector': 'app-user-param'},{'name': 'UsersComponent', 'selector': 'app-users'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TopbarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TopbarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

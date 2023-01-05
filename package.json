@@ -12,7 +12,8 @@
     "combine-cz": "ngx-i18n-combine -i ./src/assets/i18n/CZ/*.json -o ./src/assets/i18n/cz.json",
     "combine-es": "ngx-i18n-combine -i ./src/assets/i18n/ES/*.json -o ./src/assets/i18n/es.json",
     "combine-de": "ngx-i18n-combine -i ./src/assets/i18n/DE/*.json -o ./src/assets/i18n/de.json",
-    "build-prod": "ng build --configuration=production"
+    "build-prod": "ng build --configuration=production",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
   },
   "private": true,
   "dependencies": {

@@ -1,7 +1,14 @@
-<app-table-button [buttonList]="buttons" [icon]="'pi-chart-pie'" [gridId]="gridId"></app-table-button>
+<app-table-button
+  [buttonList]="buttons"
+  [icon]="icon"
+  (refreshTable)="refreshTable()"
+></app-table-button>
 <app-table
-    [dataTable]="responseObj"
-    [columns]="columns"
-    (newRequestParam)="getLazyLoadEvent($event)"
-    (selectedObj)="getSelected($event)">
-  </app-table>
+  [gridId]="gridId"
+  [forMaster]="true"
+  [tableDisabled]="obj.editState"
+  [canMultiselect]="multiselect"
+  [model]="model"
+  (selectedObj)="getSelected($event)"
+>
+</app-table>

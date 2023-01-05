@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
+import { Filter } from 'src/app/models/requests/filter.model';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import {
@@ -122,9 +123,11 @@ export class TableButtonComponent {
     model: string,
     dictModel: string,
     dictGridId: number,
-    value: string,
-    label: string,
-    objDictId: string
+    value: string, // example id
+    label: string, //example name
+    objDictId: string, // where add sleected value,
+    valueMode?: boolean, // must write value to selected id dictionary,
+    filter?: Filter[]
   ): void {
     this.ref = this.dialogService.open(FormDictionaryValueDialogComponent, {
       data: [
@@ -132,8 +135,8 @@ export class TableButtonComponent {
         postModelPath(model),
         obj,
         [objDictId],
-        undefined,
-        false,
+        filter,
+        valueMode,
       ],
       contentStyle: { width: '600px' },
       header: this.translateService.instant('dict.select_value'),

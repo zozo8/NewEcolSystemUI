@@ -1,0 +1,2828 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>new-ecol-system-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">new-ecol-system-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  DashboardPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/pages/dashboard-page/dashboard-page.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dashboard-page</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dashboard-page.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard-page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeTopbarItem" >activeTopbarItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#app" >app</a>
+                            </li>
+                            <li>
+                                <a href="#appVersion" >appVersion</a>
+                            </li>
+                            <li>
+                                <a href="#clientNodes" >clientNodes</a>
+                            </li>
+                            <li>
+                                <a href="#configActive" >configActive</a>
+                            </li>
+                            <li>
+                                <a href="#configClick" >configClick</a>
+                            </li>
+                            <li>
+                                <a href="#currentInlineMenuKey" >currentInlineMenuKey</a>
+                            </li>
+                            <li>
+                                <a href="#documentClickListener" >documentClickListener</a>
+                            </li>
+                            <li>
+                                <a href="#inlineMenuActive" >inlineMenuActive</a>
+                            </li>
+                            <li>
+                                <a href="#inlineMenuClick" >inlineMenuClick</a>
+                            </li>
+                            <li>
+                                <a href="#leftMenu" >leftMenu</a>
+                            </li>
+                            <li>
+                                <a href="#loadDashboard" >loadDashboard</a>
+                            </li>
+                            <li>
+                                <a href="#menuActive" >menuActive</a>
+                            </li>
+                            <li>
+                                <a href="#menuClick" >menuClick</a>
+                            </li>
+                            <li>
+                                <a href="#menuHoverActive" >menuHoverActive</a>
+                            </li>
+                            <li>
+                                <a href="#mobileMenuActive" >mobileMenuActive</a>
+                            </li>
+                            <li>
+                                <a href="#mobileTopbarActive" >mobileTopbarActive</a>
+                            </li>
+                            <li>
+                                <a href="#newTab" >newTab</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#newTabSub" >newTabSub</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#renderer" >renderer</a>
+                            </li>
+                            <li>
+                                <a href="#rightMenuActive" >rightMenuActive</a>
+                            </li>
+                            <li>
+                                <a href="#search" >search</a>
+                            </li>
+                            <li>
+                                <a href="#searchClick" >searchClick</a>
+                            </li>
+                            <li>
+                                <a href="#selectedClientNode" >selectedClientNode</a>
+                            </li>
+                            <li>
+                                <a href="#staticMenuDesktopInactive" >staticMenuDesktopInactive</a>
+                            </li>
+                            <li>
+                                <a href="#topbarItemClick" >topbarItemClick</a>
+                            </li>
+                            <li>
+                                <a href="#topbarMenuActive" >topbarMenuActive</a>
+                            </li>
+                            <li>
+                                <a href="#topbarRightClick" >topbarRightClick</a>
+                            </li>
+                            <li>
+                                <a href="#topMenu" >topMenu</a>
+                            </li>
+                            <li>
+                                <a href="#userMenu" >userMenu</a>
+                            </li>
+                            <li>
+                                <a href="#userName$" >userName$</a>
+                            </li>
+                            <li>
+                                <a href="#visibleMenu" >visibleMenu</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#blockBodyScroll" >blockBodyScroll</a>
+                            </li>
+                            <li>
+                                <a href="#isDesktop" >isDesktop</a>
+                            </li>
+                            <li>
+                                <a href="#isHorizontal" >isHorizontal</a>
+                            </li>
+                            <li>
+                                <a href="#isMobile" >isMobile</a>
+                            </li>
+                            <li>
+                                <a href="#isOverlay" >isOverlay</a>
+                            </li>
+                            <li>
+                                <a href="#isSlim" >isSlim</a>
+                            </li>
+                            <li>
+                                <a href="#isStatic" >isStatic</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onInlineMenuClick" >onInlineMenuClick</a>
+                            </li>
+                            <li>
+                                <a href="#onMenuButtonClick" >onMenuButtonClick</a>
+                            </li>
+                            <li>
+                                <a href="#onMenuClick" >onMenuClick</a>
+                            </li>
+                            <li>
+                                <a href="#onRightMenuButtonClick" >onRightMenuButtonClick</a>
+                            </li>
+                            <li>
+                                <a href="#onSearchKeydown" >onSearchKeydown</a>
+                            </li>
+                            <li>
+                                <a href="#onTopbarItemClick" >onTopbarItemClick</a>
+                            </li>
+                            <li>
+                                <a href="#onTopbarMobileButtonClick" >onTopbarMobileButtonClick</a>
+                            </li>
+                            <li>
+                                <a href="#openTab" >openTab</a>
+                            </li>
+                            <li>
+                                <a href="#setLanguage" >setLanguage</a>
+                            </li>
+                            <li>
+                                <a href="#unblockBodyScroll" >unblockBodyScroll</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, translateService: TranslateService, store: <a href="../interfaces/LoginState.html" target="_self">Store&lt;LoginState&gt;</a>, app: <a href="../components/AppComponent.html" target="_self">AppComponent</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, menuService: <a href="../injectables/MenuService.html" target="_self">MenuService</a>, commonService: <a href="../injectables/CommonService.html" target="_self">CommonService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/LoginState.html" target="_self" >Store&lt;LoginState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>app</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/AppComponent.html" target="_self" >AppComponent</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>menuService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MenuService.html" target="_self" >MenuService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>commonService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommonService.html" target="_self" >CommonService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="blockBodyScroll"></a>
+                    <span class="name">
+                        <span ><b>blockBodyScroll</b></span>
+                        <a href="#blockBodyScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>blockBodyScroll()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDesktop"></a>
+                    <span class="name">
+                        <span ><b>isDesktop</b></span>
+                        <a href="#isDesktop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDesktop()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isHorizontal"></a>
+                    <span class="name">
+                        <span ><b>isHorizontal</b></span>
+                        <a href="#isHorizontal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isHorizontal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMobile"></a>
+                    <span class="name">
+                        <span ><b>isMobile</b></span>
+                        <a href="#isMobile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isMobile()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:166</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOverlay"></a>
+                    <span class="name">
+                        <span ><b>isOverlay</b></span>
+                        <a href="#isOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isOverlay()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:150</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSlim"></a>
+                    <span class="name">
+                        <span ><b>isSlim</b></span>
+                        <a href="#isSlim"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSlim()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isStatic"></a>
+                    <span class="name">
+                        <span ><b>isStatic</b></span>
+                        <a href="#isStatic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isStatic()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:154</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:275</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:140</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onInlineMenuClick"></a>
+                    <span class="name">
+                        <span ><b>onInlineMenuClick</b></span>
+                        <a href="#onInlineMenuClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onInlineMenuClick(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>, key: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="265"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:265</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>key</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMenuButtonClick"></a>
+                    <span class="name">
+                        <span ><b>onMenuButtonClick</b></span>
+                        <a href="#onMenuButtonClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMenuButtonClick(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:207</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMenuClick"></a>
+                    <span class="name">
+                        <span ><b>onMenuClick</b></span>
+                        <a href="#onMenuClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMenuClick(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:182</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRightMenuButtonClick"></a>
+                    <span class="name">
+                        <span ><b>onRightMenuButtonClick</b></span>
+                        <a href="#onRightMenuButtonClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRightMenuButtonClick(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="255"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:255</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSearchKeydown"></a>
+                    <span class="name">
+                        <span ><b>onSearchKeydown</b></span>
+                        <a href="#onSearchKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSearchKeydown(ev: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="249"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:249</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTopbarItemClick"></a>
+                    <span class="name">
+                        <span ><b>onTopbarItemClick</b></span>
+                        <a href="#onTopbarItemClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTopbarItemClick(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>, item: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:232</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>item</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTopbarMobileButtonClick"></a>
+                    <span class="name">
+                        <span ><b>onTopbarMobileButtonClick</b></span>
+                        <a href="#onTopbarMobileButtonClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTopbarMobileButtonClick(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="227"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:227</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openTab"></a>
+                    <span class="name">
+                        <span ><b>openTab</b></span>
+                        <a href="#openTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openTab(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:279</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setLanguage"></a>
+                    <span class="name">
+                        <span ><b>setLanguage</b></span>
+                        <a href="#setLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setLanguage(ln: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:260</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ln</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unblockBodyScroll"></a>
+                    <span class="name">
+                        <span ><b>unblockBodyScroll</b></span>
+                        <a href="#unblockBodyScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unblockBodyScroll()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeTopbarItem"></a>
+                    <span class="name">
+                        <span ><b>activeTopbarItem</b></span>
+                        <a href="#activeTopbarItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="app"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>app</b></span>
+                        <a href="#app"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/AppComponent.html" target="_self" >AppComponent</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appVersion"></a>
+                    <span class="name">
+                        <span ><b>appVersion</b></span>
+                        <a href="#appVersion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clientNodes"></a>
+                    <span class="name">
+                        <span ><b>clientNodes</b></span>
+                        <a href="#clientNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configActive"></a>
+                    <span class="name">
+                        <span ><b>configActive</b></span>
+                        <a href="#configActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configClick"></a>
+                    <span class="name">
+                        <span ><b>configClick</b></span>
+                        <a href="#configClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentInlineMenuKey"></a>
+                    <span class="name">
+                        <span ><b>currentInlineMenuKey</b></span>
+                        <a href="#currentInlineMenuKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="documentClickListener"></a>
+                    <span class="name">
+                        <span ><b>documentClickListener</b></span>
+                        <a href="#documentClickListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inlineMenuActive"></a>
+                    <span class="name">
+                        <span ><b>inlineMenuActive</b></span>
+                        <a href="#inlineMenuActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inlineMenuClick"></a>
+                    <span class="name">
+                        <span ><b>inlineMenuClick</b></span>
+                        <a href="#inlineMenuClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leftMenu"></a>
+                    <span class="name">
+                        <span ><b>leftMenu</b></span>
+                        <a href="#leftMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MenuItem[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadDashboard"></a>
+                    <span class="name">
+                        <span ><b>loadDashboard</b></span>
+                        <a href="#loadDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuActive"></a>
+                    <span class="name">
+                        <span ><b>menuActive</b></span>
+                        <a href="#menuActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuClick"></a>
+                    <span class="name">
+                        <span ><b>menuClick</b></span>
+                        <a href="#menuClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuHoverActive"></a>
+                    <span class="name">
+                        <span ><b>menuHoverActive</b></span>
+                        <a href="#menuHoverActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mobileMenuActive"></a>
+                    <span class="name">
+                        <span ><b>mobileMenuActive</b></span>
+                        <a href="#mobileMenuActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mobileTopbarActive"></a>
+                    <span class="name">
+                        <span ><b>mobileTopbarActive</b></span>
+                        <a href="#mobileTopbarActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newTab"></a>
+                    <span class="name">
+                        <span ><b>newTab</b></span>
+                        <a href="#newTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Tab.html" target="_self" >Tab</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newTabSub"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>newTabSub</b></span>
+                        <a href="#newTabSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderer"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>renderer</b></span>
+                        <a href="#renderer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rightMenuActive"></a>
+                    <span class="name">
+                        <span ><b>rightMenuActive</b></span>
+                        <a href="#rightMenuActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="search"></a>
+                    <span class="name">
+                        <span ><b>search</b></span>
+                        <a href="#search"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchClick"></a>
+                    <span class="name">
+                        <span ><b>searchClick</b></span>
+                        <a href="#searchClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedClientNode"></a>
+                    <span class="name">
+                        <span ><b>selectedClientNode</b></span>
+                        <a href="#selectedClientNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="staticMenuDesktopInactive"></a>
+                    <span class="name">
+                        <span ><b>staticMenuDesktopInactive</b></span>
+                        <a href="#staticMenuDesktopInactive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="topbarItemClick"></a>
+                    <span class="name">
+                        <span ><b>topbarItemClick</b></span>
+                        <a href="#topbarItemClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="topbarMenuActive"></a>
+                    <span class="name">
+                        <span ><b>topbarMenuActive</b></span>
+                        <a href="#topbarMenuActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="topbarRightClick"></a>
+                    <span class="name">
+                        <span ><b>topbarRightClick</b></span>
+                        <a href="#topbarRightClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="topMenu"></a>
+                    <span class="name">
+                        <span ><b>topMenu</b></span>
+                        <a href="#topMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MenuItem[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userMenu"></a>
+                    <span class="name">
+                        <span ><b>userMenu</b></span>
+                        <a href="#userMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MenuItem[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userName$"></a>
+                    <span class="name">
+                        <span ><b>userName$</b></span>
+                        <a href="#userName$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visibleMenu"></a>
+                    <span class="name">
+                        <span ><b>visibleMenu</b></span>
+                        <a href="#visibleMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/pages/dashboard-page/dashboard-page.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from &#x27;@angular/animations&#x27;;
+import { AfterViewInit, Component, OnInit, Renderer2 } from &#x27;@angular/core&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { MenuItem } from &#x27;primeng/api&#x27;;
+import { Observable, Subscription, timer } from &#x27;rxjs&#x27;;
+import { AppComponent } from &#x27;src/app/app.component&#x27;;
+import { Tab } from &#x27;src/app/models/tab.model&#x27;;
+import { AuthService } from &#x27;src/app/modules/login/auth/auth.service&#x27;;
+import { setLanguage } from &#x27;src/app/modules/login/state/login.actions&#x27;;
+import { LoginState } from &#x27;src/app/modules/login/state/loginState&#x27;;
+import { CommonService } from &#x27;src/app/services/common.service&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+import { MenuService } from &#x27;./menu.service&#x27;;
+
+@Component({
+  selector: &#x27;app-dashboard-page&#x27;,
+  templateUrl: &#x27;./dashboard-page.component.html&#x27;,
+  styleUrls: [&#x27;./dashboard-page.component.css&#x27;],
+  animations: [
+    trigger(&#x27;loadDashboardTrigger&#x27;, [
+      state(
+        &#x27;hide&#x27;,
+        style({
+          opacity: &#x27;0&#x27;,
+        })
+      ),
+      state(
+        &#x27;show&#x27;,
+        style({
+          opacity: &#x27;1&#x27;,
+        })
+      ),
+      transition(&#x27;hide&#x3D;&gt;show&#x27;, [animate(&#x27;1s&#x27;)]),
+    ]),
+  ],
+})
+export class DashboardPageComponent implements OnInit, AfterViewInit {
+  //new
+  topbarMenuActive: boolean;
+  menuActive: boolean;
+  staticMenuDesktopInactive: boolean;
+  mobileMenuActive: boolean;
+  menuClick: boolean;
+  mobileTopbarActive: boolean;
+  topbarRightClick: boolean;
+  topbarItemClick: boolean;
+  activeTopbarItem: string;
+  documentClickListener: () &#x3D;&gt; void;
+  configActive: boolean;
+  configClick: boolean;
+  rightMenuActive: boolean;
+  menuHoverActive &#x3D; false;
+  searchClick &#x3D; false;
+  search &#x3D; false;
+  currentInlineMenuKey: string;
+  inlineMenuActive: any[] &#x3D; [];
+  inlineMenuClick: boolean;
+
+  //
+
+  leftMenu: MenuItem[];
+  topMenu: MenuItem[];
+  userMenu: MenuItem[];
+
+  visibleMenu: boolean;
+  loadDashboard: boolean;
+  clientNodes: any[];
+  selectedClientNode: any[] &#x3D; [];
+  userName$: Observable&lt;string&gt;;
+  appVersion: string;
+  newTab: Tab;
+  private newTabSub: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private translateService: TranslateService,
+    private store: Store&lt;LoginState&gt;,
+    public app: AppComponent,
+    public renderer: Renderer2,
+    private menuService: MenuService,
+    private commonService: CommonService
+  ) {}
+
+  ngAfterViewInit(): void {
+    // hides the horizontal submenus or top menu if outside is clicked
+    this.documentClickListener &#x3D; this.renderer.listen(&#x27;body&#x27;, &#x27;click&#x27;, () &#x3D;&gt; {
+      if (!this.topbarItemClick) {
+        this.activeTopbarItem &#x3D; &#x27;&#x27;;
+        this.topbarMenuActive &#x3D; false;
+      }
+
+      if (!this.menuClick &amp;&amp; (this.isHorizontal() || this.isSlim())) {
+        this.menuService.reset();
+      }
+
+      if (this.configActive &amp;&amp; !this.configClick) {
+        this.configActive &#x3D; false;
+      }
+
+      if (!this.menuClick) {
+        if (this.mobileMenuActive) {
+          this.mobileMenuActive &#x3D; false;
+        }
+
+        if (this.isOverlay()) {
+          this.menuActive &#x3D; false;
+        }
+
+        this.menuHoverActive &#x3D; false;
+        this.unblockBodyScroll();
+      }
+
+      if (!this.searchClick) {
+        this.search &#x3D; false;
+      }
+
+      if (
+        this.inlineMenuActive[this.currentInlineMenuKey] &amp;&amp;
+        !this.inlineMenuClick
+      ) {
+        this.inlineMenuActive[this.currentInlineMenuKey] &#x3D; false;
+      }
+
+      this.inlineMenuClick &#x3D; false;
+      this.searchClick &#x3D; false;
+      this.configClick &#x3D; false;
+      this.topbarItemClick &#x3D; false;
+      this.topbarRightClick &#x3D; false;
+      this.menuClick &#x3D; false;
+    });
+  }
+
+  ngOnInit(): void {
+    this.menuActive &#x3D; this.isStatic() &amp;&amp; !this.isMobile();
+
+    this.appVersion &#x3D; &#x60;${environment.appVersion} ${this.translateService.currentLang}&#x60;;
+    timer(500).subscribe(() &#x3D;&gt; {
+      this.loadDashboard &#x3D; true;
+    });
+  }
+
+  //new
+  isOverlay() {
+    return this.app.menuMode &#x3D;&#x3D;&#x3D; &#x27;overlay&#x27;;
+  }
+
+  isStatic() {
+    return this.app.menuMode &#x3D;&#x3D;&#x3D; &#x27;static&#x27;;
+  }
+
+  isHorizontal() {
+    return this.app.menuMode &#x3D;&#x3D;&#x3D; &#x27;horizontal&#x27;;
+  }
+
+  isSlim() {
+    return this.app.menuMode &#x3D;&#x3D;&#x3D; &#x27;slim&#x27;;
+  }
+
+  isMobile() {
+    return window.innerWidth &lt;&#x3D; 991;
+  }
+
+  isDesktop() {
+    return window.innerWidth &gt; 991;
+  }
+
+  blockBodyScroll(): void {
+    if (document.body.classList) {
+      document.body.classList.add(&#x27;blocked-scroll&#x27;);
+    } else {
+      document.body.className +&#x3D; &#x27; blocked-scroll&#x27;;
+    }
+  }
+
+  onMenuClick(ev: Event) {
+    this.menuClick &#x3D; true;
+
+    if (
+      this.inlineMenuActive[this.currentInlineMenuKey] &amp;&amp;
+      !this.inlineMenuClick
+    ) {
+      this.inlineMenuActive[this.currentInlineMenuKey] &#x3D; false;
+    }
+  }
+
+  unblockBodyScroll(): void {
+    if (document.body.classList) {
+      document.body.classList.remove(&#x27;blocked-scroll&#x27;);
+    } else {
+      document.body.className &#x3D; document.body.className.replace(
+        new RegExp(
+          &#x27;(^|\\b)&#x27; + &#x27;blocked-scroll&#x27;.split(&#x27; &#x27;).join(&#x27;|&#x27;) + &#x27;(\\b|$)&#x27;,
+          &#x27;gi&#x27;
+        ),
+        &#x27; &#x27;
+      );
+    }
+  }
+
+  onMenuButtonClick(ev: Event) {
+    this.menuActive &#x3D; !this.menuActive;
+    this.topbarMenuActive &#x3D; false;
+    this.topbarRightClick &#x3D; true;
+    this.menuClick &#x3D; true;
+
+    if (this.isDesktop()) {
+      this.staticMenuDesktopInactive &#x3D; !this.staticMenuDesktopInactive;
+    } else {
+      this.mobileMenuActive &#x3D; !this.mobileMenuActive;
+      if (this.mobileMenuActive) {
+        this.blockBodyScroll();
+      } else {
+        this.unblockBodyScroll();
+      }
+    }
+
+    ev.preventDefault();
+  }
+
+  onTopbarMobileButtonClick(ev: Event) {
+    this.mobileTopbarActive &#x3D; !this.mobileTopbarActive;
+    ev.preventDefault();
+  }
+
+  onTopbarItemClick(ev: Event, item: string) {
+    this.topbarItemClick &#x3D; true;
+
+    if (this.activeTopbarItem &#x3D;&#x3D;&#x3D; item) {
+      this.activeTopbarItem &#x3D; &#x27;&#x27;;
+    } else {
+      this.activeTopbarItem &#x3D; item;
+    }
+
+    if (item &#x3D;&#x3D;&#x3D; &#x27;search&#x27;) {
+      this.search &#x3D; !this.search;
+      this.searchClick &#x3D; !this.searchClick;
+    }
+
+    ev.preventDefault();
+  }
+
+  onSearchKeydown(ev: any) {
+    if (ev.keyCode &#x3D;&#x3D;&#x3D; 27) {
+      this.search &#x3D; false;
+    }
+  }
+
+  onRightMenuButtonClick(ev: Event) {
+    this.rightMenuActive &#x3D; !this.rightMenuActive;
+    ev.preventDefault();
+  }
+
+  setLanguage(ln: string): void {
+    this.store.dispatch(setLanguage({ language: ln }));
+    this.translateService.use(ln);
+  }
+
+  onInlineMenuClick(event: Event, key: any) {
+    if (key !&#x3D;&#x3D; this.currentInlineMenuKey) {
+      this.inlineMenuActive[this.currentInlineMenuKey] &#x3D; false;
+    }
+
+    this.inlineMenuActive[key] &#x3D; !this.inlineMenuActive[key];
+    this.currentInlineMenuKey &#x3D; key;
+    this.inlineMenuClick &#x3D; true;
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+  openTab(name: string) {
+    if (name) this.commonService.addTabToStore(name);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;p-toast position&#x3D;&quot;top-right&quot;&gt;&lt;/p-toast&gt;
+&lt;p-confirmDialog
+  [baseZIndex]&#x3D;&quot;10000&quot;
+  [header]&#x3D;&quot;&#x27;common.remove_record&#x27; | translate&quot;
+  icon&#x3D;&quot;pi pi-question&quot;
+&gt;&lt;/p-confirmDialog&gt;
+&lt;div
+  class&#x3D;&quot;layout-wrapper&quot;
+  [ngClass]&#x3D;&quot;{
+    &#x27;p-input-filled&#x27;: app.inputStyle &#x3D;&#x3D;&#x3D; &#x27;filled&#x27;,
+    &#x27;p-ripple-disabled&#x27;: !app.ripple,
+    &#x27;layout-menu-static&#x27;: isStatic(),
+    &#x27;layout-menu-overlay&#x27;: isOverlay(),
+    &#x27;layout-menu-horizontal&#x27;: isHorizontal(),
+    &#x27;layout-menu-slim&#x27;: isSlim(),
+    &#x27;layout-menu-active&#x27;: menuActive,
+    &#x27;layout-menu-mobile-active&#x27;: mobileMenuActive,
+    &#x27;layout-topbar-mobile-active&#x27;: mobileTopbarActive,
+    &#x27;layout-rightmenu-active&#x27;: rightMenuActive,
+    &#x27;layout-rtl&#x27;: app.isRTL
+  }&quot;
+  [class]&#x3D;&quot;&#x27;layout-menu-&#x27; + app.menuTheme + &#x27; layout-topbar-&#x27; + app.topbarTheme&quot;
+&gt;
+  &lt;app-topbar&gt;&lt;/app-topbar&gt;
+
+  &lt;app-rightmenu&gt;&lt;/app-rightmenu&gt;
+
+  &lt;div class&#x3D;&quot;menu-wrapper&quot; (click)&#x3D;&quot;onMenuClick($event)&quot;&gt;
+    &lt;div class&#x3D;&quot;layout-menu-container&quot;&gt;
+      &lt;app-inline-menu
+        *ngIf&#x3D;&quot;
+          app.inlineMenuPosition &#x3D;&#x3D; &#x27;top&#x27; || app.inlineMenuPosition &#x3D;&#x3D; &#x27;both&#x27;
+        &quot;
+        key&#x3D;&quot;top&quot;
+      &gt;&lt;/app-inline-menu&gt;
+      &lt;app-menu&gt;&lt;/app-menu&gt;
+      &lt;app-inline-menu
+        *ngIf&#x3D;&quot;
+          app.inlineMenuPosition &#x3D;&#x3D; &#x27;bottom&#x27; || app.inlineMenuPosition &#x3D;&#x3D; &#x27;both&#x27;
+        &quot;
+        key&#x3D;&quot;bottom&quot;
+      &gt;&lt;/app-inline-menu&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;layout-main&quot;&gt;
+    &lt;app-breadcrumb&gt;&lt;/app-breadcrumb&gt;
+    &lt;div class&#x3D;&quot;layout-content&quot;&gt;
+      &lt;app-tabs&gt; &lt;/app-tabs&gt;
+    &lt;/div&gt;
+    &lt;app-footer&gt;&lt;/app-footer&gt;
+  &lt;/div&gt;
+
+  &lt;app-config&gt;&lt;/app-config&gt;
+
+  &lt;div *ngIf&#x3D;&quot;mobileMenuActive&quot; class&#x3D;&quot;layout-mask modal-in&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./dashboard-page.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* .dashboard {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.app-name {
+  padding-left: 1vh;
+  padding-right: 1vh;
+  font-size: 20px;
+  color: #575656;
+  vertical-align: middle;
+} */
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-toast position="top-right"></p-toast><p-confirmDialog  [baseZIndex]="10000"  [header]="\'common.remove_record\' | translate"  icon="pi pi-question"></p-confirmDialog><div  class="layout-wrapper"  [ngClass]="{    \'p-input-filled\': app.inputStyle === \'filled\',    \'p-ripple-disabled\': !app.ripple,    \'layout-menu-static\': isStatic(),    \'layout-menu-overlay\': isOverlay(),    \'layout-menu-horizontal\': isHorizontal(),    \'layout-menu-slim\': isSlim(),    \'layout-menu-active\': menuActive,    \'layout-menu-mobile-active\': mobileMenuActive,    \'layout-topbar-mobile-active\': mobileTopbarActive,    \'layout-rightmenu-active\': rightMenuActive,    \'layout-rtl\': app.isRTL  }"  [class]="\'layout-menu-\' + app.menuTheme + \' layout-topbar-\' + app.topbarTheme">  <app-topbar></app-topbar>  <app-rightmenu></app-rightmenu>  <div class="menu-wrapper" (click)="onMenuClick($event)">    <div class="layout-menu-container">      <app-inline-menu        *ngIf="          app.inlineMenuPosition == \'top\' || app.inlineMenuPosition == \'both\'        "        key="top"      ></app-inline-menu>      <app-menu></app-menu>      <app-inline-menu        *ngIf="          app.inlineMenuPosition == \'bottom\' || app.inlineMenuPosition == \'both\'        "        key="bottom"      ></app-inline-menu>    </div>  </div>  <div class="layout-main">    <app-breadcrumb></app-breadcrumb>    <div class="layout-content">      <app-tabs> </app-tabs>    </div>    <app-footer></app-footer>  </div>  <app-config></app-config>  <div *ngIf="mobileMenuActive" class="layout-mask modal-in"></div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BreadcrumbComponent', 'selector': 'app-breadcrumb'},{'name': 'ClientComponent', 'selector': 'app-client'},{'name': 'ClientFormComponent', 'selector': 'app-client-form'},{'name': 'ConfigComponent', 'selector': 'app-config'},{'name': 'DashboardPageComponent', 'selector': 'app-dashboard-page'},{'name': 'DiagramOrdersComponent', 'selector': 'app-diagram-orders'},{'name': 'DiagramPercentageComponent', 'selector': 'app-diagram-percentage'},{'name': 'DictionariesComponent', 'selector': 'app-dictionaries'},{'name': 'EstimateTypeComponent', 'selector': 'app-estimate-type'},{'name': 'ExportDataComponent', 'selector': 'app-export-data'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormComponent', 'selector': 'app-form'},{'name': 'FormDictionaryValueDialogComponent', 'selector': 'app-form-dictionary-value-dialog'},{'name': 'FormTableSetColumnComponent', 'selector': 'app-form-table-set-column'},{'name': 'InlineMenuComponent', 'selector': 'app-inline-menu'},{'name': 'LeftMenuComponent', 'selector': 'app-left-menu'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainSummaryComponent', 'selector': 'app-main-summary'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuitemComponent', 'selector': '[app-menuitem]'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'ProductsUnderMinimalStateComponent', 'selector': 'app-products-under-minimal-state'},{'name': 'ProductTradeNameComponent', 'selector': 'app-product-trade-name'},{'name': 'ProductTradeNameFormComponent', 'selector': 'app-product-trade-name-form'},{'name': 'RightmenuComponent', 'selector': 'app-rightmenu'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectDepartmentComponent', 'selector': 'app-select-department'},{'name': 'Summary1Component', 'selector': 'app-summary1'},{'name': 'Summary2Component', 'selector': 'app-summary2'},{'name': 'TableButtonComponent', 'selector': 'app-table-button'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TabsComponent', 'selector': 'app-tabs'},{'name': 'TodayOrdersComponent', 'selector': 'app-today-orders'},{'name': 'TopbarComponent', 'selector': 'app-topbar'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UniversalComponentsComponent', 'selector': 'app-universal-components'},{'name': 'UserDepartmentComponent', 'selector': 'app-user-department'},{'name': 'UserFormComponent', 'selector': 'app-user-form'},{'name': 'UserGroupComponent', 'selector': 'app-user-group'},{'name': 'UserParamComponent', 'selector': 'app-user-param'},{'name': 'UsersComponent', 'selector': 'app-users'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DashboardPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
