@@ -9,7 +9,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MenuItem, PrimeIcons } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
 import { Filter } from 'src/app/models/requests/filter.model';
 import { ResponseColumnSetting } from 'src/app/models/responses/columns/responseColumnSetting';
@@ -45,7 +45,7 @@ export class TableComponent implements OnInit, OnDestroy {
   columnFilter: string[];
   tableSettingItems: MenuItem[];
   columnSetting4GridId: ResponseColumnSettingValueData[] = [];
-
+  columns: ResponseGridDataColumnValue[];
   dataValues: any[];
   selectedRows: any[] = [];
   summaryValues: any[] = [];
@@ -70,41 +70,41 @@ export class TableComponent implements OnInit, OnDestroy {
   columns4requestColumnSettingSub: Subscription;
 
   //do zaorania
-  @Input()
-  set dataTable(v: Observable<ResponseBodyGetList>) {
-    if (v !== undefined) {
-      this.dataSub = v.subscribe({
-        next: (res: ResponseBodyGetList) => {
-          this.dataLoading = true;
-          this.dataValues = res.value.data;
-          this.totalRecords = res.value.totalItems ?? 0;
-          this.totalPages = res.value.totalPages;
-          this.pageSize = res.value.pageSize;
-          this.totalItems = res.value.totalItems ?? 0;
-          this.rebuildSummary();
-          this.dataLoading = false;
-        },
-        complete: () => this.dataSub.unsubscribe(),
-        error: (err: Error) => {
-          this.dataLoading = false;
-        },
-      });
-    }
-  }
+  // @Input()
+  // set dataTable(v: Observable<ResponseBodyGetList>) {
+  //   if (v !== undefined) {
+  //     this.dataSub = v.subscribe({
+  //       next: (res: ResponseBodyGetList) => {
+  //         this.dataLoading = true;
+  //         this.dataValues = res.value.data;
+  //         this.totalRecords = res.value.totalItems ?? 0;
+  //         this.totalPages = res.value.totalPages;
+  //         this.pageSize = res.value.pageSize;
+  //         this.totalItems = res.value.totalItems ?? 0;
+  //         this.rebuildSummary();
+  //         this.dataLoading = false;
+  //       },
+  //       complete: () => this.dataSub.unsubscribe(),
+  //       error: (err: Error) => {
+  //         this.dataLoading = false;
+  //       },
+  //     });
+  //   }
+  // }
 
   // do zaorania
-  private _columns: ResponseGridDataColumnValue[];
-  public get columns(): ResponseGridDataColumnValue[] {
-    return this._columns;
-  }
+  // private _columns: ResponseGridDataColumnValue[];
+  // public get columns(): ResponseGridDataColumnValue[] {
+  //   return this._columns;
+  // }
 
-  @Input()
-  public set columns(v: ResponseGridDataColumnValue[]) {
-    this._columns = v;
-    if (this._columns !== undefined) {
-      this.columnFilter = this.cols.map((el) => el.columnName);
-    }
-  }
+  // @Input()
+  // public set columns(v: ResponseGridDataColumnValue[]) {
+  //   this._columns = v;
+  //   if (this._columns !== undefined) {
+  //     this.columnFilter = this.cols.map((el) => el.columnName);
+  //   }
+  // }
 
   @Input()
   height: number;

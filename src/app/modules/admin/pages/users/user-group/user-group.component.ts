@@ -71,22 +71,7 @@ export class UserGroupComponent implements OnInit, OnDestroy {
         label: this.translateService.instant('btn.add'),
         icon: 'pi pi-fw pi-plus',
         disabled: false,
-        command: () => {
-          let obj: UserUserGroup = {
-            id: 0,
-            userId: this.masterId,
-            userGroupId: 0,
-          };
-          this.tableButtonComponent.postModal(
-            obj,
-            this.model,
-            this.dictModel,
-            this.dictGridId,
-            'id',
-            'groupName',
-            'userGroupId'
-          );
-        },
+        command: () => this.post(),
       },
       {
         label: this.translateService.instant('btn.remove'),
@@ -125,6 +110,23 @@ export class UserGroupComponent implements OnInit, OnDestroy {
     var path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;
     this.tableService.getObjDto(path, this.obj);
+  }
+
+  post(): void {
+    let obj: UserUserGroup = {
+      id: 0,
+      userId: this.masterId,
+      userGroupId: 0,
+    };
+    this.tableButtonComponent.postModal(
+      obj,
+      this.model,
+      this.dictModel,
+      this.dictGridId,
+      'id',
+      'groupName',
+      'userGroupId'
+    );
   }
 
   ngOnDestroy(): void {

@@ -9,6 +9,7 @@ import {
   MessageService,
 } from 'primeng/api';
 import { BehaviorSubject, Observable, Subject, Subscription, take } from 'rxjs';
+import { typeEnum } from '../models/enums/typeEnum';
 import { Filter } from '../models/requests/filter.model';
 import { RequestBodyGetList } from '../models/requests/requestBodyGetList.model';
 import { ResponseBodyGetList } from '../models/responses/responseBodyGetList.model';
@@ -255,7 +256,8 @@ export class CommonService {
           'DepartmentId',
           element.toString(),
           'equals',
-          'OR'
+          'OR',
+          typeEnum.numeric
         )
       );
     });

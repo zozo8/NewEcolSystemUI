@@ -1,9 +1,15 @@
 <div class="card-header">
   <h5>{{ "pages.main_summary.product_under_state" | translate }}</h5>
 </div>
+<app-table-button
+  [buttonList]="buttons"
+  [icon]="icon"
+  (refreshTable)="refreshTable()"
+></app-table-button>
 <app-table
-  [dataTable]="data"
-  [columns]="columns"
   [gridId]="gridId"
-  (newRequestParam)="getLazyLoadEvent($event)"
-></app-table>
+  [tableDisabled]="obj.editState"
+  [canMultiselect]="multiselect"
+  [model]="model"
+>
+</app-table>
