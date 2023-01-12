@@ -56,11 +56,9 @@ import { ConfigComponent } from './components/pages/dashboard-page/config/config
 import { DashboardPageComponent } from './components/pages/dashboard-page/dashboard-page.component';
 import { FooterComponent } from './components/pages/dashboard-page/footer/footer.component';
 import { InlineMenuComponent } from './components/pages/dashboard-page/inline-menu/inline-menu.component';
-import { LeftMenuComponent } from './components/pages/dashboard-page/left-menu/left-menu.component';
 import { MenuComponent } from './components/pages/dashboard-page/menu/menu.component';
 import { MenuitemComponent } from './components/pages/dashboard-page/menuitem/menuitem.component';
 import { RightmenuComponent } from './components/pages/dashboard-page/rightmenu/rightmenu.component';
-import { SearchPageComponent } from './components/pages/dashboard-page/search-page/search-page.component';
 import { TopbarComponent } from './components/pages/dashboard-page/topbar/topbar.component';
 import { TabsComponent } from './components/pages/dashboard/tabs/tabs.component';
 import { AuthconfigInterceptor } from './modules/login/auth/authconfig.interceptor';
@@ -94,9 +92,7 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     AppComponent,
     DashboardPageComponent,
     NotfoundComponent,
-    LeftMenuComponent,
     TabsComponent,
-    SearchPageComponent,
     TopbarComponent,
     RightmenuComponent,
     BreadcrumbComponent,

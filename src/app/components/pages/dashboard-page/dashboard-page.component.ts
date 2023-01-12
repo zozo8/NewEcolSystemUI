@@ -9,7 +9,7 @@ import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
-import { Observable, Subscription, timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { Tab } from 'src/app/models/tab.model';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
@@ -42,7 +42,6 @@ import { MenuService } from './menu.service';
   ],
 })
 export class DashboardPageComponent implements OnInit, AfterViewInit {
-  //new
   topbarMenuActive: boolean;
   menuActive: boolean;
   staticMenuDesktopInactive: boolean;
@@ -63,8 +62,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   inlineMenuActive: any[] = [];
   inlineMenuClick: boolean;
 
-  //
-
   leftMenu: MenuItem[];
   topMenu: MenuItem[];
   userMenu: MenuItem[];
@@ -76,7 +73,6 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   userName$: Observable<string>;
   appVersion: string;
   newTab: Tab;
-  private newTabSub: Subscription;
 
   constructor(
     private authService: AuthService,
