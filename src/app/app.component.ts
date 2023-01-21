@@ -37,8 +37,10 @@ export class AppComponent implements OnInit {
       this.authService.logout();
     }
 
+    // Tutaj podobnie jak wszędzie - z reactive powinniśmy przechodzić na statyczne w ostateczności,
+    // nie jako reguła
     this.translateService.addLangs(environment.languages);
-    var lan = this.commonService.getValueFromObservable(
+    let lan = this.commonService.getValueFromObservable(
       this.store.select(getLanguage)
     );
 

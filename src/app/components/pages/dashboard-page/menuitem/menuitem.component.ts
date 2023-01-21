@@ -5,11 +5,9 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
-import { LoginState } from 'src/app/modules/login/state/loginState';
 import { DashboardPageComponent } from '../dashboard-page.component';
 import { MenuService } from '../menu.service';
 
@@ -72,6 +70,7 @@ import { MenuService } from '../menu.service';
   ],
 })
 export class MenuitemComponent implements OnInit {
+  // To jest OK, ponieważ ten komponent to raczej coś w tylu template i nie powinien mieć dostępu do store'a
   @Input() item: any;
   @Input() index: number;
   @Input() root: boolean;
@@ -82,12 +81,14 @@ export class MenuitemComponent implements OnInit {
   menuResetSubscription: Subscription;
   key: string;
 
+  // Ale nie powinno też mieć dostępu do innych komponentów. W ostateczności tworzy to bardzo brzydkie wycieki pamięci. Importy/exposrty komponentów tylko w *modlue.ts
   constructor(
     public dashboard: DashboardPageComponent,
     public router: Router,
-    private cd: ChangeDetectorRef,
-    private menuService: MenuService,
-    private store: Store<LoginState>
+    // Service nie powinien być tutaj implementowany. Raczej powinno być to zarządzane z wyższego poziomu. Zróbmy ten i jemu podobne komponenty bardzo lekkie,
+    // praktycznie importujące tylko rzeczy potrzebne do wyświetlania (słowniki, router jeżeli jest nawigacja etc.), ale logika niech będzie nad nimi.
+    // Aby to sobie lepiej wyobrazić, pomyślmy o tym jakbyśmy tworzyli kontrolki typu PrimeNG i chcieli je potem pakować i sprzedawać :)
+    private menuService: MenuService
   ) {
     this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
       (key) => {
@@ -139,6 +140,7 @@ export class MenuitemComponent implements OnInit {
 
   itemClick(event: Event) {
     //avoid processing disabled items
+    // disabled można zbindować do template, wtedy możemy zrezygnować z tego sprawdzania
     if (this.item.disabled) {
       event.preventDefault();
       return;

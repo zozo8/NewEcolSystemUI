@@ -95,7 +95,7 @@ export class Summary1Component implements OnInit {
       '😁',
       '😆',
       '😅',
-      '😂',
+      '😂', // Ta jest straszna :( - oczywiście mały żart na rozweselenie przy przeglądaniu poprawek :)))
       '🤣',
       '😇',
       '😉',

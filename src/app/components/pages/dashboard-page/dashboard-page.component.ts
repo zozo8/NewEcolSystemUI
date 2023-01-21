@@ -117,6 +117,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
         this.search = false;
       }
 
+      // ten if...else jest trochę niepełny :)
       if (
         this.inlineMenuActive[this.currentInlineMenuKey] &&
         !this.inlineMenuClick
@@ -137,6 +138,8 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
     this.menuActive = this.isStatic() && !this.isMobile();
 
     this.appVersion = `${environment.appVersion} ${this.translateService.currentLang}`;
+    //Ten timer tutaj wygląda jak smelly point. Zobacz to proszę: https://angular.io/guide/lifecycle-hooks
+    // Proponuję przenieść do ngAfterViewInit albo ngAfterContentInit - w zależności czego oczekujemy od tej flagi, bo widzę, że teraz nie jest używana.
     timer(500).subscribe(() => {
       this.loadDashboard = true;
     });
@@ -201,6 +204,7 @@ export class DashboardPageComponent implements OnInit, AfterViewInit {
   }
 
   onMenuButtonClick(ev: Event) {
+    // Te wszystkie flagi bym wrzucił do MenuStateStore (oczywiście uprzednio go tworząc :))
     this.menuActive = !this.menuActive;
     this.topbarMenuActive = false;
     this.topbarRightClick = true;

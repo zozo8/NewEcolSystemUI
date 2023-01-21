@@ -6,7 +6,6 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
 import { DashboardPageComponent } from '../dashboard-page.component';
 
@@ -67,10 +66,14 @@ export class InlineMenuComponent {
   @Input() styleClass: string;
   active: boolean;
 
+  // Nie powinno się zaciągać komponentów przez komponenty w konstruktorze, szczególnie kiedy wykorzystujemy NGRX. Komponenty
+  // powinny mieć swój stan zapisywany w store'ach i ten stan powinien być zarządzany z poziomu actions (effects), services,
+  // a nawet z komponentów, ale komponenty nie powinny wiedzieć o swoim istnieniu. Jedyny dopuszczalny w naszym patternie sposób na osadzenie komponentu
+  // w komponencie to osadzenie go w template (html). Najlepiej bez parametrów.
+  // Zauważyłem, że jest tego całkiem sporo, więc trzeba będzie przerobić jak najszybciej wszystkie importy komponentów przez konstruktor (będzie to wymagać rozszerzenia storeów)
   constructor(
     public app: AppComponent,
-    public dashboard: DashboardPageComponent,
-    private translate: TranslateService
+    public dashboard: DashboardPageComponent
   ) {}
 
   onClick(ev: Event) {

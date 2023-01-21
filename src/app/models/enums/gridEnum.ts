@@ -1,3 +1,5 @@
+//Do wszystkich podobnych plików - zachowaj konwencję kebab-case.ts a nie camelCase.ts, chyba, że te pliki są generowane
+
 export enum GridEnum {
   Users = 104,
   UserDepartments = 106,

@@ -23,7 +23,9 @@ export const getDepartments = createSelector(
   (state) => state.departments
 );
 
+// Dużo rzeczy nie związanych z loginem. Myślę, że do stanu innych rzeczy niż sam login powinniśmy wziąć inne store'y i ew. przy loginie uzupełnić ich wartości (jeżeli wartości są przetrzymywane np. w bazie)
 export const getTabs = createSelector(getState, (state) => state.tabs);
+
 export const getActiveTab = createSelector(
   getState,
   (state) => state.activeTab

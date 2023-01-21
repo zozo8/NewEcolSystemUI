@@ -1,0 +1,15 @@
+::ng-deep .p-tabview {
+    position: relative;
+    margin: 0 auto;
+    height: auto !important;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+::ng-deep .p-tabview-panels {
+    flex-grow: 1;
+}
+
+::ng-deep .p-tabview-panels > p-tabpanel {
+}

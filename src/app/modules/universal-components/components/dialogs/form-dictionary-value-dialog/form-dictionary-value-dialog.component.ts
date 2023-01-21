@@ -27,7 +27,8 @@ export class FormDictionaryValueDialogComponent<T> implements OnInit {
   selectedOption: MenuItem = {};
   showValue: boolean;
   private saveSubscription: Subscription;
-
+  // Ogólnie do common/universal - nie powinny być łączone z logiką specyficzną, raczej generyczne rzeczy/helpery etc.
+  // Najlepiej, aby importy zawierały niezbędne rzeczy do wyświetlenia, a komponenty były sterowane przez rodzica
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,

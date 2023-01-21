@@ -43,6 +43,7 @@ export class ProductTradeNameComponent implements OnInit, OnDestroy {
     this.getButtons();
   }
 
+  // To właśnie kolejny przypadek dla entity store
   getSelected(ev: any): void {
     var path = getModelPath(this.model, ev.id);
     this.selectedId = ev.id;

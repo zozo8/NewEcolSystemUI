@@ -186,6 +186,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   removeDepartment(depId: number) {
+    // Utworzyłbym topbar service i przeniósł większość takiej logiki tam, a tutaj wywoływał tylko metody z serwisu aby uprościć cały flow i debugowanie.
     this.confirmService.confirm({
       message: 'Czy napewno nie chcesz już pracować w obrębie tego zakładu?',
       accept: () => {

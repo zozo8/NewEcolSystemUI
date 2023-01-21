@@ -409,6 +409,8 @@
       >
         <ng-template pTemplate="header">
           <tr>
+            <!-- Brakuje atrubutu scope w th -->
+
             <th style="width: 5rem">Image</th>
             <th pSortableColumn="name">
               Name
@@ -422,6 +424,7 @@
               Price
               <p-sortIcon field="price"></p-sortIcon>
             </th>
+            <!-- Proszę wyeksportować style do pliku scss -->
             <th style="width: 4rem">View</th>
           </tr>
         </ng-template>

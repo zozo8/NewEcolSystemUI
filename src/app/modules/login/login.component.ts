@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, timer } from 'rxjs';
-import { CommonService } from 'src/app/services/common.service';
 import Login from './interfaces/login.model';
 import { ResponseLoginUR } from './interfaces/UR/responseLoginUr.model';
 import { LoginService } from './login.service';
@@ -86,8 +85,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private translateService: TranslateService,
     private store: Store<LoginState>,
-    private router: Router,
-    private commonService: CommonService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -111,6 +109,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.hideAdvs = true;
     this.loading = true;
     this.errorText = '';
+    // Czemu musimy czekać sekundę? Zwracam też uwagę na zagnieżdżanie subskrypcji
     timer(1000).subscribe(() => {
       this.compsiteSubs.add(
         this.loginService.loginToUR(this.loginObj).subscribe({
@@ -141,6 +140,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   printErrorMessage() {
+    // Loading, error etc. powinny być w store
     this.loading = false;
     this.hideAdvs = false;
     this.errorText = this.translateService.instant('pages.login.error');

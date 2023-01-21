@@ -13,6 +13,7 @@ interface IDictionaryComponent {
 }
 
 // component can open in tabs
+// Zmieniłbym nazwę
 export const components4tabs: IDictionaryComponent[] = [
   {
     component: TreeComponent,

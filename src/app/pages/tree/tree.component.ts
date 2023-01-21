@@ -21,7 +21,12 @@ import {
   getInitTreeElementListPath,
   getTreeElementListPath,
 } from 'src/app/services/path';
-import { TreeService } from './tree.service';
+import {
+  getChildrenByParentId,
+  getDefaultColumns,
+  getDefaultFilters,
+  getTreeNodes,
+} from './tree.helper';
 
 @Component({
   selector: 'app-tree',
@@ -44,7 +49,6 @@ export class TreeComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private apiService: ApiService,
     private commonService: CommonService,
-    private treeService: TreeService,
     private confirmationService: ConfirmationService,
     private store: Store<LoginState>
   ) {}
@@ -71,7 +75,7 @@ export class TreeComponent implements OnInit, OnDestroy {
               )
               .subscribe({
                 next: (res: ResponseBodyGetList) => {
-                  this.values = this.treeService.getTreeNodes(res.value.data);
+                  this.values = getTreeNodes(res.value.data);
                 },
                 complete: () => {
                   this.loading = false;
@@ -85,8 +89,8 @@ export class TreeComponent implements OnInit, OnDestroy {
 
   getRequestObj(filters?: Filter[]): RequestBodyGetList {
     const res: RequestBodyGetList = this.commonService.getRequestObj(
-      this.treeService.getDefaultColumns(),
-      this.treeService.getDefaultFilters(),
+      getDefaultColumns(),
+      getDefaultFilters(),
       filters
     );
 
@@ -111,9 +115,7 @@ export class TreeComponent implements OnInit, OnDestroy {
           .pipe(take(1))
           .subscribe({
             next: (res: ResponseBodyGetList) => {
-              ev.node.children = this.treeService.getChildrenByParentId(
-                res.value.data
-              );
+              ev.node.children = getChildrenByParentId(res.value.data);
               // this.loading = false;
             }, //,
             // error: () => (this.loading = false),

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class MenuService {
+  // To wszystko powinno być w czymś typu MenuStateStore
   private menuSource = new Subject<string>();
   private resetSource = new Subject();
 

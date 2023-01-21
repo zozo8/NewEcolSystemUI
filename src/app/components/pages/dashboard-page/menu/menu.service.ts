@@ -17,7 +17,8 @@ export class MenuService {
   constructor(private translate: TranslateService) {}
 
   getMenu(): TreeNode[] {
-    let data: TreeNode[] = [
+    // w TypeScript przyjęło się dążenie do immutability, dlatego "na szybko" sugeruję używać const zawsze, a let niech będzie używane jedynie świadomie i gdy nie ma innej opcji
+    const data: TreeNode[] = [
       {
         label: this.translate.instant('sidebar.mainpage'),
         icon: 'pi pi-fw pi-home',
@@ -99,7 +100,8 @@ export class MenuService {
   getItemsWithComponent(): TreeNode[] {
     const res: TreeNode[] = [];
     const items = this.getMenu();
-    for (var item of items) {
+    // var ogólnie się nie używa w TS. Tu użyjemy let.
+    for (let item of items) {
       if (item.children !== undefined) {
         item.children.forEach((ch1) => {
           if (ch1.component !== undefined) {

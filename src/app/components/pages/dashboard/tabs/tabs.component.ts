@@ -18,8 +18,10 @@ import { components4tabs } from './components4tabs';
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css'],
+  styleUrls: ['./tabs.component.scss'],
 })
+
+//Fajnie byłoby, aby lista tabów była w tzw. entity store. Dałoby to możliwość trzymania tabów, być może zarządzania kolejnością lub opcjonalnością wyświetlania oraz tym, który jest aktywny. Dodatkowo - taki state łatwo potem zapisać np. w local storage. Więcej tutaj, ew. mogę zrobić przykład na stackblitz: https://blog.angular-university.io/ngrx-entity/
 export class TabsComponent implements OnInit, OnDestroy {
   tabs: Tab[] = [];
   activeTab: number;
@@ -32,6 +34,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // Ta subskrypcja nie jest "odsubskrybowywana". Co prawda przy tym komponencie to
     this.store
       .select(getTabs)
       .pipe(take(1))
@@ -45,6 +48,7 @@ export class TabsComponent implements OnInit, OnDestroy {
           this.activeTab = this.commonService.getValueFromObservable(
             this.store.select(getActiveTab)
           );
+          // Tworzenie strumieni w bloku subscribe nie jest dobrym pomysłem i może bardzo szybko skończyć się wyciekiem pamięci. Tutaj jest to w bloku complete, lecz często lepszą opcją jest utworzenie nowego Subject i kontrolowanie przepływu RXJS za jego pomocą - wtedy tutaj byłoby tylko coś w stylu tabsLoaded$.next() czy coś w tym stylu.
           this.compsiteSubs.add(
             this.store.select(getActiveTab).subscribe({
               next: (res: number) => {
@@ -63,7 +67,7 @@ export class TabsComponent implements OnInit, OnDestroy {
     } else {
       this.store
         .select(getTabs)
-        .pipe(take(1))
+        .pipe(take(1)) //Tutaj podobnie - zamiast take(1) można zrobić stałą subskrypcję. W tym momencie model jest taki, że nie wykorzystujemy RXJS w store w żaden sposób, a nawet wygląda to jakby nam to przeszkadzało. Oczywiście, wartość statyczna sklepu się przydaje (np. w POST, DELETE etc. requestach), ale zazwyczaj więcej skorzystamy, jeżeli subskrypcje będą stałe. Zauważyłem też, że nie korzystacie z pipe | async - która jest jakby stworzona do łączenia strumieni RXJS z UI
         .subscribe({
           next: (res: string[]) => {
             this.addTab(res[i], i);

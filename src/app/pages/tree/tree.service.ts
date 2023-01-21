@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { LazyLoadEvent, TreeNode } from 'primeng/api';
 import { BaseTreeFilteredDto } from 'src/app/models/baseTreeFilteredDto.model';
 import { ResponseGridDataColumnValue } from 'src/app/models/responses/responseGridDataColumnValue.model';
+import { ITreeNode } from 'src/app/modules/universal-components/interfaces/ITreeNode';
 
 @Injectable({
   providedIn: 'root',
 })
+// Lepiej to nazwać tree helper i korzystać z metod statycznych - utworzę plik obok i zrobię ekwiwalent
 export class TreeService {
   constructor() {}
 
@@ -56,8 +58,8 @@ export class TreeService {
     ];
   }
 
-  getTreeNodes(data: BaseTreeFilteredDto[]): TreeNode[] {
-    const treeElements: TreeNode[] = [];
+  getTreeNodes(data: BaseTreeFilteredDto[]): ITreeNode[] {
+    const treeElements: ITreeNode[] = [];
 
     for (let i = data.length - 1; i >= 0; i--) {
       const extObj = treeElements.find(
@@ -138,7 +140,7 @@ export class TreeService {
         break;
     }
 
-    const treeNode: TreeNode = {
+    const treeNode: ITreeNode = {
       label: obj.nodeName,
       id: obj.id,
       parentId: obj.parentId,

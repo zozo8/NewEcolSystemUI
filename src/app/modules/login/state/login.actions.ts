@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { LoginState } from './loginState';
 
+//Na pewno powinniśmy mieć więcej state storów, bardziej je rozibić. Do tego pewnie lepiej byłoby je trzymać bliżej wykorzystania niż we wspólnym folderze
+
 export const saveLoginObject = createAction(
   '[Login Service] saveLoginObject',
   props<{ obj: LoginState }>()

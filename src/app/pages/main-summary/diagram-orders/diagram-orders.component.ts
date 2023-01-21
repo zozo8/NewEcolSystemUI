@@ -76,10 +76,13 @@ export class DiagramOrdersComponent implements OnInit, OnDestroy {
           years = [];
           datasets = [];
 
+          // To powinno być w switchMap albo najlepiej powinna być subskrypcja, która po zmianie departments pobierze MainPageDiagramOrders i umieści je w sklepie, natomiast
+          // body subscripcji poniżej powinno być podpięte do zmian w MainPageDiagramStateStore czy coś w tym stylu
           this.apiService
             .getResponseByPost('/api/MainPageDiagramOrders', depts)
             .subscribe({
               next: (res: any) => {
+                // Unikajmy tak dużych bloków subskrypcji - lepiej użyć wielu metod map i filter w pipe, a przyjść z gotowym wynikiem
                 res.value.forEach((element: any) => {
                   if (!labels.find((x) => x === element.m)) {
                     labels.push(element.m);

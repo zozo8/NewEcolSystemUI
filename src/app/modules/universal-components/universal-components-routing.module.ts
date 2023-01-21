@@ -6,6 +6,7 @@ const routes: Routes = [{ path: '', component: UniversalComponentsComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UniversalComponentsRoutingModule { }
+export class UniversalComponentsRoutingModule {}
+// Jeżeli ścieżka nie jest wykonywana, to routing module nie będzie konieczny

@@ -20,6 +20,7 @@ import { getTabs } from '../modules/login/state/login.selector';
 import { LoginState } from '../modules/login/state/loginState';
 import { ApiService } from './api.service';
 
+// Common service to trochę anti pattern - rozbiłbym to na tematyczne serwisy
 @Injectable({
   providedIn: 'root',
 })

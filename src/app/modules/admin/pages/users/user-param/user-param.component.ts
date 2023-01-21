@@ -36,6 +36,7 @@ export class UserParamComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Proponuję stortować zmienne - na przyszłość zaowocuje :)
   ref: DynamicDialogRef;
   static icon = PrimeIcons.LIST;
   icon = PrimeIcons.LIST;

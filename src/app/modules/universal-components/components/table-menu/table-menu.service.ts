@@ -115,6 +115,7 @@ export class TableMenuService {
             },
           });
       } else {
+        // HttpClient powinien standardowo być wrapowany przez Client API - wtedy kod wygląda nieco lepiej
         this.http
           .put(environment.endpointApiPath + editPath + '?id=' + id, objectDto)
           .subscribe({

@@ -12,6 +12,7 @@
     [selected]="i === activeTab"
     *ngFor="let tab of tabs; let i = index; let l = last"
   >
+    <!-- Zrobić kontener na całą wysokość strony -->
     <ng-container *ngComponentOutlet="tab.component"></ng-container>
   </p-tabPanel>
 </p-tabView>

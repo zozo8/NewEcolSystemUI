@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { GridEnum } from 'src/app/models/enums/gridEnum';
@@ -37,7 +36,7 @@ export class SelectDepartmentComponent implements OnInit, OnDestroy {
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private translateService: TranslateService,
+    // private translateService: TranslateService, - nie używany
     private apiService: ApiService,
     private commonService: CommonService,
     private store: Store<LoginState>
@@ -52,6 +51,59 @@ export class SelectDepartmentComponent implements OnInit, OnDestroy {
   }
 
   getDepartments() {
+    // Sugestia:
+    // this.apiService
+    //   .getColumns(columnListPath(GridEnum.Departments))
+    //   .pipe(
+    //     map((res) =>
+    //       this.commonService.getRequestObj(res.value, {
+    //         first: 1,
+    //         rows: 100,
+    //         sortField: 'clientId',
+    //         sortOrder: -1,
+    //       })
+    //     ),
+    //     switchMap((reqObj) =>
+    //       this.apiService.getResponseBodyGetList(
+    //         getModelListPath('Department'),
+    //         reqObj
+    //       )
+    //     )
+    //   )
+    //   .subscribe({
+    //     next: (res: ResponseBodyGetList) => {
+    //       res.value.data.forEach((element) => {
+    //         const group = this.departments.find(
+    //           (x) => x.id === element.clientId
+    //         );
+    //         if (group === undefined) {
+    //           const childs = res.value.data.filter(
+    //             (x) => x.clientId === element.clientId
+    //           );
+    //           const parent = res.value.data.find(
+    //             (x) => x.clientId === element.clientId
+    //           );
+    //           const obj: ISelectDepartemnt = {
+    //             id: parent.clientId,
+    //             group: parent.clientName,
+    //           };
+
+    //           obj.items = [];
+    //           childs.forEach((ch) => {
+    //             const chObj: ISelectDepartemntValue = {
+    //               label: ch.departmentName,
+    //               value: ch.id,
+    //             };
+
+    //             obj.items?.push(chObj);
+    //           });
+
+    //           this.departments.push(obj);
+    //         }
+    //       });
+    //     },
+    //   });
+
     this.compsiteSubs.add(
       this.apiService
         .getColumns(columnListPath(GridEnum.Departments))
@@ -64,6 +116,7 @@ export class SelectDepartmentComponent implements OnInit, OnDestroy {
               sortOrder: -1,
             });
 
+            // Jak wcześniej mówiłem - lepiej trzymać subskrypcje bez zagnieżdżania
             this.compsiteSubs.add(
               this.apiService
                 .getResponseBodyGetList(getModelListPath('Department'), reqObj)
